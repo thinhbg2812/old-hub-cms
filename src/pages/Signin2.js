@@ -1,9 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import bg1 from "../assets/img/bg1.jpg";
+import useToken from "../components/useToken"
+import {loginRequest} from "../services/user"
 
 export default function Signin2() {
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [password, setPassword] = useState("")
+  const {token, setToken} = useToken()
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const navigate = useNavigate();
+
+  const login = async() => {
+    const data = await loginRequest(phoneNumber, password);
+    console.log(data);
+    if(data.isError){
+      setIsAuthenticated(false);
+      return;
+    }
+    setToken(data.accessToken)
+    navigate("/dashboard/product");
+  }
   return (
     <div className="page-sign d-block py-0">
       <Row className="g-0">
@@ -17,15 +36,19 @@ export default function Signin2() {
               <Form method="get" action="/dashboard/finance">
                 <div className="mb-4">
                   <Form.Label>Phonenumber</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your phone number" value="094xxxxxxx" />
+                  <Form.Control type="text" placeholder="Enter your phone number"
+                    onChange={e => setPhoneNumber(e.target.value)}
+                  />
                 </div>
                 <div className="mb-4">
                   <Form.Label className="d-flex justify-content-between">
                     Password
                   </Form.Label>
-                  <Form.Control type="password" placeholder="Enter your password" value="password123" />
+                  <Form.Control type="password" placeholder="Enter your password"
+                    onChange={e => setPassword(e.target.value)}
+                  />
                 </div>
-                <Button type="submit" className="btn-sign">Sign In</Button>
+                <Button onClick={login} className="btn-sign">Sign In</Button>
               </Form>
             </Card.Body>
           </Card>

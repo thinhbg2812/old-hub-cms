@@ -1,92 +1,23 @@
 
-const dashboardMenu = [
+const userMenu = [
   {
-    "label": "Finance Monitoring",
-    "link": "/dashboard/finance",
-    "icon": "ri-pie-chart-2-line"
+    "label": "User Management",
+    "link": "/user/list",
+    "icon": "ri-user-line"
   },
   {
-    "label": "Events Management",
-    "link": "/dashboard/events",
-    "icon": "ri-calendar-todo-line"
+    "label": "Employee Management",
+    "link": "/employee/list",
+    "icon": "ri-user-2-line"
   },
   {
-    "label": "Sales Monitoring",
-    "link": "/dashboard/sales",
-    "icon": "ri-shopping-bag-3-line"
-  },
-  {
-    "label": "Website Analytics",
-    "link": "/dashboard/analytics",
-    "icon": "ri-bar-chart-2-line"
-  },
-  {
-    "label": "Cryptocurrency",
-    "link": "/dashboard/crypto",
-    "icon": "ri-coin-line"
-  },
-  {
-    "label": "Helpdesk Service",
-    "link": "/dashboard/helpdesk",
-    "icon": "ri-service-line"
-  },
-  {
-    "label": "Storage Management",
-    "link": "/dashboard/storage",
-    "icon": "ri-hard-drive-2-line"
-  },
-  {
-    "label": "Product Management",
-    "link": "/dashboard/product",
-    "icon": "ri-suitcase-2-line"
+    "label": "Organization Management",
+    "link": "/org/list",
+    "icon": "ri-global-line"
   }
 ];
 
 const applicationsMenu = [
-  {
-    "label": "File Manager",
-    "link": "/apps/file-manager",
-    "icon": "ri-folder-2-line"
-  },
-  {
-    "label": "Email",
-    "link": "/apps/email",
-    "icon": "ri-mail-send-line"
-  },
-  {
-    "label": "Calendar",
-    "link": "/apps/calendar",
-    "icon": "ri-calendar-line"
-  },
-  {
-    "label": "Chat",
-    "link": "/apps/chat",
-    "icon": "ri-question-answer-line"
-  },
-  {
-    "label": "Contacts",
-    "link": "/apps/contacts",
-    "icon": "ri-contacts-book-line"
-  },
-  {
-    "label": "Task Manager",
-    "link": "/apps/tasks",
-    "icon": "ri-checkbox-multiple-line"
-  },
-  {
-    "label": "Media Gallery",
-    "icon": "ri-gallery-line",
-    "submenu": [
-      {
-        "label": "Music Stream",
-        "link": "/apps/gallery-music"
-      },
-      {
-        "label": "Video Stream",
-        "link": "/apps/gallery-video"
-      }
-    ]
-  }
 ];
 
 const pagesMenu = [
@@ -428,4 +359,4 @@ const uiElementsMenu = [
   }
 ];
 
-export { dashboardMenu, applicationsMenu, pagesMenu, uiElementsMenu };
+export { userMenu, applicationsMenu, pagesMenu, uiElementsMenu };

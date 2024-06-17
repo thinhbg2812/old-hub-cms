@@ -6,7 +6,7 @@ export const sendPostRequest = async (requestType, uri, data, isPublic) => {
     url: process.env.REACT_APP_BE_DOMAIN + uri,
     headers: {
       "Content-Type": "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     data: JSON.stringify(data),
   };
@@ -33,7 +33,7 @@ export const sendGetRequest = async (uri, request) => {
     url: process.env.REACT_APP_BE_DOMAIN + uri,
     headers: {
       "Content-Type": "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     params: request,
   };

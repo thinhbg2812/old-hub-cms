@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import userAvatar from "../assets/img/img1.jpg";
 import {
-    dashboardMenu,
+    userMenu,
     applicationsMenu,
     pagesMenu,
     uiElementsMenu
@@ -21,7 +21,7 @@ export default class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <div className="sidebar-header">
-                    <Link to="/" className="sidebar-logo">dashbyte</Link>
+                    <Link to="/" className="sidebar-logo">Ihub Access Control</Link>
                 </div>
                 <PerfectScrollbar className="sidebar-body" ref={ref => this._scrollBarRef = ref}>
                     <SidebarMenu onUpdateSize={() => this._scrollBarRef.updateScroll()} />
@@ -119,8 +119,8 @@ class SidebarMenu extends Component {
         return (
             <React.Fragment>
                 <div className="nav-group show">
-                    <div className="nav-label" onClick={this.toggleMenu}>Dashboard</div>
-                    {this.populateMenu(dashboardMenu)}
+                    <div className="nav-label" onClick={this.toggleMenu}>User management</div>
+                    {this.populateMenu(userMenu)}
                 </div>
                 <div className="nav-group show">
                     <div className="nav-label" onClick={this.toggleMenu}>Applications</div>

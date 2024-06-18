@@ -1,8 +1,23 @@
-import { sendGetRequest } from "./service"
+import { sendGetRequest, sendPostRequest } from "./service"
 
 export const listOrgRequest = async(page, size) => {
     return sendGetRequest("/api/private/org", {
         page: page,
         size: size
     })
+}
+
+export const createOrgRequest = async(orgName, address, phoneNumber, website, parentOrgId) => {
+    let params = {
+        orgName: orgName,
+        address: address,
+        phoneNumber: phoneNumber
+    }
+    if(website){
+        params.website = website
+    }
+    if(parentOrgId){
+        params.parentOrgId = parentOrgId
+    }
+    return sendPostRequest("post", "/api/private/org", params);
 }

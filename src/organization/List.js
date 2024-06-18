@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { createOrgRequest, listOrgRequest } from "../services/organization"
+import { createOrgRequest, getOrgRequest, listOrgRequest } from "../services/organization"
 import { toast } from "react-toastify";
 import Header from "../layouts/Header";
 import TreeView, { flattenTree } from "react-accessible-treeview";
@@ -24,6 +24,8 @@ export default function OrgManagement(){
 
     const [createOrgDialog, setCreateOrgDialog] = useState(false)
 
+    const [selectedOrg, setSelectedOrg] = useState({})
+
     const closeCreateOrgDialog = () =>{
       setCreateOrgDialog(false)
     }
@@ -33,6 +35,7 @@ export default function OrgManagement(){
         children: [
         ]
     }))
+    const [orignalOrgs, setOriginalOrgs] = useState({})
 
     const addProperty = (obj, path, value) => {
         let parts = path.split(">")
@@ -44,21 +47,15 @@ export default function OrgManagement(){
                 current.children.push({
                     name: value?.orgName,
                     children: [],
-                    itemId: parts[i]
+                    itemId: parts[i],
+                    metadata: {
+                      id: parts[i]
+                    }
                 })
                 index =  current.children.findIndex(e => e.itemId === parts[i]);
                 current = current.children[index];
             }
-            else{
-                // console.log(current)
-                // current.children[index].children.push({
-                //     name: value.orgName,
-                //     children: []
-                // })
-                // console.log(value.orgName)
-                // console.log(current)
-                // let index2 =  current.children[index].children.findIndex(e => e.itemId === parts[i]);                
-                // current = current.children[index].children[index2];   
+            else{ 
                 current = current.children[index]                            
             }             
             
@@ -77,7 +74,6 @@ export default function OrgManagement(){
                 addProperty(obj, item.path, item)
                 
             }
-            
             setOrgs(flattenTree(obj))
         }
     }
@@ -85,12 +81,22 @@ export default function OrgManagement(){
       if(!orgName || !phoneNumber || !address){
         toast.error("Missing required fields")
       }else{
-        const resp = await createOrgRequest(orgName, address, phoneNumber, website, parentOrgId)
+        const resp = await createOrgRequest(orgName, address, phoneNumber, website, currentOrg.metadata.id)
         if(resp.isError){
           toast.error("Can not create new Organization")
         }else{
           await listOrg();
+          closeCreateOrgDialog()
         }
+      }
+    }
+
+    const getOrg = async(orgId) => {
+      const resp = await getOrgRequest(orgId);
+      if(resp.isError){
+        toast.error("Can not get Organization's information")
+      }else{
+        setSelectedOrg(resp.data)
       }
     }
 
@@ -146,7 +152,9 @@ export default function OrgManagement(){
                                                   isHalfSelected ? "some" : isSelected ? "all" : "none"
                                                 }
                                               />
-                                              <span className="name">{element.name}</span>
+                                              <span className="name" onClick={() => {
+                                                getOrg(element.metadata.id)
+                                              }}>{element.name}</span>
                                               <FontAwesomeIcon icon={faCirclePlus} size="sm" className="ps-2"
                                                 onClick={() => {
                                                   setCreateOrgDialog(true)
@@ -165,7 +173,15 @@ export default function OrgManagement(){
                                   Company name:
                                 </div>
                                 <div className="col-8">
-                                  abc
+                                  {selectedOrg?.orgName ?? "N/A"}
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-4">
+                                  Company phone number:
+                                </div>
+                                <div className="col-8">
+                                  {selectedOrg?.phoneNumber ?? "N/A"}
                                 </div>
                               </div>
                               <div className="row">
@@ -173,7 +189,15 @@ export default function OrgManagement(){
                                   Company address:
                                 </div>
                                 <div className="col-8">
-                                  abc
+                                  {selectedOrg?.address ?? "N/A"}
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-4">
+                                  Company website:
+                                </div>
+                                <div className="col-8">
+                                  {selectedOrg?.website ?? "N/A"}
                                 </div>
                               </div>
                             </div>
@@ -222,7 +246,14 @@ export default function OrgManagement(){
                       </div>
                     </div>
                   </ModalBody>
-                  <ModalFooter></ModalFooter>
+                  <ModalFooter>
+                        <button type="button" className="btn btn-outline-success" onClick={() => {
+                          createOrg()
+                        }}>Create</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={() => {
+                          closeCreateOrgDialog()}
+                        }>Cancel</button>
+                  </ModalFooter>
              </Modal>
         </React.Fragment>
     )

@@ -46,7 +46,7 @@ const PaginationComp = ({pageSize, total, callback}) => {
                 renderOnZeroPageCount={null}
                 activeClassName="item active-page"
                 breakClassName="item break-me"
-                containerClassName="pagination"
+                containerClassName="pagination m-auto"
                 disabledClassName="disabled-page"
                 nextClassName="item next"
                 pageClassName="item pagination-page"

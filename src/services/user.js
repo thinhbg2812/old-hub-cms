@@ -13,3 +13,14 @@ export const listUserRequest = async(page, size) => {
         size: size
     })
 }
+export const createUserRequest = async(phoneNumber, fullName, status, orgId, deviceId) => {
+    console.log(2)
+    let params = {
+        phoneNumber: phoneNumber,
+        fullName: fullName,
+        status: status,
+        orgId: orgId,
+        deviceId: deviceId
+    }
+    return await sendPostRequest("post", "/api/private/user", params)
+}

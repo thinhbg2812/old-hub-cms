@@ -5,11 +5,11 @@ const userMenu = [
     "link": "/user/list",
     "icon": "ri-user-line"
   },
-  {
-    "label": "Employee Management",
-    "link": "/employee/list",
-    "icon": "ri-user-2-line"
-  },
+  // {
+  //   "label": "Employee Management",
+  //   "link": "/employee/list",
+  //   "icon": "ri-user-2-line"
+  // },
   {
     "label": "Organization Management",
     "link": "/org/list",

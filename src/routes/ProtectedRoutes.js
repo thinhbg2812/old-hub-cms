@@ -5,7 +5,7 @@ import OrgManagement from "../organization/List";
 
 
 const protectedRoutes = [
-  { path: "employee/list", element: <EmployeeManagemnt /> },
+  // { path: "employee/list", element: <EmployeeManagemnt /> },
   {path: "user/list", element: <UserManagemnt />},
   {path: "org/list", element: <OrgManagement />}
 ]

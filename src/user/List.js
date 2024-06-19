@@ -25,6 +25,9 @@ export default function UserManagement() {
     const [status, setStatus] = useState("active")
     const [selectedOrg, setSelectedOrg] = useState("")
     const [selectedDevice, setSelectedDevice] = useState("")
+    const [selectedUser, setSelectedUser] = useState({})
+    const [action, setAction] = useState(0)//0 - create, 1 - edit
+    const [selectedTreeIds, setSelectedTreeIds] = useState([])
 
     const [orgs, setOrgs] = useState(flattenTree({
         name: "Your organization",
@@ -107,7 +110,7 @@ export default function UserManagement() {
     }
     
     const createUser = async() => {
-        const resp = await createUserRequest(phoneNumber, fullname, status, selectedOrg, selectedDevice)
+        const resp = await createUserRequest(selectedUser.phoneNumber, selectedUser.fullName, selectedUser.status, selectedOrg, selectedDevice)
         if(resp.isError){
             toast.error("Can not create new user")
         }else{
@@ -128,7 +131,12 @@ export default function UserManagement() {
                     <div className="row mb-2">
                         <div className="col-12 text-end">
                             <button type="button" className="btn btn-primary" onClick={() => {
+                                setSelectedTreeIds([1])
                                 setCreateUserDialog(true)
+                                setSelectedUser({
+                                    status: "active"
+                                })
+                                setAction(0)
                             }}>Add user</button>
                         </div>
                     </div>
@@ -156,8 +164,26 @@ export default function UserManagement() {
                                                 <td></td>
                                                 <td>{user.zaloId}</td>
                                                 <td>{user.status}</td>
-                                                <td>
-                                                    <i class="ri-edit-box-line"></i>
+                                                <td className="d-flex flex-row justify-content-center">
+                                                    <i class="ri-edit-box-line" onClick={() => {
+                                                        let userOrgs = user.orgs;
+                                                        let orgIds = []
+                                                        for(let i = 0; i < userOrgs.length; i++){
+                                                            orgIds.push(user.orgs[i].id)
+                                                        }
+                                                        let treeIds = []
+                                                        for(let i = 0; i < orgIds.length; i++){
+                                                            let index = orgs.findIndex(o => o.metadata?.id === orgIds[i])
+                                                            if(index !== -1){
+                                                                treeIds.push(orgs[index].id)
+                                                            }
+                                                        }
+                                                        setSelectedTreeIds(treeIds)
+                                                        setAction(1)
+                                                        setSelectedUser(user)
+                                                        setCreateUserDialog(true)
+                                                    }}></i>
+                                                    <i class="ri-delete-bin-line"></i>
                                                 </td>
                                             </tr>
                                         )
@@ -175,29 +201,60 @@ export default function UserManagement() {
             </div>
             <Modal show={createUserDialog} onHide={clostCreateUserDialog} backdrop="static" size="lg">
                 <ModalHeader closeButton>
-                    Create new user
+                    {action === 0 &&
+                        <>Create new user</>
+                    }
+                    {action !== 0 &&
+                        <>Edit user</>
+                    }
                 </ModalHeader>
                 <ModalBody>
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-12">
                                 <label for="phone" className="form-label">Phone number:</label>
-                                <input type="text" className="form-control form-control-sm" id="phone" onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                                <input type="text" className="form-control form-control-sm" id="phone" 
+                                value={selectedUser.phoneNumber}
+                                onChange={(e) => {
+                                    const newItem = {
+                                        phoneNumber: e.target.value
+                                    }
+                                    setSelectedUser(user => ({
+                                        ...selectedUser,
+                                        ...newItem
+                                    }))
+                                }} disabled={action === 1}></input>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-12">
                                 <label for="fullname" className="form-label">Full name:</label>
-                                <input type="text" className="form-control form-control-sm" id="fullname" onChange={(e) => setFullname(e.target.value)}></input>
+                                <input type="text" className="form-control form-control-sm" id="fullname" 
+                                value={selectedUser.fullName}
+                                onChange={(e) => {
+                                    const newItem = {
+                                        fullName: e.target.value
+                                    }
+                                    setSelectedUser(user => ({
+                                        ...selectedUser,
+                                        ...newItem
+                                    }))
+                                }}></input>
                             </div>
                         </div>
                         <div className="row border-bottom pb-3">
                             <div className="col-12">
                                 <label for="status" className="form-label">Status:</label>
-                                <select id="status" className="form-select" onChange={(e) => {
-                                    setStatus(e.target.value)
+                                <select id="status" className="form-select" value={selectedUser.status} onChange={(e) => {
+                                    const newItem = {
+                                        status: e.target.value
+                                    }
+                                    setSelectedUser(user => ({
+                                        ...selectedUser,
+                                        ...newItem
+                                    }))
                                 }}>
-                                    <option selected value="active">Active</option>
+                                    <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
                                     <option value="left_hand_sampling">Left hand sampling</option>
                                     <option value="right_hand_sampling">Right hand sampling</option>
@@ -219,6 +276,7 @@ export default function UserManagement() {
                                     propagateSelect
                                     propagateSelectUpwards
                                     togglableSelect
+                                    selectedIds={[1, 2]}
                                     nodeRenderer={({
                                         element,
                                         isBranch,
@@ -246,6 +304,7 @@ export default function UserManagement() {
                                                   isHalfSelected ? "some" : isSelected ? "all" : "none"
                                                 }
                                               />
+                                              <i className="ri-building-line me-1"></i>
                                               <span className="name" onClick={() => {
                                                 setSelectedOrg(element.metadata.id)
                                                 listOrgDevice(element.metadata.id)
@@ -261,7 +320,7 @@ export default function UserManagement() {
                                 }}>
                                     {devices.map((device, index) => {
                                         return (
-                                            <option key={device.id} value={device.deviceId} selected={index === 0}>{device.deviceId}</option>
+                                            <option selected={action === 1 ? (selectedUser.deviceId === device.id) : (index === 0)} key={device.id} value={device.deviceId}>{device.deviceId}</option>
                                         )
                                     })}
                                 </select>
@@ -271,9 +330,19 @@ export default function UserManagement() {
                 </ModalBody>
                 <ModalFooter>
                     <button type="button" className="btn btn-success" onClick={() => {
-                        console.log(1)
-                        createUser()
-                    }}>Create</button>
+                        if(action === 0){
+                            createUser()
+                        }else{
+
+                        }
+                    }}>
+                        {action === 0 &&
+                            <>Create</>
+                        }
+                        {action !== 0 &&
+                            <>Update</>
+                        }
+                    </button>
                     <button type="button" className="btn btn-secondary" onClick={() => clostCreateUserDialog()}>Cancel</button>
                 </ModalFooter>
             </Modal>

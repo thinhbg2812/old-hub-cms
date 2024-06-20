@@ -176,12 +176,10 @@ export default function OrgManagement(){
                                               <span className="name" onClick={() => {
                                                 getOrg(element.metadata.id)
                                               }}>{element.name}</span>
-                                              <FontAwesomeIcon icon={faCirclePlus} size="sm" className="ps-2"
-                                                onClick={() => {
+                                              <i class="ri-add-circle-line ps-2" onClick={() => {
                                                   setCreateOrgDialog(true)
                                                   setCurrentOrg(element)
-                                                }}
-                                              />
+                                                }}></i>
                                             </div>
                                         );
                                     }}

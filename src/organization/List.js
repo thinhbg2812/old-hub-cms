@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { createOrgRequest, getOrgRequest, listOrgRequest } from "../services/organization"
+import { createOrgRequest, getOrgRequest, listOrgRequest, updateOrgRequest } from "../services/organization"
 import { toast } from "react-toastify";
 import Header from "../layouts/Header";
 import TreeView, { flattenTree } from "react-accessible-treeview";
@@ -9,7 +9,7 @@ import cx from "classnames"
 import "./list.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { FormControl, Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
+import { Col, Form, FormControl, FormGroup, FormLabel, Modal, ModalBody, ModalFooter, ModalHeader, Row } from "react-bootstrap";
 
 export default function OrgManagement(){
     const [page, setPage] = useState(0)
@@ -25,9 +25,11 @@ export default function OrgManagement(){
     const [createOrgDialog, setCreateOrgDialog] = useState(false)
 
     const [selectedOrg, setSelectedOrg] = useState({})
+    const [validated, setValidated] = useState(false)
 
-    const closeCreateOrgDialog = () =>{
+    const closeCreateOrgDialog = async () =>{
       setCreateOrgDialog(false)
+      await listOrg();
     }
 
     const [orgs, setOrgs] = useState(flattenTree({
@@ -85,7 +87,6 @@ export default function OrgManagement(){
         if(resp.isError){
           toast.error("Can not create new Organization")
         }else{
-          await listOrg();
           closeCreateOrgDialog()
         }
       }
@@ -103,6 +104,26 @@ export default function OrgManagement(){
     useEffect(() => {
         listOrg()        
     }, [page, size])
+
+    const handleSubmit = async(event) => {
+      const form = event.currentTarget;
+      if(form.checkValidity() === false){
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      event.preventDefault();
+      setValidated(true)
+      await createOrg()
+      
+    }
+    const updateOrg = async() => {
+      const resp = await updateOrgRequest(selectedOrg, selectedOrg.id)
+      if(resp.isError){
+        toast.error("Can not get Organization's information")
+      }else{
+        await listOrg()
+      }
+    }
     return (
         <React.Fragment>
              <Header />
@@ -169,35 +190,72 @@ export default function OrgManagement(){
                         <div className="col-6">
                             <div className="container-fluid row-gap-3">
                               <div className="row">
-                                <div className="col-4">
-                                  Company name:
-                                </div>
-                                <div className="col-8">
-                                  {selectedOrg?.orgName ?? "N/A"}
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="col-4">
-                                  Company phone number:
-                                </div>
-                                <div className="col-8">
-                                  {selectedOrg?.phoneNumber ?? "N/A"}
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="col-4">
-                                  Company address:
-                                </div>
-                                <div className="col-8">
-                                  {selectedOrg?.address ?? "N/A"}
+                                <div className="col-6">
+                                  <label for="orgName" className="form-label">Company name:</label>
+                                  <input type="text" className="form-control form-control-sm" id="phone" value={selectedOrg.orgName} 
+                                    onChange={(e) => {
+                                      let newItem = {
+                                        orgName: e.target.value
+                                      }
+                                      setSelectedOrg(selectedOrg => ({
+                                        ...selectedOrg,
+                                        ...newItem,
+                                      }))
+                                    }}
+                                  />
                                 </div>
                               </div>
                               <div className="row">
-                                <div className="col-4">
-                                  Company website:
+                                <div className="col-6">
+                                  <label for="phoneNumber" className="form-label">Phone number:</label>
+                                  <input type="text" className="form-control form-control-sm" id="phoneNumber" value={selectedOrg?.phoneNumber} 
+                                    onChange={e => {
+                                      let newItem = {
+                                        phoneNumber: e.target.value
+                                      }
+                                      setSelectedOrg(selectedOrg => ({
+                                        ...selectedOrg,
+                                        ...newItem,
+                                      }))
+                                    }}
+                                  />
                                 </div>
-                                <div className="col-8">
-                                  {selectedOrg?.website ?? "N/A"}
+                              </div>
+                              <div className="row">
+                                <div className="col-6">
+                                  <label for="address" className="form-label">Address:</label>
+                                  <input type="text" className="form-control form-control-sm" id="address" value={selectedOrg?.address} 
+                                    onChange={e => {
+                                      let newItem = {
+                                        address: e.target.value
+                                      }
+                                      setSelectedOrg(selectedOrg => ({
+                                        ...selectedOrg,
+                                        ...newItem,
+                                      }))
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-6">
+                                  <label for="website" className="form-label">Website:</label>
+                                  <input type="text" className="form-control form-control-sm" id="website" value={selectedOrg?.website} 
+                                    onChange={e => {
+                                      let newItem = {
+                                        address: e.target.value
+                                      }
+                                      setSelectedOrg(selectedOrg => ({
+                                        ...selectedOrg,
+                                        ...newItem,
+                                      }))
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                              <div className="row mt-2">
+                                <div className="col-6 text-end">
+                                  <button type="button" className="btn btn-primary" onClick={updateOrg}>Update</button>
                                 </div>
                               </div>
                             </div>
@@ -211,49 +269,40 @@ export default function OrgManagement(){
                         Create new Organization for {currentOrg?.name}
                   </ModalHeader>
                   <ModalBody>
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-4">
-                          Company name:
-                        </div>
-                        <div className="col-8">
-                          <FormControl type="input" onChange={e => setOrgName(e.target.value)}/>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-4">
-                          Company Phone:
-                        </div>
-                        <div className="col-8">
+                    <Form noValidate onSubmit={handleSubmit} validated={validated}>
+                      <Row className="mb-1">
+                        <FormGroup as={Col}>
+                          <FormLabel>Company name:</FormLabel>
+                          <FormControl required type="input" onChange={e => setOrgName(e.target.value)}/>
+                            <FormControl.Feedback type="invalid">Company name is required</FormControl.Feedback>
+                        </FormGroup>
+                      </Row>
+                      <Row className="mb-1">
+                        <FormGroup as={Col}>
+                          <FormLabel>Phone number:</FormLabel>
                           <FormControl type="input" onChange={e => setPhoneNumber(e.target.value)}/>
-                        </div>
-                      </div>
-                      <div className="row ">
-                        <div className="col-4">
-                          Company Address:
-                        </div>
-                        <div className="col-8">
+                        </FormGroup>
+                      </Row>
+                      <Row className="mb-1">
+                        <FormGroup as={Col}>
+                          <FormLabel>Address:</FormLabel>
                           <FormControl type="input" onChange={e => setAddress(e.target.value)}/>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-4">
-                          Company Website:
-                        </div>
-                        <div className="col-8">
+                        </FormGroup>
+                      </Row>
+                      <Row className="mb-1">
+                        <FormGroup as={Col}>
+                          <FormLabel>Website:</FormLabel>
                           <FormControl type="input" onChange={e => setWebsite(e.target.value)}/>
-                        </div>
-                      </div>
-                    </div>
-                  </ModalBody>
-                  <ModalFooter>
-                        <button type="button" className="btn btn-outline-success" onClick={() => {
-                          createOrg()
-                        }}>Create</button>
-                        <button type="button" className="btn btn-outline-secondary" onClick={() => {
+                        </FormGroup>
+                      </Row>
+                      <div className="d-flex flex-row justify-content-end mt-3">
+                        <button type="sumbit" className="btn btn-success me-2">Create</button>
+                        <button type="button" className="btn btn-secondary" onClick={() => {
                           closeCreateOrgDialog()}
                         }>Cancel</button>
-                  </ModalFooter>
+                      </div>
+                    </Form>
+                  </ModalBody>
              </Modal>
         </React.Fragment>
     )

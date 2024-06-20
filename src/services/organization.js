@@ -25,3 +25,8 @@ export const createOrgRequest = async(orgName, address, phoneNumber, website, pa
 export const getOrgRequest = async(orgId) => {
     return sendGetRequest(`/api/private/org/${orgId}`)
 }
+
+export const updateOrgRequest = async(values, orgId) => {
+    values.orgId = orgId
+    return sendPostRequest("put", "/api/private/org", values)
+}

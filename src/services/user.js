@@ -14,7 +14,6 @@ export const listUserRequest = async(page, size) => {
     })
 }
 export const createUserRequest = async(phoneNumber, fullName, status, orgId, deviceId) => {
-    console.log(2)
     let params = {
         phoneNumber: phoneNumber,
         fullName: fullName,
@@ -23,4 +22,20 @@ export const createUserRequest = async(phoneNumber, fullName, status, orgId, dev
         deviceId: deviceId
     }
     return await sendPostRequest("post", "/api/private/user", params)
+}
+
+export const editUserRequest = async(fullName, status, orgId, userId) => {
+    let params = {
+        userId: userId
+    }
+    if(fullName){
+        params.fullName = fullName
+    }
+    if(status){
+        params.status = status;
+    }
+    if(orgId){
+        params.orgId = orgId
+    }
+    return await sendPostRequest("put", "/api/private/user", params)
 }

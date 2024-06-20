@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "../layouts/Header"
 import Pagination from "../components/Pagination"
-import { createUserRequest, listUserRequest } from "../services/user";
+import { createUserRequest, editUserRequest, listUserRequest } from "../services/user";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
 import { listOrgRequest } from "../services/organization";
 import TreeView, { flattenTree } from "react-accessible-treeview";
@@ -19,15 +18,14 @@ export default function UserManagement() {
     const [size, setSize] = useState(10)
     const [page, setPage] = useState(0)
     const [devices, setDevices] = useState([])
-
-    const [phoneNumber, setPhoneNumber] = useState("")
-    const [fullname, setFullname] = useState("");
-    const [status, setStatus] = useState("active")
     const [selectedOrg, setSelectedOrg] = useState("")
     const [selectedDevice, setSelectedDevice] = useState("")
     const [selectedUser, setSelectedUser] = useState({})
     const [action, setAction] = useState(0)//0 - create, 1 - edit
     const [selectedTreeIds, setSelectedTreeIds] = useState([])
+    const [deleteUserId, setDeleteUserId] = useState("")
+
+    const [deleteAlert, setDeleteAlert] = useState(false)
 
     const [orgs, setOrgs] = useState(flattenTree({
         name: "Your organization",
@@ -37,8 +35,13 @@ export default function UserManagement() {
 
     const [createUserDialog, setCreateUserDialog] = useState(false)
 
-    const clostCreateUserDialog = () => {
+    const closeCreateUserDialog = async() => {
+        await listUser()
         setCreateUserDialog(false)
+    }
+    const closeDeleteAlertDialog = async() => {
+        await listUser()
+        setDeleteAlert(false)
     }
 
     useEffect(() => {
@@ -101,7 +104,6 @@ export default function UserManagement() {
 
     const listOrgDevice = async(orgId) => {
         const resp = await listOrgDeviceRequest(orgId)
-        console.log(resp)
         if(resp.isError){
             toast.error("Can not load organization's device")
         }else{
@@ -114,8 +116,25 @@ export default function UserManagement() {
         if(resp.isError){
             toast.error("Can not create new user")
         }else{
-            listUser()
-            clostCreateUserDialog()
+            closeCreateUserDialog()
+        }
+    }
+
+    const editUser = async() => {
+        const resp = await editUserRequest(selectedUser.fullName, selectedUser.status, selectedUser.orgs?.[0].orgId ?? null, selectedUser.id);
+        if(resp.isError){
+            toast.error("Can not update user's info")
+        }else{
+            closeCreateUserDialog()
+        }
+    }
+
+    const deleteUser = async(userId) => {
+        const resp = await editUserRequest(null, "inactive", null, userId)
+        if(resp.isError){
+            toast.error("Can not set user to inactive")
+        }else{
+            closeDeleteAlertDialog()
         }
     }
 
@@ -183,7 +202,10 @@ export default function UserManagement() {
                                                         setSelectedUser(user)
                                                         setCreateUserDialog(true)
                                                     }}></i>
-                                                    <i class="ri-delete-bin-line"></i>
+                                                    <i class="ri-delete-bin-line" onClick={() => {
+                                                        setDeleteUserId(user.id)
+                                                        setDeleteAlert(true)
+                                                    }}></i>
                                                 </td>
                                             </tr>
                                         )
@@ -199,7 +221,7 @@ export default function UserManagement() {
                     </div>
                 </div>
             </div>
-            <Modal show={createUserDialog} onHide={clostCreateUserDialog} backdrop="static" size="lg">
+            <Modal show={createUserDialog} onHide={closeCreateUserDialog} backdrop="static" size="lg">
                 <ModalHeader closeButton>
                     {action === 0 &&
                         <>Create new user</>
@@ -333,7 +355,7 @@ export default function UserManagement() {
                         if(action === 0){
                             createUser()
                         }else{
-
+                            editUser()
                         }
                     }}>
                         {action === 0 &&
@@ -343,7 +365,18 @@ export default function UserManagement() {
                             <>Update</>
                         }
                     </button>
-                    <button type="button" className="btn btn-secondary" onClick={() => clostCreateUserDialog()}>Cancel</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => closeCreateUserDialog()}>Cancel</button>
+                </ModalFooter>
+            </Modal>
+            <Modal show={deleteAlert} onHide={closeDeleteAlertDialog} backdrop="static">
+                <ModalHeader closeButton>
+                    Are you sure to inactive this user?
+                </ModalHeader>
+                <ModalFooter>
+                    <button type="button" className="btn btn-danger" onClick={() => {
+                        deleteUser(deleteUserId)
+                    }}>Yes</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => {closeDeleteAlertDialog()}}>Cancel</button>
                 </ModalFooter>
             </Modal>
         </React.Fragment>

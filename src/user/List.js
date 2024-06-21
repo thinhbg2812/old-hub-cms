@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../layouts/Header"
 import Pagination from "../components/Pagination"
 import { createUserRequest, editUserRequest, listUserRequest } from "../services/user";
 import { toast } from "react-toastify";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from "react-bootstrap";
+import { Col, Form, FormControl, FormGroup, FormLabel, Modal, ModalBody, ModalFooter, ModalHeader, Row, Toast, ToastBody, ToastHeader } from "react-bootstrap";
 import { listOrgRequest } from "../services/organization";
 import TreeView, { flattenTree } from "react-accessible-treeview";
 import { IoMdArrowDropright } from "react-icons/io";
 import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
 import cx from "classnames"
 import "./list.scss"
-import { listOrgDeviceRequest } from "../services/device";
+import { listOrgDeviceRequest, requestGetSampleRequest } from "../services/device";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHand } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserManagement() {
     const [users, setUsers] = useState([])
@@ -24,8 +26,20 @@ export default function UserManagement() {
     const [action, setAction] = useState(0)//0 - create, 1 - edit
     const [selectedTreeIds, setSelectedTreeIds] = useState([])
     const [deleteUserId, setDeleteUserId] = useState("")
+    const [getSampleDialog, setGetSampleDialog] = useState(false)
+    const [validated, setValidated] = useState(false)
+    
+    // const [currentSampleCommand, setCurrentSampleCommand] = useState("")
+    const currentSampleCommandRef = useRef("")
+    const [sampleDeviceId, setSampleDeviceId] = useState("")
+
+    const [toastContent, setToastContent] = useState("")
+    const [showToast, setShowToast] = useState(false)
+    const [toastVariant, setToastVariant] = useState("Success");
 
     const [deleteAlert, setDeleteAlert] = useState(false)
+
+    const submitRef = useRef(null)
 
     const [orgs, setOrgs] = useState(flattenTree({
         name: "Your organization",
@@ -42,6 +56,9 @@ export default function UserManagement() {
     const closeDeleteAlertDialog = async() => {
         await listUser()
         setDeleteAlert(false)
+    }
+    const closeGetSampleDialog = async() => {
+        setGetSampleDialog(false)
     }
 
     useEffect(() => {
@@ -142,6 +159,31 @@ export default function UserManagement() {
         setSize(pageSize);
         setPage(pageIndex);
     }
+    const handleSubmit = async(event) => {
+        const form = event.currentTarget;
+        if(form.checkValidity() === false){
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        event.preventDefault();
+        setValidated(true)
+        await requestGetHandSample()
+        
+    }
+    const requestGetHandSample = async() => {
+        // https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
+        const resp = await requestGetSampleRequest(sampleDeviceId, selectedUser.id, currentSampleCommandRef.current)
+        if(resp.isError){
+            setToastContent("Can not send 'Get sample' command to device")
+            setToastVariant("danger")
+            setShowToast(true)
+        }else{
+            setToastContent("Send command to device successfully")
+            setToastVariant("success")
+            setShowToast(true)
+        }
+    }
+    
     return (
         <React.Fragment>
             <Header />
@@ -168,7 +210,8 @@ export default function UserManagement() {
                                         <th>Full name</th>
                                         <th>Phone number</th>
                                         <th>Company name</th>
-                                        <th>ZaloId</th>
+                                        <th>Righ hand sample</th>
+                                        <th>Left hand sample</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -181,10 +224,15 @@ export default function UserManagement() {
                                                 <td>{user.fullName}</td>
                                                 <td>{user.phoneNumber}</td>
                                                 <td></td>
-                                                <td>{user.zaloId}</td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>{user.status}</td>
                                                 <td className="d-flex flex-row justify-content-center">
-                                                    <i class="ri-edit-box-line" onClick={() => {
+                                                    <FontAwesomeIcon icon={faHand} className="align-self-center p-1" onClick={() => {
+                                                        setSelectedUser(user)
+                                                        setGetSampleDialog(true)
+                                                    }}/>
+                                                    <i class="ri-edit-box-line p-1" onClick={() => {
                                                         let userOrgs = user.orgs;
                                                         let orgIds = []
                                                         for(let i = 0; i < userOrgs.length; i++){
@@ -202,7 +250,7 @@ export default function UserManagement() {
                                                         setSelectedUser(user)
                                                         setCreateUserDialog(true)
                                                     }}></i>
-                                                    <i class="ri-delete-bin-line" onClick={() => {
+                                                    <i class={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`} onClick={() => {
                                                         setDeleteUserId(user.id)
                                                         setDeleteAlert(true)
                                                     }}></i>
@@ -379,6 +427,45 @@ export default function UserManagement() {
                     <button type="button" className="btn btn-secondary" onClick={() => {closeDeleteAlertDialog()}}>Cancel</button>
                 </ModalFooter>
             </Modal>
+            <Modal show={getSampleDialog} onHide={closeGetSampleDialog} backdrop="static">
+                <ModalHeader closeButton>Request get {selectedUser.fullName} sample hand</ModalHeader>
+                <ModalBody>
+                    <Form noValidate onSubmit={handleSubmit} validated={validated}>
+                        <Row className="mb-1">
+                        <FormGroup as={Col}>
+                          <FormLabel>DeviceID:</FormLabel>
+                          <FormControl required type="input" onChange={e => setSampleDeviceId(e.target.value)}/>
+                        <FormControl.Feedback type="invalid">DeviceId is required</FormControl.Feedback>
+                        </FormGroup>
+                      </Row>
+                      <div className="d-flex flex-row justify-content-center mt-3">
+                        <button ref={submitRef} type="submit" className="btn btn-outline d-none">Submit</button>
+                        <button type="button" className="btn btn-primary me-2" onClick={() => {
+                            currentSampleCommandRef.current = "left_hand_sampling"
+                            submitRef.current?.click()
+                        }}>Left hand sample</button>
+                        <button type="button" className="btn btn-warning" onClick={() => {
+                            currentSampleCommandRef.current = "right_hand_sampling"
+                            submitRef.current?.click()
+                        }}>Right hand sample</button>
+                      </div>
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
+                    <button type="button" className="btn btn-secondary" onClick={closeGetSampleDialog}>Finish</button>
+                </ModalFooter>
+            </Modal>
+            <Toast delay={3000} autohide show={showToast} onClose={() => setShowToast(false)} 
+            className="position-fixed bottom-0 end-0 p-3"  
+            bg={toastVariant}
+            style={{zIndex: 2000}}>
+                <ToastHeader>
+                    Notification
+                </ToastHeader>
+                <ToastBody>
+                {toastContent}
+                </ToastBody>
+            </Toast>
         </React.Fragment>
     )
 }

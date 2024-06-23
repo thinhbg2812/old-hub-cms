@@ -131,8 +131,14 @@ export default function UserManagement() {
     const createUser = async() => {
         const resp = await createUserRequest(selectedUser.phoneNumber, selectedUser.fullName, selectedUser.status, selectedOrg, selectedDevice)
         if(resp.isError){
-            toast.error("Can not create new user")
+            setToastContent("Can not create new user")
+            setToastVariant("danger")
+            setShowToast(true)
         }else{
+            setToastContent("Create user success")
+            setToastVariant("success")
+            setShowToast(true)
+            closeCreateUserDialog()
             closeCreateUserDialog()
         }
     }
@@ -140,14 +146,19 @@ export default function UserManagement() {
     const editUser = async() => {
         const resp = await editUserRequest(selectedUser.fullName, selectedUser.status, selectedUser.orgs?.[0].orgId ?? null, selectedUser.id);
         if(resp.isError){
-            toast.error("Can not update user's info")
+            setToastContent("Can not update user's info")
+            setToastVariant("danger")
+            setShowToast(true)
         }else{
+            setToastContent("Update user's info success")
+            setToastVariant("success")
+            setShowToast(true)
             closeCreateUserDialog()
         }
     }
 
-    const deleteUser = async(userId) => {
-        const resp = await editUserRequest(null, "inactive", null, userId)
+    const deleteUser = async(user) => {
+        const resp = await editUserRequest(null, user.status === "active" ? "inactive" : "active", null, selectedUser.id)
         if(resp.isError){
             toast.error("Can not set user to inactive")
         }else{
@@ -223,7 +234,7 @@ export default function UserManagement() {
                                                 <td>{index}</td>
                                                 <td>{user.fullName}</td>
                                                 <td>{user.phoneNumber}</td>
-                                                <td></td>
+                                                <td>{user.orgs[0].orgName}</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td>{user.status}</td>
@@ -251,7 +262,8 @@ export default function UserManagement() {
                                                         setCreateUserDialog(true)
                                                     }}></i>
                                                     <i class={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`} onClick={() => {
-                                                        setDeleteUserId(user.id)
+                                                        // setDeleteUserId(user.id)
+                                                        setSelectedUser(user)
                                                         setDeleteAlert(true)
                                                     }}></i>
                                                 </td>
@@ -422,7 +434,7 @@ export default function UserManagement() {
                 </ModalHeader>
                 <ModalFooter>
                     <button type="button" className="btn btn-danger" onClick={() => {
-                        deleteUser(deleteUserId)
+                        deleteUser(selectedUser)
                     }}>Yes</button>
                     <button type="button" className="btn btn-secondary" onClick={() => {closeDeleteAlertDialog()}}>Cancel</button>
                 </ModalFooter>

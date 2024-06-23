@@ -256,7 +256,7 @@ export default function UserManagement() {
                                                                 treeIds.push(orgs[index].id)
                                                             }
                                                         }
-                                                        setSelectedTreeIds(treeIds)
+                                                        setSelectedTreeIds(treeIds)                                                    
                                                         setAction(1)
                                                         setSelectedUser(user)
                                                         setCreateUserDialog(true)
@@ -358,7 +358,7 @@ export default function UserManagement() {
                                     propagateSelect
                                     propagateSelectUpwards
                                     togglableSelect
-                                    selectedIds={[1, 2]}
+                                    selectedIds={selectedTreeIds}
                                     nodeRenderer={({
                                         element,
                                         isBranch,
@@ -430,7 +430,7 @@ export default function UserManagement() {
             </Modal>
             <Modal show={deleteAlert} onHide={closeDeleteAlertDialog} backdrop="static">
                 <ModalHeader closeButton>
-                    Are you sure to inactive this user?
+                    Are you sure to {selectedUser.status === "active" ? "inactive" : "active"} this user?
                 </ModalHeader>
                 <ModalFooter>
                     <button type="button" className="btn btn-danger" onClick={() => {

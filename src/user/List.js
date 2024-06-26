@@ -13,6 +13,7 @@ import "./list.scss"
 import { listOrgDeviceRequest, requestGetSampleRequest } from "../services/device";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export default function UserManagement() {
     const [users, setUsers] = useState([])
@@ -38,6 +39,7 @@ export default function UserManagement() {
     const [toastVariant, setToastVariant] = useState("Success");
 
     const [deleteAlert, setDeleteAlert] = useState(false)
+    const navigate = useNavigate()
 
     const submitRef = useRef(null)
 

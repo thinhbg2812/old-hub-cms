@@ -10,6 +10,7 @@ import "./list.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { Col, Form, FormControl, FormGroup, FormLabel, Modal, ModalBody, ModalFooter, ModalHeader, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function OrgManagement(){
     const [page, setPage] = useState(0)
@@ -26,6 +27,7 @@ export default function OrgManagement(){
 
     const [selectedOrg, setSelectedOrg] = useState({})
     const [validated, setValidated] = useState(false)
+    const navigate = useNavigate()
 
     const closeCreateOrgDialog = async () =>{
       setCreateOrgDialog(false)
@@ -251,9 +253,15 @@ export default function OrgManagement(){
                                   />
                                 </div>
                               </div>
-                              <div className="row mt-2">
-                                <div className="col-6 text-end">
+                              <div className="row mt-3">
+                                <div className="col-9">
                                   <button type="button" className="btn btn-primary" onClick={updateOrg}>Update</button>
+                                  <button type="button" className="btn btn-success ms-2" onClick={() => {
+                                    navigate(`/room/list?orgId=${selectedOrg.id}`)
+                                  }}>Manage rooms</button>
+                                  <button type="button" className="btn btn-success ms-2" onClick={() => {
+                                    navigate(`/vehicle/list?orgId=${selectedOrg.id}`)
+                                  }}>Manage vehicles</button>
                                 </div>
                               </div>
                             </div>

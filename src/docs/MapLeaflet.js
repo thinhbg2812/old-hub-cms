@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
 import {
   Circle,
   MapContainer,
@@ -11,6 +9,8 @@ import {
   Popup,
   TileLayer,
 } from 'react-leaflet';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';

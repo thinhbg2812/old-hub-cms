@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
+import img2 from '../assets/img/img2.jpg';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
-
-import img2 from '../assets/img/img2.jpg';
 
 export default function Markers() {
   useEffect(() => {

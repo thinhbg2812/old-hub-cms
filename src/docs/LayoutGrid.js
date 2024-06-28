@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Card, Row, Col, Container, Nav } from 'react-bootstrap';
 import Prism from 'prismjs';
-import HeaderMobile from '../layouts/HeaderMobile';
+import { Card, Row, Col, Container, Nav } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function LayoutGrid() {
   useEffect(() => {

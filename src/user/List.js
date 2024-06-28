@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Header from '../layouts/Header';
-import Pagination from '../components/Pagination';
-import {
-  createUserRequest,
-  editUserRequest,
-  listUserRequest,
-} from '../services/user';
-import { toast } from 'react-toastify';
+import cx from 'classnames';
+import TreeView, { flattenTree } from 'react-accessible-treeview';
 import {
   Col,
   Form,
@@ -22,11 +16,18 @@ import {
   ToastBody,
   ToastHeader,
 } from 'react-bootstrap';
-import { listOrgRequest } from '../services/organization';
-import TreeView, { flattenTree } from 'react-accessible-treeview';
-import { IoMdArrowDropright } from 'react-icons/io';
 import { FaCheckSquare, FaMinusSquare, FaSquare } from 'react-icons/fa';
-import cx from 'classnames';
+import { IoMdArrowDropright } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Pagination from '../components/Pagination';
+import Header from '../layouts/Header';
+import { listOrgRequest } from '../services/organization';
+import {
+  createUserRequest,
+  editUserRequest,
+  listUserRequest,
+} from '../services/user';
 import './list.scss';
 import {
   listOrgDeviceRequest,
@@ -34,7 +35,6 @@ import {
 } from '../services/device';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHand } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);

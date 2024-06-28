@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import { Button, Col, Form, Modal, Nav, Row } from 'react-bootstrap';
 import ReactDatePicker from 'react-datepicker';
-import Avatar from '../components/Avatar';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Link } from 'react-router-dom';
 
+import img10 from '../assets/img/img10.jpg';
+import img12 from '../assets/img/img12.jpg';
+import img14 from '../assets/img/img14.jpg';
+import img15 from '../assets/img/img15.jpg';
+import img6 from '../assets/img/img6.jpg';
+import img8 from '../assets/img/img8.jpg';
+import Avatar from '../components/Avatar';
 import {
   calendarEvents,
   birthdayEvents,
@@ -17,13 +22,7 @@ import {
   meetupEvents,
   otherEvents,
 } from '../data/CalendarEvents';
-
-import img6 from '../assets/img/img6.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
+import Header from '../layouts/Header';
 
 export default function AppCalendar() {
   useEffect(() => {

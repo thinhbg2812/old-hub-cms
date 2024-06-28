@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+
 import bg1 from '../assets/img/bg1.jpg';
 import useToken from '../components/useToken';
 import { loginRequest } from '../services/user';
@@ -15,6 +17,7 @@ export default function Signin2() {
 
   const login = async () => {
     const data = await loginRequest(phoneNumber, password);
+
     if (data.isError) {
       setIsAuthenticated(false);
       return;

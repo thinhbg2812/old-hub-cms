@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Col, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import { Link } from 'react-router-dom';
 
 import img1 from '../assets/img/img1.jpg';
+import img10 from '../assets/img/img10.jpg';
+import img11 from '../assets/img/img11.jpg';
+import img12 from '../assets/img/img12.jpg';
 import img5 from '../assets/img/img5.jpg';
 import img6 from '../assets/img/img6.jpg';
 import img7 from '../assets/img/img7.jpg';
 import img8 from '../assets/img/img8.jpg';
 import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
+import Avatar from '../components/Avatar';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Profile() {
   return (

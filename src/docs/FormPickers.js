@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import { Card, Container, Nav, Row, Col } from 'react-bootstrap';
+import { SketchPicker } from 'react-color';
+import ReactDatePicker from 'react-datepicker';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
-import ReactDatePicker from 'react-datepicker';
-import { SketchPicker } from 'react-color';
 
 import '../assets/css/react-datepicker.min.css';
 

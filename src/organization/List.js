@@ -5,15 +5,13 @@ import {
   listOrgRequest,
   updateOrgRequest,
 } from '../services/organization';
-import { toast } from 'react-toastify';
-import Header from '../layouts/Header';
 import TreeView, { flattenTree } from 'react-accessible-treeview';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { FaSquare, FaCheckSquare, FaMinusSquare } from 'react-icons/fa';
 import cx from 'classnames';
 import './list.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Col,
   Form,
@@ -27,6 +25,8 @@ import {
   Row,
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Header from '../layouts/Header';
 
 export default function OrgManagement() {
   const [page, setPage] = useState(0);

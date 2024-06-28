@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Col, Container, Image, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-
 import img3 from '../assets/img/img3.jpg';
 import img4 from '../assets/img/img4.jpg';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Images() {
   useEffect(() => {

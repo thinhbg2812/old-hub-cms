@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
 import {
   Carousel,
   Col,
@@ -11,6 +8,7 @@ import {
   ProgressBar,
   Nav,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import img3 from '../assets/img/img3.jpg';
 import img4 from '../assets/img/img4.jpg';
@@ -22,6 +20,8 @@ import img47 from '../assets/img/img47.jpg';
 import img48 from '../assets/img/img48.jpg';
 import img49 from '../assets/img/img49.jpg';
 import img50 from '../assets/img/img50.jpg';
+import Footer from '../layouts/Footer';
+import Header from '../layouts/Header';
 
 export default function GalleryVideo() {
   useEffect(() => {

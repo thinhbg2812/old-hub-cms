@@ -1,13 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Col, Row, Form, Nav, Card, Button } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import { Link } from 'react-router-dom';
 
 import img1 from '../assets/img/img1.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
 import img10 from '../assets/img/img10.jpg';
 import img11 from '../assets/img/img11.jpg';
 import img12 from '../assets/img/img12.jpg';
@@ -21,6 +16,11 @@ import img23 from '../assets/img/img23.jpg';
 import img24 from '../assets/img/img24.jpg';
 import img25 from '../assets/img/img25.jpg';
 import img26 from '../assets/img/img26.jpg';
+import img7 from '../assets/img/img7.jpg';
+import img8 from '../assets/img/img8.jpg';
+import Avatar from '../components/Avatar';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Events() {
   return (

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Header from '../layouts/Header';
 import { Card, Col, Nav, ProgressBar, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -20,6 +19,7 @@ import img39 from '../assets/img/img39.jpg';
 import img40 from '../assets/img/img40.jpg';
 import img41 from '../assets/img/img41.jpg';
 import img42 from '../assets/img/img42.jpg';
+import Header from '../layouts/Header';
 
 export default function GalleryMusic() {
   useEffect(() => {

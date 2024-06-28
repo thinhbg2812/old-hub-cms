@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Button,
   Card,
@@ -12,6 +10,7 @@ import {
   Row,
   Tooltip,
 } from 'react-bootstrap';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link } from 'react-router-dom';
 
 import img10 from '../assets/img/img10.jpg';
@@ -22,6 +21,7 @@ import img16 from '../assets/img/img16.jpg';
 import img17 from '../assets/img/img17.jpg';
 import img18 from '../assets/img/img18.jpg';
 import img19 from '../assets/img/img19.jpg';
+import Header from '../layouts/Header';
 
 export default function Email() {
   useEffect(() => {

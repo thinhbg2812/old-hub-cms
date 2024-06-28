@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Link, NavLink } from 'react-router-dom';
 import userAvatar from '../assets/img/img1.jpg';
 import {
   userMenu,

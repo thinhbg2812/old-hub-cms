@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './layouts/Main';
 import NotFound from './pages/NotFound';
 
-import publicRoutes from './routes/PublicRoutes';
 import protectedRoutes from './routes/ProtectedRoutes';
+import publicRoutes from './routes/PublicRoutes';
 
 // import css
 import './assets/css/remixicon.css';

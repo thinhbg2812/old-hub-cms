@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Container, Nav, Row, Col } from 'react-bootstrap';
+import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
-import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 export default function ChartJs() {

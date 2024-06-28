@@ -89,14 +89,5 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
     "sass": "^1.77.6"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "src/**/*.{css,md}": [
-      "prettier --write"
-    ]
   }
 }

@@ -1,8 +1,15 @@
-import React, { useEffect } from "react";
-import Prism from "prismjs";
-import { Card, Container, Nav, OverlayTrigger, Popover, Button } from "react-bootstrap";
-import Footer from "../layouts/Footer";
-import HeaderMobile from "../layouts/HeaderMobile";
+import React, { useEffect } from 'react';
+import Prism from 'prismjs';
+import {
+  Card,
+  Container,
+  Nav,
+  OverlayTrigger,
+  Popover,
+  Button,
+} from 'react-bootstrap';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Popovers() {
   useEffect(() => {
@@ -15,16 +22,23 @@ export default function Popovers() {
         <Container>
           <label className="main-title-label">Components</label>
           <h2 className="main-title">Popovers</h2>
-          <p className="main-title-text">Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.</p>
+          <p className="main-title-text">
+            Documentation and examples for adding Bootstrap popovers, like those
+            found in iOS, to any element on your site.
+          </p>
 
           <hr className="main-separator" />
 
-          <h5 id="section1" className="main-subtitle">Four Directions</h5>
-          <p>Four options are available: top, right, bottom, and left aligned.</p>
+          <h5 id="section1" className="main-subtitle">
+            Four Directions
+          </h5>
+          <p>
+            Four options are available: top, right, bottom, and left aligned.
+          </p>
 
           <Card className="card-example">
             <Card.Body className="d-flex gap-2">
-              {['top', 'right', 'bottom', 'left'].map((placement) => (
+              {['top', 'right', 'bottom', 'left'].map(placement => (
                 <OverlayTrigger
                   trigger="click"
                   key={placement}
@@ -43,7 +57,8 @@ export default function Popovers() {
               ))}
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`import Button from 'react-bootstrap/Button';
+              <pre>
+                <code className="language-html">{`import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 
@@ -63,11 +78,14 @@ const Example = () => (
   </OverlayTrigger>
 );
 
-render(<Example />);`}</code></pre>
+render(<Example />);`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
         </Container>
 
         <Nav id="navDocs" className="nav-docs">

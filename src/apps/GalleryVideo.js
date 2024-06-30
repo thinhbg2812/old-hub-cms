@@ -1,26 +1,34 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Header from "../layouts/Header";
-import Footer from "../layouts/Footer";
-import { Carousel, Col, Row, Button, Card, ProgressBar, Nav } from "react-bootstrap";
+import React, { useEffect } from 'react';
+import {
+  Carousel,
+  Col,
+  Row,
+  Button,
+  Card,
+  ProgressBar,
+  Nav,
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import img3 from "../assets/img/img3.jpg";
-import img4 from "../assets/img/img4.jpg";
-import img43 from "../assets/img/img43.jpg";
-import img44 from "../assets/img/img44.jpg";
-import img45 from "../assets/img/img45.jpg";
-import img46 from "../assets/img/img46.jpg";
-import img47 from "../assets/img/img47.jpg";
-import img48 from "../assets/img/img48.jpg";
-import img49 from "../assets/img/img49.jpg";
-import img50 from "../assets/img/img50.jpg";
+import img3 from '../assets/img/img3.jpg';
+import img4 from '../assets/img/img4.jpg';
+import img43 from '../assets/img/img43.jpg';
+import img44 from '../assets/img/img44.jpg';
+import img45 from '../assets/img/img45.jpg';
+import img46 from '../assets/img/img46.jpg';
+import img47 from '../assets/img/img47.jpg';
+import img48 from '../assets/img/img48.jpg';
+import img49 from '../assets/img/img49.jpg';
+import img50 from '../assets/img/img50.jpg';
+import Footer from '../layouts/Footer';
+import Header from '../layouts/Header';
 
 export default function GalleryVideo() {
   useEffect(() => {
-    document.body.classList.add('app-video')
+    document.body.classList.add('app-video');
     return () => {
-      document.body.classList.remove('app-video')
-    }
+      document.body.classList.remove('app-video');
+    };
   }, []);
   return (
     <React.Fragment>
@@ -38,7 +46,11 @@ export default function GalleryVideo() {
                     <span>Crime, Drama</span>
                     <span>October 2020</span>
                   </div>
-                  <p className="opacity-75 mb-3">Atticus Finch, a widowed lawyer in Depression-era Alabama, defends a black man against an undeserved rape charge, and his children against prejudice.</p>
+                  <p className="opacity-75 mb-3">
+                    Atticus Finch, a widowed lawyer in Depression-era Alabama,
+                    defends a black man against an undeserved rape charge, and
+                    his children against prejudice.
+                  </p>
 
                   <Row className="gx-4 row-cols-auto mb-4">
                     <Col>
@@ -55,7 +67,9 @@ export default function GalleryVideo() {
                     </Col>
                   </Row>
 
-                  <Button variant="" className="btn-icon btn-outline-white"><i className="ri-play-line"></i></Button>
+                  <Button variant="" className="btn-icon btn-outline-white">
+                    <i className="ri-play-line"></i>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -71,7 +85,12 @@ export default function GalleryVideo() {
                     <span>Action, Adventure</span>
                     <span>September 2020</span>
                   </div>
-                  <p className="opacity-75 mb-3">A New York City advertising executive goes on the run after being mistaken for a government agent by a group of foreign spies, and falls for a woman whose loyalties he begins to doubt.</p>
+                  <p className="opacity-75 mb-3">
+                    A New York City advertising executive goes on the run after
+                    being mistaken for a government agent by a group of foreign
+                    spies, and falls for a woman whose loyalties he begins to
+                    doubt.
+                  </p>
 
                   <Row className="gx-4 row-cols-auto mb-4">
                     <Col>
@@ -88,7 +107,9 @@ export default function GalleryVideo() {
                     </Col>
                   </Row>
 
-                  <Button variant="" className="btn-icon btn-outline-white"><i className="ri-play-line"></i></Button>
+                  <Button variant="" className="btn-icon btn-outline-white">
+                    <i className="ri-play-line"></i>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -104,21 +125,49 @@ export default function GalleryVideo() {
                   <ProgressBar now={25} />
 
                   <Nav as="nav">
-                    <Nav.Link href=""><i className="ri-play-line"></i></Nav.Link>
-                    <Nav.Link href=""><i className="ri-volume-down-line"></i></Nav.Link>
-                    <Nav.Link href="" className="me-auto">0:31 / 23:55</Nav.Link>
-                    <Nav.Link href=""><i className="ri-closed-captioning-line"></i></Nav.Link>
-                    <Nav.Link href=""><i className="ri-settings-3-line"></i></Nav.Link>
-                    <Nav.Link href=""><i className="ri-cast-line"></i></Nav.Link>
-                    <Nav.Link href=""><i className="ri-fullscreen-fill"></i></Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-play-line"></i>
+                    </Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-volume-down-line"></i>
+                    </Nav.Link>
+                    <Nav.Link href="" className="me-auto">
+                      0:31 / 23:55
+                    </Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-closed-captioning-line"></i>
+                    </Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-settings-3-line"></i>
+                    </Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-cast-line"></i>
+                    </Nav.Link>
+                    <Nav.Link href="">
+                      <i className="ri-fullscreen-fill"></i>
+                    </Nav.Link>
                   </Nav>
                 </div>
               </Col>
               <Col xl>
-                <Card.Title><Link to="#">Maxime placeat facere possimus, omnis voluptas assumenda est</Link></Card.Title>
-                <p className="d-flex gap-3 fs-sm text-secondary"><span>320,423 views</span><span>3 months ago</span></p>
+                <Card.Title>
+                  <Link to="#">
+                    Maxime placeat facere possimus, omnis voluptas assumenda est
+                  </Link>
+                </Card.Title>
+                <p className="d-flex gap-3 fs-sm text-secondary">
+                  <span>320,423 views</span>
+                  <span>3 months ago</span>
+                </p>
                 <p>These cases are perfectly simple and easy to distinguish.</p>
-                <p className="mb-0">In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.</p>
+                <p className="mb-0">
+                  In a free hour, when our power of choice is untrammelled and
+                  when nothing prevents our being able to do what we like best,
+                  every pleasure is to be welcomed and every pain avoided. But
+                  in certain circumstances and owing to the claims of duty or
+                  the obligations of business it will frequently occur that
+                  pleasures have to be repudiated and annoyances accepted.
+                </p>
               </Col>
             </Row>
           </Card.Body>
@@ -133,38 +182,48 @@ export default function GalleryVideo() {
           <Row className="g-3 g-xl-4">
             {[
               {
-                "img": img47,
-                "title": "Accusantium doloremque",
-                "author": "King Village",
-                "views": "15,000",
-                "date": "1 week ago"
-              }, {
-                "img": img48,
-                "title": "Neque porro quisquam",
-                "author": "Happy Island",
-                "views": "245,720",
-                "date": "2 weeks ago"
-              }, {
-                "img": img49,
-                "title": "Quis autem vel eum iure",
-                "author": "Goblet of Fire",
-                "views": "320,109",
-                "date": "3 weeks ago"
-              }, {
-                "img": img50,
-                "title": "Iure reprehenderit",
-                "author": "Jungle Hub",
-                "views": "552,002",
-                "date": "3 weeks ago"
-              }
+                img: img47,
+                title: 'Accusantium doloremque',
+                author: 'King Village',
+                views: '15,000',
+                date: '1 week ago',
+              },
+              {
+                img: img48,
+                title: 'Neque porro quisquam',
+                author: 'Happy Island',
+                views: '245,720',
+                date: '2 weeks ago',
+              },
+              {
+                img: img49,
+                title: 'Quis autem vel eum iure',
+                author: 'Goblet of Fire',
+                views: '320,109',
+                date: '3 weeks ago',
+              },
+              {
+                img: img50,
+                title: 'Iure reprehenderit',
+                author: 'Jungle Hub',
+                views: '552,002',
+                date: '3 weeks ago',
+              },
             ].map((upload, index) => (
               <Col key={index}>
                 <Card className="card-video-item">
                   <img src={upload.img} className="card-img-top" alt="" />
                   <Card.Body className="p-3">
-                    <Card.Title as="h6"><Link to="">{upload.title}</Link></Card.Title>
-                    <Link to="" className="card-author">{upload.author}</Link>
-                    <Card.Text><span>{upload.views} views</span><span>{upload.date}</span></Card.Text>
+                    <Card.Title as="h6">
+                      <Link to="">{upload.title}</Link>
+                    </Card.Title>
+                    <Link to="" className="card-author">
+                      {upload.author}
+                    </Link>
+                    <Card.Text>
+                      <span>{upload.views} views</span>
+                      <span>{upload.date}</span>
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -204,7 +263,11 @@ export default function GalleryVideo() {
                       <span>3.5</span>
                     </div>
 
-                    <p className="mb-4">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for...<Link to="">Read more</Link></p>
+                    <p className="mb-4">
+                      Many desktop publishing packages and web page editors now
+                      use Lorem Ipsum as their default model text, and a search
+                      for...<Link to="">Read more</Link>
+                    </p>
 
                     <Button variant="outline-primary">View Details</Button>
                   </Col>

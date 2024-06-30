@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import Prism from "prismjs";
-import { Badge, Card, Container, Nav } from "react-bootstrap";
-import Footer from "../layouts/Footer";
-import HeaderMobile from "../layouts/HeaderMobile";
+import React, { useEffect } from 'react';
+import Prism from 'prismjs';
+import { Badge, Card, Container, Nav } from 'react-bootstrap';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Badges() {
   useEffect(() => {
@@ -15,12 +15,20 @@ export default function Badges() {
         <Container>
           <label className="main-title-label">Components</label>
           <h2 className="main-title">Badges</h2>
-          <p className="main-title-text">Documentation and examples for badges, our small count and labeling component.</p>
+          <p className="main-title-text">
+            Documentation and examples for badges, our small count and labeling
+            component.
+          </p>
 
           <hr className="main-separator" />
 
-          <h5 id="section1" className="main-subtitle">Contextual Variations</h5>
-          <p>Add any of the below mentioned modifier classes to change the appearance of a badge.</p>
+          <h5 id="section1" className="main-subtitle">
+            Contextual Variations
+          </h5>
+          <p>
+            Add any of the below mentioned modifier classes to change the
+            appearance of a badge.
+          </p>
 
           <Card className="card-example">
             <Card.Body className="d-flex flex-wrap gap-2">
@@ -40,21 +48,29 @@ export default function Badges() {
               ))}
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Badge bg="primary">Primary</Badge>
+              <pre>
+                <code className="language-html">{`<Badge bg="primary">Primary</Badge>
 <Badge bg="secondary">Secondary</Badge>
 <Badge bg="success">Success</Badge>
 <Badge bg="danger">Danger</Badge>
 <Badge bg="warning">Warning</Badge>
 <Badge bg="info">Info</Badge>
 <Badge bg="light">Light</Badge>
-<Badge bg="dark">Dark</Badge>`}</code></pre>
+<Badge bg="dark">Dark</Badge>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section2" className="main-subtitle">Pill Badges</h5>
-          <p>Use the <code>pill</code> props to make badges more rounded.</p>
+          <h5 id="section2" className="main-subtitle">
+            Pill Badges
+          </h5>
+          <p>
+            Use the <code>pill</code> props to make badges more rounded.
+          </p>
 
           <Card className="card-example">
             <Card.Body className="d-flex flex-wrap gap-2">
@@ -74,17 +90,18 @@ export default function Badges() {
               ))}
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Badge bg="primary" pill>Primary</Badge>
+              <pre>
+                <code className="language-html">{`<Badge bg="primary" pill>Primary</Badge>
 <Badge bg="secondary" pill>Secondary</Badge>
 <Badge bg="success" pill>Success</Badge>
 <Badge bg="danger" pill>Danger</Badge>
 <Badge bg="warning" pill>Warning</Badge>
 <Badge bg="info" pill>Info</Badge>
 <Badge bg="light" pill>Light</Badge>
-<Badge bg="dark" pill>Dark</Badge>`}</code></pre>
+<Badge bg="dark" pill>Dark</Badge>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
-
         </Container>
 
         <Nav id="navDocs" className="nav-docs">

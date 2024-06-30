@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Prism from "prismjs";
-import { Button, Modal, Card, Container, Nav } from "react-bootstrap";
-import Footer from "../layouts/Footer";
-import HeaderMobile from "../layouts/HeaderMobile";
+import React, { useEffect, useState } from 'react';
+import Prism from 'prismjs';
+import { Button, Modal, Card, Container, Nav } from 'react-bootstrap';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Modals() {
   useEffect(() => {
@@ -46,12 +46,20 @@ export default function Modals() {
         <Container>
           <label className="main-title-label">Components</label>
           <h2 className="main-title">Modals</h2>
-          <p className="main-title-text">Add dialogs to your site for lightboxes, user notifications, or completely custom content.</p>
+          <p className="main-title-text">
+            Add dialogs to your site for lightboxes, user notifications, or
+            completely custom content.
+          </p>
 
           <hr className="main-separator" />
 
-          <h5 id="section1" className="main-subtitle">Basic Example</h5>
-          <p>Below is a static modal dialog (without the positioning) to demonstrate the look and feel of the Modal.</p>
+          <h5 id="section1" className="main-subtitle">
+            Basic Example
+          </h5>
+          <p>
+            Below is a static modal dialog (without the positioning) to
+            demonstrate the look and feel of the Modal.
+          </p>
 
           <Card className="card-example">
             <Card.Body>
@@ -63,7 +71,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>
                     Close
@@ -75,7 +85,8 @@ export default function Modals() {
               </Modal>
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={show} onHide={handleClose}>
+              <pre>
+                <code className="language-html">{`<Modal show={show} onHide={handleClose}>
   <Modal.Header closeButton>
     <Modal.Title>Modal heading</Modal.Title>
   </Modal.Header>
@@ -88,13 +99,18 @@ export default function Modals() {
       Save Changes
     </Button>
   </Modal.Footer>
-</Modal>`}</code></pre>
+</Modal>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section2" className="main-subtitle">Vertically Centered</h5>
+          <h5 id="section2" className="main-subtitle">
+            Vertically Centered
+          </h5>
           <p>You can vertically center a modal by passing the centered prop.</p>
 
           <Card className="card-example">
@@ -107,7 +123,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose2}>
                     Close
@@ -119,14 +137,23 @@ export default function Modals() {
               </Modal>
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={show} onHide={handleClose} centered>...</Modal`}</code></pre>
+              <pre>
+                <code className="language-html">{`<Modal show={show} onHide={handleClose} centered>...</Modal`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section3" className="main-subtitle">Static Backdrop</h5>
-          <p>When backdrop is set to static, the modal will not close when clicking outside it. Click the button below to try it.</p>
+          <h5 id="section3" className="main-subtitle">
+            Static Backdrop
+          </h5>
+          <p>
+            When backdrop is set to static, the modal will not close when
+            clicking outside it. Click the button below to try it.
+          </p>
 
           <Card className="card-example">
             <Card.Body>
@@ -134,13 +161,18 @@ export default function Modals() {
                 Launch static modal
               </Button>
 
-              <Modal show={show3} onHide={handleClose3} backdrop="static" keyboard={false}>
+              <Modal
+                show={show3}
+                onHide={handleClose3}
+                backdrop="static"
+                keyboard={false}
+              >
                 <Modal.Header closeButton>
                   <Modal.Title>Modal title</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  I will not close if you click outside me. Don't even try to press
-                  escape key.
+                  I will not close if you click outside me. Don't even try to
+                  press escape key.
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose3}>
@@ -151,14 +183,24 @@ export default function Modals() {
               </Modal>
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>...</Modal>`}</code></pre>
+              <pre>
+                <code className="language-html">{`<Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>...</Modal>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section4" className="main-subtitle">Fullscreen Modal</h5>
-          <p>Another override is the option to pop up a modal that covers the user viewport. You can use the fullscreen prop to make the modal fullscreen.</p>
+          <h5 id="section4" className="main-subtitle">
+            Fullscreen Modal
+          </h5>
+          <p>
+            Another override is the option to pop up a modal that covers the
+            user viewport. You can use the fullscreen prop to make the modal
+            fullscreen.
+          </p>
 
           <Card className="card-example">
             <Card.Body>
@@ -170,7 +212,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a full screen modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a full screen modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose4}>
                     Close
@@ -182,26 +226,41 @@ export default function Modals() {
               </Modal>
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={show} onHide={handleClose} fullscreen={true}>...</Modal`}</code></pre>
+              <pre>
+                <code className="language-html">{`<Modal show={show} onHide={handleClose} fullscreen={true}>...</Modal`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section5" className="main-subtitle">Optional Sizes</h5>
-          <p>Modals have three optional sizes, available via size props to be placed on a <code>Modal</code>.</p>
+          <h5 id="section5" className="main-subtitle">
+            Optional Sizes
+          </h5>
+          <p>
+            Modals have three optional sizes, available via size props to be
+            placed on a <code>Modal</code>.
+          </p>
 
           <Card className="card-example">
             <Card.Body>
-              <Button onClick={() => setSmShow(true)} className="me-2">Small modal</Button>
-              <Button onClick={() => setLgShow(true)} className="me-2">Large modal</Button>
+              <Button onClick={() => setSmShow(true)} className="me-2">
+                Small modal
+              </Button>
+              <Button onClick={() => setLgShow(true)} className="me-2">
+                Large modal
+              </Button>
               <Button onClick={() => setXlShow(true)}>Extra Large modal</Button>
 
               <Modal show={smShow} onHide={smHandleClose} size="sm">
                 <Modal.Header closeButton>
                   <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a small modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a small modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={smHandleClose}>
                     Close
@@ -216,7 +275,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a large modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a large modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={lgHandleClose}>
                     Close
@@ -231,7 +292,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a extra large modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a extra large modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={xlHandleClose}>
                     Close
@@ -241,19 +304,27 @@ export default function Modals() {
                   </Button>
                 </Modal.Footer>
               </Modal>
-
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={smShow} onHide={smHandleClose} size="sm">...</Modal>
+              <pre>
+                <code className="language-html">{`<Modal show={smShow} onHide={smHandleClose} size="sm">...</Modal>
 <Modal show={lgShow} onHide={lgHandleClose} size="lg">...</Modal>
-<Modal show={xlShow} onHide={xlHandleClose} size="xl">...</Modal>`}</code></pre>
+<Modal show={xlShow} onHide={xlHandleClose} size="xl">...</Modal>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
+          <br />
+          <br />
+          <br />
 
-          <h5 id="section6" className="main-subtitle">Remove Animation</h5>
-          <p>A Modal can also be without an animation. For that set the animation prop to false.</p>
+          <h5 id="section6" className="main-subtitle">
+            Remove Animation
+          </h5>
+          <p>
+            A Modal can also be without an animation. For that set the animation
+            prop to false.
+          </p>
 
           <Card className="card-example">
             <Card.Body>
@@ -263,7 +334,9 @@ export default function Modals() {
                 <Modal.Header closeButton>
                   <Modal.Title>Modal Title</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                  Woohoo, you're reading this text in a modal!
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose5}>
                     Close
@@ -275,12 +348,15 @@ export default function Modals() {
               </Modal>
             </Card.Body>
             <Card.Footer>
-              <pre><code className="language-html">{`<Modal show={show5} onHide={handleClose5} animation={false}>...</Modal>`}</code></pre>
+              <pre>
+                <code className="language-html">{`<Modal show={show5} onHide={handleClose5} animation={false}>...</Modal>`}</code>
+              </pre>
             </Card.Footer>
           </Card>
 
-          <br /><br /><br />
-
+          <br />
+          <br />
+          <br />
         </Container>
 
         <Nav id="navDocs" className="nav-docs">

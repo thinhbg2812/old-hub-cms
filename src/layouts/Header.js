@@ -212,25 +212,25 @@ export default function Header({ onSkin }) {
 
             <nav className="nav">
               <Link to="">
-                <i className="ri-edit-2-line"></i> Edit Profile
+                <i className="ri-edit-2-line"></i> Chỉnh sửa Hồ sơ
               </Link>
               <Link to="">
-                <i className="ri-profile-line"></i> View Profile
+                <i className="ri-profile-line"></i> Xem Hồ sơ
               </Link>
             </nav>
             <hr />
             <nav className="nav">
               <Link to="">
-                <i className="ri-question-line"></i> Help Center
+                <i className="ri-question-line"></i> Trung tâm Trợ giúp
               </Link>
               <Link to="">
-                <i className="ri-lock-line"></i> Privacy Settings
+                <i className="ri-lock-line"></i> Cài đặt Riêng tư
               </Link>
               <Link to="">
-                <i className="ri-user-settings-line"></i> Account Settings
+                <i className="ri-user-settings-line"></i> Cài đặt Tài khoản
               </Link>
               <Link to="/pages/signin">
-                <i className="ri-logout-box-r-line"></i> Log Out
+                <i className="ri-logout-box-r-line"></i> Đăng xuất
               </Link>
             </nav>
           </div>

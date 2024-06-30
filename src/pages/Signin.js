@@ -31,31 +31,33 @@ export default function Signin2() {
         <Col md="7" lg="5" xl="4" className="col-wrapper">
           <Card className="card-sign">
             <Card.Header>
-              <Card.Title>Sign In</Card.Title>
-              <Card.Text>Welcome back! Please signin to continue.</Card.Text>
+              <Card.Title>Đăng Nhập</Card.Title>
+              <Card.Text>
+                Chào mừng trở lại! Vui lòng đăng nhập để tiếp tục.
+              </Card.Text>
             </Card.Header>
             <Card.Body>
               <Form method="get" action="/dashboard/finance">
                 <div className="mb-4">
-                  <Form.Label>Phonenumber</Form.Label>
+                  <Form.Label>Số điện thoại</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter your phone number"
+                    placeholder="Nhập số điện thoại của bạn"
                     onChange={e => setPhoneNumber(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
                   <Form.Label className="d-flex justify-content-between">
-                    Password
+                    Mật khẩu
                   </Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder="Nhập mật khẩu của bạn"
                     onChange={e => setPassword(e.target.value)}
                   />
                 </div>
                 <Button onClick={login} className="btn-sign">
-                  Sign In
+                  Đăng Nhập
                 </Button>
               </Form>
             </Card.Body>

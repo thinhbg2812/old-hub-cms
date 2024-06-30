@@ -52,11 +52,11 @@ export default function OrgManagement() {
 
   const [orgs, setOrgs] = useState(
     flattenTree({
-      name: 'Your organization',
+      name: 'Tổ chức của bạn',
       children: [],
     })
   );
-  const [orignalOrgs, setOriginalOrgs] = useState({});
+  const [originalOrgs, setOriginalOrgs] = useState({});
 
   const addProperty = (obj, path, value) => {
     let parts = path.split('>');
@@ -84,7 +84,7 @@ export default function OrgManagement() {
   const listOrg = async () => {
     const resp = await listOrgRequest(page, size);
     if (resp.isError) {
-      toast.error('Can not list organization');
+      toast.error('Không thể lấy danh sách tổ chức');
     } else {
       let obj = { children: [], name: '' };
       for (let i = 0; i < resp.data.items.length; i++) {
@@ -96,7 +96,7 @@ export default function OrgManagement() {
   };
   const createOrg = async () => {
     if (!orgName || !phoneNumber || !address) {
-      toast.error('Missing required fields');
+      toast.error('Thiếu các trường bắt buộc');
     } else {
       const resp = await createOrgRequest(
         orgName,
@@ -106,7 +106,7 @@ export default function OrgManagement() {
         currentOrg.metadata.id
       );
       if (resp.isError) {
-        toast.error('Can not create new Organization');
+        toast.error('Không thể tạo tổ chức mới');
       } else {
         closeCreateOrgDialog();
       }
@@ -116,7 +116,7 @@ export default function OrgManagement() {
   const getOrg = async orgId => {
     const resp = await getOrgRequest(orgId);
     if (resp.isError) {
-      toast.error("Can not get Organization's information");
+      toast.error('Không thể lấy thông tin tổ chức');
     } else {
       setSelectedOrg(resp.data);
     }
@@ -139,7 +139,7 @@ export default function OrgManagement() {
   const updateOrg = async () => {
     const resp = await updateOrgRequest(selectedOrg, selectedOrg.id);
     if (resp.isError) {
-      toast.error("Can not get Organization's information");
+      toast.error('Không thể cập nhật thông tin tổ chức');
     } else {
       await listOrg();
     }
@@ -200,7 +200,7 @@ export default function OrgManagement() {
                         {element.name}
                       </span>
                       <i
-                        class="ri-add-circle-line ps-2"
+                        className="ri-add-circle-line ps-2"
                         onClick={() => {
                           setCreateOrgDialog(true);
                           setCurrentOrg(element);
@@ -216,7 +216,7 @@ export default function OrgManagement() {
                 <div className="row">
                   <div className="col-6">
                     <label for="orgName" className="form-label">
-                      Company name:
+                      Tên công ty:
                     </label>
                     <input
                       type="text"
@@ -238,7 +238,7 @@ export default function OrgManagement() {
                 <div className="row">
                   <div className="col-6">
                     <label for="phoneNumber" className="form-label">
-                      Phone number:
+                      Số điện thoại:
                     </label>
                     <input
                       type="text"
@@ -260,7 +260,7 @@ export default function OrgManagement() {
                 <div className="row">
                   <div className="col-6">
                     <label for="address" className="form-label">
-                      Address:
+                      Địa chỉ:
                     </label>
                     <input
                       type="text"
@@ -282,7 +282,7 @@ export default function OrgManagement() {
                 <div className="row">
                   <div className="col-6">
                     <label for="website" className="form-label">
-                      Website:
+                      Trang web:
                     </label>
                     <input
                       type="text"
@@ -308,7 +308,7 @@ export default function OrgManagement() {
                       className="btn btn-primary"
                       onClick={updateOrg}
                     >
-                      Update
+                      Cập nhật
                     </button>
                     <button
                       type="button"
@@ -317,7 +317,7 @@ export default function OrgManagement() {
                         navigate(`/room/list?orgId=${selectedOrg.id}`);
                       }}
                     >
-                      Manage rooms
+                      Quản lý phòng
                     </button>
                     <button
                       type="button"
@@ -326,7 +326,7 @@ export default function OrgManagement() {
                         navigate(`/vehicle/list?orgId=${selectedOrg.id}`);
                       }}
                     >
-                      Manage vehicles
+                      Quản lý phương tiện
                     </button>
                   </div>
                 </div>
@@ -341,26 +341,26 @@ export default function OrgManagement() {
         onHide={closeCreateOrgDialog}
       >
         <ModalHeader closeButton={true}>
-          Create new Organization for {currentOrg?.name}
+          Tạo tổ chức mới cho {currentOrg?.name}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Company name:</FormLabel>
+                <FormLabel>Tên công ty:</FormLabel>
                 <FormControl
                   required
                   type="input"
                   onChange={e => setOrgName(e.target.value)}
                 />
                 <FormControl.Feedback type="invalid">
-                  Company name is required
+                  Tên công ty là bắt buộc
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Phone number:</FormLabel>
+                <FormLabel>Số điện thoại:</FormLabel>
                 <FormControl
                   type="input"
                   onChange={e => setPhoneNumber(e.target.value)}
@@ -369,7 +369,7 @@ export default function OrgManagement() {
             </Row>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Address:</FormLabel>
+                <FormLabel>Địa chỉ:</FormLabel>
                 <FormControl
                   type="input"
                   onChange={e => setAddress(e.target.value)}
@@ -378,7 +378,7 @@ export default function OrgManagement() {
             </Row>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Website:</FormLabel>
+                <FormLabel>Trang web:</FormLabel>
                 <FormControl
                   type="input"
                   onChange={e => setWebsite(e.target.value)}
@@ -386,8 +386,8 @@ export default function OrgManagement() {
               </FormGroup>
             </Row>
             <div className="d-flex flex-row justify-content-end mt-3">
-              <button type="sumbit" className="btn btn-success me-2">
-                Create
+              <button type="submit" className="btn btn-success me-2">
+                Tạo
               </button>
               <button
                 type="button"
@@ -396,7 +396,7 @@ export default function OrgManagement() {
                   closeCreateOrgDialog();
                 }}
               >
-                Cancel
+                Hủy
               </button>
             </div>
           </Form>

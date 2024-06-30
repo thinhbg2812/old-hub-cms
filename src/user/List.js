@@ -45,7 +45,7 @@ export default function UserManagement() {
   const [selectedOrg, setSelectedOrg] = useState('');
   const [selectedDevice, setSelectedDevice] = useState('');
   const [selectedUser, setSelectedUser] = useState({});
-  const [action, setAction] = useState(0); //0 - create, 1 - edit
+  const [action, setAction] = useState(0); //0 - tạo, 1 - chỉnh sửa
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
   const [deleteUserId, setDeleteUserId] = useState('');
   const [getSampleDialog, setGetSampleDialog] = useState(false);
@@ -66,7 +66,7 @@ export default function UserManagement() {
 
   const [orgs, setOrgs] = useState(
     flattenTree({
-      name: 'Your organization',
+      name: 'Tổ chức của bạn',
       children: [],
     })
   );
@@ -92,7 +92,7 @@ export default function UserManagement() {
   const listUser = async () => {
     const resp = await listUserRequest(page, size);
     if (resp.isError) {
-      toast.error('Can not list user');
+      toast.error('Không thể lấy dánh sách người dùng');
     } else {
       setUsers(resp.data.items);
       setTotal(resp.data.total);
@@ -128,7 +128,7 @@ export default function UserManagement() {
   const listOrg = async () => {
     const resp = await listOrgRequest(page, size);
     if (resp.isError) {
-      toast.error('Can not list organization');
+      toast.error('Không thể lấy danh sách tổ chức');
     } else {
       let obj = { children: [], name: '' };
       for (let i = 0; i < resp.data.items.length; i++) {
@@ -142,7 +142,7 @@ export default function UserManagement() {
   const listOrgDevice = async orgId => {
     const resp = await listOrgDeviceRequest(orgId);
     if (resp.isError) {
-      toast.error("Can not load organization's device");
+      toast.error('Không thể tải thiết bị của tổ chức');
     } else {
       setDevices(resp.data.items);
     }
@@ -157,11 +157,11 @@ export default function UserManagement() {
       selectedDevice
     );
     if (resp.isError) {
-      setToastContent('Can not create new user');
+      setToastContent('Không thể tạo người dùng mới');
       setToastVariant('danger');
       setShowToast(true);
     } else {
-      setToastContent('Create user success');
+      setToastContent('Tạo người dùng thành công');
       setToastVariant('success');
       setShowToast(true);
       closeCreateUserDialog();
@@ -177,11 +177,11 @@ export default function UserManagement() {
       selectedUser.id
     );
     if (resp.isError) {
-      setToastContent("Can not update user's info");
+      setToastContent('Không thể cập nhật thông tin người dùng');
       setToastVariant('danger');
       setShowToast(true);
     } else {
-      setToastContent("Update user's info success");
+      setToastContent('Cập nhật thông tin người dùng thành công');
       setToastVariant('success');
       setShowToast(true);
       closeCreateUserDialog();
@@ -196,7 +196,7 @@ export default function UserManagement() {
       selectedUser.id
     );
     if (resp.isError) {
-      toast.error('Can not set user to inactive');
+      toast.error('Không thể đặt người dùng ở trạng thái không hoạt động');
     } else {
       closeDeleteAlertDialog();
     }
@@ -224,11 +224,11 @@ export default function UserManagement() {
       currentSampleCommandRef.current
     );
     if (resp.isError) {
-      setToastContent("Can not send 'Get sample' command to device");
+      setToastContent("Không thể gửi lệnh 'Lấy mẫu' cho thiết bị");
       setToastVariant('danger');
       setShowToast(true);
     } else {
-      setToastContent('Send command to device successfully');
+      setToastContent('Gửi lệnh đến thiết bị thành công');
       setToastVariant('success');
       setShowToast(true);
     }
@@ -253,7 +253,7 @@ export default function UserManagement() {
                   setAction(0);
                 }}
               >
-                Add user
+                Thêm người dùng
               </button>
             </div>
           </div>
@@ -263,13 +263,13 @@ export default function UserManagement() {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Full name</th>
-                    <th>Phone number</th>
-                    <th>Company name</th>
-                    <th>Righ hand sample</th>
-                    <th>Left hand sample</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Họ tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Tên công ty</th>
+                    <th>Mẫu tay phải</th>
+                    <th>Mẫu tay trái</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -349,15 +349,15 @@ export default function UserManagement() {
         size="lg"
       >
         <ModalHeader closeButton>
-          {action === 0 && <>Create new user</>}
-          {action !== 0 && <>Edit user</>}
+          {action === 0 && <>Tạo người dùng mới</>}
+          {action !== 0 && <>Chỉnh sửa người dùng</>}
         </ModalHeader>
         <ModalBody>
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
                 <label for="phone" className="form-label">
-                  Phone number:
+                  Số điện thoại:
                 </label>
                 <input
                   type="text"
@@ -380,7 +380,7 @@ export default function UserManagement() {
             <div className="row">
               <div className="col-12">
                 <label for="fullname" className="form-label">
-                  Full name:
+                  Họ tên:
                 </label>
                 <input
                   type="text"
@@ -402,7 +402,7 @@ export default function UserManagement() {
             <div className="row border-bottom pb-3">
               <div className="col-12">
                 <label for="status" className="form-label">
-                  Status:
+                  Trạng thái:
                 </label>
                 <select
                   id="status"
@@ -418,18 +418,16 @@ export default function UserManagement() {
                     }));
                   }}
                 >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                  <option value="left_hand_sampling">Left hand sampling</option>
-                  <option value="right_hand_sampling">
-                    Right hand sampling
-                  </option>
+                  <option value="active">Hoạt động</option>
+                  <option value="inactive">Không hoạt động</option>
+                  <option value="left_hand_sampling">Lấy mẫu tay trái</option>
+                  <option value="right_hand_sampling">Lấy mẫu tay phải</option>
                 </select>
               </div>
             </div>
             <div className="row mt-3">
-              <div className="col-6">Select a company</div>
-              <div className="col-5">Select a device</div>
+              <div className="col-6">Chọn một công ty</div>
+              <div className="col-5">Chọn một thiết bị</div>
             </div>
             <div className="row">
               <div className="col-6 checkbox">
@@ -524,15 +522,15 @@ export default function UserManagement() {
               }
             }}
           >
-            {action === 0 && <>Create</>}
-            {action !== 0 && <>Update</>}
+            {action === 0 && <>Tạo</>}
+            {action !== 0 && <>Cập nhật</>}
           </button>
           <button
             type="button"
             className="btn btn-secondary"
             onClick={() => closeCreateUserDialog()}
           >
-            Cancel
+            Hủy
           </button>
         </ModalFooter>
       </Modal>
@@ -542,8 +540,9 @@ export default function UserManagement() {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          Are you sure to{' '}
-          {selectedUser.status === 'active' ? 'inactive' : 'active'} this user?
+          Bạn có chắc chắn muốn{' '}
+          {selectedUser.status === 'active' ? 'vô hiệu hóa' : 'kích hoạt'} người
+          dùng này không?
         </ModalHeader>
         <ModalFooter>
           <button
@@ -553,7 +552,7 @@ export default function UserManagement() {
               deleteUser(selectedUser);
             }}
           >
-            Yes
+            Có
           </button>
           <button
             type="button"
@@ -562,7 +561,7 @@ export default function UserManagement() {
               closeDeleteAlertDialog();
             }}
           >
-            Cancel
+            Hủy
           </button>
         </ModalFooter>
       </Modal>
@@ -572,7 +571,7 @@ export default function UserManagement() {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          Request get {selectedUser.fullName} sample hand
+          Yêu cầu lấy mẫu tay của {selectedUser.fullName}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
@@ -585,7 +584,7 @@ export default function UserManagement() {
                   onChange={e => setSampleDeviceId(e.target.value)}
                 />
                 <FormControl.Feedback type="invalid">
-                  DeviceId is required
+                  DeviceId là bắt buộc
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
@@ -595,7 +594,7 @@ export default function UserManagement() {
                 type="submit"
                 className="btn btn-outline d-none"
               >
-                Submit
+                Gửi
               </button>
               <button
                 type="button"
@@ -605,7 +604,7 @@ export default function UserManagement() {
                   submitRef.current?.click();
                 }}
               >
-                Left hand sample
+                Mẫu tay trái
               </button>
               <button
                 type="button"
@@ -615,7 +614,7 @@ export default function UserManagement() {
                   submitRef.current?.click();
                 }}
               >
-                Right hand sample
+                Mẫu tay phải
               </button>
             </div>
           </Form>
@@ -626,7 +625,7 @@ export default function UserManagement() {
             className="btn btn-secondary"
             onClick={closeGetSampleDialog}
           >
-            Finish
+            Hoàn thành
           </button>
         </ModalFooter>
       </Modal>
@@ -639,7 +638,7 @@ export default function UserManagement() {
         bg={toastVariant}
         style={{ zIndex: 2000 }}
       >
-        <ToastHeader>Notification</ToastHeader>
+        <ToastHeader>Thông báo</ToastHeader>
         <ToastBody>{toastContent}</ToastBody>
       </Toast>
     </React.Fragment>

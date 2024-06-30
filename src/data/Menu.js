@@ -1,16 +1,16 @@
 const userMenu = [
   {
-    label: 'User Management',
+    label: 'Quản lý Người dùng',
     link: '/user/list',
     icon: 'ri-user-line',
   },
   // {
-  //   "label": "Employee Management",
+  //   "label": "Quản lý Nhân viên",
   //   "link": "/employee/list",
   //   "icon": "ri-user-2-line"
   // },
   {
-    label: 'Organization Management',
+    label: 'Quản lý Tổ chức',
     link: '/org/list',
     icon: 'ri-global-line',
   },
@@ -20,98 +20,98 @@ const applicationsMenu = [];
 
 const pagesMenu = [
   {
-    label: 'User Pages',
+    label: 'Trang Người dùng',
     icon: 'ri-account-circle-line',
     submenu: [
       {
-        label: 'User Profile',
+        label: 'Hồ sơ Người dùng',
         link: '/pages/profile',
       },
       {
-        label: 'People & Groups',
+        label: 'Nhóm & Mọi người',
         link: '/pages/people',
       },
       {
-        label: 'Activity Log',
+        label: 'Nhật ký Hoạt động',
         link: '/pages/activity',
       },
       {
-        label: 'Events',
+        label: 'Sự kiện',
         link: '/pages/events',
       },
       {
-        label: 'Settings',
+        label: 'Cài đặt',
         link: '/pages/settings',
       },
     ],
   },
   {
     id: 27,
-    label: 'Authentication',
+    label: 'Xác thực',
     icon: 'ri-lock-2-line',
     submenu: [
       {
-        label: 'Sign In Basic',
+        label: 'Đăng nhập Cơ bản',
         link: '/pages/signin',
       },
       {
-        label: 'Sign In Cover',
+        label: 'Đăng nhập với Cover',
         link: '/pages/signin2',
       },
       {
-        label: 'Sign Up Basic',
+        label: 'Đăng ký Cơ bản',
         link: '/pages/signup',
       },
       {
-        label: 'Sign Up Cover',
+        label: 'Đăng ký với Cover',
         link: '/pages/signup2',
       },
       {
-        label: 'Verify Account',
+        label: 'Xác minh Tài khoản',
         link: '/pages/verify',
       },
       {
-        label: 'Forgot Password',
+        label: 'Quên Mật khẩu',
         link: '/pages/forgot',
       },
       {
-        label: 'Lock Screen',
+        label: 'Màn hình Khóa',
         link: '/pages/lock',
       },
     ],
   },
   {
-    label: 'Error Pages',
+    label: 'Trang Lỗi',
     icon: 'ri-error-warning-line',
     submenu: [
       {
-        label: 'Page Not Found',
+        label: 'Trang Không Tìm Thấy',
         link: '/pages/error-404',
       },
       {
-        label: 'Internal Server Error',
+        label: 'Lỗi Máy chủ Nội bộ',
         link: '/pages/error-500',
       },
       {
-        label: 'Service Unavailable',
+        label: 'Dịch vụ Không Khả dụng',
         link: '/pages/error-503',
       },
       {
-        label: 'Forbidden',
+        label: 'Cấm Truy cập',
         link: '/pages/error-505',
       },
     ],
   },
   {
-    label: 'Other Pages',
+    label: 'Các Trang Khác',
     icon: 'ri-file-text-line',
     submenu: [
       {
-        label: 'Pricing',
+        label: 'Bảng Giá',
         link: '/pages/pricing',
       },
       {
-        label: 'FAQ',
+        label: 'Câu hỏi Thường gặp',
         link: '/pages/faq',
       },
     ],

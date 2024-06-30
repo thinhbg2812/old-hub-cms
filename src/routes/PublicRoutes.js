@@ -6,12 +6,14 @@ import LockScreen from '../pages/LockScreen';
 import NotFound from '../pages/NotFound';
 import ServiceUnavailable from '../pages/ServiceUnavailable';
 import Signin from '../pages/Signin';
+import Signin2 from '../pages/Signin2';
 import Signup from '../pages/Signup';
 import Signup2 from '../pages/Signup2';
 import VerifyAccount from '../pages/VerifyAccount';
 
 const publicRoutes = [
   { path: 'pages/signin', element: <Signin /> },
+  { path: 'pages/signin2', element: <Signin2 /> },
   { path: 'pages/signup', element: <Signup /> },
   { path: 'pages/signup2', element: <Signup2 /> },
   { path: 'pages/verify', element: <VerifyAccount /> },

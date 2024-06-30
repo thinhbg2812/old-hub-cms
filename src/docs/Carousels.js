@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Container, Card, Nav, Carousel } from 'react-bootstrap';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 import img2 from '../assets/img/img2.jpg';
 import img3 from '../assets/img/img3.jpg';
 import img4 from '../assets/img/img4.jpg';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
 
 export default function Carousels() {
   useEffect(() => {

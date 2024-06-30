@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Container, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
+import { Link } from 'react-router-dom';
 
 export default function UtilTypography() {
   useEffect(() => {

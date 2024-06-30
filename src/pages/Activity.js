@@ -1,15 +1,15 @@
 import React from 'react';
-import { Card, Col, Row, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Card, Col, Row, Form } from 'react-bootstrap';
+import Footer from '../layouts/Footer';
+import HeaderMobile from '../layouts/HeaderMobile';
 
 import img1 from '../assets/img/img1.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img17 from '../assets/img/img17.jpg';
 import img2 from '../assets/img/img2.jpg';
 import img3 from '../assets/img/img3.jpg';
 import img6 from '../assets/img/img6.jpg';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import img16 from '../assets/img/img16.jpg';
+import img17 from '../assets/img/img17.jpg';
 
 export default function Activity() {
   return (

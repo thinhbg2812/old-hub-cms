@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import DOMPurify from 'dompurify';
+import Header from '../layouts/Header';
+import Footer from '../layouts/Footer';
+import { Link } from 'react-router-dom';
 import { Dropdown, Row, Col, Nav, Form } from 'react-bootstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Link } from 'react-router-dom';
+import Avatar from '../components/Avatar';
+import DOMPurify from 'dompurify';
 
+import img6 from '../assets/img/img6.jpg';
+import img7 from '../assets/img/img7.jpg';
+import img8 from '../assets/img/img8.jpg';
 import img10 from '../assets/img/img10.jpg';
 import img11 from '../assets/img/img11.jpg';
 import img12 from '../assets/img/img12.jpg';
@@ -12,12 +18,6 @@ import img15 from '../assets/img/img15.jpg';
 import img16 from '../assets/img/img16.jpg';
 import img17 from '../assets/img/img17.jpg';
 import img19 from '../assets/img/img19.jpg';
-import img6 from '../assets/img/img6.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import Avatar from '../components/Avatar';
-import Footer from '../layouts/Footer';
-import Header from '../layouts/Header';
 
 export default function Chat() {
   useEffect(() => {

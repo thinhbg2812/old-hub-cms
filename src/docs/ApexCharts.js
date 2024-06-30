@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
-import ReactApexChart from 'react-apexcharts';
 import { Card, Container, Nav } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
+import ReactApexChart from 'react-apexcharts';
 
 export default function ApexCharts() {
   useEffect(() => {

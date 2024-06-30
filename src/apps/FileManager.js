@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../layouts/Header';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Button,
   Card,
@@ -9,9 +11,7 @@ import {
   Row,
   Table,
 } from 'react-bootstrap';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
 
 export default function FileManager() {
   useEffect(() => {

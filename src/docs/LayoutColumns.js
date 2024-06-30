@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import Prism from 'prismjs';
 import { Card, Row, Col, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
+import Prism from 'prismjs';
 import HeaderMobile from '../layouts/HeaderMobile';
+import Footer from '../layouts/Footer';
 
 export default function LayoutColumns() {
   useEffect(() => {

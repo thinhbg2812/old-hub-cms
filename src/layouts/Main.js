@@ -23,7 +23,7 @@ export default function Main() {
   window.scrollTo(0, 0);
   useEffect(() => {
     if (!token || token === '' || token === undefined) {
-      navigate('/pages/signin');
+      navigate('/pages/signin2');
     }
   });
 

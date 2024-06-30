@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
 import userAvatar from '../assets/img/img1.jpg';
 import notification from '../data/Notification';
 
@@ -212,25 +212,25 @@ export default function Header({ onSkin }) {
 
             <nav className="nav">
               <Link to="">
-                <i className="ri-edit-2-line"></i> Chỉnh sửa Hồ sơ
+                <i className="ri-edit-2-line"></i> Edit Profile
               </Link>
               <Link to="">
-                <i className="ri-profile-line"></i> Xem Hồ sơ
+                <i className="ri-profile-line"></i> View Profile
               </Link>
             </nav>
             <hr />
             <nav className="nav">
               <Link to="">
-                <i className="ri-question-line"></i> Trung tâm Trợ giúp
+                <i className="ri-question-line"></i> Help Center
               </Link>
               <Link to="">
-                <i className="ri-lock-line"></i> Cài đặt Riêng tư
+                <i className="ri-lock-line"></i> Privacy Settings
               </Link>
               <Link to="">
-                <i className="ri-user-settings-line"></i> Cài đặt Tài khoản
+                <i className="ri-user-settings-line"></i> Account Settings
               </Link>
               <Link to="/pages/signin">
-                <i className="ri-logout-box-r-line"></i> Đăng xuất
+                <i className="ri-logout-box-r-line"></i> Log Out
               </Link>
             </nav>
           </div>

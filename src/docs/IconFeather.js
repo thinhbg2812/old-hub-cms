@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import feather from 'feather-icons/dist/feather';
 import Prism from 'prismjs';
 import { Col, Container, Row } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
+import feather from 'feather-icons/dist/feather';
 
 export default function IconFeather() {
   useEffect(() => {

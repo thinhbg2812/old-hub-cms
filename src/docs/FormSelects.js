@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
 import { Card, Container, Form, Nav } from 'react-bootstrap';
-import Select from 'react-select';
 import Footer from '../layouts/Footer';
 import HeaderMobile from '../layouts/HeaderMobile';
+import Select from 'react-select';
 
 export default function FormSelects() {
   useEffect(() => {

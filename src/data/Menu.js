@@ -1,117 +1,187 @@
-const userMenu = [
+const dashboardMenu = [
   {
-    label: 'Quản lý Người dùng',
-    link: '/user/list',
-    icon: 'ri-user-line',
+    label: 'Finance Monitoring',
+    link: '/dashboard/finance',
+    icon: 'ri-pie-chart-2-line',
   },
-  // {
-  //   "label": "Quản lý Nhân viên",
-  //   "link": "/employee/list",
-  //   "icon": "ri-user-2-line"
-  // },
   {
-    label: 'Quản lý Tổ chức',
-    link: '/org/list',
-    icon: 'ri-global-line',
+    label: 'Events Management',
+    link: '/dashboard/events',
+    icon: 'ri-calendar-todo-line',
+  },
+  {
+    label: 'Sales Monitoring',
+    link: '/dashboard/sales',
+    icon: 'ri-shopping-bag-3-line',
+  },
+  {
+    label: 'Website Analytics',
+    link: '/dashboard/analytics',
+    icon: 'ri-bar-chart-2-line',
+  },
+  {
+    label: 'Cryptocurrency',
+    link: '/dashboard/crypto',
+    icon: 'ri-coin-line',
+  },
+  {
+    label: 'Helpdesk Service',
+    link: '/dashboard/helpdesk',
+    icon: 'ri-service-line',
+  },
+  {
+    label: 'Storage Management',
+    link: '/dashboard/storage',
+    icon: 'ri-hard-drive-2-line',
+  },
+  {
+    label: 'Product Management',
+    link: '/dashboard/product',
+    icon: 'ri-suitcase-2-line',
   },
 ];
 
-const applicationsMenu = [];
+const applicationsMenu = [
+  {
+    label: 'File Manager',
+    link: '/apps/file-manager',
+    icon: 'ri-folder-2-line',
+  },
+  {
+    label: 'Email',
+    link: '/apps/email',
+    icon: 'ri-mail-send-line',
+  },
+  {
+    label: 'Calendar',
+    link: '/apps/calendar',
+    icon: 'ri-calendar-line',
+  },
+  {
+    label: 'Chat',
+    link: '/apps/chat',
+    icon: 'ri-question-answer-line',
+  },
+  {
+    label: 'Contacts',
+    link: '/apps/contacts',
+    icon: 'ri-contacts-book-line',
+  },
+  {
+    label: 'Task Manager',
+    link: '/apps/tasks',
+    icon: 'ri-checkbox-multiple-line',
+  },
+  {
+    label: 'Media Gallery',
+    icon: 'ri-gallery-line',
+    submenu: [
+      {
+        label: 'Music Stream',
+        link: '/apps/gallery-music',
+      },
+      {
+        label: 'Video Stream',
+        link: '/apps/gallery-video',
+      },
+    ],
+  },
+];
 
 const pagesMenu = [
   {
-    label: 'Trang Người dùng',
+    label: 'User Pages',
     icon: 'ri-account-circle-line',
     submenu: [
       {
-        label: 'Hồ sơ Người dùng',
+        label: 'User Profile',
         link: '/pages/profile',
       },
       {
-        label: 'Nhóm & Mọi người',
+        label: 'People & Groups',
         link: '/pages/people',
       },
       {
-        label: 'Nhật ký Hoạt động',
+        label: 'Activity Log',
         link: '/pages/activity',
       },
       {
-        label: 'Sự kiện',
+        label: 'Events',
         link: '/pages/events',
       },
       {
-        label: 'Cài đặt',
+        label: 'Settings',
         link: '/pages/settings',
       },
     ],
   },
   {
     id: 27,
-    label: 'Xác thực',
+    label: 'Authentication',
     icon: 'ri-lock-2-line',
     submenu: [
       {
-        label: 'Đăng nhập Cơ bản',
+        label: 'Sign In Basic',
         link: '/pages/signin',
       },
       {
-        label: 'Đăng nhập với Cover',
+        label: 'Sign In Cover',
         link: '/pages/signin2',
       },
       {
-        label: 'Đăng ký Cơ bản',
+        label: 'Sign Up Basic',
         link: '/pages/signup',
       },
       {
-        label: 'Đăng ký với Cover',
+        label: 'Sign Up Cover',
         link: '/pages/signup2',
       },
       {
-        label: 'Xác minh Tài khoản',
+        label: 'Verify Account',
         link: '/pages/verify',
       },
       {
-        label: 'Quên Mật khẩu',
+        label: 'Forgot Password',
         link: '/pages/forgot',
       },
       {
-        label: 'Màn hình Khóa',
+        label: 'Lock Screen',
         link: '/pages/lock',
       },
     ],
   },
   {
-    label: 'Trang Lỗi',
+    label: 'Error Pages',
     icon: 'ri-error-warning-line',
     submenu: [
       {
-        label: 'Trang Không Tìm Thấy',
+        label: 'Page Not Found',
         link: '/pages/error-404',
       },
       {
-        label: 'Lỗi Máy chủ Nội bộ',
+        label: 'Internal Server Error',
         link: '/pages/error-500',
       },
       {
-        label: 'Dịch vụ Không Khả dụng',
+        label: 'Service Unavailable',
         link: '/pages/error-503',
       },
       {
-        label: 'Cấm Truy cập',
+        label: 'Forbidden',
         link: '/pages/error-505',
       },
     ],
   },
   {
-    label: 'Các Trang Khác',
+    label: 'Other Pages',
     icon: 'ri-file-text-line',
     submenu: [
       {
-        label: 'Bảng Giá',
+        label: 'Pricing',
         link: '/pages/pricing',
       },
       {
-        label: 'Câu hỏi Thường gặp',
+        label: 'FAQ',
         link: '/pages/faq',
       },
     ],
@@ -356,5 +426,22 @@ const uiElementsMenu = [
     ],
   },
 ];
+const userMenu = [
+  {
+    label: 'Quản lý Người dùng',
+    link: '/user/list',
+    icon: 'ri-user-line',
+  },
+  // {
+  //   "label": "Quản lý Nhân viên",
+  //   "link": "/employee/list",
+  //   "icon": "ri-user-2-line"
+  // },
+  {
+    label: 'Quản lý Tổ chức',
+    link: '/org/list',
+    icon: 'ri-global-line',
+  },
+];
 
-export { userMenu, applicationsMenu, pagesMenu, uiElementsMenu };
+export { dashboardMenu, applicationsMenu, pagesMenu, uiElementsMenu, userMenu };

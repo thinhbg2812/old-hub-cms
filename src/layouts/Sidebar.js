@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link, NavLink } from 'react-router-dom';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import userAvatar from '../assets/img/img1.jpg';
 import {
-  userMenu,
+  dashboardMenu,
   applicationsMenu,
   pagesMenu,
   uiElementsMenu,
+  userMenu,
 } from '../data/Menu';
 
 export default class Sidebar extends Component {
@@ -22,7 +23,7 @@ export default class Sidebar extends Component {
       <div className="sidebar">
         <div className="sidebar-header">
           <Link to="/" className="sidebar-logo">
-            CMS
+            dashbyte
           </Link>
         </div>
         <PerfectScrollbar
@@ -150,6 +151,12 @@ class SidebarMenu extends Component {
             User management
           </div>
           {this.populateMenu(userMenu)}
+        </div>
+        <div className="nav-group show">
+          <div className="nav-label" onClick={this.toggleMenu}>
+            Dashboard
+          </div>
+          {this.populateMenu(dashboardMenu)}
         </div>
         <div className="nav-group show">
           <div className="nav-label" onClick={this.toggleMenu}>

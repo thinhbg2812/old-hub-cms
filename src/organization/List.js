@@ -215,121 +215,154 @@ export default function OrgManagement() {
               <div className="container-fluid row-gap-3">
                 <div className="row">
                   <div className="col-6">
-                    <label for="orgName" className="form-label">
-                      Tên công ty:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      id="phone"
-                      value={selectedOrg.orgName}
-                      onChange={e => {
-                        let newItem = {
-                          orgName: e.target.value,
-                        };
-                        setSelectedOrg(selectedOrg => ({
-                          ...selectedOrg,
-                          ...newItem,
-                        }));
-                      }}
-                    />
+                    <div className="row">
+                      <div className="col-12">
+                        <label for="orgName" className="form-label">
+                          Tên công ty:
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control form-control-sm"
+                          id="phone"
+                          value={selectedOrg.orgName}
+                          onChange={e => {
+                            let newItem = {
+                              orgName: e.target.value,
+                            };
+                            setSelectedOrg(selectedOrg => ({
+                              ...selectedOrg,
+                              ...newItem,
+                            }));
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12">
+                        <label for="phoneNumber" className="form-label">
+                          Số điện thoại:
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control form-control-sm"
+                          id="phoneNumber"
+                          value={selectedOrg?.phoneNumber}
+                          onChange={e => {
+                            let newItem = {
+                              phoneNumber: e.target.value,
+                            };
+                            setSelectedOrg(selectedOrg => ({
+                              ...selectedOrg,
+                              ...newItem,
+                            }));
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12">
+                        <label for="address" className="form-label">
+                          Địa chỉ:
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control form-control-sm"
+                          id="address"
+                          value={selectedOrg?.address}
+                          onChange={e => {
+                            let newItem = {
+                              address: e.target.value,
+                            };
+                            setSelectedOrg(selectedOrg => ({
+                              ...selectedOrg,
+                              ...newItem,
+                            }));
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12">
+                        <label for="website" className="form-label">
+                          Trang web:
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control form-control-sm"
+                          id="website"
+                          value={selectedOrg?.website}
+                          onChange={e => {
+                            let newItem = {
+                              address: e.target.value,
+                            };
+                            setSelectedOrg(selectedOrg => ({
+                              ...selectedOrg,
+                              ...newItem,
+                            }));
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
                   <div className="col-6">
-                    <label for="phoneNumber" className="form-label">
-                      Số điện thoại:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      id="phoneNumber"
-                      value={selectedOrg?.phoneNumber}
-                      onChange={e => {
-                        let newItem = {
-                          phoneNumber: e.target.value,
-                        };
-                        setSelectedOrg(selectedOrg => ({
-                          ...selectedOrg,
-                          ...newItem,
-                        }));
-                      }}
-                    />
+                    <div className="row">
+                      <div className="col-12">
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={updateOrg}
+                        >
+                          Cập nhật
+                        </button>
+                      </div>
+                    </div>
+                    <div className="row mt-2">
+                      <div className="col-12">
+                        <button
+                          type="button"
+                          className="btn btn-success"
+                          onClick={() => {
+                            navigate(`/room/list?orgId=${selectedOrg.id}`);
+                          }}
+                        >
+                          Quản lý phòng
+                        </button>
+                      </div>
+                    </div>
+                    <div className="row mt-2">
+                      <div className="col-12">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => {
+                            navigate(`/vehicle/list?orgId=${selectedOrg.id}`);
+                          }}
+                        >
+                          Quản lý phương tiện
+                        </button>
+                      </div>
+                    </div>
+                    <div className="row mt-2">
+                      <div className="col-12">
+                        <button
+                          type="button"
+                          className="btn btn-warning"
+                          onClick={() => {
+                            navigate(`/device/list?orgId=${selectedOrg.id}`);
+                          }}
+                        >
+                          Quản lý thiết bị
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-6">
-                    <label for="address" className="form-label">
-                      Địa chỉ:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      id="address"
-                      value={selectedOrg?.address}
-                      onChange={e => {
-                        let newItem = {
-                          address: e.target.value,
-                        };
-                        setSelectedOrg(selectedOrg => ({
-                          ...selectedOrg,
-                          ...newItem,
-                        }));
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-6">
-                    <label for="website" className="form-label">
-                      Trang web:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control form-control-sm"
-                      id="website"
-                      value={selectedOrg?.website}
-                      onChange={e => {
-                        let newItem = {
-                          address: e.target.value,
-                        };
-                        setSelectedOrg(selectedOrg => ({
-                          ...selectedOrg,
-                          ...newItem,
-                        }));
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="row mt-3">
+
+                {/* <div className="row mt-3">
                   <div className="col-9">
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={updateOrg}
-                    >
-                      Cập nhật
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-success ms-2"
-                      onClick={() => {
-                        navigate(`/room/list?orgId=${selectedOrg.id}`);
-                      }}
-                    >
-                      Quản lý phòng
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-success ms-2"
-                      onClick={() => {
-                        navigate(`/vehicle/list?orgId=${selectedOrg.id}`);
-                      }}
-                    >
-                      Quản lý phương tiện
-                    </button>
+                    
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

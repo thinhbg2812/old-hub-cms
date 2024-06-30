@@ -153,8 +153,8 @@ export default function UserManagement() {
       selectedUser.phoneNumber,
       selectedUser.fullName,
       selectedUser.status,
-      selectedOrg,
-      selectedDevice
+      selectedOrg
+      // selectedDevice
     );
     if (resp.isError) {
       setToastContent('Không thể tạo người dùng mới');
@@ -427,7 +427,7 @@ export default function UserManagement() {
             </div>
             <div className="row mt-3">
               <div className="col-6">Chọn một công ty</div>
-              <div className="col-5">Chọn một thiết bị</div>
+              {/* <div className="col-5">Chọn một thiết bị</div> */}
             </div>
             <div className="row">
               <div className="col-6 checkbox">
@@ -473,7 +473,7 @@ export default function UserManagement() {
                           className="name"
                           onClick={() => {
                             setSelectedOrg(element.metadata.id);
-                            listOrgDevice(element.metadata.id);
+                            // listOrgDevice(element.metadata.id);
                           }}
                         >
                           {element.name}
@@ -483,7 +483,7 @@ export default function UserManagement() {
                   }}
                 />
               </div>
-              <div className="col-5">
+              {/* <div className="col-5">
                 <select
                   className="form-select mt-2"
                   onChange={e => {
@@ -506,7 +506,7 @@ export default function UserManagement() {
                     );
                   })}
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
         </ModalBody>

@@ -16,7 +16,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../layouts/Header";
-import { createVehicleRequest, listVehicleRequests } from "../services/vehicle";
+import { createVehicleRequest, listVehicleRequest } from "../services/vehicle";
 
 const VehicleManagement = () => {
   const [queryParams] = useSearchParams();
@@ -59,7 +59,7 @@ const VehicleManagement = () => {
     }
   };
   const listVehicles = async () => {
-    const resp = await listVehicleRequests(orgId, page, size);
+    const resp = await listVehicleRequest(orgId, page, size);
     if (resp.isError) {
       setToastContent("Can not list Organization's vehicles");
       setToastVariant("danger");

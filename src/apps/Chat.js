@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Link } from 'react-router-dom';
-import { Dropdown, Row, Col, Nav, Form } from 'react-bootstrap';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import Avatar from '../components/Avatar';
-import DOMPurify from 'dompurify';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Link } from "react-router-dom";
+import { Dropdown, Row, Col, Nav, Form } from "react-bootstrap";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import Avatar from "../components/Avatar";
+import DOMPurify from "dompurify";
 
-import img6 from '../assets/img/img6.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img17 from '../assets/img/img17.jpg';
-import img19 from '../assets/img/img19.jpg';
+import img6 from "../assets/img/img6.jpg";
+import img7 from "../assets/img/img7.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img15 from "../assets/img/img15.jpg";
+import img16 from "../assets/img/img16.jpg";
+import img17 from "../assets/img/img17.jpg";
+import img19 from "../assets/img/img19.jpg";
 
 export default function Chat() {
   useEffect(() => {
-    document.body.classList.add('page-app');
+    document.body.classList.add("page-app");
     return () => {
-      document.body.classList.remove('page-app');
+      document.body.classList.remove("page-app");
     };
   }, []);
 
@@ -45,117 +45,117 @@ export default function Chat() {
     {
       unread: true,
       avatar: {
-        status: 'offline',
+        status: "offline",
         img: img11,
       },
-      sender: 'Dyanne Aceron',
-      time: '10:35am',
-      text: 'Hi Hello! My name is Dyanne Aceron. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.',
+      sender: "Dyanne Aceron",
+      time: "10:35am",
+      text: "Hi Hello! My name is Dyanne Aceron. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
     },
     {
       selected: true,
       avatar: {
-        status: 'online',
+        status: "online",
         img: img14,
       },
-      sender: 'Leo Mendez',
-      time: '1d',
-      text: 'There are many variations of pass. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia',
+      sender: "Leo Mendez",
+      time: "1d",
+      text: "There are many variations of pass. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia",
     },
     {
       unread: true,
       avatar: {
-        status: 'online',
+        status: "online",
         img: img15,
       },
-      sender: 'Meriam Salomon',
-      time: '2d',
-      text: 'Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      sender: "Meriam Salomon",
+      time: "2d",
+      text: "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       avatar: {
-        status: 'online',
+        status: "online",
         img: img17,
       },
-      sender: 'Rolando Paloso',
-      time: '2d',
-      text: 'There are many variations of paserror sit voluptatem accusantium doloremque laudantium, totam rem aperiam',
+      sender: "Rolando Paloso",
+      time: "2d",
+      text: "There are many variations of paserror sit voluptatem accusantium doloremque laudantium, totam rem aperiam",
     },
     {
       avatar: {
-        status: 'offline',
+        status: "offline",
         img: img19,
       },
-      sender: 'Marianne Audrey',
-      time: '5d',
-      text: 'Hi Hello! There are many variations ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit',
+      sender: "Marianne Audrey",
+      time: "5d",
+      text: "Hi Hello! There are many variations ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit",
     },
     {
       avatar: {
-        status: 'offline',
+        status: "offline",
         img: img6,
       },
-      sender: 'Adrian Moniño',
-      time: '1w',
-      text: 'Lorem ipsum is simply dummy text sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt',
+      sender: "Adrian Moniño",
+      time: "1w",
+      text: "Lorem ipsum is simply dummy text sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt",
     },
     {
       unread: true,
       avatar: {
-        status: 'offline',
+        status: "offline",
         img: img7,
       },
-      sender: 'Andrew Ylaya',
-      time: '1w',
-      text: 'It is a long established fact that aquis autem vel eum iure reprehenderit qui in ea voluptate velit esse',
+      sender: "Andrew Ylaya",
+      time: "1w",
+      text: "It is a long established fact that aquis autem vel eum iure reprehenderit qui in ea voluptate velit esse",
     },
     {
       avatar: {
-        status: 'online',
+        status: "online",
         img: img8,
       },
-      sender: 'Maricel Villalon',
-      time: '2w',
-      text: 'Hello!, I will be distracted by the requam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur',
+      sender: "Maricel Villalon",
+      time: "2w",
+      text: "Hello!, I will be distracted by the requam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur",
     },
     {
       avatar: {
-        status: 'online',
+        status: "online",
         img: img10,
       },
-      sender: 'Warren Vito',
-      time: '3w',
-      text: 'There are many variations of passc up iditate non provident, similique sunt in culpa',
+      sender: "Warren Vito",
+      time: "3w",
+      text: "There are many variations of passc up iditate non provident, similique sunt in culpa",
     },
     {
       unread: true,
       avatar: {
-        status: 'offline',
+        status: "offline",
         img: img11,
       },
-      sender: 'Lovely Ceballos',
-      time: '6w',
-      text: 'Hello!, I will be distracted by the replaceat facere possimus, omnis voluptas assumenda',
+      sender: "Lovely Ceballos",
+      time: "6w",
+      text: "Hello!, I will be distracted by the replaceat facere possimus, omnis voluptas assumenda",
     },
   ];
 
   const messageGroup = [
     {
-      date: 'August 20, 2023',
+      date: "August 20, 2023",
       items: [
         {
           avatar: {
-            status: 'online',
+            status: "online",
             img: img16,
           },
           messages: [
             {
-              text: 'Excepteur sint occaecat cupidatat non proident',
-              time: '8:45pm',
+              text: "Excepteur sint occaecat cupidatat non proident",
+              time: "8:45pm",
             },
             {
-              text: 'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.',
-              time: '9:15pm',
+              text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+              time: "9:15pm",
             },
           ],
         },
@@ -163,29 +163,29 @@ export default function Chat() {
           reverse: true,
           messages: [
             {
-              text: 'Neque porro quisquam est, qui dolorem ipsum',
-              time: '9:20pm',
+              text: "Neque porro quisquam est, qui dolorem ipsum",
+              time: "9:20pm",
             },
             {
-              text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accus',
-              time: '9:21pm',
+              text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accus",
+              time: "9:21pm",
             },
           ],
         },
       ],
     },
     {
-      date: 'Today',
+      date: "Today",
       items: [
         {
           avatar: {
-            status: 'online',
+            status: "online",
             img: img16,
           },
           messages: [
             {
-              text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-              time: '10:30am',
+              text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              time: "10:30am",
             },
           ],
         },
@@ -193,28 +193,28 @@ export default function Chat() {
           reverse: true,
           messages: [
             {
-              text: 'Accusantium doloremque laudantium',
-              time: '10:40am',
+              text: "Accusantium doloremque laudantium",
+              time: "10:40am",
             },
             {
-              text: 'Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo...',
-              time: '10:41am',
+              text: "Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo...",
+              time: "10:41am",
             },
           ],
         },
         {
           avatar: {
-            status: 'online',
+            status: "online",
             img: img16,
           },
           messages: [
             {
-              text: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit...',
-              time: '10:45am',
+              text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit...",
+              time: "10:45am",
             },
             {
-              text: 'Nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?',
-              time: '10:47am',
+              text: "Nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+              time: "10:47am",
             },
           ],
         },
@@ -227,14 +227,14 @@ export default function Chat() {
 
   // Toggle chat option in each item
   const navToggle = e => {
-    e.target.closest('.row').classList.toggle('nav-show');
+    e.target.closest(".row").classList.toggle("nav-show");
   };
 
   return (
     <React.Fragment>
       <Header />
       <div className="main main-app p-3 p-lg-4">
-        <div className={'chat-panel' + (msgShow ? ' msg-show' : '')}>
+        <div className={"chat-panel" + (msgShow ? " msg-show" : "")}>
           <div className="chat-sidebar">
             <div className="sidebar-header">
               <h6 className="sidebar-title me-auto">Chat Messages</h6>
@@ -297,16 +297,16 @@ export default function Chat() {
               <div className="chat-group mb-4">
                 {[
                   {
-                    name: 'General',
-                    desc: 'Includes <strong>You</strong>, <strong>Dyanne</strong> and <strong>5 others</strong>',
+                    name: "General",
+                    desc: "Includes <strong>You</strong>, <strong>Dyanne</strong> and <strong>5 others</strong>",
                   },
                   {
-                    name: 'Technology',
-                    desc: 'Includes <strong>You</strong>, <strong>Nathan</strong> and <strong>1 other</strong>',
+                    name: "Technology",
+                    desc: "Includes <strong>You</strong>, <strong>Nathan</strong> and <strong>1 other</strong>",
                   },
                   {
-                    name: 'Production',
-                    desc: 'Includes all <strong>Engineering</strong> teams',
+                    name: "Production",
+                    desc: "Includes all <strong>Engineering</strong> teams",
                   },
                 ].map((channel, index) => (
                   <div className="chat-item" key={index}>
@@ -332,9 +332,9 @@ export default function Chat() {
                   <div
                     key={index}
                     className={
-                      'chat-item' +
-                      (chats.unread ? ' unread' : '') +
-                      (chatActive === index ? ' selected' : '')
+                      "chat-item" +
+                      (chats.unread ? " unread" : "") +
+                      (chatActive === index ? " selected" : "")
                     }
                     onClick={e => {
                       setChatActive(index);
@@ -400,7 +400,7 @@ export default function Chat() {
                   {msgroup.items.map((item, ind) => (
                     <div
                       key={ind}
-                      className={'msg-item' + (item.reverse ? ' reverse' : '')}
+                      className={"msg-item" + (item.reverse ? " reverse" : "")}
                     >
                       {item.avatar && (
                         <Avatar

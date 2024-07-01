@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Button, ButtonGroup, Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Button, ButtonGroup, Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Buttons() {
   useEffect(() => {
@@ -241,7 +241,7 @@ export default function Buttons() {
             Icon Buttons
           </h5>
           <p>
-            Make icon buttons by adding only icon and add class modifier using{' '}
+            Make icon buttons by adding only icon and add class modifier using{" "}
             <code>.btn-icon</code>
           </p>
 

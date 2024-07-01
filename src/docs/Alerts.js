@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Alert, Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Alert, Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Alerts() {
   useEffect(() => {
@@ -32,14 +32,14 @@ export default function Alerts() {
           <Card className="card-example">
             <Card.Body>
               {[
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
+                "primary",
+                "secondary",
+                "success",
+                "danger",
+                "warning",
+                "info",
+                "light",
+                "dark",
               ].map(variant => (
                 <Alert key={variant} variant={variant}>
                   This is a {variant} alert—check it out!
@@ -70,12 +70,12 @@ export default function Alerts() {
           <Card className="card-example">
             <Card.Body>
               <Alert variant="primary">
-                A simple primary alert with{' '}
+                A simple primary alert with{" "}
                 <Alert.Link href="#">an example link</Alert.Link>. Give it a
                 click if you like.
               </Alert>
               <Alert variant="success">
-                A simple success alert with{' '}
+                A simple success alert with{" "}
                 <Alert.Link href="#">an example link</Alert.Link>. Give it a
                 click if you like.
               </Alert>
@@ -188,14 +188,14 @@ export default function Alerts() {
           <Card className="card-example">
             <Card.Body>
               {[
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
+                "primary",
+                "secondary",
+                "success",
+                "danger",
+                "warning",
+                "info",
+                "light",
+                "dark",
               ].map(variant => (
                 <Alert
                   key={variant}
@@ -230,14 +230,14 @@ export default function Alerts() {
           <Card className="card-example">
             <Card.Body>
               {[
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
+                "primary",
+                "secondary",
+                "success",
+                "danger",
+                "warning",
+                "info",
+                "light",
+                "dark",
               ].map(variant => (
                 <Alert key={variant} variant={variant} className="alert-solid">
                   This is a {variant} alert—check it out!
@@ -261,7 +261,7 @@ export default function Alerts() {
             Alert With Icon
           </h5>
           <p>
-            Adding icon to different alert variant using additional class of{' '}
+            Adding icon to different alert variant using additional class of{" "}
             <code>.d-flex</code> and <code>.align-items-center</code>.
           </p>
 

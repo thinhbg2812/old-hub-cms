@@ -1,4 +1,4 @@
-import { sendGetRequest, sendPostRequest } from './service';
+import { sendGetRequest, sendPostRequest } from "./service";
 
 export const listRoomRequest = async (orgId, page, size) => {
   let params = {
@@ -6,7 +6,7 @@ export const listRoomRequest = async (orgId, page, size) => {
     page: page,
     size: size,
   };
-  return await sendGetRequest('/api/private/room', params);
+  return await sendGetRequest("/api/private/room", params);
 };
 export const createRoomRequest = async (roomNumber, keypass, status, orgId) => {
   let params = {
@@ -15,7 +15,7 @@ export const createRoomRequest = async (roomNumber, keypass, status, orgId) => {
     status: status,
     orgId: orgId,
   };
-  return await sendPostRequest('post', '/api/private/room', params);
+  return await sendPostRequest("post", "/api/private/room", params);
 };
 
 export const editRoomRequest = async (
@@ -32,5 +32,5 @@ export const editRoomRequest = async (
     orgId: orgId,
     status: status,
   };
-  return await sendPostRequest('put', '/api/private/room', params);
+  return await sendPostRequest("put", "/api/private/room", params);
 };

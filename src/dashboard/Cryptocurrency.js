@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Link } from 'react-router-dom';
-import { Button, Card, Row, Col, Nav, ListGroup, Table } from 'react-bootstrap';
-import ReactApexChart from 'react-apexcharts';
-import { dp1, dp2, dp3 } from '../data/DashboardData';
-import { Doughnut } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Link } from "react-router-dom";
+import { Button, Card, Row, Col, Nav, ListGroup, Table } from "react-bootstrap";
+import ReactApexChart from "react-apexcharts";
+import { dp1, dp2, dp3 } from "../data/DashboardData";
+import { Doughnut } from "react-chartjs-2";
 
-import crypto1 from '../assets/img/crypto1.jpg';
-import crypto2 from '../assets/img/crypto2.jpg';
-import crypto3 from '../assets/img/crypto3.jpg';
+import crypto1 from "../assets/img/crypto1.jpg";
+import crypto2 from "../assets/img/crypto2.jpg";
+import crypto3 from "../assets/img/crypto3.jpg";
 
-import 'cryptofont/css/cryptofont.css';
+import "cryptofont/css/cryptofont.css";
 
 export default function Cryptocurrency() {
   var chart = {
@@ -21,7 +21,7 @@ export default function Cryptocurrency() {
   };
 
   var grid = {
-    borderColor: 'rgba(72,94,144, 0.07)',
+    borderColor: "rgba(72,94,144, 0.07)",
     padding: {
       top: -20,
       left: -20,
@@ -34,12 +34,12 @@ export default function Cryptocurrency() {
   };
 
   var stroke = {
-    curve: 'straight',
+    curve: "straight",
     width: 1.5,
   };
 
   var fill = {
-    type: 'gradient',
+    type: "gradient",
     gradient: {
       opacityFrom: 0.5,
       opacityTo: 0,
@@ -59,7 +59,7 @@ export default function Cryptocurrency() {
       grid: grid,
       stroke: stroke,
       xaxis: {
-        type: 'numeric',
+        type: "numeric",
         tickAmount: 6,
         min: min,
         max: max,
@@ -67,8 +67,8 @@ export default function Cryptocurrency() {
         axisBorder: { show: false },
         labels: {
           style: {
-            colors: '#6e7985',
-            fontSize: '9px',
+            colors: "#6e7985",
+            fontSize: "9px",
           },
         },
       },
@@ -82,15 +82,15 @@ export default function Cryptocurrency() {
 
   const seriesOne = [
     {
-      name: 'series1',
+      name: "series1",
       data: dp3,
     },
     {
-      name: 'series2',
+      name: "series2",
       data: dp3,
     },
     {
-      name: 'series3',
+      name: "series3",
       data: dp3,
     },
   ];
@@ -101,26 +101,26 @@ export default function Cryptocurrency() {
       stacked: true,
       toolbar: { show: false },
     },
-    colors: ['#0dcaf0', '#85b6fe', '#506fd9'],
+    colors: ["#0dcaf0", "#85b6fe", "#506fd9"],
     grid: {
-      borderColor: 'rgba(72, 94, 144, .1)',
+      borderColor: "rgba(72, 94, 144, .1)",
       padding: {
         top: -20,
       },
     },
     dataLabels: { enabled: false },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 1.5,
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 6,
       axisBorder: { show: false },
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
     },
@@ -130,13 +130,13 @@ export default function Cryptocurrency() {
       tickAmount: 6,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -148,18 +148,18 @@ export default function Cryptocurrency() {
 
   // Volume By Currency
   var dataPie = {
-    labels: ['USD', 'EUR', 'CNY', 'GBP', 'JPY', 'KRW', 'SGD'],
+    labels: ["USD", "EUR", "CNY", "GBP", "JPY", "KRW", "SGD"],
     datasets: [
       {
         data: [25, 15, 10, 12, 9, 13, 16],
         backgroundColor: [
-          '#506fd9',
-          '#85b6ff',
-          '#33d685',
-          '#0dcaf0',
-          '#1c96e9',
-          '#6e7985',
-          '#ccd2da',
+          "#506fd9",
+          "#85b6ff",
+          "#33d685",
+          "#0dcaf0",
+          "#1c96e9",
+          "#6e7985",
+          "#ccd2da",
         ],
       },
     ],
@@ -182,11 +182,11 @@ export default function Cryptocurrency() {
   // Portfolio
   const seriesTwo = [
     {
-      name: 'series1',
+      name: "series1",
       data: dp2,
     },
     {
-      name: 'series2',
+      name: "series2",
       data: dp1,
     },
   ];
@@ -197,9 +197,9 @@ export default function Cryptocurrency() {
       toolbar: { show: false },
       sparkline: { enabled: true },
     },
-    colors: ['#85b6ff', '#506fd9'],
+    colors: ["#85b6ff", "#506fd9"],
     grid: {
-      borderColor: 'rgba(72, 94, 144, .1)',
+      borderColor: "rgba(72, 94, 144, .1)",
       padding: {
         top: -20,
         left: 0,
@@ -208,25 +208,25 @@ export default function Cryptocurrency() {
     },
     dataLabels: { enabled: false },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 1.5,
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       min: 5,
       max: 90,
       tickAmount: 6,
       axisBorder: { show: false },
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
     },
     yaxis: { max: 180 },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -236,25 +236,25 @@ export default function Cryptocurrency() {
     tooltip: { enabled: false },
   };
 
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
   const switchSkin = skin => {
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
     }
   };
@@ -325,7 +325,7 @@ export default function Cryptocurrency() {
                       data: dp3,
                     },
                   ]}
-                  options={setOption('#fd7e14', 5, 55)}
+                  options={setOption("#fd7e14", 5, 55)}
                   type="area"
                   height={100}
                   className="apex-chart-ten"
@@ -361,7 +361,7 @@ export default function Cryptocurrency() {
                       data: dp3,
                     },
                   ]}
-                  options={setOption('#1c96e9', 45, 95)}
+                  options={setOption("#1c96e9", 45, 95)}
                   type="area"
                   height={100}
                   className="apex-chart-ten"
@@ -397,7 +397,7 @@ export default function Cryptocurrency() {
                       data: dp3,
                     },
                   ]}
-                  options={setOption('#0cb785', 15, 75)}
+                  options={setOption("#0cb785", 15, 75)}
                   type="area"
                   height={100}
                   className="apex-chart-ten"
@@ -433,7 +433,7 @@ export default function Cryptocurrency() {
                       data: dp3,
                     },
                   ]}
-                  options={setOption('#506fd9', 35, 85)}
+                  options={setOption("#506fd9", 35, 85)}
                   type="area"
                   height={100}
                   className="apex-chart-ten"
@@ -474,24 +474,24 @@ export default function Cryptocurrency() {
                 <Row className="row-cols-auto gy-3 gx-5">
                   {[
                     {
-                      label: 'Market Cap',
-                      value: '$14.5B',
+                      label: "Market Cap",
+                      value: "$14.5B",
                     },
                     {
-                      label: 'Volume (24h)',
-                      value: '$6.8B',
+                      label: "Volume (24h)",
+                      value: "$6.8B",
                     },
                     {
-                      label: 'Change',
-                      value: '$7.98',
+                      label: "Change",
+                      value: "$7.98",
                     },
                     {
-                      label: 'Circulating Supply',
-                      value: '$18.59M',
+                      label: "Circulating Supply",
+                      value: "$18.59M",
                     },
                     {
-                      label: 'All Time High',
-                      value: '$16.4K',
+                      label: "All Time High",
+                      value: "$16.4K",
                     },
                   ].map((item, index) => (
                     <Col key={index}>
@@ -560,24 +560,24 @@ export default function Cryptocurrency() {
                 <ListGroup variant="flush">
                   {[
                     {
-                      label: 'Received Bitcoin',
-                      value: '+0.00003998 BTC',
+                      label: "Received Bitcoin",
+                      value: "+0.00003998 BTC",
                     },
                     {
-                      label: 'Sent Bitcoin',
-                      value: '-0.01570525 BTC',
+                      label: "Sent Bitcoin",
+                      value: "-0.01570525 BTC",
                     },
                     {
-                      label: 'Ethereum Conversion',
-                      value: '+2.0157 ETH',
+                      label: "Ethereum Conversion",
+                      value: "+2.0157 ETH",
                     },
                     {
-                      label: 'Bought Bitcoin',
-                      value: '+0.000033420 BTC',
+                      label: "Bought Bitcoin",
+                      value: "+0.000033420 BTC",
                     },
                     {
-                      label: 'Sent Bitcoin',
-                      value: '-0.01570525 BTC',
+                      label: "Sent Bitcoin",
+                      value: "-0.01570525 BTC",
                     },
                   ].map((item, index) => (
                     <ListGroup.Item
@@ -614,59 +614,59 @@ export default function Cryptocurrency() {
                   <tbody>
                     {[
                       {
-                        dot: 'primary',
-                        currency: 'USD',
-                        amount: '4,024.52',
-                        percent: '0.96%',
+                        dot: "primary",
+                        currency: "USD",
+                        amount: "4,024.52",
+                        percent: "0.96%",
                         success: true,
                       },
                       {
-                        dot: 'ui-02',
-                        currency: 'EUR',
-                        amount: '3,539.23',
-                        percent: '0.75%',
+                        dot: "ui-02",
+                        currency: "EUR",
+                        amount: "3,539.23",
+                        percent: "0.75%",
                         success: true,
                       },
                       {
-                        dot: 'teal',
-                        currency: 'CNY',
-                        amount: '27,499.40',
-                        percent: '-0.58%',
+                        dot: "teal",
+                        currency: "CNY",
+                        amount: "27,499.40",
+                        percent: "-0.58%",
                         success: false,
                       },
                       {
-                        dot: 'info',
-                        currency: 'GBP',
-                        amount: '3,022.90',
-                        percent: '-0.69%',
+                        dot: "info",
+                        currency: "GBP",
+                        amount: "3,022.90",
+                        percent: "-0.69%",
                         success: false,
                       },
                       {
-                        dot: 'twitter',
-                        currency: 'NZD',
-                        amount: '444,814.70',
-                        percent: '0.82%',
+                        dot: "twitter",
+                        currency: "NZD",
+                        amount: "444,814.70",
+                        percent: "0.82%",
                         success: true,
                       },
                       {
-                        dot: 'secondary',
-                        currency: 'KRW',
-                        amount: '4,491,099.60',
-                        percent: '-1.11%',
+                        dot: "secondary",
+                        currency: "KRW",
+                        amount: "4,491,099.60",
+                        percent: "-1.11%",
                         success: false,
                       },
                       {
-                        dot: 'gray-400',
-                        currency: 'SGD',
-                        amount: '5,393.00',
-                        percent: '0.66%',
+                        dot: "gray-400",
+                        currency: "SGD",
+                        amount: "5,393.00",
+                        percent: "0.66%",
                         success: true,
                       },
                     ].map((item, index) => (
                       <tr key={index}>
                         <td>
                           <div>
-                            <span className={'badge-dot bg-' + item.dot}></span>{' '}
+                            <span className={"badge-dot bg-" + item.dot}></span>{" "}
                             <span className="fw-medium">{item.currency}</span>
                           </div>
                         </td>
@@ -674,16 +674,16 @@ export default function Cryptocurrency() {
                         <td>
                           <div
                             className={
-                              'justify-content-end text-' +
-                              (item.success ? 'success' : 'danger')
+                              "justify-content-end text-" +
+                              (item.success ? "success" : "danger")
                             }
                           >
-                            {item.percent}{' '}
+                            {item.percent}{" "}
                             <i
                               className={
-                                'ri-arrow-' +
-                                (item.success ? 'up' : 'down') +
-                                '-line'
+                                "ri-arrow-" +
+                                (item.success ? "up" : "down") +
+                                "-line"
                               }
                             ></i>
                           </div>
@@ -727,34 +727,34 @@ export default function Cryptocurrency() {
                 <ListGroup as="ul" className="list-group-one">
                   {[
                     {
-                      icon: 'btc',
-                      name: 'Bitcoin',
-                      value: '0.7200',
-                      dollar: '2,907.71',
+                      icon: "btc",
+                      name: "Bitcoin",
+                      value: "0.7200",
+                      dollar: "2,907.71",
                     },
                     {
-                      icon: 'eth',
-                      name: 'Ethereum',
-                      value: '15.0030',
-                      dollar: '2,083.62',
+                      icon: "eth",
+                      name: "Ethereum",
+                      value: "15.0030",
+                      dollar: "2,083.62",
                     },
                     {
-                      icon: 'ltc',
-                      name: 'Litecoin',
-                      value: '12.5021',
-                      dollar: '748.88',
+                      icon: "ltc",
+                      name: "Litecoin",
+                      value: "12.5021",
+                      dollar: "748.88",
                     },
                     {
-                      icon: 'dash',
-                      name: 'Dash',
-                      value: '16.5019',
-                      dollar: '1,521.97',
+                      icon: "dash",
+                      name: "Dash",
+                      value: "16.5019",
+                      dollar: "1,521.97",
                     },
                     {
-                      icon: 'btc',
-                      name: 'Bitcoin Cash',
-                      value: '5.8120',
-                      dollar: '916.67',
+                      icon: "btc",
+                      name: "Bitcoin Cash",
+                      value: "5.8120",
+                      dollar: "916.67",
                     },
                   ].map((item, index) => (
                     <ListGroup.Item
@@ -763,7 +763,7 @@ export default function Cryptocurrency() {
                       className="px-0 d-flex align-items-center gap-2"
                     >
                       <div className="avatar bg-gray-300 text-secondary">
-                        <i className={'cf cf-' + item.icon}></i>
+                        <i className={"cf cf-" + item.icon}></i>
                       </div>
                       <div>
                         <h6 className="mb-0">{item.name}</h6>
@@ -800,75 +800,75 @@ export default function Cryptocurrency() {
                 <ListGroup as="ul" className="list-group-one">
                   {[
                     {
-                      icon: 'btc',
-                      bg: 'orange',
-                      name: 'Bitcoin',
-                      value: '$4,000.19',
-                      percent: '0.27%',
+                      icon: "btc",
+                      bg: "orange",
+                      name: "Bitcoin",
+                      value: "$4,000.19",
+                      percent: "0.27%",
                       success: true,
                     },
                     {
-                      icon: 'eth',
-                      bg: 'twitter',
-                      name: 'Ethereum',
-                      value: '$138.90',
-                      percent: '0.35%',
+                      icon: "eth",
+                      bg: "twitter",
+                      name: "Ethereum",
+                      value: "$138.90",
+                      percent: "0.35%",
                       success: true,
                     },
                     {
-                      icon: 'ltc',
-                      bg: 'litecoin',
-                      name: 'Litecoin',
-                      value: '$59.95',
-                      percent: '0.05%',
+                      icon: "ltc",
+                      bg: "litecoin",
+                      name: "Litecoin",
+                      value: "$59.95",
+                      percent: "0.05%",
                       success: true,
                     },
                     {
-                      icon: 'btc',
-                      bg: 'success',
-                      name: 'Bitcoin Cash',
-                      value: '$160.28',
-                      percent: '-0.19%',
+                      icon: "btc",
+                      bg: "success",
+                      name: "Bitcoin Cash",
+                      value: "$160.28",
+                      percent: "-0.19%",
                       success: false,
                     },
                     {
-                      icon: 'dash',
-                      bg: 'primary',
-                      name: 'Dash',
-                      value: '$92.20',
-                      percent: '-0.21%',
+                      icon: "dash",
+                      bg: "primary",
+                      name: "Dash",
+                      value: "$92.20",
+                      percent: "-0.21%",
                       success: false,
                     },
                     {
-                      icon: 'bsd',
-                      bg: 'ui-02',
-                      name: 'Bitsend',
-                      value: '$56.53',
-                      percent: '2.86%',
+                      icon: "bsd",
+                      bg: "ui-02",
+                      name: "Bitsend",
+                      value: "$56.53",
+                      percent: "2.86%",
                       success: true,
                     },
                     {
-                      icon: 'bcn',
-                      bg: 'pink',
-                      name: 'Bytecoin',
-                      value: '$0.76',
-                      percent: '-1.32%',
+                      icon: "bcn",
+                      bg: "pink",
+                      name: "Bytecoin",
+                      value: "$0.76",
+                      percent: "-1.32%",
                       success: false,
                     },
                     {
-                      icon: 'dmd',
-                      bg: 'info',
-                      name: 'Diamond',
-                      value: '$280.80',
-                      percent: '2.01%',
+                      icon: "dmd",
+                      bg: "info",
+                      name: "Diamond",
+                      value: "$280.80",
+                      percent: "2.01%",
                       success: true,
                     },
                     {
-                      icon: 'emc',
-                      bg: 'danger',
-                      name: 'Emercoin',
-                      value: '$48.25',
-                      percent: '1.22%',
+                      icon: "emc",
+                      bg: "danger",
+                      name: "Emercoin",
+                      value: "$48.25",
+                      percent: "1.22%",
                       success: true,
                     },
                   ].map((item, index) => (
@@ -877,8 +877,8 @@ export default function Cryptocurrency() {
                       as="li"
                       className="px-0 d-flex align-items-center gap-2"
                     >
-                      <div className={'avatar text-white bg-' + item.bg}>
-                        <i className={'cf cf-' + item.icon}></i>
+                      <div className={"avatar text-white bg-" + item.bg}>
+                        <i className={"cf cf-" + item.icon}></i>
                       </div>
                       <div>
                         <h6 className="mb-0">{item.name}</h6>
@@ -888,7 +888,7 @@ export default function Cryptocurrency() {
                         <h6 className="ff-numerals mb-0">{item.value}</h6>
                         <small
                           className={
-                            'text-' + (item.success ? 'success' : 'danger')
+                            "text-" + (item.success ? "success" : "danger")
                           }
                         >
                           {item.percent}
@@ -917,23 +917,23 @@ export default function Cryptocurrency() {
                 {[
                   {
                     img: crypto1,
-                    author: 'Crypto Ninja',
+                    author: "Crypto Ninja",
                     title:
-                      'Dow Futures, Bitcoin Teeter as Markets Wait for FOMC Bounce',
-                    text: 'As the unwelcome bearish momentum returns to all top cryptocurrency markets, most of this',
+                      "Dow Futures, Bitcoin Teeter as Markets Wait for FOMC Bounce",
+                    text: "As the unwelcome bearish momentum returns to all top cryptocurrency markets, most of this",
                   },
                   {
                     img: crypto2,
-                    author: 'Cable News Network',
+                    author: "Cable News Network",
                     title:
-                      'XRP Price Remains Bearish as XRP/BTC Drops Below 7,800 Satoshi',
-                    text: 'Liquidity has shifted away from the top gaining crypto assets, with only six of the week’s 30 top performing',
+                      "XRP Price Remains Bearish as XRP/BTC Drops Below 7,800 Satoshi",
+                    text: "Liquidity has shifted away from the top gaining crypto assets, with only six of the week’s 30 top performing",
                   },
                   {
                     img: crypto3,
-                    author: 'Bitcoin.com',
-                    title: 'Bitcoin Price to $4500 soon? BTC Price Analysis',
-                    text: 'Published on CoinnounceTechnical Indicators: Support Level: $3900 Resistance Levels: $4100, $4200 Bitcoin',
+                    author: "Bitcoin.com",
+                    title: "Bitcoin Price to $4500 soon? BTC Price Analysis",
+                    text: "Published on CoinnounceTechnical Indicators: Support Level: $3900 Resistance Levels: $4100, $4200 Bitcoin",
                   },
                 ].map((item, index) => (
                   <div className="news-item" key={index}>
@@ -972,65 +972,65 @@ export default function Cryptocurrency() {
               <Card.Body>
                 {[
                   {
-                    date: 'Today, October 20',
+                    date: "Today, October 20",
                     transactions: [
                       {
-                        color: 'success',
-                        icon: 'ri-coin-line',
-                        title: 'Received Bitcoin',
-                        text: 'Received via PayPal',
-                        value: '+0.01084 BTC',
-                        usd: '+25.60 USD',
+                        color: "success",
+                        icon: "ri-coin-line",
+                        title: "Received Bitcoin",
+                        text: "Received via PayPal",
+                        value: "+0.01084 BTC",
+                        usd: "+25.60 USD",
                         success: true,
                       },
                       {
-                        color: 'primary',
-                        icon: 'ri-arrow-right-up-line',
-                        title: 'Sent Bitcoin',
-                        text: 'To Bitcoin Address',
-                        value: '-0.00029 BTC',
-                        usd: '-11.48 USD',
+                        color: "primary",
+                        icon: "ri-arrow-right-up-line",
+                        title: "Sent Bitcoin",
+                        text: "To Bitcoin Address",
+                        value: "-0.00029 BTC",
+                        usd: "-11.48 USD",
                         success: false,
                       },
                       {
-                        color: 'info',
-                        icon: 'ri-shopping-basket-line',
-                        title: 'Purchased Ethereum',
-                        text: 'Purchased using PayPal',
-                        value: '+0.02115 ETH',
-                        usd: '+21.50 USD',
+                        color: "info",
+                        icon: "ri-shopping-basket-line",
+                        title: "Purchased Ethereum",
+                        text: "Purchased using PayPal",
+                        value: "+0.02115 ETH",
+                        usd: "+21.50 USD",
                         success: true,
                       },
                       {
-                        color: 'info',
-                        icon: 'ri-shopping-basket-line',
-                        title: 'Purchased Bitcoin',
-                        text: 'Purchased using Debit Card',
-                        value: '+0.0005 BTC',
-                        usd: '+18.30 USD',
+                        color: "info",
+                        icon: "ri-shopping-basket-line",
+                        title: "Purchased Bitcoin",
+                        text: "Purchased using Debit Card",
+                        value: "+0.0005 BTC",
+                        usd: "+18.30 USD",
                         success: true,
                       },
                       {
-                        color: 'primary',
-                        icon: 'ri-arrow-right-up-line',
-                        title: 'Sent Bitcoin',
-                        text: 'To Bitcoin Address',
-                        value: '-0.00040 BTC',
-                        usd: '-18.50 USD',
+                        color: "primary",
+                        icon: "ri-arrow-right-up-line",
+                        title: "Sent Bitcoin",
+                        text: "To Bitcoin Address",
+                        value: "-0.00040 BTC",
+                        usd: "-18.50 USD",
                         success: false,
                       },
                     ],
                   },
                   {
-                    date: 'Yesterday, October 19',
+                    date: "Yesterday, October 19",
                     transactions: [
                       {
-                        color: 'success',
-                        icon: 'ri-coin-line',
-                        title: 'Received Bitcoin',
-                        text: 'Received via PayPal',
-                        value: '+0.01084 BTC',
-                        usd: '+25.60 USD',
+                        color: "success",
+                        icon: "ri-coin-line",
+                        title: "Received Bitcoin",
+                        text: "Received via PayPal",
+                        value: "+0.01084 BTC",
+                        usd: "+25.60 USD",
                         success: true,
                       },
                     ],
@@ -1039,8 +1039,8 @@ export default function Cryptocurrency() {
                   <React.Fragment key={index}>
                     <div
                       className={
-                        'divider divider-start fw-medium' +
-                        (index === 0 ? ' mt-0' : '')
+                        "divider divider-start fw-medium" +
+                        (index === 0 ? " mt-0" : "")
                       }
                     >
                       <span>{item.date}</span>
@@ -1065,7 +1065,7 @@ export default function Cryptocurrency() {
                             <h6 className="ff-numerals mb-0">{trans.value}</h6>
                             <small
                               className={
-                                'text-' + (trans.success ? 'success' : 'danger')
+                                "text-" + (trans.success ? "success" : "danger")
                               }
                             >
                               {trans.usd}

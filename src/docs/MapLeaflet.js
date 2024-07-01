@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 import {
   Circle,
   MapContainer,
@@ -10,12 +10,12 @@ import {
   Polygon,
   Popup,
   TileLayer,
-} from 'react-leaflet';
+} from "react-leaflet";
 
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-import iconMarker from 'leaflet/dist/images/marker-icon.png';
+import iconMarker from "leaflet/dist/images/marker-icon.png";
 
 const icon = L.icon({
   iconUrl: iconMarker,
@@ -154,11 +154,11 @@ export default function MapLeaflet() {
                   />
                   <Circle
                     center={[51.505, -0.09]}
-                    pathOptions={{ fillColor: 'blue' }}
+                    pathOptions={{ fillColor: "blue" }}
                     radius={200}
                   />
                   <Polygon
-                    pathOptions={{ color: 'blue' }}
+                    pathOptions={{ color: "blue" }}
                     positions={[
                       [51.515, -0.09],
                       [51.52, -0.1],

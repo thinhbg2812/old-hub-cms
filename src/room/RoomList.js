@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import {
   Col,
   Form,
@@ -13,29 +13,29 @@ import {
   Toast,
   ToastBody,
   ToastHeader,
-} from 'react-bootstrap';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import Header from '../layouts/Header';
+} from "react-bootstrap";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Header from "../layouts/Header";
 import {
   createRoomRequest,
   editRoomRequest,
   listRoomRequest,
-} from '../services/room';
+} from "../services/room";
 
 const RoomManagement = () => {
   const [rooms, setRooms] = useState([]);
   const [queryParams] = useSearchParams();
-  const orgId = queryParams.get('orgId');
+  const orgId = queryParams.get("orgId");
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(20);
   const navigate = useNavigate();
-  const [toastContent, setToastContent] = useState('');
+  const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const [toastVariant, setToastVariant] = useState('Success');
+  const [toastVariant, setToastVariant] = useState("Success");
 
   const [createRoomDialog, setCreateRoomDialog] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState({});
-  const [action, setAction] = useState('create');
+  const [action, setAction] = useState("create");
   const [validated, setValidated] = useState(false);
 
   const submitRef = useRef(null);
@@ -43,13 +43,13 @@ const RoomManagement = () => {
   const closeCreateRoomDialog = async () => {
     setCreateRoomDialog(false);
     setSelectedRoom({});
-    setAction('create');
+    setAction("create");
     await listRoom();
   };
 
   useEffect(() => {
     if (orgId === null) {
-      navigate('/org/list');
+      navigate("/org/list");
     } else {
       listRoom();
     }
@@ -59,7 +59,7 @@ const RoomManagement = () => {
     const resp = await listRoomRequest(orgId, page, size);
     if (resp.isError) {
       setToastContent("Can not list Organization's rooms");
-      setToastVariant('danger');
+      setToastVariant("danger");
       setShowToast(true);
     } else {
       setRooms(resp.data.items);
@@ -75,7 +75,7 @@ const RoomManagement = () => {
     event.preventDefault();
     setValidated(true);
     if (form.checkValidity()) {
-      if (action === 'create') {
+      if (action === "create") {
         await createRoom();
       } else {
         await editRoom();
@@ -91,8 +91,8 @@ const RoomManagement = () => {
       orgId
     );
     if (resp.isError) {
-      setToastContent('Can not create new room');
-      setToastVariant('danger');
+      setToastContent("Can not create new room");
+      setToastVariant("danger");
       setShowToast(true);
     }
     await closeCreateRoomDialog();
@@ -106,8 +106,8 @@ const RoomManagement = () => {
       selectedRoom.status
     );
     if (resp.isError) {
-      setToastContent('Can not update room');
-      setToastVariant('danger');
+      setToastContent("Can not update room");
+      setToastVariant("danger");
       setShowToast(true);
     }
     await closeCreateRoomDialog();
@@ -124,7 +124,7 @@ const RoomManagement = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  setAction('create');
+                  setAction("create");
                   setCreateRoomDialog(true);
                 }}
               >
@@ -150,13 +150,13 @@ const RoomManagement = () => {
                         <td>{index}</td>
                         <td>{room.roomNumber}</td>
                         <td className="text-center">
-                          {room.status ? 'active' : 'inactive'}
+                          {room.status ? "active" : "inactive"}
                         </td>
                         <td className="d-flex flex-row justify-content-center">
                           <i
                             class="ri-edit-box-line p-1"
                             onClick={() => {
-                              setAction('update');
+                              setAction("update");
                               setSelectedRoom(room);
                               setCreateRoomDialog(true);
                             }}
@@ -194,8 +194,8 @@ const RoomManagement = () => {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          {action === 'create' && 'Create new room'}
-          {action === 'update' && 'Update room'}
+          {action === "create" && "Create new room"}
+          {action === "update" && "Update room"}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
@@ -286,7 +286,7 @@ const RoomManagement = () => {
               submitRef.current?.click();
             }}
           >
-            {action === 'create' && 'Create'} {action === 'update' && 'Update'}
+            {action === "create" && "Create"} {action === "update" && "Update"}
           </button>
           <button
             type="button"

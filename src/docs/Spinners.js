@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Spinner, Button } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Spinner, Button } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Spinners() {
   useEffect(() => {
@@ -188,7 +188,7 @@ export default function Spinners() {
             Size
           </h5>
           <p>
-            Add <code>.spinner-border-sm</code> and{' '}
+            Add <code>.spinner-border-sm</code> and{" "}
             <code>.spinner-grow-sm</code> to make a smaller spinner that can
             quickly be used within other components.
           </p>
@@ -243,7 +243,7 @@ export default function Spinners() {
                   aria-hidden="true"
                 />
                 <span className="visually-hidden">Loading...</span>
-              </Button>{' '}
+              </Button>{" "}
               <Button variant="primary" disabled>
                 <Spinner
                   as="span"

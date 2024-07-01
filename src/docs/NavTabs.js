@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
 import {
   Card,
   Container,
@@ -8,9 +8,9 @@ import {
   NavDropdown,
   Form,
   Button,
-} from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+} from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function NavTabs() {
   useEffect(() => {
@@ -146,7 +146,7 @@ export default function NavTabs() {
             Vertical Nav
           </h5>
           <p>
-            Stack your navigation by changing the flex item direction with the{' '}
+            Stack your navigation by changing the flex item direction with the{" "}
             <code>.flex-column</code> utility.
           </p>
 
@@ -338,7 +338,7 @@ export default function NavTabs() {
                   <Navbar.Collapse id="navbarScroll">
                     <Nav
                       className="me-auto my-2 my-lg-0"
-                      style={{ maxHeight: '100px' }}
+                      style={{ maxHeight: "100px" }}
                       navbarScroll
                     >
                       <Nav.Link href="#action1">Home</Nav.Link>

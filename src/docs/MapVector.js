@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
-import { VectorMap } from '@react-jvectormap/core';
-import { worldMill } from '@react-jvectormap/world';
-import { usAea } from '@react-jvectormap/unitedstates';
+import { VectorMap } from "@react-jvectormap/core";
+import { worldMill } from "@react-jvectormap/world";
+import { usAea } from "@react-jvectormap/unitedstates";
 
 export default function MapVector() {
   useEffect(() => {
@@ -15,10 +15,10 @@ export default function MapVector() {
 
   const regStyle = {
     selected: {
-      fill: '#506fd9',
+      fill: "#506fd9",
     },
     initial: {
-      fill: '#5f748a',
+      fill: "#5f748a",
     },
   };
 
@@ -158,7 +158,7 @@ export default function MapVector() {
                   map={usAea}
                   backgroundColor="#fff"
                   regionStyle={regStyle}
-                  selectedRegions={['US-CA', 'US-TX', 'US-MO', 'US-CO']}
+                  selectedRegions={["US-CA", "US-TX", "US-MO", "US-CO"]}
                 />
               </div>
             </Card.Body>

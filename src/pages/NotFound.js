@@ -1,10 +1,10 @@
-import React from 'react';
-import { Col, Container, Nav, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import pageSvg from '../assets/svg/server_down.svg';
+import React from "react";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import pageSvg from "../assets/svg/server_down.svg";
 
 export default function NotFound() {
-  document.body.classList.remove('sidebar-show');
+  document.body.classList.remove("sidebar-show");
 
   return (
     <div className="page-error">

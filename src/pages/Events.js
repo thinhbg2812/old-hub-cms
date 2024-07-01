@@ -1,26 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Col, Row, Form, Nav, Card, Button } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Col, Row, Form, Nav, Card, Button } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import Avatar from "../components/Avatar";
 
-import img1 from '../assets/img/img1.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img13 from '../assets/img/img13.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
-import img20 from '../assets/img/img20.jpg';
-import img21 from '../assets/img/img21.jpg';
-import img22 from '../assets/img/img22.jpg';
-import img23 from '../assets/img/img23.jpg';
-import img24 from '../assets/img/img24.jpg';
-import img25 from '../assets/img/img25.jpg';
-import img26 from '../assets/img/img26.jpg';
+import img1 from "../assets/img/img1.jpg";
+import img7 from "../assets/img/img7.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img13 from "../assets/img/img13.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img15 from "../assets/img/img15.jpg";
+import img20 from "../assets/img/img20.jpg";
+import img21 from "../assets/img/img21.jpg";
+import img22 from "../assets/img/img22.jpg";
+import img23 from "../assets/img/img23.jpg";
+import img24 from "../assets/img/img24.jpg";
+import img25 from "../assets/img/img25.jpg";
+import img26 from "../assets/img/img26.jpg";
 
 export default function Events() {
   return (
@@ -56,65 +56,65 @@ export default function Events() {
               {[
                 {
                   imgtop: img20,
-                  title: 'Dirt Bike Championship',
-                  date: 'Mar 22 - Mar 24',
-                  location: 'Metro Arena, Quezon City',
+                  title: "Dirt Bike Championship",
+                  date: "Mar 22 - Mar 24",
+                  location: "Metro Arena, Quezon City",
                   mutual: [img1, img12],
-                  mutualprimary: 'Rhea',
+                  mutualprimary: "Rhea",
                   mutualcount: 5,
                 },
                 {
                   imgtop: img21,
-                  title: 'Reggae Music Showdown',
-                  date: 'Mar 30 - Mar 31',
-                  location: 'Cebu Business Park, Cebu City',
+                  title: "Reggae Music Showdown",
+                  date: "Mar 30 - Mar 31",
+                  location: "Cebu Business Park, Cebu City",
                   mutual: [img15, img14],
-                  mutualprimary: 'Ian',
+                  mutualprimary: "Ian",
                   mutualcount: 2,
                 },
                 {
                   imgtop: img22,
-                  title: 'Fishing Tournament',
-                  date: 'Apr 10 - Apr 15',
-                  location: 'Lite Port, Tagbilaran City',
+                  title: "Fishing Tournament",
+                  date: "Apr 10 - Apr 15",
+                  location: "Lite Port, Tagbilaran City",
                   mutual: [img10, img11],
-                  mutualprimary: 'You',
+                  mutualprimary: "You",
                   mutualcount: 7,
                 },
                 {
                   imgtop: img23,
-                  title: 'Dog Showdown',
-                  date: 'Apr 18 - Apr 19',
-                  location: 'Bay Area, San Francisco, CA',
+                  title: "Dog Showdown",
+                  date: "Apr 18 - Apr 19",
+                  location: "Bay Area, San Francisco, CA",
                   mutual: [img15, img7],
-                  mutualprimary: 'Mary',
+                  mutualprimary: "Mary",
                   mutualcount: 12,
                 },
                 {
                   imgtop: img24,
-                  title: '8th Fun Run 2023',
-                  date: 'May 01 - May 03',
-                  location: 'Mountain View, California',
+                  title: "8th Fun Run 2023",
+                  date: "May 01 - May 03",
+                  location: "Mountain View, California",
                   mutual: [img7, img8],
-                  mutualprimary: 'You',
+                  mutualprimary: "You",
                   mutualcount: 4,
                 },
                 {
                   imgtop: img25,
-                  title: 'Bike Festival 2023',
-                  date: 'May 05 - May 06',
-                  location: 'AS Fortuna, Mandaue City',
+                  title: "Bike Festival 2023",
+                  date: "May 05 - May 06",
+                  location: "AS Fortuna, Mandaue City",
                   mutual: [img11, img12],
-                  mutualprimary: 'You',
+                  mutualprimary: "You",
                   mutualcount: 9,
                 },
                 {
                   imgtop: img26,
-                  title: 'Scuba Diving Fest 2023',
-                  date: 'Jun 16 - Jun 18',
-                  location: 'Mactan, Lapulapu City',
+                  title: "Scuba Diving Fest 2023",
+                  date: "Jun 16 - Jun 18",
+                  location: "Mactan, Lapulapu City",
                   mutual: [img13, img14],
-                  mutualprimary: 'You',
+                  mutualprimary: "You",
                   mutualcount: 4,
                 },
               ].map((event, index) => (
@@ -139,7 +139,7 @@ export default function Events() {
                           ))}
                         </ul>
                         <label>
-                          {event.mutualprimary} and {event.mutualcount}{' '}
+                          {event.mutualprimary} and {event.mutualcount}{" "}
                           connections interested
                         </label>
                       </div>
@@ -246,64 +246,64 @@ export default function Events() {
             <Nav className="nav-classic">
               {[
                 {
-                  icon: 'ri-palette-line',
-                  name: 'Arts & Crafts',
+                  icon: "ri-palette-line",
+                  name: "Arts & Crafts",
                   count: 20,
                 },
                 {
-                  icon: 'ri-heart-pulse-line',
-                  name: 'Fitness',
+                  icon: "ri-heart-pulse-line",
+                  name: "Fitness",
                   count: 18,
                 },
                 {
-                  icon: 'ri-restaurant-line',
-                  name: 'Food & Drinks',
+                  icon: "ri-restaurant-line",
+                  name: "Food & Drinks",
                   count: 14,
                 },
                 {
-                  icon: 'ri-gamepad-line',
-                  name: 'Games',
+                  icon: "ri-gamepad-line",
+                  name: "Games",
                   count: 12,
                 },
                 {
-                  icon: 'ri-first-aid-kit-line',
-                  name: 'Health & Medical',
+                  icon: "ri-first-aid-kit-line",
+                  name: "Health & Medical",
                   count: 10,
                 },
                 {
-                  icon: 'ri-home-8-line',
-                  name: 'Home & Garden',
+                  icon: "ri-home-8-line",
+                  name: "Home & Garden",
                   count: 11,
                 },
                 {
-                  icon: 'ri-music-2-line',
-                  name: 'Music & Audio',
+                  icon: "ri-music-2-line",
+                  name: "Music & Audio",
                   count: 34,
                 },
                 {
-                  icon: 'ri-robot-line',
-                  name: 'Religions',
+                  icon: "ri-robot-line",
+                  name: "Religions",
                   count: 2,
                 },
                 {
-                  icon: 'ri-shopping-bag-line',
-                  name: 'Shopping',
+                  icon: "ri-shopping-bag-line",
+                  name: "Shopping",
                   count: 16,
                 },
                 {
-                  icon: 'ri-basketball-line',
-                  name: 'Sports',
+                  icon: "ri-basketball-line",
+                  name: "Sports",
                   count: 12,
                 },
                 {
-                  icon: 'ri-tv-line',
-                  name: 'TV & Movies',
+                  icon: "ri-tv-line",
+                  name: "TV & Movies",
                   count: 45,
                 },
               ].map((category, index) => (
                 <Nav.Link href="" key={index}>
                   <i className={category.icon}></i>
-                  <span>{category.name}</span>{' '}
+                  <span>{category.name}</span>{" "}
                   <span className="badge">{category.count}</span>
                 </Nav.Link>
               ))}

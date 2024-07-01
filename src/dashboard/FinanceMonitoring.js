@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Footer from '../layouts/Footer';
-import Header from '../layouts/Header';
-import { dp3 } from '../data/DashboardData';
-import ReactApexChart from 'react-apexcharts';
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Footer from "../layouts/Footer";
+import Header from "../layouts/Header";
+import { dp3 } from "../data/DashboardData";
+import ReactApexChart from "react-apexcharts";
 
 export default function FinanceMonitoring() {
   const seriesOne = [
     {
-      name: 'series1',
+      name: "series1",
       data: dp3,
     },
     {
-      name: 'series2',
+      name: "series2",
       data: dp3,
     },
   ];
@@ -21,30 +21,30 @@ export default function FinanceMonitoring() {
   const optionOne = {
     chart: {
       parentHeightOffset: 0,
-      type: 'area',
+      type: "area",
       toolbar: { show: false },
       stacked: true,
     },
-    colors: ['#4f6fd9', '#506fd9'],
+    colors: ["#4f6fd9", "#506fd9"],
     grid: {
-      borderColor: 'rgba(72,94,144, 0.08)',
+      borderColor: "rgba(72,94,144, 0.08)",
       padding: { top: -20 },
       yaxis: {
         lines: { show: false },
       },
     },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: [2, 0],
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 13,
       axisBorder: { show: false },
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
     },
@@ -54,7 +54,7 @@ export default function FinanceMonitoring() {
       show: false,
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -67,7 +67,7 @@ export default function FinanceMonitoring() {
 
   const seriesTwo = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 10],
         [1, 20],
@@ -113,7 +113,7 @@ export default function FinanceMonitoring() {
       ],
     },
     {
-      type: 'area',
+      type: "area",
       data: [
         [0, 70],
         [1, 71],
@@ -163,20 +163,20 @@ export default function FinanceMonitoring() {
   const optionTwo = {
     chart: {
       parentHeightOffset: 0,
-      type: 'line',
+      type: "line",
       toolbar: { show: false },
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#c1ccf1', '#506fd9'],
+    colors: ["#c1ccf1", "#506fd9"],
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         bottom: -5,
@@ -186,25 +186,25 @@ export default function FinanceMonitoring() {
       },
     },
     fill: {
-      type: ['solid', 'gradient'],
+      type: ["solid", "gradient"],
       gradient: {
-        type: 'vertical',
+        type: "vertical",
         opacityFrom: 0.35,
         opacityTo: 0.2,
-        gradientToColors: ['#f3f5fc'],
+        gradientToColors: ["#f3f5fc"],
       },
     },
     stroke: {
       width: [0, 1.5],
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 8,
       decimalsInFloat: 0,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '9px',
+          colors: "#6e7985",
+          fontSize: "9px",
         },
       },
       axisBorder: { show: false },
@@ -220,7 +220,7 @@ export default function FinanceMonitoring() {
 
   const seriesThree = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 32],
         [1, 40],
@@ -266,7 +266,7 @@ export default function FinanceMonitoring() {
       ],
     },
     {
-      type: 'area',
+      type: "area",
       data: [
         [0, 82],
         [1, 80],
@@ -316,20 +316,20 @@ export default function FinanceMonitoring() {
   const optionThree = {
     chart: {
       parentHeightOffset: 0,
-      type: 'line',
+      type: "line",
       toolbar: { show: false },
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#cde1ff', '#85b6ff'],
+    colors: ["#cde1ff", "#85b6ff"],
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         bottom: -5,
@@ -339,25 +339,25 @@ export default function FinanceMonitoring() {
       },
     },
     fill: {
-      type: ['solid', 'gradient'],
+      type: ["solid", "gradient"],
       gradient: {
-        type: 'vertical',
+        type: "vertical",
         opacityFrom: 0.35,
         opacityTo: 0.2,
-        gradientToColors: ['#f3f5fc'],
+        gradientToColors: ["#f3f5fc"],
       },
     },
     stroke: {
       width: [0, 1.5],
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 8,
       decimalsInFloat: 0,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '9px',
+          colors: "#6e7985",
+          fontSize: "9px",
         },
       },
       axisBorder: { show: false },
@@ -373,7 +373,7 @@ export default function FinanceMonitoring() {
 
   const seriesFour = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 0],
         [1, 0],
@@ -403,7 +403,7 @@ export default function FinanceMonitoring() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 9],
         [1, 7],
@@ -441,13 +441,13 @@ export default function FinanceMonitoring() {
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#506fd9', '#e5e9f2'],
+    colors: ["#506fd9", "#e5e9f2"],
     grid: {
       padding: {
         bottom: 10,
@@ -457,13 +457,13 @@ export default function FinanceMonitoring() {
     },
     plotOptions: {
       bar: {
-        columnWidth: '40%',
-        endingShape: 'rounded',
+        columnWidth: "40%",
+        endingShape: "rounded",
       },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
     },
     yaxis: {
       min: 0,
@@ -474,7 +474,7 @@ export default function FinanceMonitoring() {
 
   const seriesFive = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 2],
         [1, 3],
@@ -504,7 +504,7 @@ export default function FinanceMonitoring() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 12],
         [1, 7],
@@ -542,13 +542,13 @@ export default function FinanceMonitoring() {
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#85b6ff', '#e5e9f2'],
+    colors: ["#85b6ff", "#e5e9f2"],
     grid: {
       padding: {
         bottom: 10,
@@ -558,13 +558,13 @@ export default function FinanceMonitoring() {
     },
     plotOptions: {
       bar: {
-        columnWidth: '40%',
-        endingShape: 'rounded',
+        columnWidth: "40%",
+        endingShape: "rounded",
       },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
     },
     yaxis: {
       min: 0,
@@ -575,11 +575,11 @@ export default function FinanceMonitoring() {
 
   const seriesSix = [
     {
-      name: 'series1',
+      name: "series1",
       data: dp3,
     },
     {
-      name: 'series2',
+      name: "series2",
       data: dp3,
     },
   ];
@@ -595,9 +595,9 @@ export default function FinanceMonitoring() {
         enabled: true,
       },
     },
-    colors: ['#506fd9', '#85b6ff'],
+    colors: ["#506fd9", "#85b6ff"],
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: [0, 0],
     },
     yaxis: {
@@ -610,7 +610,7 @@ export default function FinanceMonitoring() {
       max: 30,
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.75,
         opacityTo: 0.25,
@@ -645,9 +645,9 @@ export default function FinanceMonitoring() {
       stacked: true,
       toolbar: { show: false },
     },
-    colors: ['#506fd9', '#85b6ff'],
+    colors: ["#506fd9", "#85b6ff"],
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -657,34 +657,34 @@ export default function FinanceMonitoring() {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '60%',
-        endingShape: 'rounded',
+        columnWidth: "60%",
+        endingShape: "rounded",
       },
     },
     stroke: {
       show: true,
       width: 2,
-      colors: ['transparent'],
+      colors: ["transparent"],
     },
     yaxis: {
       max: 130,
       tickAmount: 5,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '10px',
+          colors: "#6e7985",
+          fontSize: "10px",
         },
       },
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 10,
       decimalsInFloat: 0,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '10px',
-          fontWeight: 'bold',
+          colors: "#6e7985",
+          fontSize: "10px",
+          fontWeight: "bold",
         },
       },
       axisBorder: { show: false },
@@ -697,7 +697,7 @@ export default function FinanceMonitoring() {
 
   const seriesEight = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 2],
         [1, 3],
@@ -713,7 +713,7 @@ export default function FinanceMonitoring() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 12],
         [1, 7],
@@ -734,11 +734,11 @@ export default function FinanceMonitoring() {
     chart: {
       parentHeightOffset: 0,
       stacked: true,
-      type: 'line',
+      type: "line",
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 5,
@@ -747,22 +747,22 @@ export default function FinanceMonitoring() {
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#506fd9', '#e5e9f2'],
+    colors: ["#506fd9", "#e5e9f2"],
     plotOptions: {
       bar: {
-        columnWidth: '40%',
-        endingShape: 'rounded',
+        columnWidth: "40%",
+        endingShape: "rounded",
       },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     yaxis: {
@@ -773,9 +773,9 @@ export default function FinanceMonitoring() {
     xaxis: {
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '10px',
-          fontWeight: '500',
+          colors: "#6e7985",
+          fontSize: "10px",
+          fontWeight: "500",
         },
       },
     },
@@ -787,7 +787,7 @@ export default function FinanceMonitoring() {
     chart: {
       parentHeightOffset: 0,
     },
-    colors: ['#506fd9', '#85b6ff', '#51596d', '#eff1f5'],
+    colors: ["#506fd9", "#85b6ff", "#51596d", "#eff1f5"],
     dataLabels: { enabled: false },
     grid: {
       padding: {
@@ -798,25 +798,25 @@ export default function FinanceMonitoring() {
     legend: { show: false },
   };
 
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
   const switchSkin = skin => {
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
     }
   };
@@ -891,28 +891,28 @@ export default function FinanceMonitoring() {
                   <Row className="row-cols-auto g-3 g-xl-4 pt-2">
                     {[
                       {
-                        amount: '30,342.15',
-                        quarter: 'First',
-                        percent: '2.3',
-                        status: 'success',
+                        amount: "30,342.15",
+                        quarter: "First",
+                        percent: "2.3",
+                        status: "success",
                       },
                       {
-                        amount: '48,036.90',
-                        quarter: 'Second',
-                        percent: '6.8',
-                        status: 'success',
+                        amount: "48,036.90",
+                        quarter: "Second",
+                        percent: "6.8",
+                        status: "success",
                       },
                       {
-                        amount: '68,156.00',
-                        quarter: 'Third',
-                        percent: '10.5',
-                        status: 'success',
+                        amount: "68,156.00",
+                        quarter: "Third",
+                        percent: "10.5",
+                        status: "success",
                       },
                       {
-                        amount: '64,896.65',
-                        quarter: 'Fourth',
-                        percent: '0.8',
-                        status: 'danger',
+                        amount: "64,896.65",
+                        quarter: "Fourth",
+                        percent: "0.8",
+                        status: "danger",
                       },
                     ].map((item, index) => (
                       <Col key={index}>
@@ -924,16 +924,16 @@ export default function FinanceMonitoring() {
                         </span>
                         <span
                           className={
-                            'fs-xs d-flex align-items-center ff-numerals text-' +
+                            "fs-xs d-flex align-items-center ff-numerals text-" +
                             item.status
                           }
                         >
-                          {item.percent}%{' '}
+                          {item.percent}%{" "}
                           <i
                             className={
-                              (item.status === 'success'
-                                ? 'ri-arrow-up-line'
-                                : 'ri-arrow-down-line') + ' fs-15 lh-3'
+                              (item.status === "success"
+                                ? "ri-arrow-up-line"
+                                : "ri-arrow-down-line") + " fs-15 lh-3"
                             }
                           ></i>
                         </span>

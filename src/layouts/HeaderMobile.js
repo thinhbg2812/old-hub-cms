@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const sidebarShow = e => {
-  document.querySelector('body').classList.toggle('sidebar-show');
+  document.querySelector("body").classList.toggle("sidebar-show");
 };
 
 export default function HeaderMobile() {

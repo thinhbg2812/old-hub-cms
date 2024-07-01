@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const sendPostRequest = async (requestType, uri, data, isPublic) => {
   const config = {
     method: requestType,
     url: process.env.REACT_APP_BE_DOMAIN + uri,
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     data: JSON.stringify(data),
   };
@@ -15,8 +15,8 @@ export const sendPostRequest = async (requestType, uri, data, isPublic) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      if (error.response.data.message === 'Invalid token') {
-        sessionStorage.setItem('token', '');
+      if (error.response.data.message === "Invalid token") {
+        sessionStorage.setItem("token", "");
         window.location.reload();
       }
     }
@@ -29,11 +29,11 @@ export const sendPostRequest = async (requestType, uri, data, isPublic) => {
 
 export const sendGetRequest = async (uri, request) => {
   const config = {
-    method: 'get',
+    method: "get",
     url: process.env.REACT_APP_BE_DOMAIN + uri,
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     params: request,
   };
@@ -42,8 +42,8 @@ export const sendGetRequest = async (uri, request) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      if (error.response.data.message === 'Invalid token') {
-        sessionStorage.setItem('token', '');
+      if (error.response.data.message === "Invalid token") {
+        sessionStorage.setItem("token", "");
         window.location.reload();
       }
     }

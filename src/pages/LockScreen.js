@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button, Card, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import img1 from '../assets/img/img1.jpg';
+import img1 from "../assets/img/img1.jpg";
 
 export default function LockScreen() {
   return (
@@ -32,7 +32,7 @@ export default function LockScreen() {
           </Button>
         </Card.Body>
         <Card.Footer>
-          Not you?{' '}
+          Not you?{" "}
           <Link to="/pages/signin">Sign in with different account</Link>
         </Card.Footer>
       </Card>

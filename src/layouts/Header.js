@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import userAvatar from '../assets/img/img1.jpg';
-import notification from '../data/Notification';
+import React from "react";
+import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import userAvatar from "../assets/img/img1.jpg";
+import notification from "../data/Notification";
 
 export default function Header({ onSkin }) {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -21,14 +21,14 @@ export default function Header({ onSkin }) {
 
   const toggleSidebar = e => {
     e.preventDefault();
-    let isOffset = document.body.classList.contains('sidebar-offset');
+    let isOffset = document.body.classList.contains("sidebar-offset");
     if (isOffset) {
-      document.body.classList.toggle('sidebar-show');
+      document.body.classList.toggle("sidebar-show");
     } else {
-      if (window.matchMedia('(max-width: 991px)').matches) {
-        document.body.classList.toggle('sidebar-show');
+      if (window.matchMedia("(max-width: 991px)").matches) {
+        document.body.classList.toggle("sidebar-show");
       } else {
-        document.body.classList.toggle('sidebar-hide');
+        document.body.classList.toggle("sidebar-hide");
       }
     }
   };
@@ -38,7 +38,7 @@ export default function Header({ onSkin }) {
       return (
         <li className="list-group-item" key={key}>
           <div
-            className={item.status === 'online' ? 'avatar online' : 'avatar'}
+            className={item.status === "online" ? "avatar online" : "avatar"}
           >
             {item.avatar}
           </div>
@@ -55,52 +55,52 @@ export default function Header({ onSkin }) {
 
   const skinMode = e => {
     e.preventDefault();
-    e.target.classList.add('active');
+    e.target.classList.add("active");
 
     let node = e.target.parentNode.firstChild;
     while (node) {
       if (node !== e.target && node.nodeType === Node.ELEMENT_NODE)
-        node.classList.remove('active');
+        node.classList.remove("active");
       node = node.nextElementSibling || node.nextSibling;
     }
 
     let skin = e.target.textContent.toLowerCase();
-    let HTMLTag = document.querySelector('html');
+    let HTMLTag = document.querySelector("html");
 
-    if (skin === 'dark') {
-      HTMLTag.setAttribute('data-skin', skin);
-      localStorage.setItem('skin-mode', skin);
+    if (skin === "dark") {
+      HTMLTag.setAttribute("data-skin", skin);
+      localStorage.setItem("skin-mode", skin);
 
       onSkin(skin);
     } else {
-      HTMLTag.removeAttribute('data-skin');
-      localStorage.removeItem('skin-mode');
+      HTMLTag.removeAttribute("data-skin");
+      localStorage.removeItem("skin-mode");
 
-      onSkin('');
+      onSkin("");
     }
   };
 
   const sidebarSkin = e => {
     e.preventDefault();
-    e.target.classList.add('active');
+    e.target.classList.add("active");
 
     let node = e.target.parentNode.firstChild;
     while (node) {
       if (node !== e.target && node.nodeType === Node.ELEMENT_NODE)
-        node.classList.remove('active');
+        node.classList.remove("active");
       node = node.nextElementSibling || node.nextSibling;
     }
 
     let skin = e.target.textContent.toLowerCase();
-    let HTMLTag = document.querySelector('html');
+    let HTMLTag = document.querySelector("html");
 
-    HTMLTag.removeAttribute('data-sidebar');
+    HTMLTag.removeAttribute("data-sidebar");
 
-    if (skin !== 'default') {
-      HTMLTag.setAttribute('data-sidebar', skin);
-      localStorage.setItem('sidebar-skin', skin);
+    if (skin !== "default") {
+      HTMLTag.setAttribute("data-sidebar", skin);
+      localStorage.setItem("sidebar-skin", skin);
     } else {
-      localStorage.removeItem('sidebar-skin', skin);
+      localStorage.removeItem("sidebar-skin", skin);
     }
   };
 
@@ -125,9 +125,9 @@ export default function Header({ onSkin }) {
             <Link
               onClick={skinMode}
               className={
-                localStorage.getItem('skin-mode')
-                  ? 'nav-link'
-                  : 'nav-link active'
+                localStorage.getItem("skin-mode")
+                  ? "nav-link"
+                  : "nav-link active"
               }
             >
               Light
@@ -135,9 +135,9 @@ export default function Header({ onSkin }) {
             <Link
               onClick={skinMode}
               className={
-                localStorage.getItem('skin-mode')
-                  ? 'nav-link active'
-                  : 'nav-link'
+                localStorage.getItem("skin-mode")
+                  ? "nav-link active"
+                  : "nav-link"
               }
             >
               Dark
@@ -149,9 +149,9 @@ export default function Header({ onSkin }) {
             <Link
               onClick={sidebarSkin}
               className={
-                !localStorage.getItem('sidebar-skin')
-                  ? 'nav-link active'
-                  : 'nav-link'
+                !localStorage.getItem("sidebar-skin")
+                  ? "nav-link active"
+                  : "nav-link"
               }
             >
               Default
@@ -159,9 +159,9 @@ export default function Header({ onSkin }) {
             <Link
               onClick={sidebarSkin}
               className={
-                localStorage.getItem('sidebar-skin') === 'prime'
-                  ? 'nav-link active'
-                  : 'nav-link'
+                localStorage.getItem("sidebar-skin") === "prime"
+                  ? "nav-link active"
+                  : "nav-link"
               }
             >
               Prime
@@ -169,9 +169,9 @@ export default function Header({ onSkin }) {
             <Link
               onClick={sidebarSkin}
               className={
-                localStorage.getItem('sidebar-skin') === 'dark'
-                  ? 'nav-link active'
-                  : 'nav-link'
+                localStorage.getItem("sidebar-skin") === "dark"
+                  ? "nav-link active"
+                  : "nav-link"
               }
             >
               Dark

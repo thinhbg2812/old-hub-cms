@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import {
   Col,
   Form,
@@ -13,14 +13,14 @@ import {
   Toast,
   ToastBody,
   ToastHeader,
-} from 'react-bootstrap';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import Header from '../layouts/Header';
-import { createVehicleRequest, listVehicleRequests } from '../services/vehicle';
+} from "react-bootstrap";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Header from "../layouts/Header";
+import { createVehicleRequest, listVehicleRequests } from "../services/vehicle";
 
 const VehicleManagement = () => {
   const [queryParams] = useSearchParams();
-  const orgId = queryParams.get('orgId');
+  const orgId = queryParams.get("orgId");
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -29,12 +29,12 @@ const VehicleManagement = () => {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(20);
 
-  const [toastContent, setToastContent] = useState('');
+  const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const [toastVariant, setToastVariant] = useState('Success');
+  const [toastVariant, setToastVariant] = useState("Success");
 
   const [validated, setValidated] = useState(false);
-  const [action, setAction] = useState('create');
+  const [action, setAction] = useState("create");
 
   const closeModal = async () => {
     setShowModal(false);
@@ -51,7 +51,7 @@ const VehicleManagement = () => {
     event.preventDefault();
     setValidated(true);
     if (form.checkValidity()) {
-      if (action === 'create') {
+      if (action === "create") {
         await createVehicle();
       } else {
         // await editRoom()
@@ -62,7 +62,7 @@ const VehicleManagement = () => {
     const resp = await listVehicleRequests(orgId, page, size);
     if (resp.isError) {
       setToastContent("Can not list Organization's vehicles");
-      setToastVariant('danger');
+      setToastVariant("danger");
       setShowToast(true);
     } else {
       setVehicles(resp.data.items);
@@ -70,7 +70,7 @@ const VehicleManagement = () => {
   };
   useEffect(() => {
     if (orgId === null) {
-      navigate('/org/list');
+      navigate("/org/list");
     } else {
       listVehicles();
     }
@@ -85,7 +85,7 @@ const VehicleManagement = () => {
     );
     if (resp.isError) {
       setToastContent("Can not create Organization's vehicle");
-      setToastVariant('danger');
+      setToastVariant("danger");
       setShowToast(true);
     }
     closeModal();
@@ -102,7 +102,7 @@ const VehicleManagement = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  setAction('create');
+                  setAction("create");
                   setShowModal(true);
                 }}
               >
@@ -130,7 +130,7 @@ const VehicleManagement = () => {
                         <td>{vehicle.licensePlate}</td>
                         <td>{vehicle.vehicleType}</td>
                         <td className="text-center">
-                          {vehicle.status ? 'active' : 'inactive'}
+                          {vehicle.status ? "active" : "inactive"}
                         </td>
                         <td className="d-flex flex-row justify-content-center">
                           <i
@@ -166,8 +166,8 @@ const VehicleManagement = () => {
       </Toast>
       <Modal show={showModal} onHide={closeModal} backdrop="static">
         <ModalHeader closeButton>
-          {action === 'create' && 'Create new vehicle'}
-          {action === 'update' && 'Update vehicle'}
+          {action === "create" && "Create new vehicle"}
+          {action === "update" && "Update vehicle"}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
@@ -260,7 +260,7 @@ const VehicleManagement = () => {
               submitRef.current?.click();
             }}
           >
-            {action === 'create' && 'Create'} {action === 'update' && 'Update'}
+            {action === "create" && "Create"} {action === "update" && "Update"}
           </button>
           <button
             type="button"

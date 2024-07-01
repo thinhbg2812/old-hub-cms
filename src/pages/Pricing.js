@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button, Table } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React from "react";
+import { Button, Table } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Pricing() {
   return (
@@ -222,7 +222,7 @@ export default function Pricing() {
             <tr>
               <td>
                 <div className="d-flex align-items-center gap-2">
-                  optio cumque nihil impedit{' '}
+                  optio cumque nihil impedit{" "}
                   <i className="ri-information-line"></i>
                 </div>
               </td>

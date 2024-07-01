@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Button,
   Card,
@@ -10,14 +10,14 @@ import {
   ProgressBar,
   Row,
   Table,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function FileManager() {
   useEffect(() => {
-    document.body.classList.add('page-app');
+    document.body.classList.add("page-app");
     return () => {
-      document.body.classList.remove('page-app');
+      document.body.classList.remove("page-app");
     };
   }, []);
 
@@ -42,7 +42,7 @@ export default function FileManager() {
     <React.Fragment>
       <Header />
       <div
-        className={'main main-file-manager' + (isSidebarShow ? ' show' : '')}
+        className={"main main-file-manager" + (isSidebarShow ? " show" : "")}
       >
         <PerfectScrollbar className="file-sidebar">
           <div className="d-grid mb-4">
@@ -98,7 +98,7 @@ export default function FileManager() {
             </div>
           </div>
           <small className="d-block mb-3">
-            Get 2TB (2,000GB) of storage now and get 40% off. Offers ends soon.{' '}
+            Get 2TB (2,000GB) of storage now and get 40% off. Offers ends soon.{" "}
             <Link href="">Learn more</Link>
           </small>
         </PerfectScrollbar>
@@ -132,39 +132,39 @@ export default function FileManager() {
           <Row className="g-1 g-sm-2 g-xl-3 mb-5">
             {[
               {
-                bg: 'danger',
-                icon: 'ri-file-pdf-line',
-                name: 'Medical Certificate.pdf',
-                size: '10.45kb',
-                access: '2 hours ago',
+                bg: "danger",
+                icon: "ri-file-pdf-line",
+                name: "Medical Certificate.pdf",
+                size: "10.45kb",
+                access: "2 hours ago",
               },
               {
-                bg: 'primary',
-                icon: 'ri-file-word-line',
-                name: 'WorkContract.docx',
-                size: '22.67kb',
-                access: '5 hours ago',
+                bg: "primary",
+                icon: "ri-file-word-line",
+                name: "WorkContract.docx",
+                size: "22.67kb",
+                access: "5 hours ago",
               },
               {
-                bg: 'info',
-                icon: 'ri-image-line',
-                name: 'IMG_063037.jpg',
-                size: '4.1mb',
-                access: '6 hours ago',
+                bg: "info",
+                icon: "ri-image-line",
+                name: "IMG_063037.jpg",
+                size: "4.1mb",
+                access: "6 hours ago",
               },
               {
-                bg: 'success',
-                icon: 'ri-file-excel-line',
-                name: 'Inventory.xls',
-                size: '965.1kb',
-                access: '6 hours ago',
+                bg: "success",
+                icon: "ri-file-excel-line",
+                name: "Inventory.xls",
+                size: "965.1kb",
+                access: "6 hours ago",
               },
               {
-                bg: '',
-                icon: 'ri-file-zip-line',
-                name: 'Backup102023.zip',
-                size: '2.31mb',
-                access: '8 hours ago',
+                bg: "",
+                icon: "ri-file-zip-line",
+                name: "Backup102023.zip",
+                size: "2.31mb",
+                access: "8 hours ago",
               },
             ].map((file, index) => (
               <Col xs="6" sm="4" md="3" xl key={index}>
@@ -200,7 +200,7 @@ export default function FileManager() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <div className={'card-file-icon ' + file.bg}>
+                  <div className={"card-file-icon " + file.bg}>
                     <i className={file.icon}></i>
                   </div>
                   <Card.Body>
@@ -212,7 +212,7 @@ export default function FileManager() {
                     <span>{file.size}</span>
                   </Card.Body>
                   <Card.Footer>
-                    <span className="d-none d-sm-inline">Last access: </span>{' '}
+                    <span className="d-none d-sm-inline">Last access: </span>{" "}
                     {file.access}
                   </Card.Footer>
                 </Card>
@@ -224,33 +224,33 @@ export default function FileManager() {
           <Row className="g-2 g-lg-3 mb-5">
             {[
               {
-                name: 'Downloads',
+                name: "Downloads",
                 files: 2,
-                size: '14.05MB',
+                size: "14.05MB",
               },
               {
-                name: 'Personal Stuff',
+                name: "Personal Stuff",
                 files: 8,
-                size: '76.3MB',
+                size: "76.3MB",
               },
               {
-                name: '3D Objects',
+                name: "3D Objects",
                 files: 5,
-                size: '126.8MB',
+                size: "126.8MB",
               },
               {
-                name: 'Recordings',
+                name: "Recordings",
                 files: 0,
               },
               {
-                name: 'Support',
+                name: "Support",
                 files: 1,
-                size: '268.1KB',
+                size: "268.1KB",
               },
               {
-                name: 'Cloud Files',
+                name: "Cloud Files",
                 files: 23,
-                size: '199.1MB',
+                size: "199.1MB",
               },
             ].map((folder, index) => (
               <Col xs="6" md="4" xl="3" key={index}>
@@ -295,7 +295,7 @@ export default function FileManager() {
                         </Link>
                       </h6>
                       <span>
-                        {folder.files} files{folder.size && ', ' + folder.size}
+                        {folder.files} files{folder.size && ", " + folder.size}
                       </span>
                     </div>
                   </Card.Body>
@@ -316,80 +316,80 @@ export default function FileManager() {
             <tbody>
               {[
                 {
-                  color: 'primary',
-                  icon: 'ri-folder-5-line',
-                  name: 'Dashboard Concepts',
-                  date: 'Aug 20, 2023',
-                  size: '21.5MB',
+                  color: "primary",
+                  icon: "ri-folder-5-line",
+                  name: "Dashboard Concepts",
+                  date: "Aug 20, 2023",
+                  size: "21.5MB",
                 },
                 {
-                  color: 'primary',
-                  icon: 'ri-folder-5-line',
-                  name: 'Gallery',
-                  date: 'Aug 19, 2023',
-                  size: '341.2MB',
+                  color: "primary",
+                  icon: "ri-folder-5-line",
+                  name: "Gallery",
+                  date: "Aug 19, 2023",
+                  size: "341.2MB",
                 },
                 {
-                  color: 'primary',
-                  icon: 'ri-folder-5-line',
-                  name: 'Receipts',
-                  date: 'Aug 19, 2023',
-                  size: '1.9MB',
+                  color: "primary",
+                  icon: "ri-folder-5-line",
+                  name: "Receipts",
+                  date: "Aug 19, 2023",
+                  size: "1.9MB",
                 },
                 {
-                  color: '',
-                  icon: 'ri-file-zip-line',
-                  name: 'Backups091022.zip',
-                  date: 'Aug 10, 2023',
-                  size: '4.7MB',
+                  color: "",
+                  icon: "ri-file-zip-line",
+                  name: "Backups091022.zip",
+                  date: "Aug 10, 2023",
+                  size: "4.7MB",
                 },
                 {
-                  color: 'orange',
-                  icon: 'ri-file-ppt-line',
-                  name: 'Presentation.ppt',
-                  date: 'Aug 10, 2023',
-                  size: '11.21MB',
+                  color: "orange",
+                  icon: "ri-file-ppt-line",
+                  name: "Presentation.ppt",
+                  date: "Aug 10, 2023",
+                  size: "11.21MB",
                 },
                 {
-                  color: 'success',
-                  icon: 'ri-file-excel-line',
-                  name: 'Expenses091122.xls',
-                  date: 'Sep 11, 2023',
-                  size: '7.38MB',
+                  color: "success",
+                  icon: "ri-file-excel-line",
+                  name: "Expenses091122.xls",
+                  date: "Sep 11, 2023",
+                  size: "7.38MB",
                 },
                 {
-                  color: '',
-                  icon: 'ri-image-2-line',
-                  name: 'IMG_101022.jpg',
-                  date: 'Sep 10, 2023',
-                  size: '1.26MB',
+                  color: "",
+                  icon: "ri-image-2-line",
+                  name: "IMG_101022.jpg",
+                  date: "Sep 10, 2023",
+                  size: "1.26MB",
                 },
                 {
-                  color: '',
-                  icon: 'ri-image-2-line',
-                  name: 'IMG_101122.jpg',
-                  date: 'Sep 10, 2023',
-                  size: '1.83MB',
+                  color: "",
+                  icon: "ri-image-2-line",
+                  name: "IMG_101122.jpg",
+                  date: "Sep 10, 2023",
+                  size: "1.83MB",
                 },
                 {
-                  color: 'danger',
-                  icon: 'ri-file-pdf-line',
-                  name: 'Documents001.pdf',
-                  date: 'Sep 05, 2023',
-                  size: '876.1KB',
+                  color: "danger",
+                  icon: "ri-file-pdf-line",
+                  name: "Documents001.pdf",
+                  date: "Sep 05, 2023",
+                  size: "876.1KB",
                 },
                 {
-                  color: 'danger',
-                  icon: 'ri-file-pdf-line',
-                  name: 'Geting_Started.pdf',
-                  date: 'Aug 01, 2023',
-                  size: '112.4KB',
+                  color: "danger",
+                  icon: "ri-file-pdf-line",
+                  name: "Geting_Started.pdf",
+                  date: "Aug 01, 2023",
+                  size: "112.4KB",
                 },
               ].map((file, index) => (
                 <tr key={index}>
                   <td>
                     <div className="media">
-                      <div className={'media-icon ' + file.color}>
+                      <div className={"media-icon " + file.color}>
                         <i className={file.icon}></i>
                       </div>
                       <h6 className="file-name">

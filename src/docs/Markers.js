@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Col, Container, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Col, Container, Nav, Row } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
-import img2 from '../assets/img/img2.jpg';
+import img2 from "../assets/img/img2.jpg";
 
 export default function Markers() {
   useEffect(() => {
@@ -121,7 +121,7 @@ export default function Markers() {
             Icon Marker
           </h5>
           <p>
-            A marker can be an icon with the use of class{' '}
+            A marker can be an icon with the use of class{" "}
             <code>.marker-icon.</code>
           </p>
 

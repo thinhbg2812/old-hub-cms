@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Badge, Card, Container, ListGroup, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Badge, Card, Container, ListGroup, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Listgroup() {
   useEffect(() => {
@@ -179,7 +179,7 @@ export default function Listgroup() {
             Numbered
           </h5>
           <p>
-            Add the <code>numbered</code> modifier props (and optionally use an{' '}
+            Add the <code>numbered</code> modifier props (and optionally use an{" "}
             <code>as="ol"</code> element) to opt into numbered list group items.
           </p>
 

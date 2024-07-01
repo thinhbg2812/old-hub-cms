@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Offcanvas, Button } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect, useState } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Offcanvas, Button } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function OffCanvas() {
   useEffect(() => {

@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Col, Row, Form } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card, Col, Row, Form } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
-import img1 from '../assets/img/img1.jpg';
-import img2 from '../assets/img/img2.jpg';
-import img3 from '../assets/img/img3.jpg';
-import img6 from '../assets/img/img6.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img17 from '../assets/img/img17.jpg';
+import img1 from "../assets/img/img1.jpg";
+import img2 from "../assets/img/img2.jpg";
+import img3 from "../assets/img/img3.jpg";
+import img6 from "../assets/img/img6.jpg";
+import img16 from "../assets/img/img16.jpg";
+import img17 from "../assets/img/img17.jpg";
 
 export default function Activity() {
   return (
@@ -61,7 +61,7 @@ export default function Activity() {
                     <img src={img1} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>You</strong> mentioned{' '}
+                    <strong>You</strong> mentioned{" "}
                     <strong>Mellisa Ricks</strong> in a comment.
                   </span>
                   <span className="text-secondary fs-xs ms-auto">06:55pm</span>
@@ -71,7 +71,7 @@ export default function Activity() {
                     There are many variations of passages of Lorem Ipsum
                     available, but the majority have suffered alteration in some
                     form, by injected humour, or randomised words which don't
-                    look even slightly believable.{' '}
+                    look even slightly believable.{" "}
                     <strong>@mellisaricks</strong>
                   </Card.Body>
                 </Card>
@@ -85,7 +85,7 @@ export default function Activity() {
                     <img src={img6} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>Rickey Carpenters</strong> shared your post{' '}
+                    <strong>Rickey Carpenters</strong> shared your post{" "}
                     <strong>#PDSG4064</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">11:20am</span>
@@ -118,7 +118,7 @@ export default function Activity() {
                     <img src={img16} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>Dianne Aceron</strong> reacted on your post{' '}
+                    <strong>Dianne Aceron</strong> reacted on your post{" "}
                     <strong>#PDSG4064</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">10:15am</span>
@@ -133,7 +133,7 @@ export default function Activity() {
                     <img src={img17} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>Rolando Paloso</strong> reacted on your post{' '}
+                    <strong>Rolando Paloso</strong> reacted on your post{" "}
                     <strong>#PDSG4064</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">09:19am</span>
@@ -148,7 +148,7 @@ export default function Activity() {
                     <img src={img16} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>Socrates Itumay</strong> commented on your post{' '}
+                    <strong>Socrates Itumay</strong> commented on your post{" "}
                     <strong>#PST02522</strong>
                   </span>
                   <span className="text-secondary fs-xs ms-auto">09:08am</span>
@@ -179,7 +179,7 @@ export default function Activity() {
                     <img src={img1} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>You</strong> searched using a keyword{' '}
+                    <strong>You</strong> searched using a keyword{" "}
                     <strong>"restaurant"</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">10:00am</span>
@@ -195,7 +195,7 @@ export default function Activity() {
                     <img src={img1} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>You</strong> searched using a keyword{' '}
+                    <strong>You</strong> searched using a keyword{" "}
                     <strong>"software engineer"</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">02:23pm</span>
@@ -210,7 +210,7 @@ export default function Activity() {
                     <img src={img1} alt="" />
                   </Link>
                   <span className="fs-sm">
-                    <strong>You</strong> searched using a keyword{' '}
+                    <strong>You</strong> searched using a keyword{" "}
                     <strong>"ui developer"</strong>
                   </span>
                   <span className="fs-xs text-secondary ms-auto">02:15pm</span>

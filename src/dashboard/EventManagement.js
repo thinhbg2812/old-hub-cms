@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 import {
   Button,
   Card,
@@ -9,10 +9,10 @@ import {
   Table,
   Nav,
   ProgressBar,
-} from 'react-bootstrap';
-import ReactApexChart from 'react-apexcharts';
-import { Bar, Doughnut } from 'react-chartjs-2';
-import { Link } from 'react-router-dom';
+} from "react-bootstrap";
+import ReactApexChart from "react-apexcharts";
+import { Bar, Doughnut } from "react-chartjs-2";
+import { Link } from "react-router-dom";
 
 export default function EventManagement() {
   const d1 = [
@@ -83,11 +83,11 @@ export default function EventManagement() {
   // Tickets Earnings
   const seriesOne = [
     {
-      name: 'series1',
+      name: "series1",
       data: d1,
     },
     {
-      name: 'series2',
+      name: "series2",
       data: d2,
     },
   ];
@@ -99,9 +99,9 @@ export default function EventManagement() {
       stacked: true,
       sparkline: { enabled: true },
     },
-    colors: ['#85b6fe', '#506fd9'],
+    colors: ["#85b6fe", "#506fd9"],
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     yaxis: {
@@ -110,7 +110,7 @@ export default function EventManagement() {
       show: false,
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -215,13 +215,13 @@ export default function EventManagement() {
     },
     states: {
       hover: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
       active: {
-        filter: { type: 'none' },
+        filter: { type: "none" },
       },
     },
-    colors: ['#506fd9', '#e5e9f2'],
+    colors: ["#506fd9", "#e5e9f2"],
     grid: {
       padding: {
         bottom: 10,
@@ -231,13 +231,13 @@ export default function EventManagement() {
     },
     plotOptions: {
       bar: {
-        columnWidth: '40%',
-        endingShape: 'rounded',
+        columnWidth: "40%",
+        endingShape: "rounded",
       },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
     },
     yaxis: {
       min: 0,
@@ -250,7 +250,7 @@ export default function EventManagement() {
   // Tickets Sold
   const seriesThree = [
     {
-      name: 'series1',
+      name: "series1",
       data: d1,
     },
   ];
@@ -261,9 +261,9 @@ export default function EventManagement() {
       toolbar: { show: false },
       sparkline: { enabled: true },
     },
-    colors: ['#506fd9'],
+    colors: ["#506fd9"],
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     xaxis: { max: 20 },
@@ -273,7 +273,7 @@ export default function EventManagement() {
       show: false,
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -289,9 +289,9 @@ export default function EventManagement() {
       toolbar: { show: false },
       sparkline: { enabled: true },
     },
-    colors: ['#85b6ff'],
+    colors: ["#85b6ff"],
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     xaxis: {
@@ -304,7 +304,7 @@ export default function EventManagement() {
       show: false,
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0.5,
         opacityTo: 0,
@@ -316,7 +316,7 @@ export default function EventManagement() {
   // Performance Reached
   const seriesFive = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 0],
         [1, 40],
@@ -362,7 +362,7 @@ export default function EventManagement() {
       ],
     },
     {
-      type: 'area',
+      type: "area",
       data: [
         [0, 82],
         [1, 80],
@@ -417,21 +417,21 @@ export default function EventManagement() {
     states: {
       hover: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
       active: {
         filter: {
-          type: 'none',
+          type: "none",
         },
       },
     },
-    colors: ['#3a59c4', '#e5e9f2'],
+    colors: ["#3a59c4", "#e5e9f2"],
     plotOptions: {
-      bar: { columnWidth: '45%' },
+      bar: { columnWidth: "45%" },
     },
     grid: {
-      borderColor: 'rgba(33,43,48,0.07)',
+      borderColor: "rgba(33,43,48,0.07)",
       padding: {
         top: -20,
         bottom: -5,
@@ -441,26 +441,26 @@ export default function EventManagement() {
       },
     },
     fill: {
-      type: ['solid', 'gradient'],
+      type: ["solid", "gradient"],
       gradient: {
-        type: 'vertical',
+        type: "vertical",
         opacityFrom: 0.35,
         opacityTo: 0.2,
-        gradientToColors: ['#f3f5fc'],
+        gradientToColors: ["#f3f5fc"],
       },
     },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: [0, 2],
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 8,
       decimalsInFloat: 0,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '9px',
+          colors: "#6e7985",
+          fontSize: "9px",
         },
       },
       axisBorder: { show: false },
@@ -478,30 +478,30 @@ export default function EventManagement() {
   // Events Categories
   const dataBar = {
     labels: [
-      'Performing Arts',
-      'Festivals',
-      'Conferences',
-      'Sports',
-      'Community',
-      'Concerts',
-      'Politics',
+      "Performing Arts",
+      "Festivals",
+      "Conferences",
+      "Sports",
+      "Community",
+      "Concerts",
+      "Politics",
     ],
     datasets: [
       {
         data: [20, 60, 50, 45, 50, 75, 40],
-        backgroundColor: '#506fd9',
+        backgroundColor: "#506fd9",
         barPercentage: 0.45,
       },
       {
         data: [10, 40, 30, 40, 60, 55, 50],
-        backgroundColor: '#85b6ff',
+        backgroundColor: "#85b6ff",
         barPercentage: 0.45,
       },
     ],
   };
 
   const optionBar = {
-    indexAxis: 'y',
+    indexAxis: "y",
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
@@ -514,8 +514,8 @@ export default function EventManagement() {
         beginAtZero: true,
         max: 80,
         grid: {
-          borderColor: '#e2e5ec',
-          color: '#f3f5f9',
+          borderColor: "#e2e5ec",
+          color: "#f3f5f9",
         },
         ticks: {
           font: {
@@ -526,10 +526,10 @@ export default function EventManagement() {
       y: {
         grid: {
           borderWidth: 0,
-          color: '#f3f5f9',
+          color: "#f3f5f9",
         },
         ticks: {
-          color: '#212830',
+          color: "#212830",
           font: {
             size: 14,
           },
@@ -540,11 +540,11 @@ export default function EventManagement() {
 
   // Events By Category
   const dataPie = {
-    labels: ['Festivals', 'Sports', 'Concerts', 'Performing Arts'],
+    labels: ["Festivals", "Sports", "Concerts", "Performing Arts"],
     datasets: [
       {
         data: [40, 25, 20, 15],
-        backgroundColor: ['#506fd9', '#85b6ff', '#50586d', '#b9bdc9'],
+        backgroundColor: ["#506fd9", "#85b6ff", "#50586d", "#b9bdc9"],
       },
     ],
   };
@@ -564,49 +564,49 @@ export default function EventManagement() {
   };
 
   // Changing necessary options between dark and light skin
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
-  if (skin === 'dark') {
-    optionBar.scales['x'].grid.color = '#222b41';
-    optionBar.scales['x'].ticks.color = 'rgba(255,255,255,.65)';
-    optionBar.scales['x'].grid.borderColor = '#222b41';
-    optionBar.scales['y'].grid.color = '#222b41';
-    optionBar.scales['y'].ticks.color = 'rgba(255,255,255,.65)';
+  if (skin === "dark") {
+    optionBar.scales["x"].grid.color = "#222b41";
+    optionBar.scales["x"].ticks.color = "rgba(255,255,255,.65)";
+    optionBar.scales["x"].grid.borderColor = "#222b41";
+    optionBar.scales["y"].grid.color = "#222b41";
+    optionBar.scales["y"].ticks.color = "rgba(255,255,255,.65)";
   } else {
-    optionBar.scales['x'].grid.color = '#edeff6';
-    optionBar.scales['x'].ticks.color = '#42484e';
-    optionBar.scales['x'].grid.borderColor = '#edeff6';
-    optionBar.scales['y'].grid.color = '#edeff6';
-    optionBar.scales['y'].ticks.color = '#42484e';
+    optionBar.scales["x"].grid.color = "#edeff6";
+    optionBar.scales["x"].ticks.color = "#42484e";
+    optionBar.scales["x"].grid.borderColor = "#edeff6";
+    optionBar.scales["y"].grid.color = "#edeff6";
+    optionBar.scales["y"].ticks.color = "#42484e";
   }
 
   const switchSkin = skin => {
-    const textPrimary = document.getElementsByClassName('text-primary-dark');
+    const textPrimary = document.getElementsByClassName("text-primary-dark");
 
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
 
       for (const txt of textPrimary) {
-        txt.classList.add('text-primary');
+        txt.classList.add("text-primary");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
 
       for (const txt of textPrimary) {
-        txt.classList.remove('text-primary');
+        txt.classList.remove("text-primary");
       }
     }
   };
@@ -668,11 +668,11 @@ export default function EventManagement() {
 
                 <div className="d-flex gap-4 fs-sm mt-auto text-primary-dark lh-1 opacity-75">
                   <span>
-                    <strong className="fw-semibold ff-numerals">11,716</strong>{' '}
+                    <strong className="fw-semibold ff-numerals">11,716</strong>{" "}
                     Tickets Sold
                   </span>
                   <span>
-                    <strong className="fw-semibold ff-numerals">12,864</strong>{' '}
+                    <strong className="fw-semibold ff-numerals">12,864</strong>{" "}
                     Tickets Unsold
                   </span>
                 </div>
@@ -775,7 +775,7 @@ export default function EventManagement() {
                     <small>
                       <span className="d-inline-flex text-danger">
                         0.7% <i className="ri-arrow-down-line"></i>
-                      </span>{' '}
+                      </span>{" "}
                       than last week
                     </small>
                   </Card.Body>
@@ -794,7 +794,7 @@ export default function EventManagement() {
                     <small>
                       <span className="d-inline-flex text-success">
                         1.2% <i className="ri-arrow-up-line"></i>
-                      </span>{' '}
+                      </span>{" "}
                       than last week
                     </small>
                   </Card.Body>
@@ -813,7 +813,7 @@ export default function EventManagement() {
                     <small>
                       <span className="d-inline-flex text-success">
                         0.6% <i className="ri-arrow-up-line"></i>
-                      </span>{' '}
+                      </span>{" "}
                       than last week
                     </small>
                   </Card.Body>
@@ -855,81 +855,81 @@ export default function EventManagement() {
                       <tbody>
                         {[
                           {
-                            id: '00035',
+                            id: "00035",
                             avatar: {
-                              initial: 'A',
+                              initial: "A",
                             },
-                            name: 'Allan R. Palban',
-                            email: 'allan@themepixels.me',
+                            name: "Allan R. Palban",
+                            email: "allan@themepixels.me",
                             status: {
-                              variant: 'primary',
-                              label: 'Active',
+                              variant: "primary",
+                              label: "Active",
                             },
-                            quota: '120',
-                            reached: '64',
-                            star: ['fill', 'fill', 'fill', 'half-fill', 'line'],
+                            quota: "120",
+                            reached: "64",
+                            star: ["fill", "fill", "fill", "half-fill", "line"],
                           },
                           {
-                            id: '00028',
+                            id: "00028",
                             avatar: {
-                              initial: 'C',
+                              initial: "C",
                             },
-                            name: 'Charlene S. Plateros',
-                            email: 'charlene@themepixels.me',
+                            name: "Charlene S. Plateros",
+                            email: "charlene@themepixels.me",
                             status: {
-                              variant: 'ui-02',
-                              label: 'Away',
+                              variant: "ui-02",
+                              label: "Away",
                             },
-                            quota: '100',
-                            reached: '79',
-                            star: ['fill', 'fill', 'fill', 'fill', 'line'],
+                            quota: "100",
+                            reached: "79",
+                            star: ["fill", "fill", "fill", "fill", "line"],
                           },
                           {
-                            id: '00025',
+                            id: "00025",
                             avatar: {
-                              initial: 'A',
-                              bg: 'bg-gray-700',
+                              initial: "A",
+                              bg: "bg-gray-700",
                             },
-                            name: 'Adrian M. Moniño',
-                            email: 'adrian@themepixels.me',
+                            name: "Adrian M. Moniño",
+                            email: "adrian@themepixels.me",
                             status: {
-                              variant: 'primary',
-                              label: 'Active',
+                              variant: "primary",
+                              label: "Active",
                             },
-                            quota: '130',
-                            reached: '108',
-                            star: ['fill', 'fill', 'fill', 'line', 'line'],
+                            quota: "130",
+                            reached: "108",
+                            star: ["fill", "fill", "fill", "line", "line"],
                           },
                           {
-                            id: '00024',
+                            id: "00024",
                             avatar: {
-                              initial: 'M',
+                              initial: "M",
                             },
-                            name: 'Marianne B. Audrey',
-                            email: 'marianne@themepixels.me',
+                            name: "Marianne B. Audrey",
+                            email: "marianne@themepixels.me",
                             status: {
-                              variant: 'primary',
-                              label: 'Active',
+                              variant: "primary",
+                              label: "Active",
                             },
-                            quota: '110',
-                            reached: '45',
-                            star: ['fill', 'fill', 'fill', 'fill', 'line'],
+                            quota: "110",
+                            reached: "45",
+                            star: ["fill", "fill", "fill", "fill", "line"],
                           },
                           {
-                            id: '00023',
+                            id: "00023",
                             avatar: {
-                              initial: 'C',
-                              bg: 'bg-gray-700',
+                              initial: "C",
+                              bg: "bg-gray-700",
                             },
-                            name: 'Carlyn Y. Salomon',
-                            email: 'carlyn@themepixels.me',
+                            name: "Carlyn Y. Salomon",
+                            email: "carlyn@themepixels.me",
                             status: {
-                              variant: 'secondary',
-                              label: 'Inactive',
+                              variant: "secondary",
+                              label: "Inactive",
                             },
-                            quota: '120',
-                            reached: '32',
-                            star: ['fill', 'fill', 'fill', 'half-fill', 'line'],
+                            quota: "120",
+                            reached: "32",
+                            star: ["fill", "fill", "fill", "half-fill", "line"],
                           },
                         ].map((item, index) => (
                           <tr key={index}>
@@ -941,10 +941,10 @@ export default function EventManagement() {
                                 <div className="avatar">
                                   <span
                                     className={
-                                      'avatar-initial' +
+                                      "avatar-initial" +
                                       (item.avatar.bg
-                                        ? ' ' + item.avatar.bg
-                                        : '')
+                                        ? " " + item.avatar.bg
+                                        : "")
                                     }
                                   >
                                     {item.avatar.initial}
@@ -960,7 +960,7 @@ export default function EventManagement() {
                             </td>
                             <td>
                               <span
-                                className={'badge bg-' + item.status.variant}
+                                className={"badge bg-" + item.status.variant}
                               >
                                 {item.status.label}
                               </span>
@@ -978,7 +978,7 @@ export default function EventManagement() {
                                 {item.star.map((star, ind) => (
                                   <i
                                     key={ind}
-                                    className={'ri-star-' + star}
+                                    className={"ri-star-" + star}
                                   ></i>
                                 ))}
                               </div>
@@ -1026,34 +1026,34 @@ export default function EventManagement() {
                       <tbody>
                         {[
                           {
-                            rate: '5.0',
-                            star: ['fill', 'fill', 'fill', 'fill', 'fill'],
-                            count: '4,230',
-                            percent: '58%',
+                            rate: "5.0",
+                            star: ["fill", "fill", "fill", "fill", "fill"],
+                            count: "4,230",
+                            percent: "58%",
                           },
                           {
-                            rate: '4.0',
-                            star: ['fill', 'fill', 'fill', 'fill', 'line'],
-                            count: '1,416',
-                            percent: '24%',
+                            rate: "4.0",
+                            star: ["fill", "fill", "fill", "fill", "line"],
+                            count: "1,416",
+                            percent: "24%",
                           },
                           {
-                            rate: '3.0',
-                            star: ['fill', 'fill', 'fill', 'line', 'line'],
-                            count: '980',
-                            percent: '16%',
+                            rate: "3.0",
+                            star: ["fill", "fill", "fill", "line", "line"],
+                            count: "980",
+                            percent: "16%",
                           },
                           {
-                            rate: '2.0',
-                            star: ['fill', 'fill', 'line', 'line', 'line'],
-                            count: '798',
-                            percent: '12%',
+                            rate: "2.0",
+                            star: ["fill", "fill", "line", "line", "line"],
+                            count: "798",
+                            percent: "12%",
                           },
                           {
-                            rate: '1.0',
-                            star: ['fill', 'line', 'line', 'line', 'line'],
-                            count: '401',
-                            percent: '8%',
+                            rate: "1.0",
+                            star: ["fill", "line", "line", "line", "line"],
+                            count: "401",
+                            percent: "8%",
                           },
                         ].map((item, index) => (
                           <tr key={index}>
@@ -1063,7 +1063,7 @@ export default function EventManagement() {
                             <td>
                               <div className="d-flex gap-1 text-primary fs-16">
                                 {item.star.map((star, i) => (
-                                  <i key={i} className={'ri-star-' + star}></i>
+                                  <i key={i} className={"ri-star-" + star}></i>
                                 ))}
                               </div>
                             </td>
@@ -1119,31 +1119,31 @@ export default function EventManagement() {
                 <Row className="g-4 mb-2">
                   {[
                     {
-                      name: 'Festivals',
-                      value: '6,000',
-                      percent: '40%',
+                      name: "Festivals",
+                      value: "6,000",
+                      percent: "40%",
                       progress: 60,
                     },
                     {
-                      name: 'Sports',
-                      value: '3,750',
-                      percent: '25%',
+                      name: "Sports",
+                      value: "3,750",
+                      percent: "25%",
                       progress: 75,
-                      variant: 'ui-02',
+                      variant: "ui-02",
                     },
                     {
-                      name: 'Concerts',
-                      value: '3,000',
-                      percent: '20%',
+                      name: "Concerts",
+                      value: "3,000",
+                      percent: "20%",
                       progress: 80,
-                      variant: 'gray-700',
+                      variant: "gray-700",
                     },
                     {
-                      name: 'Entertainment',
-                      value: '2,250',
-                      percent: '15%',
+                      name: "Entertainment",
+                      value: "2,250",
+                      percent: "15%",
                       progress: 85,
-                      variant: 'gray-500',
+                      variant: "gray-500",
                     },
                   ].map((item, index) => (
                     <Col xs="6" key={index}>
@@ -1198,40 +1198,40 @@ export default function EventManagement() {
                   {[
                     {
                       avatar: {
-                        bg: 'primary',
-                        initial: 'D',
+                        bg: "primary",
+                        initial: "D",
                       },
-                      name: 'Dyanne Rose Aceron',
-                      star: ['fill', 'fill', 'fill', 'fill', 'half-fill'],
-                      date: '2 hours ago',
-                      text: 'Lorem ipsum dolor sit amet, consec tetur adip iscing elit, sed do eius mod',
+                      name: "Dyanne Rose Aceron",
+                      star: ["fill", "fill", "fill", "fill", "half-fill"],
+                      date: "2 hours ago",
+                      text: "Lorem ipsum dolor sit amet, consec tetur adip iscing elit, sed do eius mod",
                     },
                     {
                       avatar: {
-                        bg: 'secondary',
-                        initial: 'R',
+                        bg: "secondary",
+                        initial: "R",
                       },
-                      name: 'Raffy Godinez',
-                      star: ['fill', 'fill', 'fill', 'half-fill', 'line'],
-                      date: '5 hours ago',
-                      text: 'Ut enim ad minim veniam, quis nostrud exerc nisi ut aliquip itation ullam co',
+                      name: "Raffy Godinez",
+                      star: ["fill", "fill", "fill", "half-fill", "line"],
+                      date: "5 hours ago",
+                      text: "Ut enim ad minim veniam, quis nostrud exerc nisi ut aliquip itation ullam co",
                     },
                     {
                       avatar: {
-                        bg: 'secondary',
-                        initial: 'R',
+                        bg: "secondary",
+                        initial: "R",
                       },
-                      name: 'Reynante Labares',
-                      star: ['fill', 'fill', 'fill', 'half-fill', 'line'],
-                      date: '8 hours ago',
-                      text: 'Quis nostrud exerc nisi ut aliquip itation ut enim ad minim veniam ullam co',
+                      name: "Reynante Labares",
+                      star: ["fill", "fill", "fill", "half-fill", "line"],
+                      date: "8 hours ago",
+                      text: "Quis nostrud exerc nisi ut aliquip itation ut enim ad minim veniam ullam co",
                     },
                   ].map((item, index) => (
                     <li key={index}>
                       <div className="d-flex align-items-center mb-2">
                         <div className="avatar">
                           <span
-                            className={'avatar-initial bg-' + item.avatar.bg}
+                            className={"avatar-initial bg-" + item.avatar.bg}
                           >
                             {item.avatar.initial}
                           </span>
@@ -1240,7 +1240,7 @@ export default function EventManagement() {
                           <h6 className="text-dark">{item.name}</h6>
                           <div className="d-flex align-items-center gap-1 text-primary">
                             {item.star.map((star, i) => (
-                              <i key={i} className={'ri-star-' + star}></i>
+                              <i key={i} className={"ri-star-" + star}></i>
                             ))}
                             <small>{item.date}</small>
                           </div>
@@ -1274,62 +1274,62 @@ export default function EventManagement() {
                     {
                       active: true,
                       date: {
-                        day: 'Sat',
-                        num: '03',
+                        day: "Sat",
+                        num: "03",
                       },
                       events: [
                         {
-                          time: '08:00am - 10:30am',
-                          title: 'Web Design Workshop',
-                          text: 'Duis aute irure dolor in repre hen derit in volup tate velit esse cillum.',
+                          time: "08:00am - 10:30am",
+                          title: "Web Design Workshop",
+                          text: "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum.",
                         },
                       ],
                     },
                     {
                       date: {
-                        day: 'Wed',
-                        num: '07',
+                        day: "Wed",
+                        num: "07",
                       },
                       events: [
                         {
-                          time: '08:00am - 11:30am',
-                          title: '5th Religious Conference',
-                          text: 'Excep teur sint occae cat cupi datat non proident sunt in culpa qui.',
+                          time: "08:00am - 11:30am",
+                          title: "5th Religious Conference",
+                          text: "Excep teur sint occae cat cupi datat non proident sunt in culpa qui.",
                         },
                         {
-                          time: '1:30pm - 5:30pm',
-                          title: 'Church Workshop Events',
-                          text: 'Datat non proident sunt in culpa qui.',
-                        },
-                      ],
-                    },
-                    {
-                      date: {
-                        day: 'Thu',
-                        num: '08',
-                      },
-                      events: [
-                        {
-                          time: '08:30am - 03:30pm',
-                          title: 'Front-End Devs Meetup',
-                          text: 'Sed ut perspi ciatis unde omnis iste natus error sit volup tatem.',
+                          time: "1:30pm - 5:30pm",
+                          title: "Church Workshop Events",
+                          text: "Datat non proident sunt in culpa qui.",
                         },
                       ],
                     },
                     {
                       date: {
-                        day: 'Mon',
-                        num: '23',
+                        day: "Thu",
+                        num: "08",
                       },
                       events: [
                         {
-                          time: '09:00am - 05:30pm',
-                          title: 'Golden Autumn Festival',
+                          time: "08:30am - 03:30pm",
+                          title: "Front-End Devs Meetup",
+                          text: "Sed ut perspi ciatis unde omnis iste natus error sit volup tatem.",
+                        },
+                      ],
+                    },
+                    {
+                      date: {
+                        day: "Mon",
+                        num: "23",
+                      },
+                      events: [
+                        {
+                          time: "09:00am - 05:30pm",
+                          title: "Golden Autumn Festival",
                         },
                       ],
                     },
                   ].map((item, index) => (
-                    <li key={index} className={item.active ? 'active' : ''}>
+                    <li key={index} className={item.active ? "active" : ""}>
                       <div className="event-date">
                         <small>{item.date.day}</small>
                         <h5>{item.date.num}</h5>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Col, Container, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React from "react";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function IconRemix() {
   return (

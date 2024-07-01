@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Table } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Table } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function UtilSpacing() {
   useEffect(() => {
@@ -31,8 +31,8 @@ export default function UtilSpacing() {
           </p>
 
           <p>
-            The classes are named using the format{' '}
-            <code>{`{property}{sides}-{size}`}</code> for xs and{' '}
+            The classes are named using the format{" "}
+            <code>{`{property}{sides}-{size}`}</code> for xs and{" "}
             <code>{`{property}{sides}-{breakpoint}-{size}`}</code> for sm, md,
             lg, xl, and xxl.
           </p>
@@ -66,7 +66,7 @@ export default function UtilSpacing() {
                   <code>t</code>
                 </td>
                 <td>
-                  for classes that set <code>margin-top</code> or{' '}
+                  for classes that set <code>margin-top</code> or{" "}
                   <code>padding-top</code>
                 </td>
               </tr>
@@ -75,7 +75,7 @@ export default function UtilSpacing() {
                   <code>b</code>
                 </td>
                 <td>
-                  for classes that set <code>margin-bottom</code> or{' '}
+                  for classes that set <code>margin-bottom</code> or{" "}
                   <code>padding-bottom</code>
                 </td>
               </tr>
@@ -84,7 +84,7 @@ export default function UtilSpacing() {
                   <code>s</code>
                 </td>
                 <td>
-                  for classes that set <code>margin-left</code> or{' '}
+                  for classes that set <code>margin-left</code> or{" "}
                   <code>padding-left</code>
                 </td>
               </tr>
@@ -93,7 +93,7 @@ export default function UtilSpacing() {
                   <code>e</code>
                 </td>
                 <td>
-                  for classes that set <code>margin-right</code> or{' '}
+                  for classes that set <code>margin-right</code> or{" "}
                   <code>padding-right</code>
                 </td>
               </tr>
@@ -107,7 +107,7 @@ export default function UtilSpacing() {
                   <code>0</code>
                 </td>
                 <td>
-                  for classes that eliminate the <code>margin</code> or{' '}
+                  for classes that eliminate the <code>margin</code> or{" "}
                   <code>padding</code> by setting it to <code>0</code>
                 </td>
               </tr>
@@ -116,7 +116,7 @@ export default function UtilSpacing() {
                   <code>1</code>
                 </td>
                 <td>
-                  for classes that set the <code>margin</code> or{' '}
+                  for classes that set the <code>margin</code> or{" "}
                   <code>padding</code> to <code>$spacer * .25</code>
                 </td>
               </tr>
@@ -125,7 +125,7 @@ export default function UtilSpacing() {
                   <code>2</code>
                 </td>
                 <td>
-                  for classes that set the <code>margin</code> or{' '}
+                  for classes that set the <code>margin</code> or{" "}
                   <code>padding</code> to <code>$spacer * .5</code>
                 </td>
               </tr>
@@ -134,7 +134,7 @@ export default function UtilSpacing() {
                   <code>3</code>
                 </td>
                 <td>
-                  for classes that set the <code>margin</code> or{' '}
+                  for classes that set the <code>margin</code> or{" "}
                   <code>padding</code> to <code>$spacer</code>
                 </td>
               </tr>
@@ -143,7 +143,7 @@ export default function UtilSpacing() {
                   <code>4</code>
                 </td>
                 <td>
-                  for classes that set the <code>margin</code> or{' '}
+                  for classes that set the <code>margin</code> or{" "}
                   <code>padding</code> to <code>$spacer * 1.5</code>
                 </td>
               </tr>
@@ -152,7 +152,7 @@ export default function UtilSpacing() {
                   <code>5</code>
                 </td>
                 <td>
-                  for classes that set the <code>margin</code> or{' '}
+                  for classes that set the <code>margin</code> or{" "}
                   <code>padding</code> to <code>$spacer * 3</code>
                 </td>
               </tr>

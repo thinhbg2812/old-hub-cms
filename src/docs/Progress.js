@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, ProgressBar } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, ProgressBar } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Progresss() {
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Progresss() {
             Labels
           </h5>
           <p>
-            Add labels to your progress bars by placing text within the{' '}
+            Add labels to your progress bars by placing text within the{" "}
             <code>.progress-bar</code>.
           </p>
 

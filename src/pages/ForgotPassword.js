@@ -1,11 +1,11 @@
-import React from 'react';
-import { Button, Card, Col, Container, Form, Nav, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Col, Container, Form, Nav, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import pageSvg from '../assets/svg/forgot_password.svg';
+import pageSvg from "../assets/svg/forgot_password.svg";
 
 export default function ForgotPassword() {
-  document.body.classList.remove('sidebar-show');
+  document.body.classList.remove("sidebar-show");
 
   return (
     <div className="page-auth">

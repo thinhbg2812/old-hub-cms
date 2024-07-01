@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import bg1 from '../assets/img/bg1.jpg';
+import bg1 from "../assets/img/bg1.jpg";
 
 export default function Signup2() {
   return (

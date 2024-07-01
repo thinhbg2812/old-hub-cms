@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   createOrgRequest,
   getOrgRequest,
   listOrgRequest,
   updateOrgRequest,
-} from '../services/organization';
-import TreeView, { flattenTree } from 'react-accessible-treeview';
-import { IoMdArrowDropright } from 'react-icons/io';
-import { FaSquare, FaCheckSquare, FaMinusSquare } from 'react-icons/fa';
-import cx from 'classnames';
-import './list.scss';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "../services/organization";
+import TreeView, { flattenTree } from "react-accessible-treeview";
+import { IoMdArrowDropright } from "react-icons/io";
+import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
+import cx from "classnames";
+import "./list.scss";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Col,
   Form,
@@ -23,20 +23,20 @@ import {
   ModalFooter,
   ModalHeader,
   Row,
-} from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Header from '../layouts/Header';
+} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Header from "../layouts/Header";
 
 export default function OrgManagement() {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
 
-  const [orgName, setOrgName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [website, setWebsite] = useState('');
-  const [parentOrgId, setParentOrgId] = useState('');
+  const [orgName, setOrgName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [website, setWebsite] = useState("");
+  const [parentOrgId, setParentOrgId] = useState("");
   const [currentOrg, setCurrentOrg] = useState({});
 
   const [createOrgDialog, setCreateOrgDialog] = useState(false);
@@ -52,14 +52,14 @@ export default function OrgManagement() {
 
   const [orgs, setOrgs] = useState(
     flattenTree({
-      name: 'Tổ chức của bạn',
+      name: "Tổ chức của bạn",
       children: [],
     })
   );
   const [originalOrgs, setOriginalOrgs] = useState({});
 
   const addProperty = (obj, path, value) => {
-    let parts = path.split('>');
+    let parts = path.split(">");
     let current = obj;
     for (let i = 0; i < parts.length; i++) {
       let index = current.children.findIndex(e => e.itemId === parts[i]);
@@ -84,9 +84,9 @@ export default function OrgManagement() {
   const listOrg = async () => {
     const resp = await listOrgRequest(page, size);
     if (resp.isError) {
-      toast.error('Không thể lấy danh sách tổ chức');
+      toast.error("Không thể lấy danh sách tổ chức");
     } else {
-      let obj = { children: [], name: '' };
+      let obj = { children: [], name: "" };
       for (let i = 0; i < resp.data.items.length; i++) {
         let item = resp.data.items[i];
         addProperty(obj, item.path, item);
@@ -96,7 +96,7 @@ export default function OrgManagement() {
   };
   const createOrg = async () => {
     if (!orgName || !phoneNumber || !address) {
-      toast.error('Thiếu các trường bắt buộc');
+      toast.error("Thiếu các trường bắt buộc");
     } else {
       const resp = await createOrgRequest(
         orgName,
@@ -106,7 +106,7 @@ export default function OrgManagement() {
         currentOrg.metadata.id
       );
       if (resp.isError) {
-        toast.error('Không thể tạo tổ chức mới');
+        toast.error("Không thể tạo tổ chức mới");
       } else {
         closeCreateOrgDialog();
       }
@@ -116,7 +116,7 @@ export default function OrgManagement() {
   const getOrg = async orgId => {
     const resp = await getOrgRequest(orgId);
     if (resp.isError) {
-      toast.error('Không thể lấy thông tin tổ chức');
+      toast.error("Không thể lấy thông tin tổ chức");
     } else {
       setSelectedOrg(resp.data);
     }
@@ -139,7 +139,7 @@ export default function OrgManagement() {
   const updateOrg = async () => {
     const resp = await updateOrgRequest(selectedOrg, selectedOrg.id);
     if (resp.isError) {
-      toast.error('Không thể cập nhật thông tin tổ chức');
+      toast.error("Không thể cập nhật thông tin tổ chức");
     } else {
       await listOrg();
     }
@@ -188,7 +188,7 @@ export default function OrgManagement() {
                           e.stopPropagation();
                         }}
                         variant={
-                          isHalfSelected ? 'some' : isSelected ? 'all' : 'none'
+                          isHalfSelected ? "some" : isSelected ? "all" : "none"
                         }
                       />
                       <span
@@ -440,7 +440,7 @@ export default function OrgManagement() {
 }
 
 const ArrowIcon = ({ isOpen, className }) => {
-  const baseClass = 'arrow';
+  const baseClass = "arrow";
   const classes = cx(
     baseClass,
     { [`${baseClass}--closed`]: !isOpen },
@@ -452,11 +452,11 @@ const ArrowIcon = ({ isOpen, className }) => {
 
 const CheckBoxIcon = ({ variant, ...rest }) => {
   switch (variant) {
-    case 'all':
+    case "all":
       return <FaCheckSquare {...rest} />;
-    case 'none':
+    case "none":
       return <FaSquare {...rest} />;
-    case 'some':
+    case "some":
       return <FaMinusSquare {...rest} />;
     default:
       return null;

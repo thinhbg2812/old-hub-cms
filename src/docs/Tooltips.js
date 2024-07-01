@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
 import {
   Card,
   Container,
@@ -7,9 +7,9 @@ import {
   OverlayTrigger,
   Tooltip,
   Button,
-} from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+} from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Tooltips() {
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Tooltips() {
 
           <Card className="card-example">
             <Card.Body className="d-flex gap-2">
-              {['top', 'right', 'bottom', 'left'].map(placement => (
+              {["top", "right", "bottom", "left"].map(placement => (
                 <OverlayTrigger
                   key={placement}
                   placement={placement}

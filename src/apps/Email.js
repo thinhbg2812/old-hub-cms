@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Button,
   Card,
@@ -11,23 +11,23 @@ import {
   OverlayTrigger,
   Row,
   Tooltip,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img17 from '../assets/img/img17.jpg';
-import img18 from '../assets/img/img18.jpg';
-import img19 from '../assets/img/img19.jpg';
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img16 from "../assets/img/img16.jpg";
+import img17 from "../assets/img/img17.jpg";
+import img18 from "../assets/img/img18.jpg";
+import img19 from "../assets/img/img19.jpg";
 
 export default function Email() {
   useEffect(() => {
-    document.body.classList.add('page-app');
+    document.body.classList.add("page-app");
     return () => {
-      document.body.classList.remove('page-app');
+      document.body.classList.remove("page-app");
     };
   }, []);
 
@@ -57,9 +57,9 @@ export default function Email() {
       <Header />
       <div
         className={
-          'main main-email' +
-          (showContent ? ' show-content' : '') +
-          (showSidebar ? ' show' : '')
+          "main main-email" +
+          (showContent ? " show-content" : "") +
+          (showSidebar ? " show" : "")
         }
       >
         <PerfectScrollbar className="email-sidebar p-4">
@@ -149,129 +149,129 @@ export default function Email() {
 
           {[
             {
-              date: 'Today',
+              date: "Today",
               emails: [
                 {
                   unread: true,
                   avatar: img11,
-                  sender: 'Dyanne Aceron',
-                  star: 'line',
-                  time: '1:20pm',
-                  subject: 'Asking some few questions',
+                  sender: "Dyanne Aceron",
+                  star: "line",
+                  time: "1:20pm",
+                  subject: "Asking some few questions",
                   summary:
-                    'It is a long established fact that a reader will be distracted by the readable...',
+                    "It is a long established fact that a reader will be distracted by the readable...",
                 },
                 {
                   avatar: img10,
-                  sender: 'Reynante Labares',
-                  star: 'fill',
-                  time: '11:45am',
-                  subject: '30 seconds survey to your next job',
+                  sender: "Reynante Labares",
+                  star: "fill",
+                  time: "11:45am",
+                  subject: "30 seconds survey to your next job",
                   summary:
-                    'The point of using Lorem Ipsum is that it has a more-or-less normal distribu...',
+                    "The point of using Lorem Ipsum is that it has a more-or-less normal distribu...",
                 },
               ],
             },
             {
-              date: 'Yesterday',
+              date: "Yesterday",
               emails: [
                 {
                   avatar: img19,
-                  sender: 'Mary Johnson',
-                  star: 'line',
-                  time: '05:22pm',
-                  subject: 'Reactivate and reconnect',
+                  sender: "Mary Johnson",
+                  star: "line",
+                  time: "05:22pm",
+                  subject: "Reactivate and reconnect",
                   summary:
-                    'Excepteur sint occa cupidatat non pro ident, sunt in culpa qui officia...',
+                    "Excepteur sint occa cupidatat non pro ident, sunt in culpa qui officia...",
                 },
                 {
                   initial: {
-                    letter: 'p',
-                    bg: 'info',
+                    letter: "p",
+                    bg: "info",
                   },
-                  sender: 'Patricia Anderson',
-                  star: 'line',
-                  time: '03:14pm',
-                  subject: 'Score Midnight Flash Deals',
+                  sender: "Patricia Anderson",
+                  star: "line",
+                  time: "03:14pm",
+                  subject: "Score Midnight Flash Deals",
                   summary:
-                    'Many desktop publishing packages and web page editors now use Lorem Ip...',
+                    "Many desktop publishing packages and web page editors now use Lorem Ip...",
                 },
                 {
                   unread: true,
                   avatar: img12,
-                  sender: 'Joyce Trimmer',
-                  star: 'fill',
-                  time: '09:46am',
-                  subject: 'New Earnings Insights',
+                  sender: "Joyce Trimmer",
+                  star: "fill",
+                  time: "09:46am",
+                  subject: "New Earnings Insights",
                   summary:
-                    'Many desktop publishing packages and web page editors now use Lorem Ip...',
+                    "Many desktop publishing packages and web page editors now use Lorem Ip...",
                 },
               ],
             },
             {
-              date: 'August 20',
+              date: "August 20",
               emails: [
                 {
                   avatar: img16,
-                  sender: 'Leslie Cañete',
-                  star: 'line',
-                  time: '04:44pm',
-                  subject: 'Please Verify Your Email Address',
+                  sender: "Leslie Cañete",
+                  star: "line",
+                  time: "04:44pm",
+                  subject: "Please Verify Your Email Address",
                   summary:
-                    'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...',
+                    "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...",
                 },
               ],
             },
             {
-              date: 'August 16',
+              date: "August 16",
               emails: [
                 {
                   avatar: img17,
-                  sender: 'Gerald Dominggo',
-                  star: 'line',
-                  time: '10:23pm',
-                  subject: 'Upcoming Annual Tech Talks',
+                  sender: "Gerald Dominggo",
+                  star: "line",
+                  time: "10:23pm",
+                  subject: "Upcoming Annual Tech Talks",
                   summary:
-                    'Tempo ribus autem quibus dam et aut officiis debitis aut rerum nam libero...',
+                    "Tempo ribus autem quibus dam et aut officiis debitis aut rerum nam libero...",
                 },
                 {
                   initial: {
-                    letter: 'r',
-                    bg: 'teal',
+                    letter: "r",
+                    bg: "teal",
                   },
-                  sender: 'Richard Simbulas',
-                  star: 'line',
-                  time: '06:16pm',
-                  subject: 'Changes to your Basic Plan',
+                  sender: "Richard Simbulas",
+                  star: "line",
+                  time: "06:16pm",
+                  subject: "Changes to your Basic Plan",
                   summary:
-                    'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...',
+                    "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...",
                 },
               ],
             },
             {
-              date: 'August 15',
+              date: "August 15",
               emails: [
                 {
                   unread: true,
                   initial: {
-                    letter: 'j',
-                    bg: 'primary',
+                    letter: "j",
+                    bg: "primary",
                   },
-                  sender: 'James Segovia',
-                  star: 'line',
-                  time: '02:28pm',
-                  subject: 'Developer Position: Remote',
+                  sender: "James Segovia",
+                  star: "line",
+                  time: "02:28pm",
+                  subject: "Developer Position: Remote",
                   summary:
-                    'Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...',
+                    "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit...",
                 },
                 {
                   avatar: img18,
-                  sender: 'Lanie Celeres',
-                  star: 'line',
-                  time: '01:30am',
-                  subject: 'Reserve Your Spot Today',
+                  sender: "Lanie Celeres",
+                  star: "line",
+                  time: "01:30am",
+                  subject: "Reserve Your Spot Today",
                   summary:
-                    'The point of using Lorem Ipsum is that it has a more-or-less normal distributio...',
+                    "The point of using Lorem Ipsum is that it has a more-or-less normal distributio...",
                 },
               ],
             },
@@ -281,11 +281,11 @@ export default function Email() {
               {group.emails.map((email, ind) => (
                 <div
                   className={
-                    'email-item' +
-                    (email.unread ? ' unread' : '') +
+                    "email-item" +
+                    (email.unread ? " unread" : "") +
                     (emailActive === index.toString() + ind.toString()
-                      ? ' selected'
-                      : '')
+                      ? " selected"
+                      : "")
                   }
                   key={index.toString() + ind.toString()}
                   onClick={e => {
@@ -297,7 +297,7 @@ export default function Email() {
                   <div className="avatar">
                     {email.avatar && <img src={email.avatar} alt="" />}
                     {email.initial && (
-                      <span className={'avatar-initial bg-' + email.initial.bg}>
+                      <span className={"avatar-initial bg-" + email.initial.bg}>
                         {email.initial.letter}
                       </span>
                     )}
@@ -308,11 +308,11 @@ export default function Email() {
                       <Link
                         href=""
                         className={
-                          'email-item-star' +
-                          (email.star === 'fill' ? ' active' : '')
+                          "email-item-star" +
+                          (email.star === "fill" ? " active" : "")
                         }
                       >
-                        <i className={'ri-star-' + email.star}></i>
+                        <i className={"ri-star-" + email.star}></i>
                       </Link>
                       <span className="email-item-date">{email.time}</span>
                     </div>
@@ -326,7 +326,7 @@ export default function Email() {
         </PerfectScrollbar>
 
         <PerfectScrollbar
-          className={'email-content' + (showContent ? ' show' : '')}
+          className={"email-content" + (showContent ? " show" : "")}
         >
           <div className="email-content-empty">No email has been selected</div>
           <div className="email-content-header">
@@ -340,29 +340,29 @@ export default function Email() {
               </Nav.Link>
               {[
                 {
-                  title: 'Archive',
-                  icon: 'ri-archive-drawer-line',
+                  title: "Archive",
+                  icon: "ri-archive-drawer-line",
                 },
                 {
-                  title: 'Report Spam',
-                  icon: 'ri-spam-2-line',
+                  title: "Report Spam",
+                  icon: "ri-spam-2-line",
                 },
                 {
-                  title: 'Labels',
-                  icon: 'ri-price-tag-line',
+                  title: "Labels",
+                  icon: "ri-price-tag-line",
                 },
                 {
-                  title: 'Print',
-                  icon: 'ri-printer-line',
+                  title: "Print",
+                  icon: "ri-printer-line",
                 },
                 {
-                  title: 'Delete',
-                  icon: 'ri-delete-bin-5-line',
-                  addonClass: 'ms-auto',
+                  title: "Delete",
+                  icon: "ri-delete-bin-5-line",
+                  addonClass: "ms-auto",
                 },
                 {
-                  title: 'More',
-                  icon: 'ri-more-2-fill',
+                  title: "More",
+                  icon: "ri-more-2-fill",
                 },
               ].map((menu, index) => (
                 <OverlayTrigger
@@ -535,10 +535,10 @@ export default function Email() {
 
         <div
           className={
-            'compose' +
-            (!showCompose ? ' d-none' : '') +
-            (maximize ? ' fullscreen' : '') +
-            (minimize ? ' minimize' : '')
+            "compose" +
+            (!showCompose ? " d-none" : "") +
+            (maximize ? " fullscreen" : "") +
+            (minimize ? " minimize" : "")
           }
         >
           <div className="compose-content">

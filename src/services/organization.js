@@ -1,7 +1,7 @@
-import { sendGetRequest, sendPostRequest } from './service';
+import { sendGetRequest, sendPostRequest } from "./service";
 
 export const listOrgRequest = async (page, size) => {
-  return sendGetRequest('/api/private/org', {
+  return sendGetRequest("/api/private/org", {
     page: page,
     size: size,
   });
@@ -25,7 +25,7 @@ export const createOrgRequest = async (
   if (parentOrgId) {
     params.parentOrgId = parentOrgId;
   }
-  return sendPostRequest('post', '/api/private/org', params);
+  return sendPostRequest("post", "/api/private/org", params);
 };
 
 export const getOrgRequest = async orgId => {
@@ -34,5 +34,5 @@ export const getOrgRequest = async orgId => {
 
 export const updateOrgRequest = async (values, orgId) => {
   values.orgId = orgId;
-  return sendPostRequest('put', '/api/private/org', values);
+  return sendPostRequest("put", "/api/private/org", values);
 };

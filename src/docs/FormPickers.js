@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Row, Col } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import ReactDatePicker from 'react-datepicker';
-import { SketchPicker } from 'react-color';
+import React, { useEffect, useState } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Row, Col } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import ReactDatePicker from "react-datepicker";
+import { SketchPicker } from "react-color";
 
-import '../assets/css/react-datepicker.min.css';
+import "../assets/css/react-datepicker.min.css";
 
 export default function FormPickers() {
   useEffect(() => {
@@ -113,47 +113,47 @@ export default function FormPickers() {
                         <button
                           aria-label="Previous Month"
                           className={
-                            'react-datepicker__navigation react-datepicker__navigation--previous'
+                            "react-datepicker__navigation react-datepicker__navigation--previous"
                           }
                           style={
                             customHeaderCount === 1
-                              ? { visibility: 'hidden' }
+                              ? { visibility: "hidden" }
                               : null
                           }
                           onClick={decreaseMonth}
                         >
                           <span
                             className={
-                              'react-datepicker__navigation-icon react-datepicker__navigation-icon--previous'
+                              "react-datepicker__navigation-icon react-datepicker__navigation-icon--previous"
                             }
                           >
-                            {'<'}
+                            {"<"}
                           </span>
                         </button>
                         <span className="react-datepicker__current-month">
-                          {monthDate.toLocaleString('en-US', {
-                            month: 'long',
-                            year: 'numeric',
+                          {monthDate.toLocaleString("en-US", {
+                            month: "long",
+                            year: "numeric",
                           })}
                         </span>
                         <button
                           aria-label="Next Month"
                           className={
-                            'react-datepicker__navigation react-datepicker__navigation--next'
+                            "react-datepicker__navigation react-datepicker__navigation--next"
                           }
                           style={
                             customHeaderCount === 0
-                              ? { visibility: 'hidden' }
+                              ? { visibility: "hidden" }
                               : null
                           }
                           onClick={increaseMonth}
                         >
                           <span
                             className={
-                              'react-datepicker__navigation-icon react-datepicker__navigation-icon--next'
+                              "react-datepicker__navigation-icon react-datepicker__navigation-icon--next"
                             }
                           >
-                            {'>'}
+                            {">"}
                           </span>
                         </button>
                       </div>
@@ -272,7 +272,7 @@ export default function FormPickers() {
           <p>
             A Collection of Color Pickers from Sketch, Photoshop, Chrome,
             Github, Twitter, Material Design & more. To learn more about this
-            plugin, go to{' '}
+            plugin, go to{" "}
             <a
               href="https://casesandberg.github.io/react-color/"
               target="_blank"

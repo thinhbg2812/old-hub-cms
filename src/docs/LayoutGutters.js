@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import HeaderMobile from '../layouts/HeaderMobile';
-import { Card, Container, Row, Col, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import HeaderMobile from "../layouts/HeaderMobile";
+import { Card, Container, Row, Col, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
 
 export default function LayoutGutters() {
   useEffect(() => {

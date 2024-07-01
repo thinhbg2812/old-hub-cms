@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Col, Row, Form, Nav, Card, Button, Table } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Col, Row, Form, Nav, Card, Button, Table } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import Avatar from "../components/Avatar";
 
-import img8 from '../assets/img/img8.jpg';
-import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img14 from '../assets/img/img14.jpg';
+import img8 from "../assets/img/img8.jpg";
+import img9 from "../assets/img/img9.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img14 from "../assets/img/img14.jpg";
 
 export default function Settings() {
   return (
@@ -138,28 +138,28 @@ export default function Settings() {
                       {[
                         {
                           img: img14,
-                          name: 'Adrian Moniño',
-                          date: 'May 20, 2023',
+                          name: "Adrian Moniño",
+                          date: "May 20, 2023",
                         },
                         {
                           img: img10,
-                          name: 'Socrates Itumay',
-                          date: 'Apr 10, 2023',
+                          name: "Socrates Itumay",
+                          date: "Apr 10, 2023",
                         },
                         {
                           img: img8,
-                          name: 'Rhea Castañares',
-                          date: 'Feb 16, 2023',
+                          name: "Rhea Castañares",
+                          date: "Feb 16, 2023",
                         },
                         {
                           img: img9,
-                          name: 'Marianne Audrey',
-                          date: 'Feb 10, 2023',
+                          name: "Marianne Audrey",
+                          date: "Feb 10, 2023",
                         },
                         {
                           img: img11,
-                          name: 'Reynante Labares',
-                          date: 'Dec 20, 2022',
+                          name: "Reynante Labares",
+                          date: "Dec 20, 2022",
                         },
                       ].map((user, index) => (
                         <tr key={index}>
@@ -203,34 +203,34 @@ export default function Settings() {
               <Row className="g-3">
                 {[
                   {
-                    bg: 'bg-disqus',
-                    icon: 'ri-disqus-fill',
-                    name: 'Disqus',
-                    text: 'An American blog comment hosting service for web sites and online communities that use a networked platform.',
+                    bg: "bg-disqus",
+                    icon: "ri-disqus-fill",
+                    name: "Disqus",
+                    text: "An American blog comment hosting service for web sites and online communities that use a networked platform.",
                   },
                   {
-                    bg: 'bg-dropbox',
-                    icon: 'ri-dropbox-fill',
-                    name: 'Dropbox',
-                    text: 'A file hosting service company that offers cloud storage, file synchronization, personal cloud, and client software.',
+                    bg: "bg-dropbox",
+                    icon: "ri-dropbox-fill",
+                    name: "Dropbox",
+                    text: "A file hosting service company that offers cloud storage, file synchronization, personal cloud, and client software.",
                   },
                   {
-                    bg: 'bg-evernote',
-                    icon: 'ri-evernote-fill',
-                    name: 'Evernote',
-                    text: 'An app that allows users to create notes, which can be text, drawings, photographs, audio, or saved web content.',
+                    bg: "bg-evernote",
+                    icon: "ri-evernote-fill",
+                    name: "Evernote",
+                    text: "An app that allows users to create notes, which can be text, drawings, photographs, audio, or saved web content.",
                   },
                   {
-                    bg: 'bg-messenger',
-                    icon: 'ri-messenger-fill',
-                    name: 'Messenger',
-                    text: 'A proprietary instant messaging app developed by Meta Platforms. Originally developed as Facebook Chat in 2008.',
+                    bg: "bg-messenger",
+                    icon: "ri-messenger-fill",
+                    name: "Messenger",
+                    text: "A proprietary instant messaging app developed by Meta Platforms. Originally developed as Facebook Chat in 2008.",
                   },
                 ].map((app, index) => (
                   <Col md="6" key={index}>
                     <Card className="card-app">
                       <Card.Body>
-                        <div className={'card-logo ' + app.bg}>
+                        <div className={"card-logo " + app.bg}>
                           <i className={app.icon}></i>
                         </div>
                         <div className="app-body">
@@ -240,7 +240,7 @@ export default function Settings() {
                       </Card.Body>
                       <Card.Footer>
                         <Link to="">Preferences</Link>
-                        <Form.Check type="switch" checked onChange={() => ''} />
+                        <Form.Check type="switch" checked onChange={() => ""} />
                       </Card.Footer>
                     </Card>
                   </Col>

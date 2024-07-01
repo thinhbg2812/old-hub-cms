@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function UtilShadows() {
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function UtilShadows() {
           <label className="main-title-label">Utilities</label>
           <h2 className="main-title">Shadows</h2>
           <p className="main-title-text">
-            Add or remove shadows to elements with box-shadow utilities.{' '}
+            Add or remove shadows to elements with box-shadow utilities.{" "}
           </p>
 
           <hr className="main-separator" />

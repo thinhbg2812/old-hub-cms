@@ -1,23 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Col, Nav, Row, Form, Button } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card, Col, Nav, Row, Form, Button } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import Avatar from "../components/Avatar";
 
-import img1 from '../assets/img/img1.jpg';
-import img6 from '../assets/img/img6.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img13 from '../assets/img/img13.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img19 from '../assets/img/img19.jpg';
+import img1 from "../assets/img/img1.jpg";
+import img6 from "../assets/img/img6.jpg";
+import img7 from "../assets/img/img7.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img9 from "../assets/img/img9.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img13 from "../assets/img/img13.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img15 from "../assets/img/img15.jpg";
+import img16 from "../assets/img/img16.jpg";
+import img19 from "../assets/img/img19.jpg";
 
 export default function People() {
   return (
@@ -58,43 +58,43 @@ export default function People() {
               {[
                 {
                   img: img6,
-                  name: 'Allan Rey Palban',
-                  position: 'Senior Business Analyst',
+                  name: "Allan Rey Palban",
+                  position: "Senior Business Analyst",
                   count: 5,
                   mutual: [img1, img12],
                 },
                 {
                   img: img7,
-                  name: 'Adrian Moniño',
-                  position: 'UI Developer',
+                  name: "Adrian Moniño",
+                  position: "UI Developer",
                   count: 9,
                   mutual: [img10, img11],
                 },
                 {
                   img: img8,
-                  name: 'Rhea Castañares',
-                  position: 'Software Engineer',
+                  name: "Rhea Castañares",
+                  position: "Software Engineer",
                   count: 18,
                   mutual: [img6, img9],
                 },
                 {
                   img: img9,
-                  name: 'Lorlaine Relayosa',
-                  position: 'Software Engineer',
+                  name: "Lorlaine Relayosa",
+                  position: "Software Engineer",
                   count: 4,
                   mutual: [img6, img7],
                 },
                 {
                   img: img10,
-                  name: 'Raffy Godinez',
-                  position: 'UI Designer',
+                  name: "Raffy Godinez",
+                  position: "UI Designer",
                   count: 2,
                   mutual: [img11, img1],
                 },
                 {
                   img: img11,
-                  name: 'Maricel Villalon',
-                  position: 'Engineering Manager',
+                  name: "Maricel Villalon",
+                  position: "Engineering Manager",
                   count: 13,
                   mutual: [img1, img12],
                 },
@@ -141,22 +141,22 @@ export default function People() {
               {[
                 {
                   img: img12,
-                  name: 'Geraldine Cantones',
-                  position: 'Senior Business Analyst',
+                  name: "Geraldine Cantones",
+                  position: "Senior Business Analyst",
                   count: 5,
                   mutual: [img10, img8],
                 },
                 {
                   img: img6,
-                  name: 'Dexter Cruz',
-                  position: 'UI Developer',
+                  name: "Dexter Cruz",
+                  position: "UI Developer",
                   count: 9,
                   mutual: [img11, img7],
                 },
                 {
                   img: img8,
-                  name: 'Rhea Castañares',
-                  position: 'Software Engineer',
+                  name: "Rhea Castañares",
+                  position: "Software Engineer",
                   count: 18,
                   mutual: [img7, img9],
                 },
@@ -203,22 +203,22 @@ export default function People() {
               {[
                 {
                   img: img13,
-                  name: 'Esther Mathias',
-                  position: 'Business Analyst',
+                  name: "Esther Mathias",
+                  position: "Business Analyst",
                   count: 5,
                   mutual: [img19, img8],
                 },
                 {
                   img: img14,
-                  name: 'Gregory Harper',
-                  position: 'UI Developer',
+                  name: "Gregory Harper",
+                  position: "UI Developer",
                   count: 7,
                   mutual: [img16, img13],
                 },
                 {
                   img: img15,
-                  name: 'Maria Wetter',
-                  position: 'Software Engineer',
+                  name: "Maria Wetter",
+                  position: "Software Engineer",
                   count: 10,
                   mutual: [img6, img11],
                 },
@@ -275,28 +275,28 @@ export default function People() {
               {[
                 {
                   avatar: img6,
-                  name: 'Allan Rey Palban',
-                  position: 'Senior Business Analyst',
+                  name: "Allan Rey Palban",
+                  position: "Senior Business Analyst",
                 },
                 {
                   avatar: img7,
-                  name: 'Adrian Moniño',
-                  position: 'Software Engineer',
+                  name: "Adrian Moniño",
+                  position: "Software Engineer",
                 },
                 {
                   avatar: img8,
-                  name: 'Charlene Plateros',
-                  position: 'Sales Representative',
+                  name: "Charlene Plateros",
+                  position: "Sales Representative",
                 },
                 {
                   avatar: img9,
-                  name: 'Analyn Mercado',
-                  position: 'Executive Assistant',
+                  name: "Analyn Mercado",
+                  position: "Executive Assistant",
                 },
                 {
                   avatar: img10,
-                  name: 'Rolando Paloso',
-                  position: 'Senior Architect',
+                  name: "Rolando Paloso",
+                  position: "Senior Architect",
                 },
               ].map((people, index) => (
                 <li className="people-item" key={index}>
@@ -318,28 +318,28 @@ export default function People() {
               {[
                 {
                   avatar: img11,
-                  name: 'Maricel Villalon',
-                  position: 'Engineering Manager',
+                  name: "Maricel Villalon",
+                  position: "Engineering Manager",
                 },
                 {
                   avatar: img12,
-                  name: 'Geraldine Cantones',
-                  position: 'Software Architect',
+                  name: "Geraldine Cantones",
+                  position: "Software Architect",
                 },
                 {
                   avatar: img6,
-                  name: 'Allan Rey Palban',
-                  position: 'Senior Business Analyst',
+                  name: "Allan Rey Palban",
+                  position: "Senior Business Analyst",
                 },
                 {
                   avatar: img7,
-                  name: 'Adrian Moniño',
-                  position: 'Software Engineer',
+                  name: "Adrian Moniño",
+                  position: "Software Engineer",
                 },
                 {
                   avatar: img8,
-                  name: 'Charlene Plateros',
-                  position: 'Sales Representative',
+                  name: "Charlene Plateros",
+                  position: "Sales Representative",
                 },
               ].map((people, index) => (
                 <li className="people-item" key={index}>
@@ -365,28 +365,28 @@ export default function People() {
             <Nav className="nav-classic">
               {[
                 {
-                  name: 'Software Engineer',
+                  name: "Software Engineer",
                   count: 20,
                 },
                 {
-                  name: 'UI/UX Designer',
+                  name: "UI/UX Designer",
                   count: 18,
                 },
                 {
-                  name: 'Sales Representative',
+                  name: "Sales Representative",
                   count: 14,
                 },
                 {
-                  name: 'Product Representative',
+                  name: "Product Representative",
                   count: 12,
                 },
                 {
-                  name: 'Full-Stack Developer',
+                  name: "Full-Stack Developer",
                   count: 10,
                 },
               ].map((position, index) => (
                 <Nav.Link to="" key={index}>
-                  <span>{position.name}</span>{' '}
+                  <span>{position.name}</span>{" "}
                   <span className="badge">{position.count}</span>
                 </Nav.Link>
               ))}

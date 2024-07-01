@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   return (

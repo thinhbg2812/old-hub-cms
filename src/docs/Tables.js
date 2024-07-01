@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Table } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import { Grid } from 'gridjs-react';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Table } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import { Grid } from "gridjs-react";
 
 export default function Tables() {
   useEffect(() => {
@@ -230,7 +230,7 @@ export default function Tables() {
             Active Rows
           </h5>
           <p>
-            Highlight a table row or cell by adding a <code>.table-active</code>{' '}
+            Highlight a table row or cell by adding a <code>.table-active</code>{" "}
             class.
           </p>
 
@@ -621,7 +621,7 @@ export default function Tables() {
           <p className="main-title-text">
             Grid.js is a table plugin written in TypeScript. It is developed to
             be used with all popular JavaScript frameworks include React,
-            Angular.js, Vue or without any frameworks!{' '}
+            Angular.js, Vue or without any frameworks!{" "}
           </p>
 
           <br />
@@ -637,32 +637,32 @@ export default function Tables() {
               <Grid
                 data={[
                   [
-                    '1',
-                    'Adrian Monino',
-                    'Front-End Engineer',
-                    'Computer Science',
-                    '$120,000',
+                    "1",
+                    "Adrian Monino",
+                    "Front-End Engineer",
+                    "Computer Science",
+                    "$120,000",
                   ],
                   [
-                    '2',
-                    'Socrates Itumay',
-                    'Software Engineer',
-                    'Computer Engineering',
-                    '$150,000',
+                    "2",
+                    "Socrates Itumay",
+                    "Software Engineer",
+                    "Computer Engineering",
+                    "$150,000",
                   ],
                   [
-                    '3',
-                    'Reynante Labares',
-                    'Product Manager',
-                    'Business Management',
-                    '$250,000',
+                    "3",
+                    "Reynante Labares",
+                    "Product Manager",
+                    "Business Management",
+                    "$250,000",
                   ],
                 ]}
-                columns={['ID', 'Name', 'Job Title', 'Degree', 'Salary']}
+                columns={["ID", "Name", "Job Title", "Degree", "Salary"]}
                 search={false}
                 pagination={false}
                 className={{
-                  table: 'table table-bordered mb-0',
+                  table: "table table-bordered mb-0",
                 }}
               />
             </Card.Body>
@@ -693,7 +693,7 @@ export default function Tables() {
             Pagination
           </h5>
           <p>
-            Pagination can be enabled by setting{' '}
+            Pagination can be enabled by setting{" "}
             <code>{`pagination={true}`}</code>.
           </p>
 
@@ -702,32 +702,32 @@ export default function Tables() {
               <Grid
                 data={[
                   [
-                    '1',
-                    'Adrian Monino',
-                    'Front-End Engineer',
-                    'Computer Science',
-                    '$120,000',
+                    "1",
+                    "Adrian Monino",
+                    "Front-End Engineer",
+                    "Computer Science",
+                    "$120,000",
                   ],
                   [
-                    '2',
-                    'Socrates Itumay',
-                    'Software Engineer',
-                    'Computer Engineering',
-                    '$150,000',
+                    "2",
+                    "Socrates Itumay",
+                    "Software Engineer",
+                    "Computer Engineering",
+                    "$150,000",
                   ],
                   [
-                    '3',
-                    'Reynante Labares',
-                    'Product Manager',
-                    'Business Management',
-                    '$250,000',
+                    "3",
+                    "Reynante Labares",
+                    "Product Manager",
+                    "Business Management",
+                    "$250,000",
                   ],
                 ]}
-                columns={['ID', 'Name', 'Job Title', 'Degree', 'Salary']}
+                columns={["ID", "Name", "Job Title", "Degree", "Salary"]}
                 search={false}
                 pagination={true}
                 className={{
-                  table: 'table table-bordered mb-0',
+                  table: "table table-bordered mb-0",
                 }}
               />
             </Card.Body>
@@ -758,7 +758,7 @@ export default function Tables() {
             Search
           </h5>
           <p>
-            Supports global search on all rows and columns. Set{' '}
+            Supports global search on all rows and columns. Set{" "}
             <code>search: true</code> to enable the search plugin.
           </p>
 
@@ -767,32 +767,32 @@ export default function Tables() {
               <Grid
                 data={[
                   [
-                    '1',
-                    'Adrian Monino',
-                    'Front-End Engineer',
-                    'Computer Science',
-                    '$120,000',
+                    "1",
+                    "Adrian Monino",
+                    "Front-End Engineer",
+                    "Computer Science",
+                    "$120,000",
                   ],
                   [
-                    '2',
-                    'Socrates Itumay',
-                    'Software Engineer',
-                    'Computer Engineering',
-                    '$150,000',
+                    "2",
+                    "Socrates Itumay",
+                    "Software Engineer",
+                    "Computer Engineering",
+                    "$150,000",
                   ],
                   [
-                    '3',
-                    'Reynante Labares',
-                    'Product Manager',
-                    'Business Management',
-                    '$250,000',
+                    "3",
+                    "Reynante Labares",
+                    "Product Manager",
+                    "Business Management",
+                    "$250,000",
                   ],
                 ]}
-                columns={['ID', 'Name', 'Job Title', 'Degree', 'Salary']}
+                columns={["ID", "Name", "Job Title", "Degree", "Salary"]}
                 search={true}
                 pagination={true}
                 className={{
-                  table: 'table table-bordered mb-0',
+                  table: "table table-bordered mb-0",
                 }}
               />
             </Card.Body>
@@ -832,30 +832,30 @@ export default function Tables() {
               <Grid
                 data={[
                   [
-                    'Adrian Monino',
-                    'Front-End Engineer',
-                    'Computer Science',
-                    '$120,000',
+                    "Adrian Monino",
+                    "Front-End Engineer",
+                    "Computer Science",
+                    "$120,000",
                   ],
                   [
-                    'Socrates Itumay',
-                    'Software Engineer',
-                    'Computer Engineering',
-                    '$150,000',
+                    "Socrates Itumay",
+                    "Software Engineer",
+                    "Computer Engineering",
+                    "$150,000",
                   ],
                   [
-                    'Reynante Labares',
-                    'Product Manager',
-                    'Business Management',
-                    '$250,000',
+                    "Reynante Labares",
+                    "Product Manager",
+                    "Business Management",
+                    "$250,000",
                   ],
                 ]}
-                columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                columns={["Name", "Job Title", "Degree", "Salary"]}
                 search={true}
                 pagination={true}
                 sort={true}
                 className={{
-                  table: 'table table-bordered mb-0',
+                  table: "table table-bordered mb-0",
                 }}
               />
             </Card.Body>
@@ -896,31 +896,31 @@ export default function Tables() {
               <Grid
                 data={[
                   [
-                    'Adrian Monino',
-                    'Front-End Engineer',
-                    'Computer Science',
-                    '$120,000',
+                    "Adrian Monino",
+                    "Front-End Engineer",
+                    "Computer Science",
+                    "$120,000",
                   ],
                   [
-                    'Socrates Itumay',
-                    'Software Engineer',
-                    'Computer Engineering',
-                    '$150,000',
+                    "Socrates Itumay",
+                    "Software Engineer",
+                    "Computer Engineering",
+                    "$150,000",
                   ],
                   [
-                    'Reynante Labares',
-                    'Product Manager',
-                    'Business Management',
-                    '$250,000',
+                    "Reynante Labares",
+                    "Product Manager",
+                    "Business Management",
+                    "$250,000",
                   ],
                 ]}
-                columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                columns={["Name", "Job Title", "Degree", "Salary"]}
                 search={true}
                 pagination={true}
                 sort={true}
                 resizable={true}
                 className={{
-                  table: 'table table-bordered mb-0',
+                  table: "table table-bordered mb-0",
                 }}
               />
             </Card.Body>

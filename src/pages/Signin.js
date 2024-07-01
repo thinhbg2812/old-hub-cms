@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Signin() {
   return (
@@ -56,7 +56,7 @@ export default function Signin() {
           </Form>
         </Card.Body>
         <Card.Footer>
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link to="/pages/signup">Create an Account</Link>
         </Card.Footer>
       </Card>

@@ -1,31 +1,31 @@
-import React, { useEffect } from 'react';
-import Header from '../layouts/Header';
-import { Card, Col, Nav, ProgressBar, Row, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import Header from "../layouts/Header";
+import { Card, Col, Nav, ProgressBar, Row, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import img19 from '../assets/img/img19.jpg';
-import img27 from '../assets/img/img27.jpg';
-import img28 from '../assets/img/img28.jpg';
-import img29 from '../assets/img/img29.jpg';
-import img30 from '../assets/img/img30.jpg';
-import img31 from '../assets/img/img31.jpg';
-import img32 from '../assets/img/img32.jpg';
-import img33 from '../assets/img/img33.jpg';
-import img34 from '../assets/img/img34.jpg';
-import img35 from '../assets/img/img35.jpg';
-import img36 from '../assets/img/img36.jpg';
-import img37 from '../assets/img/img37.jpg';
-import img38 from '../assets/img/img38.jpg';
-import img39 from '../assets/img/img39.jpg';
-import img40 from '../assets/img/img40.jpg';
-import img41 from '../assets/img/img41.jpg';
-import img42 from '../assets/img/img42.jpg';
+import img19 from "../assets/img/img19.jpg";
+import img27 from "../assets/img/img27.jpg";
+import img28 from "../assets/img/img28.jpg";
+import img29 from "../assets/img/img29.jpg";
+import img30 from "../assets/img/img30.jpg";
+import img31 from "../assets/img/img31.jpg";
+import img32 from "../assets/img/img32.jpg";
+import img33 from "../assets/img/img33.jpg";
+import img34 from "../assets/img/img34.jpg";
+import img35 from "../assets/img/img35.jpg";
+import img36 from "../assets/img/img36.jpg";
+import img37 from "../assets/img/img37.jpg";
+import img38 from "../assets/img/img38.jpg";
+import img39 from "../assets/img/img39.jpg";
+import img40 from "../assets/img/img40.jpg";
+import img41 from "../assets/img/img41.jpg";
+import img42 from "../assets/img/img42.jpg";
 
 export default function GalleryMusic() {
   useEffect(() => {
-    document.body.classList.add('app-music');
+    document.body.classList.add("app-music");
     return () => {
-      document.body.classList.remove('app-music');
+      document.body.classList.remove("app-music");
     };
   }, []);
   return (
@@ -59,27 +59,27 @@ export default function GalleryMusic() {
                 {[
                   {
                     img: img28,
-                    title: 'Guitar Soundtrack',
-                    text: 'A calm and relaxing guitar soundtrack.',
-                    listeners: '10,323',
+                    title: "Guitar Soundtrack",
+                    text: "A calm and relaxing guitar soundtrack.",
+                    listeners: "10,323",
                   },
                   {
                     img: img29,
-                    title: 'Country Hits List',
-                    text: 'A country album celebrating the best music.',
-                    listeners: '9,998',
+                    title: "Country Hits List",
+                    text: "A country album celebrating the best music.",
+                    listeners: "9,998",
                   },
                   {
                     img: img30,
-                    title: 'Rosse Best Hits',
-                    text: 'All the greatest hits from Rosse McGeorge.',
-                    listeners: '7,004',
+                    title: "Rosse Best Hits",
+                    text: "All the greatest hits from Rosse McGeorge.",
+                    listeners: "7,004",
                   },
                   {
                     img: img31,
-                    title: 'All Greatest Hits',
+                    title: "All Greatest Hits",
                     text: "All of Lea's greatest hits from the 19th century.",
-                    listeners: '6,985',
+                    listeners: "6,985",
                   },
                 ].map((album, index) => (
                   <Col key={index}>
@@ -137,33 +137,33 @@ export default function GalleryMusic() {
                     {[
                       {
                         img: img29,
-                        title: 'My Love',
-                        artist: 'Westlife',
-                        time: '02:33',
+                        title: "My Love",
+                        artist: "Westlife",
+                        time: "02:33",
                       },
                       {
                         img: img30,
-                        title: 'Beautiful In White',
-                        artist: 'Sam Milby',
-                        time: '03:02',
+                        title: "Beautiful In White",
+                        artist: "Sam Milby",
+                        time: "03:02",
                       },
                       {
                         img: img31,
-                        title: 'Time After Time',
-                        artist: 'Cyndi Lauper',
-                        time: '04:16',
+                        title: "Time After Time",
+                        artist: "Cyndi Lauper",
+                        time: "04:16",
                       },
                       {
                         img: img32,
-                        title: 'When I Was Your Man',
-                        artist: 'Bruno Mars',
-                        time: '02:58',
+                        title: "When I Was Your Man",
+                        artist: "Bruno Mars",
+                        time: "02:58",
                       },
                       {
                         img: img33,
-                        title: 'A Thousand Miles',
-                        artist: 'Vanessa Carlton',
-                        time: '03:18',
+                        title: "A Thousand Miles",
+                        artist: "Vanessa Carlton",
+                        time: "03:18",
                       },
                     ].map((music, index) => (
                       <tr key={index}>
@@ -206,28 +206,28 @@ export default function GalleryMusic() {
                 {[
                   {
                     img: img37,
-                    name: 'Angeline Quinto',
-                    followers: '210,000',
+                    name: "Angeline Quinto",
+                    followers: "210,000",
                   },
                   {
                     img: img36,
-                    name: 'Sarah Geronimo',
-                    followers: '198,540',
+                    name: "Sarah Geronimo",
+                    followers: "198,540",
                   },
                   {
                     img: img34,
-                    name: 'Sam Milby',
-                    followers: '195,050',
+                    name: "Sam Milby",
+                    followers: "195,050",
                   },
                   {
                     img: img35,
-                    name: 'Kath McPhee',
-                    followers: '192,902',
+                    name: "Kath McPhee",
+                    followers: "192,902",
                   },
                   {
                     img: img28,
-                    name: 'Brownbuds',
-                    followers: '192,000',
+                    name: "Brownbuds",
+                    followers: "192,000",
                   },
                 ].map((artist, index) => (
                   <Col key={index}>
@@ -251,39 +251,39 @@ export default function GalleryMusic() {
               <Nav className="nav-classic">
                 {[
                   {
-                    icon: 'ri-star-line',
-                    label: 'Liked Songs',
+                    icon: "ri-star-line",
+                    label: "Liked Songs",
                     count: 134,
                   },
                   {
-                    icon: 'ri-music-2-line',
-                    label: 'Discover',
-                    count: '',
+                    icon: "ri-music-2-line",
+                    label: "Discover",
+                    count: "",
                   },
                   {
-                    icon: 'ri-speaker-line',
-                    label: 'New Releases',
-                    count: '',
+                    icon: "ri-speaker-line",
+                    label: "New Releases",
+                    count: "",
                   },
                   {
-                    icon: 'ri-radio-2-line',
-                    label: 'Podcasts',
-                    count: '',
+                    icon: "ri-radio-2-line",
+                    label: "Podcasts",
+                    count: "",
                   },
                   {
-                    icon: 'ri-user-voice-line',
-                    label: 'Artists',
+                    icon: "ri-user-voice-line",
+                    label: "Artists",
                     count: 15,
                   },
                   {
-                    icon: 'ri-disc-line',
-                    label: 'Albums',
+                    icon: "ri-disc-line",
+                    label: "Albums",
                     count: 28,
                   },
                 ].map((menu, index) => (
                   <Nav.Link href="#" key={index}>
                     <i className={menu.icon}></i>
-                    <span>{menu.label}</span>{' '}
+                    <span>{menu.label}</span>{" "}
                     <span className="badge">{menu.count}</span>
                   </Nav.Link>
                 ))}
@@ -295,31 +295,31 @@ export default function GalleryMusic() {
               <Nav className="nav-classic">
                 {[
                   {
-                    label: 'Favorite Tunes',
+                    label: "Favorite Tunes",
                     count: 9,
                   },
                   {
-                    label: 'Light Rock',
+                    label: "Light Rock",
                     count: 10,
                   },
                   {
-                    label: 'Mood Booster',
+                    label: "Mood Booster",
                     count: 23,
                   },
                   {
-                    label: 'Positive Vibes',
+                    label: "Positive Vibes",
                     count: 12,
                   },
                   {
-                    label: 'Rock Ballad',
+                    label: "Rock Ballad",
                     count: 14,
                   },
                   {
-                    label: 'Road Trip',
+                    label: "Road Trip",
                     count: 28,
                   },
                   {
-                    label: 'Scenic Route',
+                    label: "Scenic Route",
                     count: 47,
                   },
                   {
@@ -327,17 +327,17 @@ export default function GalleryMusic() {
                     count: 20,
                   },
                   {
-                    label: 'Top Tracks in Kids',
+                    label: "Top Tracks in Kids",
                     count: 21,
                   },
                   {
-                    label: 'Weekend Hangouts',
+                    label: "Weekend Hangouts",
                     count: 58,
                   },
                 ].map((playlist, index) => (
                   <Nav.Link href="" key={index}>
                     <i className="ri-play-list-line"></i>
-                    <span>{playlist.label}</span>{' '}
+                    <span>{playlist.label}</span>{" "}
                     <span className="badge">{playlist.count}</span>
                   </Nav.Link>
                 ))}
@@ -353,28 +353,28 @@ export default function GalleryMusic() {
               {[
                 {
                   img: img38,
-                  title: 'Pray The Rosary',
-                  desc: 'Your daily holy rosary companion...',
+                  title: "Pray The Rosary",
+                  desc: "Your daily holy rosary companion...",
                 },
                 {
                   img: img39,
-                  title: 'Romantic Podcast',
-                  desc: 'Lorem ipsum dolor sit amet consec tetur adipis...',
+                  title: "Romantic Podcast",
+                  desc: "Lorem ipsum dolor sit amet consec tetur adipis...",
                 },
                 {
                   img: img40,
-                  title: 'Tambalan Podcast',
-                  desc: 'Sint occaecati cupiditate non provident simi...',
+                  title: "Tambalan Podcast",
+                  desc: "Sint occaecati cupiditate non provident simi...",
                 },
                 {
                   img: img41,
-                  title: 'All About Life',
-                  desc: 'Temporibus autem quibusdam et aut officiis...',
+                  title: "All About Life",
+                  desc: "Temporibus autem quibusdam et aut officiis...",
                 },
                 {
                   img: img42,
-                  title: 'Fitness Podcast',
-                  desc: 'Debitis aut rerum neces sitatibus saepe eveniet...',
+                  title: "Fitness Podcast",
+                  desc: "Debitis aut rerum neces sitatibus saepe eveniet...",
                 },
               ].map((podcast, index) => (
                 <div key={index} className="media-music">

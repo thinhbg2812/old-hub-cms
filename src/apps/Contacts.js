@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Button, Col, Dropdown, Nav, Row } from 'react-bootstrap';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import Avatar from '../components/Avatar';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Button, Col, Dropdown, Nav, Row } from "react-bootstrap";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import Avatar from "../components/Avatar";
 
-import img6 from '../assets/img/img6.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img13 from '../assets/img/img13.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
-import img16 from '../assets/img/img16.jpg';
-import img17 from '../assets/img/img17.jpg';
-import img18 from '../assets/img/img18.jpg';
-import img19 from '../assets/img/img19.jpg';
+import img6 from "../assets/img/img6.jpg";
+import img7 from "../assets/img/img7.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img9 from "../assets/img/img9.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img13 from "../assets/img/img13.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img15 from "../assets/img/img15.jpg";
+import img16 from "../assets/img/img16.jpg";
+import img17 from "../assets/img/img17.jpg";
+import img18 from "../assets/img/img18.jpg";
+import img19 from "../assets/img/img19.jpg";
 
 export default function Contacts() {
   useEffect(() => {
-    document.body.classList.add('page-app');
+    document.body.classList.add("page-app");
     return () => {
-      document.body.classList.remove('page-app');
+      document.body.classList.remove("page-app");
     };
   }, []);
 
@@ -45,201 +45,201 @@ export default function Contacts() {
 
   const contactGroup = [
     {
-      group: 'A',
+      group: "A",
       items: [
         {
-          status: 'offline',
+          status: "offline",
           thumb: img11,
-          name: 'Abigaile Johnson',
-          contact: '+1-234-567-890',
+          name: "Abigaile Johnson",
+          contact: "+1-234-567-890",
           selected: true,
         },
         {
-          status: 'online',
+          status: "online",
           thumb: img9,
-          name: 'Angeline Cantones',
-          contact: 'angeline@cantones.com',
+          name: "Angeline Cantones",
+          contact: "angeline@cantones.com",
         },
         {
-          status: 'online',
-          initial: 'primary',
-          name: 'Allan Rey Palban',
-          contact: 'allanrey@palban.com',
+          status: "online",
+          initial: "primary",
+          name: "Allan Rey Palban",
+          contact: "allanrey@palban.com",
         },
         {
-          status: 'online',
-          initial: 'pink',
-          name: 'Aileen Palomares',
-          contact: 'aileen@palomares.com',
+          status: "online",
+          initial: "pink",
+          name: "Aileen Palomares",
+          contact: "aileen@palomares.com",
         },
       ],
     },
     {
-      group: 'B',
+      group: "B",
       items: [
         {
-          status: 'offline',
+          status: "offline",
           thumb: img14,
-          name: 'Bellamy Newton',
-          contact: '+1-890-1234-567',
+          name: "Bellamy Newton",
+          contact: "+1-890-1234-567",
         },
         {
-          status: 'online',
-          initial: 'purple',
-          name: 'Brenda Wilkins',
-          contact: '+1-567-8901-234',
+          status: "online",
+          initial: "purple",
+          name: "Brenda Wilkins",
+          contact: "+1-567-8901-234",
         },
         {
-          status: 'online',
+          status: "online",
           thumb: img17,
-          name: 'Bob Wise',
-          contact: 'bob@wise.com',
+          name: "Bob Wise",
+          contact: "bob@wise.com",
         },
       ],
     },
     {
-      group: 'C',
+      group: "C",
       items: [
         {
-          status: 'offline',
+          status: "offline",
           thumb: img6,
-          name: 'Clifford Solis',
-          contact: '+1-001-2236-445',
+          name: "Clifford Solis",
+          contact: "+1-001-2236-445",
         },
       ],
     },
     {
-      group: 'D',
+      group: "D",
       items: [
         {
-          status: 'offline',
+          status: "offline",
           thumb: img7,
-          name: 'Daniel Stewart',
-          contact: '+1-201-2345-876',
+          name: "Daniel Stewart",
+          contact: "+1-201-2345-876",
         },
         {
-          status: 'offline',
+          status: "offline",
           thumb: img10,
-          name: 'David Barrett',
-          contact: '+1-323-5432-101',
+          name: "David Barrett",
+          contact: "+1-323-5432-101",
         },
         {
-          status: 'offline',
+          status: "offline",
           thumb: img8,
-          name: 'Dinah Webster',
-          contact: 'dinah@webster.com',
+          name: "Dinah Webster",
+          contact: "dinah@webster.com",
         },
         {
-          status: 'online',
-          initial: 'success',
-          name: 'Dindo Robertson',
-          contact: 'dindo@robertson.com',
+          status: "online",
+          initial: "success",
+          name: "Dindo Robertson",
+          contact: "dindo@robertson.com",
         },
       ],
     },
     {
-      group: 'E',
+      group: "E",
       items: [
         {
-          status: 'online',
+          status: "online",
           thumb: img11,
-          name: 'Emily Blunt',
-          contact: 'emily@blunt.com',
+          name: "Emily Blunt",
+          contact: "emily@blunt.com",
         },
       ],
     },
     {
-      group: 'G',
+      group: "G",
       items: [
         {
-          status: 'online',
-          initial: 'info',
-          name: 'Georgie Kavkaz',
-          contact: 'georgie@kavkaz.com',
+          status: "online",
+          initial: "info",
+          name: "Georgie Kavkaz",
+          contact: "georgie@kavkaz.com",
         },
         {
-          status: 'online',
-          initial: 'danger',
-          name: 'Guztavo Diaz',
-          contact: '+2 345 6789 012',
+          status: "online",
+          initial: "danger",
+          name: "Guztavo Diaz",
+          contact: "+2 345 6789 012",
         },
       ],
     },
     {
-      group: 'H',
+      group: "H",
       items: [
         {
-          status: 'online',
+          status: "online",
           thumb: img12,
-          name: 'Honey Lee',
-          contact: '+9 012 3456 789',
+          name: "Honey Lee",
+          contact: "+9 012 3456 789",
         },
       ],
     },
     {
-      group: 'J',
+      group: "J",
       items: [
         {
-          status: 'offline',
+          status: "offline",
           thumb: img19,
-          name: 'Joanna Cesar',
-          contact: '+7 890 1234 567',
+          name: "Joanna Cesar",
+          contact: "+7 890 1234 567",
         },
         {
-          status: 'online',
+          status: "online",
           thumb: img18,
-          name: 'Jane Doe',
-          contact: '+5 678 9012 345',
+          name: "Jane Doe",
+          contact: "+5 678 9012 345",
         },
         {
-          status: 'online',
+          status: "online",
           thumb: img16,
-          name: 'Janice Bentulan',
-          contact: 'janice@bentulan.com',
+          name: "Janice Bentulan",
+          contact: "janice@bentulan.com",
         },
       ],
     },
     {
-      group: 'M',
+      group: "M",
       items: [
         {
-          status: 'online',
-          initial: 'indigo',
-          name: 'Marie Recamada',
-          contact: 'marie@recamadas.org',
+          status: "online",
+          initial: "indigo",
+          name: "Marie Recamada",
+          contact: "marie@recamadas.org",
         },
       ],
     },
     {
-      group: 'P',
+      group: "P",
       items: [
         {
-          status: 'online',
-          initial: 'warning',
-          name: 'Pamela Anderson',
-          contact: 'pamela@andreson.com',
+          status: "online",
+          initial: "warning",
+          name: "Pamela Anderson",
+          contact: "pamela@andreson.com",
         },
       ],
     },
     {
-      group: 'S',
+      group: "S",
       items: [
         {
-          status: 'online',
+          status: "online",
           thumb: img15,
-          name: 'Samantha Perez',
-          contact: '+3 456 7890 123',
+          name: "Samantha Perez",
+          contact: "+3 456 7890 123",
         },
       ],
     },
     {
-      group: 'Z',
+      group: "Z",
       items: [
         {
-          status: 'online',
+          status: "online",
           thumb: img13,
-          name: 'Zenaida Sanchez',
-          contact: '+4 567 8901 234',
+          name: "Zenaida Sanchez",
+          contact: "+4 567 8901 234",
         },
       ],
     },
@@ -257,7 +257,7 @@ export default function Contacts() {
       <Header />
       <div className="main main-app p-3 p-lg-4">
         <div
-          className={'contact-panel ' + (isSidebarShow ? 'sidebar-show' : '')}
+          className={"contact-panel " + (isSidebarShow ? "sidebar-show" : "")}
         >
           <PerfectScrollbar className="contact-sidebar">
             <div className="mb-4">
@@ -268,14 +268,14 @@ export default function Contacts() {
 
             <Nav className="nav-sidebar">
               <Nav.Link href="" className="active">
-                <i className="ri-contacts-fill"></i>All Contacts{' '}
+                <i className="ri-contacts-fill"></i>All Contacts{" "}
                 <small>264</small>
               </Nav.Link>
               <Nav.Link href="">
                 <i className="ri-archive-line"></i> Archive
               </Nav.Link>
               <Nav.Link href="">
-                <i className="ri-group-line"></i> Other Contacts{' '}
+                <i className="ri-group-line"></i> Other Contacts{" "}
                 <small>25</small>
               </Nav.Link>
               <Nav.Link href="">
@@ -288,15 +288,15 @@ export default function Contacts() {
             <label className="sidebar-label mb-2">Labels</label>
             <Nav className="nav-sidebar">
               <Nav.Link href="">
-                <i className="ri-price-tag-line"></i> From Google{' '}
+                <i className="ri-price-tag-line"></i> From Google{" "}
                 <small>65</small>
               </Nav.Link>
               <Nav.Link href="">
-                <i className="ri-price-tag-line"></i> From iPhone{' '}
+                <i className="ri-price-tag-line"></i> From iPhone{" "}
                 <small>24</small>
               </Nav.Link>
               <Nav.Link href="">
-                <i className="ri-price-tag-line"></i> 11/08 Import{' '}
+                <i className="ri-price-tag-line"></i> 11/08 Import{" "}
                 <small>36</small>
               </Nav.Link>
             </Nav>
@@ -358,16 +358,16 @@ export default function Contacts() {
                           key={ind}
                           className={
                             item.selected
-                              ? 'contact-item selected'
-                              : 'contact-item'
+                              ? "contact-item selected"
+                              : "contact-item"
                           }
                         >
-                          <div className={'avatar ' + item.status}>
+                          <div className={"avatar " + item.status}>
                             {item.thumb && <img src={item.thumb} alt="" />}
                             {item.initial && (
                               <span
                                 className={
-                                  'avatar-initial text-white bg-' + item.initial
+                                  "avatar-initial text-white bg-" + item.initial
                                 }
                               >
                                 {contact.group}

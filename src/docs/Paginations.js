@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Pagination } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Pagination } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Paginations() {
   useEffect(() => {
@@ -169,7 +169,7 @@ export default function Paginations() {
           </h5>
           <p>
             A style variation with background color in every pagination item.
-            Only works with <code>.pagination-space</code>. and{' '}
+            Only works with <code>.pagination-space</code>. and{" "}
             <code>.pagination-circled</code>.
           </p>
 

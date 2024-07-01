@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Button, Card, Col, Container, Form, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Button, Card, Col, Container, Form, Nav, Row } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function FormLayouts() {
   useEffect(() => {
@@ -167,9 +167,9 @@ export default function FormLayouts() {
             Horizontal Form
           </h5>
           <p>
-            Create horizontal forms with the grid by adding the <code>Row</code>{' '}
+            Create horizontal forms with the grid by adding the <code>Row</code>{" "}
             class to form groups and using the <code>Col</code> classes to
-            specify the width of your labels and controls.{' '}
+            specify the width of your labels and controls.{" "}
           </p>
 
           <Card className="card-example">

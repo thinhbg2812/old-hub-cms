@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -12,11 +12,11 @@ import {
   Row,
   Table,
   Tooltip,
-} from 'react-bootstrap';
-import { dp1, dp2 } from '../data/DashboardData';
-import ReactApexChart from 'react-apexcharts';
-import { VectorMap } from '@react-jvectormap/core';
-import { worldMill } from '@react-jvectormap/world';
+} from "react-bootstrap";
+import { dp1, dp2 } from "../data/DashboardData";
+import ReactApexChart from "react-apexcharts";
+import { VectorMap } from "@react-jvectormap/core";
+import { worldMill } from "@react-jvectormap/world";
 
 export default function WebsiteAnalytics() {
   var data = [
@@ -48,30 +48,30 @@ export default function WebsiteAnalytics() {
   const states = {
     hover: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
     active: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
   };
 
   const plotOptions = {
     bar: {
-      columnWidth: '60%',
+      columnWidth: "60%",
     },
   };
 
   const stroke = {
-    curve: 'straight',
-    lineCap: 'square',
+    curve: "straight",
+    lineCap: "square",
   };
 
   const seriesOne = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 0],
         [1, 0],
@@ -91,7 +91,7 @@ export default function WebsiteAnalytics() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: data,
     },
   ];
@@ -99,7 +99,7 @@ export default function WebsiteAnalytics() {
   const optionOne = {
     chart: chart,
     states: states,
-    colors: ['#506fd9', '#e5e9f2'],
+    colors: ["#506fd9", "#e5e9f2"],
     plotOptions: plotOptions,
     stroke: stroke,
     fill: { opacity: 1 },
@@ -108,7 +108,7 @@ export default function WebsiteAnalytics() {
 
   const seriesTwo = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 3],
         [1, 4],
@@ -128,7 +128,7 @@ export default function WebsiteAnalytics() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: data,
     },
   ];
@@ -136,7 +136,7 @@ export default function WebsiteAnalytics() {
   const optionTwo = {
     chart: chart,
     states: states,
-    colors: ['#85b6fe', '#e5e9f2'],
+    colors: ["#85b6fe", "#e5e9f2"],
     plotOptions: plotOptions,
     stroke: stroke,
     fill: { opacity: 1 },
@@ -145,7 +145,7 @@ export default function WebsiteAnalytics() {
 
   const seriesThree = [
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 5],
         [1, 10],
@@ -165,7 +165,7 @@ export default function WebsiteAnalytics() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: data,
     },
   ];
@@ -173,7 +173,7 @@ export default function WebsiteAnalytics() {
   const optionThree = {
     chart: chart,
     states: states,
-    colors: ['#0dcaf0', '#e5e9f2'],
+    colors: ["#0dcaf0", "#e5e9f2"],
     plotOptions: plotOptions,
     stroke: stroke,
     fill: { opacity: 1 },
@@ -295,29 +295,29 @@ export default function WebsiteAnalytics() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 5,
       },
     },
     states: states,
-    colors: ['#506fd9', '#fff', '#85b6fe'],
+    colors: ["#506fd9", "#fff", "#85b6fe"],
     plotOptions: {
-      bar: { columnWidth: '35%' },
+      bar: { columnWidth: "35%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 6,
       decimalsInFloat: 0,
       labels: {
         style: {
-          fontSize: '11px',
+          fontSize: "11px",
         },
       },
     },
@@ -326,8 +326,8 @@ export default function WebsiteAnalytics() {
       tickAmount: 8,
       labels: {
         style: {
-          colors: ['#a2abb5'],
-          fontSize: '11px',
+          colors: ["#a2abb5"],
+          fontSize: "11px",
         },
       },
     },
@@ -339,11 +339,11 @@ export default function WebsiteAnalytics() {
 
   const seriesFive = [
     {
-      name: 'Growth',
+      name: "Growth",
       data: dp1,
     },
     {
-      name: 'Actual',
+      name: "Actual",
       data: dp2,
     },
   ];
@@ -354,10 +354,10 @@ export default function WebsiteAnalytics() {
       stacked: true,
       toolbar: { show: false },
     },
-    colors: ['#9dc3fc', '#506fd9'],
+    colors: ["#9dc3fc", "#506fd9"],
     dataLabels: { enabled: false },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         bottom: 0,
@@ -368,12 +368,12 @@ export default function WebsiteAnalytics() {
       },
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
       width: 1.5,
     },
     fill: {
-      colors: ['#fff', '#81adee'],
-      type: ['solid', 'gradient'],
+      colors: ["#fff", "#81adee"],
+      type: ["solid", "gradient"],
       opacity: 1,
       gradient: {
         opacityFrom: 0.35,
@@ -388,12 +388,12 @@ export default function WebsiteAnalytics() {
       show: false,
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 11,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
       axisBorder: { show: false },
@@ -402,32 +402,32 @@ export default function WebsiteAnalytics() {
 
   const regStyle = {
     selected: {
-      fill: '#506fd9',
+      fill: "#506fd9",
     },
     initial: {
-      fill: '#d9dde7',
+      fill: "#d9dde7",
     },
   };
 
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
   const switchSkin = skin => {
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
     }
   };
@@ -591,7 +591,7 @@ export default function WebsiteAnalytics() {
               </Card.Header>
               <Card.Body className="p-3">
                 <h2 className="performance-value mb-0">
-                  9.8{' '}
+                  9.8{" "}
                   <small className="text-success d-flex align-items-center">
                     <i className="ri-arrow-up-line"></i> 2.8%
                   </small>
@@ -614,45 +614,45 @@ export default function WebsiteAnalytics() {
                   <tbody>
                     {[
                       {
-                        dot: 'primary',
-                        label: 'Excellent',
-                        count: '3,007',
-                        percent: '50',
+                        dot: "primary",
+                        label: "Excellent",
+                        count: "3,007",
+                        percent: "50",
                       },
                       {
-                        dot: 'success',
-                        label: 'Very Good',
-                        count: '1,674',
-                        percent: '25',
+                        dot: "success",
+                        label: "Very Good",
+                        count: "1,674",
+                        percent: "25",
                       },
                       {
-                        dot: 'orange',
-                        label: 'Good',
-                        count: '125',
-                        percent: '6',
+                        dot: "orange",
+                        label: "Good",
+                        count: "125",
+                        percent: "6",
                       },
                       {
-                        dot: 'pink',
-                        label: 'Fair',
-                        count: '98',
-                        percent: '5',
+                        dot: "pink",
+                        label: "Fair",
+                        count: "98",
+                        percent: "5",
                       },
                       {
-                        dot: 'info',
-                        label: 'Poor',
-                        count: '512',
-                        percent: '10',
+                        dot: "info",
+                        label: "Poor",
+                        count: "512",
+                        percent: "10",
                       },
                       {
-                        dot: 'indigo',
-                        label: 'Very Poor',
-                        count: '81',
-                        percent: '4',
+                        dot: "indigo",
+                        label: "Very Poor",
+                        count: "81",
+                        percent: "4",
                       },
                     ].map((item, index) => (
                       <tr key={index}>
                         <td>
-                          <div className={'badge-dot bg-' + item.dot}></div>
+                          <div className={"badge-dot bg-" + item.dot}></div>
                         </td>
                         <td>{item.label}</td>
                         <td>{item.count}</td>
@@ -680,7 +680,7 @@ export default function WebsiteAnalytics() {
               <Card.Body>
                 <p className="fs-sm mb-4">
                   Tells you where your visitors originated from, such as search
-                  engines, social networks or website referrals.{' '}
+                  engines, social networks or website referrals.{" "}
                   <Link to="">Learn more</Link>
                 </p>
 
@@ -748,46 +748,46 @@ export default function WebsiteAnalytics() {
                   <tbody>
                     {[
                       {
-                        icon: 'ri-chrome-line',
-                        name: 'Google Chrome',
-                        bounce: '40.95%',
-                        conversion: '19.45%',
+                        icon: "ri-chrome-line",
+                        name: "Google Chrome",
+                        bounce: "40.95%",
+                        conversion: "19.45%",
                       },
                       {
-                        icon: 'ri-firefox-line',
-                        name: 'Mozilla Firefox',
-                        bounce: '47.58%',
-                        conversion: '19.99%',
+                        icon: "ri-firefox-line",
+                        name: "Mozilla Firefox",
+                        bounce: "47.58%",
+                        conversion: "19.99%",
                       },
                       {
-                        icon: 'ri-safari-line',
-                        name: 'Apple Safari',
-                        bounce: '56.50%',
-                        conversion: '11.00%',
+                        icon: "ri-safari-line",
+                        name: "Apple Safari",
+                        bounce: "56.50%",
+                        conversion: "11.00%",
                       },
                       {
-                        icon: 'ri-edge-line',
-                        name: 'Microsoft Edge',
-                        bounce: '59.62%',
-                        conversion: '4.46%',
+                        icon: "ri-edge-line",
+                        name: "Microsoft Edge",
+                        bounce: "59.62%",
+                        conversion: "4.46%",
                       },
                       {
-                        icon: 'ri-opera-line',
-                        name: 'Opera',
-                        bounce: '52.50%',
-                        conversion: '8.75%',
+                        icon: "ri-opera-line",
+                        name: "Opera",
+                        bounce: "52.50%",
+                        conversion: "8.75%",
                       },
                       {
-                        icon: 'ri-ie-line',
-                        name: 'Internet Explorer',
-                        bounce: '44.95%',
-                        conversion: '8.12%',
+                        icon: "ri-ie-line",
+                        name: "Internet Explorer",
+                        bounce: "44.95%",
+                        conversion: "8.12%",
                       },
                     ].map((item, index) => (
                       <tr key={index}>
                         <td>
                           <div className="d-flex align-items-center fw-medium">
-                            <i className={item.icon + ' fs-24 lh-1 me-2'}></i>{' '}
+                            <i className={item.icon + " fs-24 lh-1 me-2"}></i>{" "}
                             {item.name}
                           </div>
                         </td>
@@ -829,46 +829,46 @@ export default function WebsiteAnalytics() {
                       <tbody>
                         {[
                           {
-                            bg: 'twitter',
-                            country: 'United States',
-                            amount: '$150,200.80',
+                            bg: "twitter",
+                            country: "United States",
+                            amount: "$150,200.80",
                           },
                           {
-                            bg: 'primary',
-                            country: 'India',
-                            amount: '$138,910.20',
+                            bg: "primary",
+                            country: "India",
+                            amount: "$138,910.20",
                           },
                           {
-                            bg: 'teal',
-                            country: 'Australia',
-                            amount: '$132,050.00',
+                            bg: "teal",
+                            country: "Australia",
+                            amount: "$132,050.00",
                           },
                           {
-                            bg: 'danger',
-                            country: 'China',
-                            amount: '$127,762.10',
+                            bg: "danger",
+                            country: "China",
+                            amount: "$127,762.10",
                           },
                           {
-                            bg: 'orange',
-                            country: 'Brazil',
-                            amount: '$117,087.50',
+                            bg: "orange",
+                            country: "Brazil",
+                            amount: "$117,087.50",
                           },
                           {
-                            bg: 'info',
-                            country: 'Japan',
-                            amount: '$102,994.27',
+                            bg: "info",
+                            country: "Japan",
+                            amount: "$102,994.27",
                           },
                           {
-                            bg: 'warning',
-                            country: 'Saudi Arabia',
-                            amount: '$99,687.21',
+                            bg: "warning",
+                            country: "Saudi Arabia",
+                            amount: "$99,687.21",
                           },
                         ].map((item, index) => (
                           <tr key={index}>
                             <td>
                               <span
-                                className={'badge-dot me-2 bg-' + item.bg}
-                              ></span>{' '}
+                                className={"badge-dot me-2 bg-" + item.bg}
+                              ></span>{" "}
                               <span className="fw-medium">{item.country}</span>
                             </td>
                             <td>{item.amount}</td>
@@ -884,16 +884,16 @@ export default function WebsiteAnalytics() {
                   <Col md="8" className="mt-5 mt-md-0">
                     <VectorMap
                       map={worldMill}
-                      backgroundColor={skin === 'dark' ? '#192030' : '#fff'}
+                      backgroundColor={skin === "dark" ? "#192030" : "#fff"}
                       regionStyle={regStyle}
                       selectedRegions={[
-                        'US',
-                        'IN',
-                        'AU',
-                        'BR',
-                        'CN',
-                        'JP',
-                        'SA',
+                        "US",
+                        "IN",
+                        "AU",
+                        "BR",
+                        "CN",
+                        "JP",
+                        "SA",
                       ]}
                       className="vmap-one"
                     />
@@ -930,64 +930,64 @@ export default function WebsiteAnalytics() {
               <tbody>
                 {[
                   {
-                    source: 'Organic search',
-                    users: '350',
-                    new: '22',
-                    sessions: '5,628',
-                    bounce: '25.60%',
-                    pages: '1.92',
-                    avg: '00:01:05',
-                    trans: '340,103',
-                    revenue: '$2.65M',
-                    rate: '4.50%',
+                    source: "Organic search",
+                    users: "350",
+                    new: "22",
+                    sessions: "5,628",
+                    bounce: "25.60%",
+                    pages: "1.92",
+                    avg: "00:01:05",
+                    trans: "340,103",
+                    revenue: "$2.65M",
+                    rate: "4.50%",
                   },
                   {
-                    source: 'Social media',
-                    users: '276',
-                    new: '18',
-                    sessions: '5,100',
-                    bounce: '23.66%',
-                    pages: '1.89',
-                    avg: '00:01:03',
-                    trans: '321,960',
-                    revenue: '$2.51M',
-                    rate: '4.36%',
+                    source: "Social media",
+                    users: "276",
+                    new: "18",
+                    sessions: "5,100",
+                    bounce: "23.66%",
+                    pages: "1.89",
+                    avg: "00:01:03",
+                    trans: "321,960",
+                    revenue: "$2.51M",
+                    rate: "4.36%",
                   },
                   {
-                    source: 'Referral',
-                    users: '246',
-                    new: '17',
-                    sessions: '4,880',
-                    bounce: '26.22%',
-                    pages: '1.78',
-                    avg: '00:01:09',
-                    trans: '302,767',
-                    revenue: '$2.1M',
-                    rate: '4.34%',
+                    source: "Referral",
+                    users: "246",
+                    new: "17",
+                    sessions: "4,880",
+                    bounce: "26.22%",
+                    pages: "1.78",
+                    avg: "00:01:09",
+                    trans: "302,767",
+                    revenue: "$2.1M",
+                    rate: "4.34%",
                   },
                   {
-                    source: 'Email',
-                    users: '187',
-                    new: '14',
-                    sessions: '4,450',
-                    bounce: '24.97%',
-                    pages: '1.35',
-                    avg: '00:02:07',
-                    trans: '279,300',
-                    revenue: '$1.86M',
-                    rate: '3.99%',
+                    source: "Email",
+                    users: "187",
+                    new: "14",
+                    sessions: "4,450",
+                    bounce: "24.97%",
+                    pages: "1.35",
+                    avg: "00:02:07",
+                    trans: "279,300",
+                    revenue: "$1.86M",
+                    rate: "3.99%",
                   },
                   {
-                    source: 'Other',
-                    users: '125',
-                    new: '13',
-                    sessions: '3,300',
-                    bounce: '21.67%',
-                    pages: '1.14',
-                    avg: '00:02:01',
-                    trans: '240,200',
-                    revenue: '$1.51M',
-                    rate: '2.84%',
+                    source: "Other",
+                    users: "125",
+                    new: "13",
+                    sessions: "3,300",
+                    bounce: "21.67%",
+                    pages: "1.14",
+                    avg: "00:02:01",
+                    trans: "240,200",
+                    revenue: "$1.51M",
+                    rate: "2.84%",
                   },
                 ].map((item, index) => (
                   <tr key={index}>

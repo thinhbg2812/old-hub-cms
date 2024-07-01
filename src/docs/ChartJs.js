@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav, Row, Col } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
-import 'chart.js/auto';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav, Row, Col } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import "chart.js/auto";
 
 export default function ChartJs() {
   useEffect(() => {
@@ -12,23 +12,23 @@ export default function ChartJs() {
   }, []);
 
   const ctxLabel = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const ctxData1 = [20, 60, 50, 45, 50, 60, 70, 40, 45, 35, 25, 30];
   const ctxData2 = [10, 40, 30, 40, 60, 55, 45, 35, 30, 20, 15, 20];
-  const ctxColor1 = '#506fd9';
-  const ctxColor2 = '#DBDFFD';
+  const ctxColor1 = "#506fd9";
+  const ctxColor2 = "#DBDFFD";
 
   const dataBar = {
     labels: ctxLabel,
@@ -79,7 +79,7 @@ export default function ChartJs() {
   };
 
   const optionBar2 = {
-    indexAxis: 'y',
+    indexAxis: "y",
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
@@ -135,12 +135,12 @@ export default function ChartJs() {
     datasets: [
       {
         data: ctxData1,
-        backgroundColor: 'rgba(80,111,217, .5)',
+        backgroundColor: "rgba(80,111,217, .5)",
         barPercentage: 0.5,
       },
       {
         data: ctxData2,
-        backgroundColor: 'rgba(219,223,253, .5)',
+        backgroundColor: "rgba(219,223,253, .5)",
         barPercentage: 0.5,
       },
     ],
@@ -233,16 +233,16 @@ export default function ChartJs() {
   };
 
   const dataPie = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
     datasets: [
       {
         data: [20, 20, 30, 5, 25],
         backgroundColor: [
-          '#ab85e8',
-          '#80bdff',
-          '#80e6e6',
-          '#e5eff1',
-          '#baee80',
+          "#ab85e8",
+          "#80bdff",
+          "#80e6e6",
+          "#e5eff1",
+          "#baee80",
         ],
       },
     ],

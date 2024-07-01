@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Form, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Select from 'react-select';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Form, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import Select from "react-select";
 
 export default function FormSelects() {
   useEffect(() => {
@@ -11,9 +11,9 @@ export default function FormSelects() {
   }, []);
 
   const selectOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
   ];
 
   return (
@@ -196,7 +196,7 @@ export default function FormSelects() {
           </h5>
           <p>
             React Select will respond to the disabled attribute on select
-            elements. You can also initialize it with{' '}
+            elements. You can also initialize it with{" "}
             <code>{`isDisabled={true}`}</code> to get the same effect.
           </p>
 

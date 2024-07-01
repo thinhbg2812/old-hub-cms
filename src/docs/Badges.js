@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Badge, Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Badge, Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Badges() {
   useEffect(() => {
@@ -33,14 +33,14 @@ export default function Badges() {
           <Card className="card-example">
             <Card.Body className="d-flex flex-wrap gap-2">
               {[
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
+                "primary",
+                "secondary",
+                "success",
+                "danger",
+                "warning",
+                "info",
+                "light",
+                "dark",
               ].map((bg, index) => (
                 <Badge key={index} bg={bg}>
                   {bg[0].toUpperCase() + bg.slice(1)}
@@ -75,14 +75,14 @@ export default function Badges() {
           <Card className="card-example">
             <Card.Body className="d-flex flex-wrap gap-2">
               {[
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
+                "primary",
+                "secondary",
+                "success",
+                "danger",
+                "warning",
+                "info",
+                "light",
+                "dark",
               ].map((bg, index) => (
                 <Badge key={index} bg={bg} pill>
                   {bg[0].toUpperCase() + bg.slice(1)}

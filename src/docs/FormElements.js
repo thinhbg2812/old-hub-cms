@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Form, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Form, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function FormElements() {
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function FormElements() {
             Sizing
           </h5>
           <p>
-            Set heights using classes like <code>.form-control-lg</code> and{' '}
+            Set heights using classes like <code>.form-control-lg</code> and{" "}
             <code>.form-control-sm</code>.
           </p>
 

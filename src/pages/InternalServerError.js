@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button, Col, Container, Nav, Row } from 'react-bootstrap';
-import pageSvg from '../assets/svg/pair_programming.svg';
+import React from "react";
+import { Button, Col, Container, Nav, Row } from "react-bootstrap";
+import pageSvg from "../assets/svg/pair_programming.svg";
 
 export default function InternalServerError() {
-  document.body.classList.remove('sidebar-show');
+  document.body.classList.remove("sidebar-show");
 
   return (
     <div className="page-error">

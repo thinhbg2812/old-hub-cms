@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Button, Col, Form, Modal, Nav, Row } from 'react-bootstrap';
-import ReactDatePicker from 'react-datepicker';
-import Avatar from '../components/Avatar';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Header from "../layouts/Header";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { Button, Col, Form, Modal, Nav, Row } from "react-bootstrap";
+import ReactDatePicker from "react-datepicker";
+import Avatar from "../components/Avatar";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 
 import {
   calendarEvents,
@@ -16,20 +16,20 @@ import {
   discoveredEvents,
   meetupEvents,
   otherEvents,
-} from '../data/CalendarEvents';
+} from "../data/CalendarEvents";
 
-import img6 from '../assets/img/img6.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img14 from '../assets/img/img14.jpg';
-import img15 from '../assets/img/img15.jpg';
+import img6 from "../assets/img/img6.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img14 from "../assets/img/img14.jpg";
+import img15 from "../assets/img/img15.jpg";
 
 export default function AppCalendar() {
   useEffect(() => {
-    document.body.classList.add('app-calendar');
+    document.body.classList.add("app-calendar");
     return () => {
-      document.body.classList.remove('app-calendar');
+      document.body.classList.remove("app-calendar");
     };
   }, []);
 
@@ -46,7 +46,7 @@ export default function AppCalendar() {
   return (
     <React.Fragment>
       <Header />
-      <div className={'main main-calendar' + (isSidebarShow ? ' show' : '')}>
+      <div className={"main main-calendar" + (isSidebarShow ? " show" : "")}>
         <div className="calendar-sidebar">
           <PerfectScrollbar className="sidebar-body">
             <div className="d-grid mb-3">
@@ -70,29 +70,29 @@ export default function AppCalendar() {
             <ul className="event-group mb-5">
               {[
                 {
-                  title: 'Project Concept Meeting',
-                  schedule: '08:30am - 11:30am',
+                  title: "Project Concept Meeting",
+                  schedule: "08:30am - 11:30am",
                   mutual: {
                     avatar: [img15, img14],
-                    user: 'Lea',
+                    user: "Lea",
                     count: 4,
                   },
                 },
                 {
-                  title: 'Company Standup Meeting',
-                  schedule: '04:30PM - 05:00PM',
+                  title: "Company Standup Meeting",
+                  schedule: "04:30PM - 05:00PM",
                   mutual: {
                     avatar: [img10, img8, img6],
-                    user: 'Socrates',
+                    user: "Socrates",
                     count: 8,
                   },
                 },
                 {
-                  title: 'Product Presentation',
-                  schedule: 'Tomorrow, 09:30AM - 10:30AM',
+                  title: "Product Presentation",
+                  schedule: "Tomorrow, 09:30AM - 10:30AM",
                   mutual: {
                     avatar: [img15, img14, img12],
-                    user: 'Marie',
+                    user: "Marie",
                     count: 5,
                   },
                 },
@@ -149,9 +149,9 @@ export default function AppCalendar() {
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="dayGridMonth"
             headerToolbar={{
-              left: 'custom1 prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay',
+              left: "custom1 prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
             eventSources={[
               calendarEvents,
@@ -163,7 +163,7 @@ export default function AppCalendar() {
             ]}
             customButtons={{
               custom1: {
-                icon: 'chevron-left',
+                icon: "chevron-left",
                 click: function () {
                   setSidebarShow(!isSidebarShow);
                 },

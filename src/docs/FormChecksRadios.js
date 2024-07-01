@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Form, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Form, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function FormChecksRadios() {
   useEffect(() => {
@@ -136,7 +136,7 @@ export default function FormChecksRadios() {
             Switches
           </h5>
           <p>
-            A switch has the markup of a custom checkbox but uses the type{' '}
+            A switch has the markup of a custom checkbox but uses the type{" "}
             <code>switch</code> to render a toggle switch.
           </p>
 

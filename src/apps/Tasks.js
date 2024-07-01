@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Badge, Card, Col, Nav, ProgressBar, Row } from 'react-bootstrap';
-import ReactDatePicker from 'react-datepicker';
-import Avatar from '../components/Avatar';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Badge, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
+import ReactDatePicker from "react-datepicker";
+import Avatar from "../components/Avatar";
+import { Link } from "react-router-dom";
 
-import img8 from '../assets/img/img8.jpg';
-import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
-import img13 from '../assets/img/img13.jpg';
-import img15 from '../assets/img/img15.jpg';
-import img18 from '../assets/img/img18.jpg';
-import img19 from '../assets/img/img19.jpg';
+import img8 from "../assets/img/img8.jpg";
+import img9 from "../assets/img/img9.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
+import img13 from "../assets/img/img13.jpg";
+import img15 from "../assets/img/img15.jpg";
+import img18 from "../assets/img/img18.jpg";
+import img19 from "../assets/img/img19.jpg";
 
 export default function Tasks() {
   useEffect(() => {
-    document.body.classList.add('app-task');
+    document.body.classList.add("app-task");
     return () => {
-      document.body.classList.remove('app-task');
+      document.body.classList.remove("app-task");
     };
   }, []);
 
@@ -61,16 +61,16 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'success',
-                        label: 'Design',
+                        bg: "success",
+                        label: "Design",
                       },
                     ],
-                    date: 'Today',
-                    title: 'Create illustrations',
-                    assignee: 'Dyanne Rose',
-                    text: 'Lorem ipsum dolor sit amet, consec tetur adi piscing elit folor itamet...',
+                    date: "Today",
+                    title: "Create illustrations",
+                    assignee: "Dyanne Rose",
+                    text: "Lorem ipsum dolor sit amet, consec tetur adi piscing elit folor itamet...",
                     progress: 54,
-                    hour: '3 hours left',
+                    hour: "3 hours left",
                     mutual: [img15, img12, img18, img19],
                     views: 11,
                     comments: 2,
@@ -78,15 +78,15 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'info',
-                        label: 'Promotions',
+                        bg: "info",
+                        label: "Promotions",
                       },
                     ],
-                    date: 'Tomorrow',
-                    title: 'Build promotion strategy',
-                    assignee: 'Reynante Labares',
+                    date: "Tomorrow",
+                    title: "Build promotion strategy",
+                    assignee: "Reynante Labares",
                     progress: 74,
-                    hour: '1 day left',
+                    hour: "1 day left",
                     mutual: [img18, img19],
                     views: 40,
                     comments: 5,
@@ -94,15 +94,15 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'pink',
-                        label: 'Marketing',
+                        bg: "pink",
+                        label: "Marketing",
                       },
                     ],
-                    date: 'Aug 08',
-                    title: 'Run market research',
-                    assignee: 'Leah Chua',
+                    date: "Aug 08",
+                    title: "Run market research",
+                    assignee: "Leah Chua",
                     progress: 20,
-                    hour: '3 days left',
+                    hour: "3 days left",
                     mutual: [img18, img19, img10],
                     views: 1,
                     comments: 0,
@@ -110,20 +110,20 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'success',
-                        label: 'Design',
+                        bg: "success",
+                        label: "Design",
                       },
                       {
-                        bg: 'primary',
-                        label: 'Updates',
+                        bg: "primary",
+                        label: "Updates",
                       },
                     ],
-                    date: 'Aug 10',
-                    title: 'Architecto beatae vitae dicta',
-                    assignee: 'Rolando Paloso',
-                    text: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit...',
+                    date: "Aug 10",
+                    title: "Architecto beatae vitae dicta",
+                    assignee: "Rolando Paloso",
+                    text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit...",
                     progress: 54,
-                    hour: '5 days left',
+                    hour: "5 days left",
                     mutual: [img15, img12, img18, img19, img11, img10],
                     views: 20,
                     comments: 5,
@@ -151,7 +151,7 @@ export default function Tasks() {
                         <span>
                           <strong className="fw-medium">
                             {task.progress}%
-                          </strong>{' '}
+                          </strong>{" "}
                           complete
                         </span>
                         <span>{task.hour}</span>
@@ -194,19 +194,19 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'info',
-                        label: 'Promotions',
+                        bg: "info",
+                        label: "Promotions",
                       },
                       {
-                        bg: 'indigo',
-                        label: 'Updates',
+                        bg: "indigo",
+                        label: "Updates",
                       },
                     ],
-                    date: 'Sep 20',
-                    title: 'Create promotion strategy',
-                    assignee: 'Roel Recamadas',
+                    date: "Sep 20",
+                    title: "Create promotion strategy",
+                    assignee: "Roel Recamadas",
                     progress: 0,
-                    hour: '2 weeks',
+                    hour: "2 weeks",
                     mutual: [img18],
                     views: 2,
                     comments: 0,
@@ -214,20 +214,20 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'success',
-                        label: 'Design',
+                        bg: "success",
+                        label: "Design",
                       },
                       {
-                        bg: 'pink',
-                        label: 'Marketing',
+                        bg: "pink",
+                        label: "Marketing",
                       },
                     ],
-                    date: 'Sep 25',
-                    title: 'Create new landing page',
-                    assignee: 'Charles Castil',
-                    text: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...',
+                    date: "Sep 25",
+                    title: "Create new landing page",
+                    assignee: "Charles Castil",
+                    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...",
                     progress: 0,
-                    hour: '3 weeks',
+                    hour: "3 weeks",
                     mutual: [img18, img10, img11],
                     views: 0,
                     comments: 0,
@@ -235,15 +235,15 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'primary',
-                        label: 'Updates',
+                        bg: "primary",
+                        label: "Updates",
                       },
                     ],
-                    date: 'Sep 30',
-                    title: 'Ullamco laboris nisi ut aliquip',
-                    assignee: 'Mienard Lumaad',
+                    date: "Sep 30",
+                    title: "Ullamco laboris nisi ut aliquip",
+                    assignee: "Mienard Lumaad",
                     progress: 0,
-                    hour: '3 weeks',
+                    hour: "3 weeks",
                     mutual: [img12, img13],
                     views: 2,
                     comments: 1,
@@ -251,16 +251,16 @@ export default function Tasks() {
                   {
                     badge: [
                       {
-                        bg: 'info',
-                        label: 'Promotions',
+                        bg: "info",
+                        label: "Promotions",
                       },
                     ],
-                    date: 'Oct 05',
-                    title: 'Natus error sit accusantium',
-                    assignee: 'Mienard Lumaad',
-                    text: 'Quis autem vel eum iure reprehenderit',
+                    date: "Oct 05",
+                    title: "Natus error sit accusantium",
+                    assignee: "Mienard Lumaad",
+                    text: "Quis autem vel eum iure reprehenderit",
                     progress: 0,
-                    hour: '4 weeks',
+                    hour: "4 weeks",
                     mutual: [img12, img13, img8, img9],
                     views: 0,
                     comments: 0,
@@ -288,7 +288,7 @@ export default function Tasks() {
                         <span>
                           <strong className="fw-medium">
                             {task.progress}%
-                          </strong>{' '}
+                          </strong>{" "}
                           complete
                         </span>
                         <span>{task.hour}</span>
@@ -332,32 +332,32 @@ export default function Tasks() {
               <Row className="g-2">
                 {[
                   {
-                    bg: 'success',
+                    bg: "success",
                     percent: 58,
-                    title: 'Design',
+                    title: "Design",
                     task: 2,
                   },
                   {
-                    bg: 'info',
+                    bg: "info",
                     percent: 36,
-                    title: 'Promotions',
+                    title: "Promotions",
                     task: 3,
                   },
                   {
-                    bg: 'primary',
+                    bg: "primary",
                     percent: 72,
-                    title: 'Updates',
+                    title: "Updates",
                     task: 1,
                   },
                   {
-                    bg: 'pink',
+                    bg: "pink",
                     percent: 20,
-                    title: 'Marketing',
+                    title: "Marketing",
                     task: 3,
                   },
                 ].map((category, index) => (
                   <Col xl="6" key={index}>
-                    <div className={'task-category p-3 bg-' + category.bg}>
+                    <div className={"task-category p-3 bg-" + category.bg}>
                       <h2 className="category-percent mb-4">
                         {category.percent}
                         <span>%</span>

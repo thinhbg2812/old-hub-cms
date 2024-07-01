@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import { Card, Container, Nav } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import ReactApexChart from 'react-apexcharts';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
+import { Card, Container, Nav } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import ReactApexChart from "react-apexcharts";
 
 export default function ApexCharts() {
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function ApexCharts() {
         show: false,
       },
     },
-    colors: ['#506fd9'],
+    colors: ["#506fd9"],
     plotOptions: {
       bar: {
         borderRadius: 2,
@@ -35,16 +35,16 @@ export default function ApexCharts() {
     },
     xaxis: {
       categories: [
-        'South Korea',
-        'Canada',
-        'United Kingdom',
-        'Netherlands',
-        'Italy',
-        'France',
-        'Japan',
-        'United States',
-        'China',
-        'Germany',
+        "South Korea",
+        "Canada",
+        "United Kingdom",
+        "Netherlands",
+        "Italy",
+        "France",
+        "Japan",
+        "United States",
+        "China",
+        "Germany",
       ],
     },
   };
@@ -52,15 +52,15 @@ export default function ApexCharts() {
   // Column Chart
   const seriesColumn = [
     {
-      name: 'Net Profit',
+      name: "Net Profit",
       data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
     },
     {
-      name: 'Revenue',
+      name: "Revenue",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
     {
-      name: 'Free Cash Flow',
+      name: "Free Cash Flow",
       data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
     },
   ];
@@ -71,12 +71,12 @@ export default function ApexCharts() {
         show: false,
       },
     },
-    colors: ['#506fd9', '#85b6ff', '#a8b5c3'],
+    colors: ["#506fd9", "#85b6ff", "#a8b5c3"],
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '55%',
-        endingShape: 'rounded',
+        columnWidth: "55%",
+        endingShape: "rounded",
       },
     },
     dataLabels: {
@@ -85,19 +85,19 @@ export default function ApexCharts() {
     stroke: {
       show: true,
       width: 2,
-      colors: ['transparent'],
+      colors: ["transparent"],
     },
     xaxis: {
       categories: [
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
       ],
     },
     fill: {
@@ -106,7 +106,7 @@ export default function ApexCharts() {
     tooltip: {
       y: {
         formatter: function (val) {
-          return '$ ' + val + ' thousands';
+          return "$ " + val + " thousands";
         },
       },
     },
@@ -115,19 +115,19 @@ export default function ApexCharts() {
   // Column Chart
   const seriesStacked = [
     {
-      name: 'PRODUCT A',
+      name: "PRODUCT A",
       data: [44, 55, 41, 67, 22, 43],
     },
     {
-      name: 'PRODUCT B',
+      name: "PRODUCT B",
       data: [13, 23, 20, 8, 13, 27],
     },
     {
-      name: 'PRODUCT C',
+      name: "PRODUCT C",
       data: [11, 17, 15, 15, 21, 14],
     },
     {
-      name: 'PRODUCT D',
+      name: "PRODUCT D",
       data: [21, 7, 25, 13, 22, 8],
     },
   ];
@@ -142,13 +142,13 @@ export default function ApexCharts() {
         enabled: true,
       },
     },
-    colors: ['#506fd9', '#85b6ff', '#a8b5c3', '#e5e9f2'],
+    colors: ["#506fd9", "#85b6ff", "#a8b5c3", "#e5e9f2"],
     responsive: [
       {
         breakpoint: 480,
         options: {
           legend: {
-            position: 'bottom',
+            position: "bottom",
             offsetX: -10,
             offsetY: 0,
           },
@@ -162,7 +162,7 @@ export default function ApexCharts() {
           total: {
             enabled: true,
             style: {
-              fontSize: '13px',
+              fontSize: "13px",
               fontWeight: 900,
             },
           },
@@ -170,18 +170,18 @@ export default function ApexCharts() {
       },
     },
     xaxis: {
-      type: 'datetime',
+      type: "datetime",
       categories: [
-        '01/01/2011 GMT',
-        '01/02/2011 GMT',
-        '01/03/2011 GMT',
-        '01/04/2011 GMT',
-        '01/05/2011 GMT',
-        '01/06/2011 GMT',
+        "01/01/2011 GMT",
+        "01/02/2011 GMT",
+        "01/03/2011 GMT",
+        "01/04/2011 GMT",
+        "01/05/2011 GMT",
+        "01/06/2011 GMT",
       ],
     },
     legend: {
-      show: 'false',
+      show: "false",
     },
     fill: {
       opacity: 1,
@@ -191,7 +191,7 @@ export default function ApexCharts() {
   // Line Chart
   const seriesLine = [
     {
-      name: 'Desktops',
+      name: "Desktops",
       data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
     },
   ];
@@ -209,30 +209,30 @@ export default function ApexCharts() {
       enabled: false,
     },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     title: {
-      text: 'Product Trends by Month',
-      align: 'left',
+      text: "Product Trends by Month",
+      align: "left",
     },
     grid: {
       row: {
-        colors: ['#f3f3f3', 'transparent'],
+        colors: ["#f3f3f3", "transparent"],
         opacity: 0.5,
       },
     },
     xaxis: {
       categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
       ],
     },
   };
@@ -240,7 +240,7 @@ export default function ApexCharts() {
   // Area Chart
   const seriesArea = [
     {
-      name: 'STOCK ABC',
+      name: "STOCK ABC",
       data: [
         8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3,
         8481.85, 8487.7, 8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9,
@@ -262,39 +262,39 @@ export default function ApexCharts() {
       enabled: false,
     },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     labels: [
-      '13 Nov 2017',
-      '14 Nov 2017',
-      '15 Nov 2017',
-      '16 Nov 2017',
-      '17 Nov 2017',
-      '20 Nov 2017',
-      '21 Nov 2017',
-      '22 Nov 2017',
-      '23 Nov 2017',
-      '24 Nov 2017',
-      '27 Nov 2017',
-      '28 Nov 2017',
-      '29 Nov 2017',
-      '30 Nov 2017',
-      '01 Dec 2017',
-      '04 Dec 2017',
-      '05 Dec 2017',
-      '06 Dec 2017',
-      '07 Dec 2017',
-      '08 Dec 2017',
+      "13 Nov 2017",
+      "14 Nov 2017",
+      "15 Nov 2017",
+      "16 Nov 2017",
+      "17 Nov 2017",
+      "20 Nov 2017",
+      "21 Nov 2017",
+      "22 Nov 2017",
+      "23 Nov 2017",
+      "24 Nov 2017",
+      "27 Nov 2017",
+      "28 Nov 2017",
+      "29 Nov 2017",
+      "30 Nov 2017",
+      "01 Dec 2017",
+      "04 Dec 2017",
+      "05 Dec 2017",
+      "06 Dec 2017",
+      "07 Dec 2017",
+      "08 Dec 2017",
     ],
     xaxis: {
-      type: 'datetime',
+      type: "datetime",
     },
     yaxis: {
       opposite: true,
     },
     legend: {
-      horizontalAlign: 'left',
+      horizontalAlign: "left",
     },
   };
 
@@ -311,12 +311,12 @@ export default function ApexCharts() {
         show: false,
       },
     },
-    colors: ['#506fd9'],
+    colors: ["#506fd9"],
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '45%',
-        endingShape: 'rounded',
+        columnWidth: "45%",
+        endingShape: "rounded",
         borderRadius: 12,
       },
     },
@@ -326,19 +326,19 @@ export default function ApexCharts() {
     stroke: {
       show: true,
       width: 2,
-      colors: ['transparent'],
+      colors: ["transparent"],
     },
     xaxis: {
       categories: [
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
       ],
     },
     fill: {
@@ -347,7 +347,7 @@ export default function ApexCharts() {
     tooltip: {
       y: {
         formatter: function (val) {
-          return '$ ' + val + ' thousands';
+          return "$ " + val + " thousands";
         },
       },
     },
@@ -355,7 +355,7 @@ export default function ApexCharts() {
 
   const seriesGradient = [
     {
-      name: 'STOCK ABC',
+      name: "STOCK ABC",
       data: [
         8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3,
         8481.85, 8487.7, 8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9,
@@ -374,7 +374,7 @@ export default function ApexCharts() {
       },
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         opacityFrom: 0,
         opacityTo: 0.35,
@@ -384,33 +384,33 @@ export default function ApexCharts() {
       enabled: false,
     },
     stroke: {
-      curve: 'straight',
+      curve: "straight",
       width: 2,
     },
     labels: [
-      '13 Nov 2017',
-      '14 Nov 2017',
-      '15 Nov 2017',
-      '16 Nov 2017',
-      '17 Nov 2017',
-      '20 Nov 2017',
-      '21 Nov 2017',
-      '22 Nov 2017',
-      '23 Nov 2017',
-      '24 Nov 2017',
-      '27 Nov 2017',
-      '28 Nov 2017',
-      '29 Nov 2017',
-      '30 Nov 2017',
-      '01 Dec 2017',
-      '04 Dec 2017',
-      '05 Dec 2017',
-      '06 Dec 2017',
-      '07 Dec 2017',
-      '08 Dec 2017',
+      "13 Nov 2017",
+      "14 Nov 2017",
+      "15 Nov 2017",
+      "16 Nov 2017",
+      "17 Nov 2017",
+      "20 Nov 2017",
+      "21 Nov 2017",
+      "22 Nov 2017",
+      "23 Nov 2017",
+      "24 Nov 2017",
+      "27 Nov 2017",
+      "28 Nov 2017",
+      "29 Nov 2017",
+      "30 Nov 2017",
+      "01 Dec 2017",
+      "04 Dec 2017",
+      "05 Dec 2017",
+      "06 Dec 2017",
+      "07 Dec 2017",
+      "08 Dec 2017",
     ],
     xaxis: {
-      type: 'datetime',
+      type: "datetime",
     },
     yaxis: {
       show: false,
@@ -420,7 +420,7 @@ export default function ApexCharts() {
   // Pie and Donut Chart
   const seriesPie = [44, 55, 13, 43, 22];
   const optionPie = {
-    labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
     responsive: [
       {
         breakpoint: 480,
@@ -429,7 +429,7 @@ export default function ApexCharts() {
             width: 200,
           },
           legend: {
-            position: 'bottom',
+            position: "bottom",
           },
         },
       },
@@ -446,7 +446,7 @@ export default function ApexCharts() {
             width: 200,
           },
           legend: {
-            position: 'bottom',
+            position: "bottom",
           },
         },
       },

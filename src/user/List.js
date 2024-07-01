@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import cx from 'classnames';
-import TreeView, { flattenTree } from 'react-accessible-treeview';
+import React, { useEffect, useRef, useState } from "react";
+import cx from "classnames";
+import TreeView, { flattenTree } from "react-accessible-treeview";
 import {
   Col,
   Form,
@@ -15,26 +15,26 @@ import {
   Toast,
   ToastBody,
   ToastHeader,
-} from 'react-bootstrap';
-import { FaCheckSquare, FaMinusSquare, FaSquare } from 'react-icons/fa';
-import { IoMdArrowDropright } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Pagination from '../components/Pagination';
-import Header from '../layouts/Header';
-import { listOrgRequest } from '../services/organization';
+} from "react-bootstrap";
+import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
+import { IoMdArrowDropright } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Pagination from "../components/Pagination";
+import Header from "../layouts/Header";
+import { listOrgRequest } from "../services/organization";
 import {
   createUserRequest,
   editUserRequest,
   listUserRequest,
-} from '../services/user';
-import './list.scss';
+} from "../services/user";
+import "./list.scss";
 import {
   listOrgDeviceRequest,
   requestGetSampleRequest,
-} from '../services/device';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHand } from '@fortawesome/free-solid-svg-icons';
+} from "../services/device";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHand } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -42,22 +42,22 @@ export default function UserManagement() {
   const [size, setSize] = useState(10);
   const [page, setPage] = useState(0);
   const [devices, setDevices] = useState([]);
-  const [selectedOrg, setSelectedOrg] = useState('');
-  const [selectedDevice, setSelectedDevice] = useState('');
+  const [selectedOrg, setSelectedOrg] = useState("");
+  const [selectedDevice, setSelectedDevice] = useState("");
   const [selectedUser, setSelectedUser] = useState({});
   const [action, setAction] = useState(0); //0 - tạo, 1 - chỉnh sửa
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
-  const [deleteUserId, setDeleteUserId] = useState('');
+  const [deleteUserId, setDeleteUserId] = useState("");
   const [getSampleDialog, setGetSampleDialog] = useState(false);
   const [validated, setValidated] = useState(false);
 
   // const [currentSampleCommand, setCurrentSampleCommand] = useState("")
-  const currentSampleCommandRef = useRef('');
-  const [sampleDeviceId, setSampleDeviceId] = useState('');
+  const currentSampleCommandRef = useRef("");
+  const [sampleDeviceId, setSampleDeviceId] = useState("");
 
-  const [toastContent, setToastContent] = useState('');
+  const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const [toastVariant, setToastVariant] = useState('Success');
+  const [toastVariant, setToastVariant] = useState("Success");
 
   const [deleteAlert, setDeleteAlert] = useState(false);
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function UserManagement() {
 
   const [orgs, setOrgs] = useState(
     flattenTree({
-      name: 'Tổ chức của bạn',
+      name: "Tổ chức của bạn",
       children: [],
     })
   );
@@ -92,7 +92,7 @@ export default function UserManagement() {
   const listUser = async () => {
     const resp = await listUserRequest(page, size);
     if (resp.isError) {
-      toast.error('Không thể lấy dánh sách người dùng');
+      toast.error("Không thể lấy dánh sách người dùng");
     } else {
       setUsers(resp.data.items);
       setTotal(resp.data.total);
@@ -103,7 +103,7 @@ export default function UserManagement() {
   }, []);
 
   const addProperty = (obj, path, value) => {
-    let parts = path.split('>');
+    let parts = path.split(">");
     let current = obj;
     for (let i = 0; i < parts.length; i++) {
       let index = current.children.findIndex(e => e.itemId === parts[i]);
@@ -128,9 +128,9 @@ export default function UserManagement() {
   const listOrg = async () => {
     const resp = await listOrgRequest(page, size);
     if (resp.isError) {
-      toast.error('Không thể lấy danh sách tổ chức');
+      toast.error("Không thể lấy danh sách tổ chức");
     } else {
-      let obj = { children: [], name: '' };
+      let obj = { children: [], name: "" };
       for (let i = 0; i < resp.data.items.length; i++) {
         let item = resp.data.items[i];
         addProperty(obj, item.path, item);
@@ -142,7 +142,7 @@ export default function UserManagement() {
   const listOrgDevice = async orgId => {
     const resp = await listOrgDeviceRequest(orgId);
     if (resp.isError) {
-      toast.error('Không thể tải thiết bị của tổ chức');
+      toast.error("Không thể tải thiết bị của tổ chức");
     } else {
       setDevices(resp.data.items);
     }
@@ -157,12 +157,12 @@ export default function UserManagement() {
       // selectedDevice
     );
     if (resp.isError) {
-      setToastContent('Không thể tạo người dùng mới');
-      setToastVariant('danger');
+      setToastContent("Không thể tạo người dùng mới");
+      setToastVariant("danger");
       setShowToast(true);
     } else {
-      setToastContent('Tạo người dùng thành công');
-      setToastVariant('success');
+      setToastContent("Tạo người dùng thành công");
+      setToastVariant("success");
       setShowToast(true);
       closeCreateUserDialog();
       closeCreateUserDialog();
@@ -177,12 +177,12 @@ export default function UserManagement() {
       selectedUser.id
     );
     if (resp.isError) {
-      setToastContent('Không thể cập nhật thông tin người dùng');
-      setToastVariant('danger');
+      setToastContent("Không thể cập nhật thông tin người dùng");
+      setToastVariant("danger");
       setShowToast(true);
     } else {
-      setToastContent('Cập nhật thông tin người dùng thành công');
-      setToastVariant('success');
+      setToastContent("Cập nhật thông tin người dùng thành công");
+      setToastVariant("success");
       setShowToast(true);
       closeCreateUserDialog();
     }
@@ -191,12 +191,12 @@ export default function UserManagement() {
   const deleteUser = async user => {
     const resp = await editUserRequest(
       null,
-      user.status === 'active' ? 'inactive' : 'active',
+      user.status === "active" ? "inactive" : "active",
       null,
       selectedUser.id
     );
     if (resp.isError) {
-      toast.error('Không thể đặt người dùng ở trạng thái không hoạt động');
+      toast.error("Không thể đặt người dùng ở trạng thái không hoạt động");
     } else {
       closeDeleteAlertDialog();
     }
@@ -225,11 +225,11 @@ export default function UserManagement() {
     );
     if (resp.isError) {
       setToastContent("Không thể gửi lệnh 'Lấy mẫu' cho thiết bị");
-      setToastVariant('danger');
+      setToastVariant("danger");
       setShowToast(true);
     } else {
-      setToastContent('Gửi lệnh đến thiết bị thành công');
-      setToastVariant('success');
+      setToastContent("Gửi lệnh đến thiết bị thành công");
+      setToastVariant("success");
       setShowToast(true);
     }
   };
@@ -248,7 +248,7 @@ export default function UserManagement() {
                   setSelectedTreeIds([1]);
                   setCreateUserDialog(true);
                   setSelectedUser({
-                    status: 'active',
+                    status: "active",
                   });
                   setAction(0);
                 }}
@@ -316,7 +316,7 @@ export default function UserManagement() {
                             }}
                           ></i>
                           <i
-                            class={`${user.status !== 'inactive' ? 'ri-git-repository-private-line' : 'ri-lock-unlock-line'} p-1`}
+                            class={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
                             onClick={() => {
                               // setDeleteUserId(user.id)
                               setSelectedUser(user);
@@ -462,10 +462,10 @@ export default function UserManagement() {
                           }}
                           variant={
                             isHalfSelected
-                              ? 'some'
+                              ? "some"
                               : isSelected
-                                ? 'all'
-                                : 'none'
+                                ? "all"
+                                : "none"
                           }
                         />
                         <i className="ri-building-line me-1"></i>
@@ -540,8 +540,8 @@ export default function UserManagement() {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          Bạn có chắc chắn muốn{' '}
-          {selectedUser.status === 'active' ? 'vô hiệu hóa' : 'kích hoạt'} người
+          Bạn có chắc chắn muốn{" "}
+          {selectedUser.status === "active" ? "vô hiệu hóa" : "kích hoạt"} người
           dùng này không?
         </ModalHeader>
         <ModalFooter>
@@ -600,7 +600,7 @@ export default function UserManagement() {
                 type="button"
                 className="btn btn-primary me-2"
                 onClick={() => {
-                  currentSampleCommandRef.current = 'left_hand_sampling';
+                  currentSampleCommandRef.current = "left_hand_sampling";
                   submitRef.current?.click();
                 }}
               >
@@ -610,7 +610,7 @@ export default function UserManagement() {
                 type="button"
                 className="btn btn-warning"
                 onClick={() => {
-                  currentSampleCommandRef.current = 'right_hand_sampling';
+                  currentSampleCommandRef.current = "right_hand_sampling";
                   submitRef.current?.click();
                 }}
               >
@@ -645,7 +645,7 @@ export default function UserManagement() {
   );
 }
 const ArrowIcon = ({ isOpen, className }) => {
-  const baseClass = 'arrow';
+  const baseClass = "arrow";
   const classes = cx(
     baseClass,
     { [`${baseClass}--closed`]: !isOpen },
@@ -657,11 +657,11 @@ const ArrowIcon = ({ isOpen, className }) => {
 
 const CheckBoxIcon = ({ variant, ...rest }) => {
   switch (variant) {
-    case 'all':
+    case "all":
       return <FaCheckSquare {...rest} />;
-    case 'none':
+    case "none":
       return <FaSquare {...rest} />;
-    case 'some':
+    case "some":
       return <FaMinusSquare {...rest} />;
     default:
       return null;

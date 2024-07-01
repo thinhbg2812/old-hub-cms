@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 import {
   Carousel,
   Col,
@@ -10,24 +10,24 @@ import {
   Card,
   ProgressBar,
   Nav,
-} from 'react-bootstrap';
+} from "react-bootstrap";
 
-import img3 from '../assets/img/img3.jpg';
-import img4 from '../assets/img/img4.jpg';
-import img43 from '../assets/img/img43.jpg';
-import img44 from '../assets/img/img44.jpg';
-import img45 from '../assets/img/img45.jpg';
-import img46 from '../assets/img/img46.jpg';
-import img47 from '../assets/img/img47.jpg';
-import img48 from '../assets/img/img48.jpg';
-import img49 from '../assets/img/img49.jpg';
-import img50 from '../assets/img/img50.jpg';
+import img3 from "../assets/img/img3.jpg";
+import img4 from "../assets/img/img4.jpg";
+import img43 from "../assets/img/img43.jpg";
+import img44 from "../assets/img/img44.jpg";
+import img45 from "../assets/img/img45.jpg";
+import img46 from "../assets/img/img46.jpg";
+import img47 from "../assets/img/img47.jpg";
+import img48 from "../assets/img/img48.jpg";
+import img49 from "../assets/img/img49.jpg";
+import img50 from "../assets/img/img50.jpg";
 
 export default function GalleryVideo() {
   useEffect(() => {
-    document.body.classList.add('app-video');
+    document.body.classList.add("app-video");
     return () => {
-      document.body.classList.remove('app-video');
+      document.body.classList.remove("app-video");
     };
   }, []);
   return (
@@ -183,31 +183,31 @@ export default function GalleryVideo() {
             {[
               {
                 img: img47,
-                title: 'Accusantium doloremque',
-                author: 'King Village',
-                views: '15,000',
-                date: '1 week ago',
+                title: "Accusantium doloremque",
+                author: "King Village",
+                views: "15,000",
+                date: "1 week ago",
               },
               {
                 img: img48,
-                title: 'Neque porro quisquam',
-                author: 'Happy Island',
-                views: '245,720',
-                date: '2 weeks ago',
+                title: "Neque porro quisquam",
+                author: "Happy Island",
+                views: "245,720",
+                date: "2 weeks ago",
               },
               {
                 img: img49,
-                title: 'Quis autem vel eum iure',
-                author: 'Goblet of Fire',
-                views: '320,109',
-                date: '3 weeks ago',
+                title: "Quis autem vel eum iure",
+                author: "Goblet of Fire",
+                views: "320,109",
+                date: "3 weeks ago",
               },
               {
                 img: img50,
-                title: 'Iure reprehenderit',
-                author: 'Jungle Hub',
-                views: '552,002',
-                date: '3 weeks ago',
+                title: "Iure reprehenderit",
+                author: "Jungle Hub",
+                views: "552,002",
+                date: "3 weeks ago",
               },
             ].map((upload, index) => (
               <Col key={index}>

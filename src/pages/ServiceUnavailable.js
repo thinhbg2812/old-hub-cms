@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button, Col, Container, Nav, Row } from 'react-bootstrap';
-import pageSvg from '../assets/svg/software_engineer.svg';
+import React from "react";
+import { Button, Col, Container, Nav, Row } from "react-bootstrap";
+import pageSvg from "../assets/svg/software_engineer.svg";
 
 export default function ServiceUnavailable() {
-  document.body.classList.remove('sidebar-show');
+  document.body.classList.remove("sidebar-show");
 
   return (
     <div className="page-error">

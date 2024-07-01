@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
 import {
   Button,
   Card,
@@ -9,10 +9,10 @@ import {
   ListGroup,
   Nav,
   Row,
-} from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import img2 from '../assets/img/img2.jpg';
+} from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import img2 from "../assets/img/img2.jpg";
 
 export default function Cards() {
   useEffect(() => {
@@ -553,7 +553,7 @@ export default function Cards() {
                     <Card.Title>Card title</Card.Title>
                     <Card.Text>
                       This card has supporting text below as a natural lead-in
-                      to additional content.{' '}
+                      to additional content.{" "}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
@@ -603,7 +603,7 @@ export default function Cards() {
             Use the Bootstrap grid system and its <code>.row-cols</code> classes
             to control how many grid columns (wrapped around your cards) you
             show per row. For example, here's <code>.row-cols-1</code> laying
-            out the cards on one column, and <code>.row-cols-md-2</code>{' '}
+            out the cards on one column, and <code>.row-cols-md-2</code>{" "}
             splitting four cards to equal width across multiple rows, from the
             medium breakpoint up.
           </p>

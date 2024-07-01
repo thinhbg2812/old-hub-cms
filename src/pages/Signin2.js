@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
-import bg1 from '../assets/img/bg1.jpg';
-import useToken from '../components/useToken';
-import { loginRequest } from '../services/user';
+import bg1 from "../assets/img/bg1.jpg";
+import useToken from "../components/useToken";
+import { loginRequest } from "../services/user";
 
 export default function Signin2() {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
   const { token, setToken } = useToken();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Signin2() {
       return;
     }
     setToken(data.data.token);
-    navigate('/org/list');
+    navigate("/org/list");
   };
   return (
     <div className="page-sign d-block py-0">

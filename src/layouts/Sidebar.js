@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import userAvatar from '../assets/img/img1.jpg';
+import React, { Component } from "react";
+import { Link, NavLink } from "react-router-dom";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import userAvatar from "../assets/img/img1.jpg";
 import {
   dashboardMenu,
   applicationsMenu,
   pagesMenu,
   uiElementsMenu,
   userMenu,
-} from '../data/Menu';
+} from "../data/Menu";
 
 export default class Sidebar extends Component {
   toggleFooterMenu = e => {
     e.preventDefault();
 
-    let parent = e.target.closest('.sidebar');
-    parent.classList.toggle('footer-menu-show');
+    let parent = e.target.closest(".sidebar");
+    parent.classList.toggle("footer-menu-show");
   };
 
   render() {
@@ -119,8 +119,8 @@ class SidebarMenu extends Component {
   toggleMenu = e => {
     e.preventDefault();
 
-    let parent = e.target.closest('.nav-group');
-    parent.classList.toggle('show');
+    let parent = e.target.closest(".nav-group");
+    parent.classList.toggle("show");
 
     this.props.onUpdateSize();
   };
@@ -129,16 +129,16 @@ class SidebarMenu extends Component {
   toggleSubMenu = e => {
     e.preventDefault();
 
-    let parent = e.target.closest('.nav-item');
+    let parent = e.target.closest(".nav-item");
     let node = parent.parentNode.firstChild;
 
     while (node) {
       if (node !== parent && node.nodeType === Node.ELEMENT_NODE)
-        node.classList.remove('show');
+        node.classList.remove("show");
       node = node.nextElementSibling || node.nextSibling;
     }
 
-    parent.classList.toggle('show');
+    parent.classList.toggle("show");
 
     this.props.onUpdateSize();
   };
@@ -181,25 +181,25 @@ class SidebarMenu extends Component {
   }
 }
 
-window.addEventListener('click', function (e) {
+window.addEventListener("click", function (e) {
   // Close sidebar footer menu when clicked outside of it
   let tar = e.target;
-  let sidebar = document.querySelector('.sidebar');
-  if (!tar.closest('.sidebar-footer') && sidebar) {
-    sidebar.classList.remove('footer-menu-show');
+  let sidebar = document.querySelector(".sidebar");
+  if (!tar.closest(".sidebar-footer") && sidebar) {
+    sidebar.classList.remove("footer-menu-show");
   }
 
   // Hide sidebar offset when clicked outside of sidebar
-  if (!tar.closest('.sidebar') && !tar.closest('.menu-link')) {
-    document.querySelector('body').classList.remove('sidebar-show');
+  if (!tar.closest(".sidebar") && !tar.closest(".menu-link")) {
+    document.querySelector("body").classList.remove("sidebar-show");
   }
 });
 
-window.addEventListener('load', function () {
-  let skinMode = localStorage.getItem('sidebar-skin');
-  let HTMLTag = document.querySelector('html');
+window.addEventListener("load", function () {
+  let skinMode = localStorage.getItem("sidebar-skin");
+  let HTMLTag = document.querySelector("html");
 
   if (skinMode) {
-    HTMLTag.setAttribute('data-sidebar', skinMode);
+    HTMLTag.setAttribute("data-sidebar", skinMode);
   }
 });

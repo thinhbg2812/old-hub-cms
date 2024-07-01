@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
+import React, { useEffect } from "react";
+import Prism from "prismjs";
 import {
   Button,
   Card,
@@ -7,9 +7,9 @@ import {
   Nav,
   Toast,
   ToastContainer,
-} from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
+} from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
 
 export default function Toasts() {
   useEffect(() => {

@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Col, Nav, Row } from 'react-bootstrap';
-import Footer from '../layouts/Footer';
-import HeaderMobile from '../layouts/HeaderMobile';
-import Avatar from '../components/Avatar';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Card, Col, Nav, Row } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import HeaderMobile from "../layouts/HeaderMobile";
+import Avatar from "../components/Avatar";
 
-import img1 from '../assets/img/img1.jpg';
-import img5 from '../assets/img/img5.jpg';
-import img6 from '../assets/img/img6.jpg';
-import img7 from '../assets/img/img7.jpg';
-import img8 from '../assets/img/img8.jpg';
-import img9 from '../assets/img/img9.jpg';
-import img10 from '../assets/img/img10.jpg';
-import img11 from '../assets/img/img11.jpg';
-import img12 from '../assets/img/img12.jpg';
+import img1 from "../assets/img/img1.jpg";
+import img5 from "../assets/img/img5.jpg";
+import img6 from "../assets/img/img6.jpg";
+import img7 from "../assets/img/img7.jpg";
+import img8 from "../assets/img/img8.jpg";
+import img9 from "../assets/img/img9.jpg";
+import img10 from "../assets/img/img10.jpg";
+import img11 from "../assets/img/img11.jpg";
+import img12 from "../assets/img/img12.jpg";
 
 export default function Profile() {
   return (
@@ -34,7 +34,7 @@ export default function Profile() {
                 <p className="mb-0">
                   Redhead, Innovator, Saviour of Mankind, Hopeless Romantic,
                   Attractive 20-something Yogurt Enthusiast. You can replace
-                  this with any content and adjust it as needed...{' '}
+                  this with any content and adjust it as needed...{" "}
                   <Link to="">Read more</Link>
                 </p>
               </div>
@@ -43,24 +43,24 @@ export default function Profile() {
             <Row className="row-cols-sm-auto g-4 g-md-5 g-xl-4 g-xxl-5">
               {[
                 {
-                  icon: 'ri-medal-2-line',
-                  text: '5 Certificates',
-                  label: 'Achievements',
+                  icon: "ri-medal-2-line",
+                  text: "5 Certificates",
+                  label: "Achievements",
                 },
                 {
-                  icon: 'ri-suitcase-line',
-                  text: '10+ Years',
-                  label: 'Experience',
+                  icon: "ri-suitcase-line",
+                  text: "10+ Years",
+                  label: "Experience",
                 },
                 {
-                  icon: 'ri-team-line',
-                  text: '356',
-                  label: 'Following',
+                  icon: "ri-team-line",
+                  text: "356",
+                  label: "Following",
                 },
                 {
-                  icon: 'ri-team-line',
-                  text: '1,056',
-                  label: 'Followers',
+                  icon: "ri-team-line",
+                  text: "1,056",
+                  label: "Followers",
                 },
               ].map((profileItem, index) => (
                 <Col key={index}>
@@ -128,8 +128,8 @@ export default function Profile() {
                   Our team is expanding again. We are looking for a Product
                   Manager and Software Engineer to drive our new aspects of our
                   capital projects. If you're interested, please drop a comment
-                  here or simply message me.{' '}
-                  <Link to="">#softwareengineer</Link>{' '}
+                  here or simply message me.{" "}
+                  <Link to="">#softwareengineer</Link>{" "}
                   <Link to="">#engineering</Link>
                 </p>
 
@@ -195,7 +195,7 @@ export default function Profile() {
               <Card.Footer>
                 <Nav>
                   <Nav.Link href="">
-                    Show more experiences (4){' '}
+                    Show more experiences (4){" "}
                     <i className="ri-arrow-down-s-line"></i>
                   </Nav.Link>
                 </Nav>
@@ -218,7 +218,7 @@ export default function Profile() {
                     <h6>Github, Inc.</h6>
                     <p>
                       A provider of Internet hosting for software development
-                      and version control using Git.{' '}
+                      and version control using Git.{" "}
                       <Link to="">Learn more</Link>
                     </p>
                   </div>
@@ -231,7 +231,7 @@ export default function Profile() {
                     <h6>Twitter, Inc.</h6>
                     <p>
                       An American communications company that operates the
-                      microblogging and social networking service.{' '}
+                      microblogging and social networking service.{" "}
                       <Link to="">Learn more</Link>
                     </p>
                   </div>
@@ -244,7 +244,7 @@ export default function Profile() {
                     <h6>Amazon.com, Inc.</h6>
                     <p>
                       An American multinational technology company which focuses
-                      on e-commerce, artificial intelligence and more.{' '}
+                      on e-commerce, artificial intelligence and more.{" "}
                       <Link to="">Learn more</Link>
                     </p>
                   </div>
@@ -253,7 +253,7 @@ export default function Profile() {
               <Card.Footer>
                 <Nav>
                   <Nav.Link href="">
-                    Show more interests (1){' '}
+                    Show more interests (1){" "}
                     <i className="ri-arrow-down-s-line"></i>
                   </Nav.Link>
                 </Nav>
@@ -294,28 +294,28 @@ export default function Profile() {
               {[
                 {
                   avatar: img6,
-                  name: 'Allan Rey Palban',
-                  position: 'Senior Business Analyst',
+                  name: "Allan Rey Palban",
+                  position: "Senior Business Analyst",
                 },
                 {
                   avatar: img7,
-                  name: 'Adrian Moniño',
-                  position: 'Software Engineer',
+                  name: "Adrian Moniño",
+                  position: "Software Engineer",
                 },
                 {
                   avatar: img8,
-                  name: 'Charlene Plateros',
-                  position: 'Sales Representative',
+                  name: "Charlene Plateros",
+                  position: "Sales Representative",
                 },
                 {
                   avatar: img9,
-                  name: 'Analyn Mercado',
-                  position: 'Executive Assistant',
+                  name: "Analyn Mercado",
+                  position: "Executive Assistant",
                 },
                 {
                   avatar: img10,
-                  name: 'Rolando Paloso',
-                  position: 'Senior Architect',
+                  name: "Rolando Paloso",
+                  position: "Senior Architect",
                 },
               ].map((people, index) => (
                 <li className="people-item" key={index}>
@@ -337,28 +337,28 @@ export default function Profile() {
               {[
                 {
                   avatar: img11,
-                  name: 'Maricel Villalon',
-                  position: 'Engineering Manager',
+                  name: "Maricel Villalon",
+                  position: "Engineering Manager",
                 },
                 {
                   avatar: img12,
-                  name: 'Geraldine Cantones',
-                  position: 'Software Architect',
+                  name: "Geraldine Cantones",
+                  position: "Software Architect",
                 },
                 {
                   avatar: img6,
-                  name: 'Allan Rey Palban',
-                  position: 'Senior Business Analyst',
+                  name: "Allan Rey Palban",
+                  position: "Senior Business Analyst",
                 },
                 {
                   avatar: img7,
-                  name: 'Adrian Moniño',
-                  position: 'Software Engineer',
+                  name: "Adrian Moniño",
+                  position: "Software Engineer",
                 },
                 {
                   avatar: img8,
-                  name: 'Charlene Plateros',
-                  position: 'Sales Representative',
+                  name: "Charlene Plateros",
+                  position: "Sales Representative",
                 },
               ].map((people, index) => (
                 <li className="people-item" key={index}>

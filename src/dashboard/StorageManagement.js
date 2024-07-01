@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
-import { Button, Card, Col, ProgressBar, Row, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import ReactApexChart from 'react-apexcharts';
-import { Doughnut, Line, PolarArea, Radar } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import { Button, Card, Col, ProgressBar, Row, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import ReactApexChart from "react-apexcharts";
+import { Doughnut, Line, PolarArea, Radar } from "react-chartjs-2";
 
 export default function StorageManagement() {
   const states = {
     hover: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
     active: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
   };
@@ -72,7 +72,7 @@ export default function StorageManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -83,22 +83,22 @@ export default function StorageManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#506fd9', '#c8ccd4'],
+    colors: ["#506fd9", "#c8ccd4"],
     plotOptions: {
-      bar: { columnWidth: '45%' },
+      bar: { columnWidth: "45%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     xaxis: {
       min: 0,
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 6,
       decimalsInFloat: 0,
       labels: {
-        style: { fontSize: '11px' },
+        style: { fontSize: "11px" },
       },
     },
     yaxis: {
@@ -195,7 +195,7 @@ export default function StorageManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -206,20 +206,20 @@ export default function StorageManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#c8ccd4', '#506fd9'],
+    colors: ["#c8ccd4", "#506fd9"],
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 1.5,
     },
     xaxis: {
       min: 0,
       max: 40,
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 6,
       decimalsInFloat: 0,
       labels: {
-        style: { fontSize: '11px' },
+        style: { fontSize: "11px" },
       },
     },
     yaxis: {
@@ -235,15 +235,15 @@ export default function StorageManagement() {
   };
 
   const dataDonut = {
-    labels: ['Used Space', 'System Space', 'Available Space'],
+    labels: ["Used Space", "System Space", "Available Space"],
     datasets: [
       {
         data: [45, 55],
-        backgroundColor: ['#506fd9', '#d3dbf6'],
+        backgroundColor: ["#506fd9", "#d3dbf6"],
       },
       {
         data: [40, 60],
-        backgroundColor: ['#6e7985', '#dbdde1'],
+        backgroundColor: ["#6e7985", "#dbdde1"],
       },
     ],
   };
@@ -267,11 +267,11 @@ export default function StorageManagement() {
       {
         data: [50, 25, 60, 80, 20],
         backgroundColor: [
-          '#506fd9',
-          '#85b6ff',
-          '#d3dbf6',
-          '#6e7985',
-          '#dbdde1',
+          "#506fd9",
+          "#85b6ff",
+          "#d3dbf6",
+          "#6e7985",
+          "#dbdde1",
         ],
       },
     ],
@@ -292,29 +292,29 @@ export default function StorageManagement() {
   };
 
   const dataRadar = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
         data: [65, 59, 90, 81, 56, 55, 40],
         fill: true,
-        backgroundColor: 'rgba(80, 111, 217, 0.2)',
-        borderColor: '#506fd9',
+        backgroundColor: "rgba(80, 111, 217, 0.2)",
+        borderColor: "#506fd9",
         borderWidth: 1.5,
-        pointBackgroundColor: '#506fd9',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: '#506fd9',
+        pointBackgroundColor: "#506fd9",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "#506fd9",
       },
       {
         data: [28, 48, 40, 19, 96, 27, 100],
         fill: true,
-        backgroundColor: 'rgba(133, 182, 255, 0.2)',
-        borderColor: '#85b6ff',
+        backgroundColor: "rgba(133, 182, 255, 0.2)",
+        borderColor: "#85b6ff",
         borderWidth: 1.5,
-        pointBackgroundColor: '#85b6ff',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: '#85b6ff',
+        pointBackgroundColor: "#85b6ff",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "#85b6ff",
       },
     ],
   };
@@ -334,11 +334,11 @@ export default function StorageManagement() {
   };
 
   const dataLine = {
-    labels: ['1H', '12H', '24H', '1W', '1M', '1Y'],
+    labels: ["1H", "12H", "24H", "1W", "1M", "1Y"],
     datasets: [
       {
         data: [50, 25, 60, 80, 20, 30],
-        borderColor: '#506fd9',
+        borderColor: "#506fd9",
         borderWidth: 1.5,
         stepped: true,
       },
@@ -362,26 +362,26 @@ export default function StorageManagement() {
         beginAtZero: true,
         max: 100,
         ticks: {
-          color: '#a1aab3',
+          color: "#a1aab3",
           font: {
             size: 10,
           },
         },
         grid: {
-          borderColor: '#e2e5ec',
+          borderColor: "#e2e5ec",
           borderWidth: 1.5,
-          color: 'rgba(65,80,95,.08)',
+          color: "rgba(65,80,95,.08)",
         },
       },
       x: {
         grid: {
-          color: 'rgba(65,80,95,.08)',
+          color: "rgba(65,80,95,.08)",
         },
         ticks: {
-          color: '#6e7985',
+          color: "#6e7985",
           font: {
             size: 10,
-            weight: '500',
+            weight: "500",
           },
         },
       },
@@ -390,7 +390,7 @@ export default function StorageManagement() {
 
   const seriesThree = [
     {
-      type: 'area',
+      type: "area",
       data: [
         [0, 45000],
         [1, 45000],
@@ -451,7 +451,7 @@ export default function StorageManagement() {
       ],
     },
     {
-      type: 'column',
+      type: "column",
       data: [
         [0, 10000],
         [1, 8000],
@@ -520,7 +520,7 @@ export default function StorageManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -531,42 +531,42 @@ export default function StorageManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#85b6ff', '#506fd9'],
+    colors: ["#85b6ff", "#506fd9"],
     plotOptions: {
-      bar: { columnWidth: '50%' },
+      bar: { columnWidth: "50%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: [2, 0],
     },
     xaxis: {
       overwriteCategories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ],
       tickAmount: 11,
       decimalsInFloat: 0,
       labels: {
-        style: { fontSize: '11px' },
+        style: { fontSize: "11px" },
       },
     },
     fill: {
       opacity: [0.2, 1, 1],
       gradient: {
         inverseColors: false,
-        shade: 'light',
-        type: 'vertical',
+        shade: "light",
+        type: "vertical",
         opacityFrom: 0.85,
         opacityTo: 0,
       },
@@ -578,25 +578,25 @@ export default function StorageManagement() {
   };
 
   ///// Skin Switch /////
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
   const switchSkin = skin => {
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
     }
   };
@@ -804,7 +804,7 @@ export default function StorageManagement() {
                 series={seriesTwo}
                 options={optionTwo}
                 type="area"
-                height={'100%'}
+                height={"100%"}
                 className="mt-5 mt-md-0"
               />
             </Card>
@@ -824,7 +824,7 @@ export default function StorageManagement() {
               </Card.Header>
               <Card.Body className="p-3">
                 <label className="d-block fs-sm mb-2">
-                  <span className="ff-numerals">25.93</span> GB available of{' '}
+                  <span className="ff-numerals">25.93</span> GB available of{" "}
                   <span className="ff-numerals">127.18</span> GB
                 </label>
                 <ProgressBar className="ht-15 mb-4">
@@ -835,28 +835,28 @@ export default function StorageManagement() {
 
                 {[
                   {
-                    icon: 'ri-rocket-line',
-                    name: 'Applications',
-                    size: '25.5 GB',
+                    icon: "ri-rocket-line",
+                    name: "Applications",
+                    size: "25.5 GB",
                     progress: 25,
-                    files: '6,320',
-                    percent: '25.4%',
+                    files: "6,320",
+                    percent: "25.4%",
                   },
                   {
-                    icon: 'ri-file-text-line',
-                    name: 'Documents',
-                    size: '8.8 GB',
+                    icon: "ri-file-text-line",
+                    name: "Documents",
+                    size: "8.8 GB",
                     progress: 21,
-                    files: '4,067',
-                    percent: '21.3%',
+                    files: "4,067",
+                    percent: "21.3%",
                   },
                   {
-                    icon: 'ri-gallery-line',
-                    name: 'Media',
-                    size: '29.5 GB',
+                    icon: "ri-gallery-line",
+                    name: "Media",
+                    size: "29.5 GB",
                     progress: 40,
-                    files: '1,983',
-                    percent: '40.6%',
+                    files: "1,983",
+                    percent: "40.6%",
                   },
                 ].map((item, index) => (
                   <div className="storage-item" key={index}>
@@ -1002,35 +1002,35 @@ export default function StorageManagement() {
                     <ReactApexChart
                       series={seriesThree}
                       options={optionThree}
-                      height={'100%'}
+                      height={"100%"}
                       className="apex-chart-eleven"
                     />
                   </Col>
                   <Col xl>
                     {[
                       {
-                        icon: 'ri-drive-fill',
-                        name: 'Google Drive',
-                        text: 'Google Drive is a file storage and synchronization service that allows users to store files in the cloud, synchronize files across devices, and share files.',
+                        icon: "ri-drive-fill",
+                        name: "Google Drive",
+                        text: "Google Drive is a file storage and synchronization service that allows users to store files in the cloud, synchronize files across devices, and share files.",
                       },
                       {
-                        icon: 'ri-dropbox-fill',
-                        name: 'Dropbox',
-                        text: 'Dropbox is a file hosting service that offers cloud storage, file synchronization, personal cloud, and client software.',
+                        icon: "ri-dropbox-fill",
+                        name: "Dropbox",
+                        text: "Dropbox is a file hosting service that offers cloud storage, file synchronization, personal cloud, and client software.",
                       },
                       {
-                        icon: 'ri-cloud-fill',
-                        name: 'iCloud',
-                        text: 'iCloud helps you keep your most important information like photos, files, etc., and available across all your devices.',
+                        icon: "ri-cloud-fill",
+                        name: "iCloud",
+                        text: "iCloud helps you keep your most important information like photos, files, etc., and available across all your devices.",
                       },
                     ].map((item, index) => (
                       <div
-                        className={'d-flex' + (index > 0 ? ' mt-3' : '')}
+                        className={"d-flex" + (index > 0 ? " mt-3" : "")}
                         key={index}
                       >
                         <i
                           className={
-                            item.icon + ' fs-48 lh-1 me-3 text-primary'
+                            item.icon + " fs-48 lh-1 me-3 text-primary"
                           }
                         ></i>
                         <div>

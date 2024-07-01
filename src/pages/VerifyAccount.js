@@ -1,11 +1,11 @@
-import React from 'react';
-import { Button, Card, Col, Container, Nav, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Card, Col, Container, Nav, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import pageSvg from '../assets/svg/mailbox.svg';
+import pageSvg from "../assets/svg/mailbox.svg";
 
 export default function VerifyAccount() {
-  document.body.classList.remove('sidebar-show');
+  document.body.classList.remove("sidebar-show");
 
   return (
     <div className="page-auth">

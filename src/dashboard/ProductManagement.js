@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
+import React, { useEffect, useState } from "react";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 import {
   Button,
   Card,
@@ -9,26 +9,26 @@ import {
   ProgressBar,
   Row,
   Table,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import ReactApexChart from 'react-apexcharts';
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import ReactApexChart from "react-apexcharts";
 
-import prod1 from '../assets/img/prod1.jpg';
-import prod2 from '../assets/img/prod2.jpg';
-import prod3 from '../assets/img/prod3.jpg';
-import prod4 from '../assets/img/prod4.jpg';
-import prod5 from '../assets/img/prod5.jpg';
+import prod1 from "../assets/img/prod1.jpg";
+import prod2 from "../assets/img/prod2.jpg";
+import prod3 from "../assets/img/prod3.jpg";
+import prod4 from "../assets/img/prod4.jpg";
+import prod5 from "../assets/img/prod5.jpg";
 
 export default function ProductManagement() {
   const states = {
     hover: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
     active: {
       filter: {
-        type: 'none',
+        type: "none",
       },
     },
   };
@@ -149,34 +149,34 @@ export default function ProductManagement() {
     },
     dataLabels: { enabled: false },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 5,
       },
     },
     states: states,
-    colors: ['#506fd9', '#fff', '#c8ccd4'],
+    colors: ["#506fd9", "#fff", "#c8ccd4"],
     plotOptions: {
       bar: {
-        columnWidth: '35%',
+        columnWidth: "35%",
       },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     tooltip: { enabled: false },
     fill: { opacity: 1 },
     legend: { show: false },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 11,
       decimalsInFloat: 0,
       labels: {
         style: {
-          fontSize: '11px',
+          fontSize: "11px",
         },
       },
     },
@@ -185,8 +185,8 @@ export default function ProductManagement() {
       tickAmount: 8,
       labels: {
         style: {
-          colors: ['#a2abb5'],
-          fontSize: '11px',
+          colors: ["#a2abb5"],
+          fontSize: "11px",
         },
       },
     },
@@ -232,7 +232,7 @@ export default function ProductManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -243,24 +243,24 @@ export default function ProductManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#506fd9', '#d9dde7'],
+    colors: ["#506fd9", "#d9dde7"],
     plotOptions: {
-      bar: { columnWidth: '45%' },
+      bar: { columnWidth: "45%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     xaxis: {
       min: 0,
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 9,
       decimalsInFloat: 0,
       labels: {
         style: {
-          fontSize: '10px',
-          fontClor: '#ccc',
+          fontSize: "10px",
+          fontClor: "#ccc",
         },
       },
     },
@@ -312,7 +312,7 @@ export default function ProductManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -323,24 +323,24 @@ export default function ProductManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#4c5366', '#d9dde7'],
+    colors: ["#4c5366", "#d9dde7"],
     plotOptions: {
-      bar: { columnWidth: '45%' },
+      bar: { columnWidth: "45%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     xaxis: {
       min: 0,
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 9,
       decimalsInFloat: 0,
       labels: {
         style: {
-          fontSize: '10px',
-          fontClor: '#ccc',
+          fontSize: "10px",
+          fontClor: "#ccc",
         },
       },
     },
@@ -395,7 +395,7 @@ export default function ProductManagement() {
       toolbar: { show: false },
     },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         left: 0,
@@ -406,24 +406,24 @@ export default function ProductManagement() {
         lines: { show: false },
       },
     },
-    colors: ['#85b6ff', '#d9dde7'],
+    colors: ["#85b6ff", "#d9dde7"],
     plotOptions: {
-      bar: { columnWidth: '45%' },
+      bar: { columnWidth: "45%" },
     },
     stroke: {
-      curve: 'straight',
-      lineCap: 'square',
+      curve: "straight",
+      lineCap: "square",
       width: 0,
     },
     xaxis: {
       min: 0,
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 9,
       decimalsInFloat: 0,
       labels: {
         style: {
-          fontSize: '10px',
-          fontClor: '#ccc',
+          fontSize: "10px",
+          fontClor: "#ccc",
         },
       },
     },
@@ -440,7 +440,7 @@ export default function ProductManagement() {
 
   const seriesFive = [
     {
-      name: 'Growth',
+      name: "Growth",
       data: [
         [0, 20],
         [1, 25],
@@ -492,7 +492,7 @@ export default function ProductManagement() {
       ],
     },
     {
-      name: 'Actual',
+      name: "Actual",
       data: [
         [0, 60],
         [1, 55],
@@ -551,10 +551,10 @@ export default function ProductManagement() {
       stacked: true,
       toolbar: { show: false },
     },
-    colors: ['#4c5366', '#506fd9'],
+    colors: ["#4c5366", "#506fd9"],
     dataLabels: { enabled: false },
     grid: {
-      borderColor: 'rgba(72,94,144, 0.07)',
+      borderColor: "rgba(72,94,144, 0.07)",
       padding: {
         top: -20,
         bottom: 0,
@@ -567,12 +567,12 @@ export default function ProductManagement() {
       },
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
       width: 1.5,
     },
     fill: {
-      colors: ['#fff', '#81adee'],
-      type: ['solid', 'gradient'],
+      colors: ["#fff", "#81adee"],
+      type: ["solid", "gradient"],
       opacity: 1,
       gradient: {
         opacityFrom: 0.35,
@@ -587,12 +587,12 @@ export default function ProductManagement() {
       show: false,
     },
     xaxis: {
-      type: 'numeric',
+      type: "numeric",
       tickAmount: 11,
       labels: {
         style: {
-          colors: '#6e7985',
-          fontSize: '11px',
+          colors: "#6e7985",
+          fontSize: "11px",
         },
       },
       axisBorder: { show: false },
@@ -600,25 +600,25 @@ export default function ProductManagement() {
   };
 
   ///// Skin Switch /////
-  const currentSkin = localStorage.getItem('skin-mode') ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
 
   const switchSkin = skin => {
-    if (skin === 'dark') {
-      const btnWhite = document.getElementsByClassName('btn-white');
+    if (skin === "dark") {
+      const btnWhite = document.getElementsByClassName("btn-white");
 
       for (const btn of btnWhite) {
-        btn.classList.add('btn-outline-primary');
-        btn.classList.remove('btn-white');
+        btn.classList.add("btn-outline-primary");
+        btn.classList.remove("btn-white");
       }
     } else {
       const btnOutlinePrimary = document.getElementsByClassName(
-        'btn-outline-primary'
+        "btn-outline-primary"
       );
 
       for (const btn of btnOutlinePrimary) {
-        btn.classList.remove('btn-outline-primary');
-        btn.classList.add('btn-white');
+        btn.classList.remove("btn-outline-primary");
+        btn.classList.add("btn-white");
       }
     }
   };
@@ -668,55 +668,55 @@ export default function ProductManagement() {
             <Row className="g-3">
               {[
                 {
-                  icon: 'ri-shopping-bag-fill',
+                  icon: "ri-shopping-bag-fill",
                   percent: {
-                    color: 'success',
-                    amount: '+28.5%',
+                    color: "success",
+                    amount: "+28.5%",
                   },
-                  value: '$14,803.80',
-                  label: 'Total Sales',
+                  value: "$14,803.80",
+                  label: "Total Sales",
                   last: {
-                    color: 'success',
-                    amount: '2.3%',
+                    color: "success",
+                    amount: "2.3%",
                   },
                 },
                 {
-                  icon: 'ri-wallet-3-fill',
+                  icon: "ri-wallet-3-fill",
                   percent: {
-                    color: 'danger',
-                    amount: '-3.8%',
+                    color: "danger",
+                    amount: "-3.8%",
                   },
-                  value: '$8,100.63',
-                  label: 'Total Expenses',
+                  value: "$8,100.63",
+                  label: "Total Expenses",
                   last: {
-                    color: 'danger',
-                    amount: '0.5%',
+                    color: "danger",
+                    amount: "0.5%",
                   },
                 },
                 {
-                  icon: 'ri-shopping-basket-fill',
+                  icon: "ri-shopping-basket-fill",
                   percent: {
-                    color: 'danger',
-                    amount: '-8.4%',
+                    color: "danger",
+                    amount: "-8.4%",
                   },
-                  value: '23,480',
-                  label: 'Total Products',
+                  value: "23,480",
+                  label: "Total Products",
                   last: {
-                    color: 'danger',
-                    amount: '0.2%',
+                    color: "danger",
+                    amount: "0.2%",
                   },
                 },
                 {
-                  icon: 'ri-shopping-basket-fill',
+                  icon: "ri-shopping-basket-fill",
                   percent: {
-                    color: 'success',
-                    amount: '+20.9%',
+                    color: "success",
+                    amount: "+20.9%",
                   },
-                  value: '18,060',
-                  label: 'Products Sold',
+                  value: "18,060",
+                  label: "Products Sold",
                   last: {
-                    color: 'success',
-                    amount: '5.8%',
+                    color: "success",
+                    amount: "5.8%",
                   },
                 },
               ].map((item, index) => (
@@ -729,7 +729,7 @@ export default function ProductManagement() {
                         </div>
                         <h6
                           className={
-                            'fw-normal ff-numerals mb-0 text-' +
+                            "fw-normal ff-numerals mb-0 text-" +
                             item.percent.color
                           }
                         >
@@ -743,7 +743,7 @@ export default function ProductManagement() {
                       <span className="d-flex gap-1 fs-xs">
                         <span
                           className={
-                            'd-flex align-items-center text-' + item.last.color
+                            "d-flex align-items-center text-" + item.last.color
                           }
                         >
                           <span className="ff-numerals">
@@ -751,9 +751,9 @@ export default function ProductManagement() {
                           </span>
                           <i
                             className={
-                              item.last.color === 'success'
-                                ? 'ri-arrow-up-line'
-                                : 'ri-arrow-down-line'
+                              item.last.color === "success"
+                                ? "ri-arrow-up-line"
+                                : "ri-arrow-down-line"
                             }
                           ></i>
                         </span>
@@ -810,39 +810,39 @@ export default function ProductManagement() {
                 {[
                   {
                     image: prod1,
-                    name: 'iPhone 14 Pro Max Leather Case',
-                    text: 'Leather Case with MagSafe',
-                    price: '$35.50',
-                    available: '560',
-                    sold: '40',
-                    sales: '$1,420.00',
+                    name: "iPhone 14 Pro Max Leather Case",
+                    text: "Leather Case with MagSafe",
+                    price: "$35.50",
+                    available: "560",
+                    sold: "40",
+                    sales: "$1,420.00",
                   },
                   {
                     image: prod2,
-                    name: 'Apple Watch Series 7 GPS',
-                    text: 'Midnight Aluminum Sport Band',
-                    price: '$395.99',
-                    available: '350',
-                    sold: '150',
-                    sales: '$59,398.50',
+                    name: "Apple Watch Series 7 GPS",
+                    text: "Midnight Aluminum Sport Band",
+                    price: "$395.99",
+                    available: "350",
+                    sold: "150",
+                    sales: "$59,398.50",
                   },
                   {
                     image: prod3,
-                    name: 'Apple Wireless Black Airpods',
-                    text: '(3rd Generation) Wireless Earbuds',
-                    price: '$210.95',
-                    available: '250',
-                    sold: '100',
-                    sales: '$21,095.00',
+                    name: "Apple Wireless Black Airpods",
+                    text: "(3rd Generation) Wireless Earbuds",
+                    price: "$210.95",
+                    available: "250",
+                    sold: "100",
+                    sales: "$21,095.00",
                   },
                   {
                     image: prod4,
-                    name: 'Macbook Air M2 Chip',
-                    text: '16GB Ram 512GB SSD Storage',
-                    price: '$1,910.00',
-                    available: '100',
-                    sold: '50',
-                    sales: '$95,500.00',
+                    name: "Macbook Air M2 Chip",
+                    text: "16GB Ram 512GB SSD Storage",
+                    price: "$1,910.00",
+                    available: "100",
+                    sold: "50",
+                    sales: "$95,500.00",
                   },
                 ].map((item, index) => (
                   <div className="product-wrapper" key={index}>
@@ -918,38 +918,38 @@ export default function ProductManagement() {
               <Card.Body className="p-3">
                 {[
                   {
-                    name: 'Automotive',
-                    amount: '$12,550.50',
-                    color: 'success',
-                    percent: '55.6%',
+                    name: "Automotive",
+                    amount: "$12,550.50",
+                    color: "success",
+                    percent: "55.6%",
                     progress: 50,
                   },
                   {
-                    name: 'Home & Kitchen',
-                    amount: '$9,805.00',
-                    color: 'danger',
-                    percent: '6.8%',
+                    name: "Home & Kitchen",
+                    amount: "$9,805.00",
+                    color: "danger",
+                    percent: "6.8%",
                     progress: 40,
                   },
                   {
-                    name: 'Health & Fashion',
-                    amount: '$15,004.90',
-                    color: 'success',
-                    percent: '69.2%',
+                    name: "Health & Fashion",
+                    amount: "$15,004.90",
+                    color: "success",
+                    percent: "69.2%",
                     progress: 70,
                   },
                   {
-                    name: 'Movies & Television',
-                    amount: '$5,338.00',
-                    color: 'danger',
-                    percent: '28.5%',
+                    name: "Movies & Television",
+                    amount: "$5,338.00",
+                    color: "danger",
+                    percent: "28.5%",
                     progress: 25,
                   },
                   {
-                    name: 'Toys & Games',
-                    amount: '$4,965.40',
-                    color: 'danger',
-                    percent: '18.2%',
+                    name: "Toys & Games",
+                    amount: "$4,965.40",
+                    color: "danger",
+                    percent: "18.2%",
                     progress: 20,
                   },
                 ].map((item, index) => (
@@ -957,7 +957,7 @@ export default function ProductManagement() {
                     <div className="revenue-item-body">
                       <span>{item.name}</span>
                       <span>{item.amount}</span>
-                      <span className={'text-' + item.color}>
+                      <span className={"text-" + item.color}>
                         {item.percent}
                       </span>
                     </div>
@@ -988,7 +988,7 @@ export default function ProductManagement() {
                   <small>
                     <span className="d-inline-flex text-danger">
                       0.7% <i className="ri-arrow-down-line"></i>
-                    </span>{' '}
+                    </span>{" "}
                     than last week
                   </small>
                 </div>
@@ -1020,7 +1020,7 @@ export default function ProductManagement() {
                   <small>
                     <span className="d-inline-flex text-success">
                       1.4% <i className="ri-arrow-up-line"></i>
-                    </span>{' '}
+                    </span>{" "}
                     than last week
                   </small>
                 </div>
@@ -1052,7 +1052,7 @@ export default function ProductManagement() {
                   <small>
                     <span className="d-inline-flex text-success">
                       0.8% <i className="ri-arrow-up-line"></i>
-                    </span>{' '}
+                    </span>{" "}
                     than last week
                   </small>
                 </div>
@@ -1073,7 +1073,7 @@ export default function ProductManagement() {
                     <span>$</span>285,650.10
                   </h2>
                   <label className="d-block mb-0">
-                    <span className="fw-semibold text-dark">Total Sales</span>{' '}
+                    <span className="fw-semibold text-dark">Total Sales</span>{" "}
                     <span className="ff-numerals">
                       (01/01/2023 - 12/31/2023)
                     </span>
@@ -1081,7 +1081,7 @@ export default function ProductManagement() {
                   <small>
                     <span className="d-inline-flex text-success">
                       0.8% <i className="ri-arrow-up-line"></i>
-                    </span>{' '}
+                    </span>{" "}
                     than last week
                   </small>
                   <p className="w-50 fs-xs text-secondary mt-2 mb-0 d-none d-lg-block">
@@ -1233,7 +1233,7 @@ export default function ProductManagement() {
                       Ut enim ad minim veniam, quis nostrud exercitation ullamco
                       laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                       irure dolor in reprehenderit in voluptate velit esse
-                      cillum{' '}
+                      cillum{" "}
                       <span class="d-xl-none d-xxl-inline">
                         dolore eu fugiat nulla pariatur
                       </span>

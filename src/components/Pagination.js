@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import './Pagination.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
+import "./Pagination.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
 function Items({ currentItems }) {
   return (

@@ -18,7 +18,6 @@ import {
 } from "react-bootstrap";
 import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
 import Header from "../layouts/Header";
@@ -44,7 +43,7 @@ export default function UserManagement() {
   const [total, setTotal] = useState(0);
   const [size, setSize] = useState(10);
   const [page, setPage] = useState(0);
-  const [devices, setDevices] = useState([]);
+  const [, setDevices] = useState([]);
   const [selectedOrg, setSelectedOrg] = useState("");
   const [selectedDevice, setSelectedDevice] = useState("");
   const [selectedUser, setSelectedUser] = useState({});
@@ -52,7 +51,6 @@ export default function UserManagement() {
   const [selectedVehicles, setSelectedVehicles] = useState([]);
   const [action, setAction] = useState(0); //0 - tạo, 1 - chỉnh sửa
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
-  const [deleteUserId, setDeleteUserId] = useState("");
   const [getSampleDialog, setGetSampleDialog] = useState(false);
   const [validated, setValidated] = useState(false);
 
@@ -67,7 +65,6 @@ export default function UserManagement() {
   const [deleteAlert, setDeleteAlert] = useState(false);
   const [rooms, setRooms] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const navigate = useNavigate();
 
   const submitRef = useRef(null);
 
@@ -310,6 +307,8 @@ export default function UserManagement() {
                     <th>Họ tên</th>
                     <th>Số điện thoại</th>
                     <th>Tên công ty</th>
+                    <th>Phương tiện</th>
+                    <th>Phòng</th>
                     <th>Mẫu tay phải</th>
                     <th>Mẫu tay trái</th>
                     <th>Trạng thái</th>
@@ -324,6 +323,10 @@ export default function UserManagement() {
                         <td>{user.fullName}</td>
                         <td>{user.phoneNumber}</td>
                         <td>{user.orgs[0].orgName}</td>
+                        <td>
+                          {user.vehicles?.map(v => v.licensePlate).join(", ")}
+                        </td>
+                        <td>{user.rooms?.map(r => r.roomNumber).join(", ")}</td>
                         <td></td>
                         <td></td>
                         <td>{user.status}</td>
@@ -337,7 +340,7 @@ export default function UserManagement() {
                             }}
                           />
                           <i
-                            class="ri-edit-box-line p-1"
+                            className="ri-edit-box-line p-1"
                             onClick={() => {
                               let userOrgs = user.orgs;
                               let orgIds = [];
@@ -360,7 +363,7 @@ export default function UserManagement() {
                             }}
                           ></i>
                           <i
-                            class={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
+                            className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
                             onClick={() => {
                               // setDeleteUserId(user.id)
                               setSelectedUser(user);
@@ -449,7 +452,7 @@ export default function UserManagement() {
             </div>
             <div className="col-6">
               <div>
-                <label for="phone" className="form-label">
+                <label htmlFor="phone" className="form-label">
                   Số điện thoại:
                 </label>
                 <input
@@ -461,7 +464,7 @@ export default function UserManagement() {
                     const newItem = {
                       phoneNumber: e.target.value,
                     };
-                    setSelectedUser(user => ({
+                    setSelectedUser(() => ({
                       ...selectedUser,
                       ...newItem,
                     }));
@@ -470,7 +473,7 @@ export default function UserManagement() {
                 ></input>
               </div>
               <div className="mt-2">
-                <label for="fullname" className="form-label">
+                <label htmlFor="fullname" className="form-label">
                   Họ tên:
                 </label>
                 <input
@@ -482,7 +485,7 @@ export default function UserManagement() {
                     const newItem = {
                       fullName: e.target.value,
                     };
-                    setSelectedUser(user => ({
+                    setSelectedUser(() => ({
                       ...selectedUser,
                       ...newItem,
                     }));
@@ -490,7 +493,7 @@ export default function UserManagement() {
                 ></input>
               </div>
               <div className="mt-2">
-                <label for="status" className="form-label">
+                <label htmlFor="status" className="form-label">
                   Trạng thái:
                 </label>
                 <select
@@ -501,7 +504,7 @@ export default function UserManagement() {
                     const newItem = {
                       status: e.target.value,
                     };
-                    setSelectedUser(user => ({
+                    setSelectedUser(() => ({
                       ...selectedUser,
                       ...newItem,
                     }));
@@ -514,7 +517,7 @@ export default function UserManagement() {
                 </select>
               </div>
               <div className="mt-2">
-                <label for="vehicles" className="form-label">
+                <label htmlFor="vehicles" className="form-label">
                   Phương tiện
                 </label>
                 <Select
@@ -530,7 +533,7 @@ export default function UserManagement() {
                 />
               </div>
               <div className="mt-2">
-                <label for="rooms" className="form-label">
+                <label htmlFor="rooms" className="form-label">
                   Phòng
                 </label>
                 <Select

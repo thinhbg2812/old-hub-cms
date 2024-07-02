@@ -23,6 +23,8 @@ import { toast } from "react-toastify";
 import Pagination from "../components/Pagination";
 import Header from "../layouts/Header";
 import { listOrgRequest } from "../services/organization";
+import { listRoomRequest } from "../services/room";
+import { listVehicleRequest } from "../services/vehicle";
 import {
   createUserRequest,
   editUserRequest,
@@ -35,6 +37,7 @@ import {
 } from "../services/device";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from "@fortawesome/free-solid-svg-icons";
+import Select from "react-select";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -45,6 +48,8 @@ export default function UserManagement() {
   const [selectedOrg, setSelectedOrg] = useState("");
   const [selectedDevice, setSelectedDevice] = useState("");
   const [selectedUser, setSelectedUser] = useState({});
+  const [selectedRooms, setSelectedRooms] = useState([]);
+  const [selectedVehicles, setSelectedVehicles] = useState([]);
   const [action, setAction] = useState(0); //0 - tạo, 1 - chỉnh sửa
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
   const [deleteUserId, setDeleteUserId] = useState("");
@@ -60,9 +65,13 @@ export default function UserManagement() {
   const [toastVariant, setToastVariant] = useState("Success");
 
   const [deleteAlert, setDeleteAlert] = useState(false);
+  const [rooms, setRooms] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const navigate = useNavigate();
 
   const submitRef = useRef(null);
+
+  const isUpdate = action === 1;
 
   const [orgs, setOrgs] = useState(
     flattenTree({
@@ -76,6 +85,7 @@ export default function UserManagement() {
   const closeCreateUserDialog = async () => {
     await listUser();
     setCreateUserDialog(false);
+    setSelectedOrg("");
   };
   const closeDeleteAlertDialog = async () => {
     await listUser();
@@ -84,10 +94,6 @@ export default function UserManagement() {
   const closeGetSampleDialog = async () => {
     setGetSampleDialog(false);
   };
-
-  useEffect(() => {
-    listUser();
-  }, [page, size]);
 
   const listUser = async () => {
     const resp = await listUserRequest(page, size);
@@ -98,9 +104,6 @@ export default function UserManagement() {
       setTotal(resp.data.total);
     }
   };
-  useEffect(() => {
-    listOrg();
-  }, []);
 
   const addProperty = (obj, path, value) => {
     let parts = path.split(">");
@@ -139,6 +142,15 @@ export default function UserManagement() {
     }
   };
 
+  const listRoom = async orgId => {
+    const resp = await listRoomRequest(orgId, page, size);
+    if (resp.isError) {
+      toast.error("Không thể liệt kê phòng của tổ chức");
+    } else {
+      setRooms(resp.data.items);
+    }
+  };
+
   const listOrgDevice = async orgId => {
     const resp = await listOrgDeviceRequest(orgId);
     if (resp.isError) {
@@ -148,13 +160,25 @@ export default function UserManagement() {
     }
   };
 
+  const listVehicle = async orgId => {
+    const resp = await listVehicleRequest(orgId, 1, 999);
+    if (resp.isError) {
+      toast.error("Không thể tải danh sách phương tiện");
+    } else {
+      setVehicles(resp.data.items);
+      console.log(resp.data.items);
+    }
+  };
+
   const createUser = async () => {
     const resp = await createUserRequest(
       selectedUser.phoneNumber,
       selectedUser.fullName,
       selectedUser.status,
-      selectedOrg
-      // selectedDevice
+      selectedOrg,
+      selectedDevice,
+      selectedRooms.map(r => ({ roomId: r.value.id, action: "new" })),
+      selectedVehicles.map(v => ({ vehicleId: v.value.id, action: "new" }))
     );
     if (resp.isError) {
       setToastContent("Không thể tạo người dùng mới");
@@ -164,7 +188,6 @@ export default function UserManagement() {
       setToastContent("Tạo người dùng thành công");
       setToastVariant("success");
       setShowToast(true);
-      closeCreateUserDialog();
       closeCreateUserDialog();
     }
   };
@@ -202,9 +225,9 @@ export default function UserManagement() {
     }
   };
 
-  const handlePaginationCallback = async (pageSize, pageIndex) => {
+  const handlePaginationCallback = async (pageSize, offset) => {
     setSize(pageSize);
-    setPage(pageIndex);
+    setPage(offset / pageSize);
   };
   const handleSubmit = async event => {
     const form = event.currentTarget;
@@ -233,6 +256,27 @@ export default function UserManagement() {
       setShowToast(true);
     }
   };
+
+  useEffect(() => {
+    listUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, size]);
+
+  useEffect(() => {
+    listOrg();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (selectedOrg) {
+      listOrgDevice(selectedOrg);
+      listRoom(selectedOrg);
+      listVehicle(selectedOrg);
+    } else {
+      setDevices([]);
+      setRooms([]);
+    }
+  }, [selectedOrg]);
 
   return (
     <React.Fragment>
@@ -349,13 +393,62 @@ export default function UserManagement() {
         size="lg"
       >
         <ModalHeader closeButton>
-          {action === 0 && <>Tạo người dùng mới</>}
+          {!isUpdate && <>Tạo người dùng mới</>}
           {action !== 0 && <>Chỉnh sửa người dùng</>}
         </ModalHeader>
         <ModalBody>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-12">
+          <div className="row gx-5">
+            <div className="col-5 checkbox">
+              <TreeView
+                data={orgs}
+                propagateSelect
+                propagateSelectUpwards
+                togglableSelect
+                selectedIds={selectedTreeIds}
+                nodeRenderer={({
+                  element,
+                  isBranch,
+                  isExpanded,
+                  isSelected,
+                  isHalfSelected,
+                  getNodeProps,
+                  level,
+                  handleSelect,
+                  handleExpand,
+                }) => {
+                  return (
+                    <div
+                      {...getNodeProps({ onClick: handleExpand })}
+                      style={{ marginLeft: 40 * (level - 1) }}
+                    >
+                      {isBranch && <ArrowIcon isOpen={isExpanded} />}
+                      <CheckBoxIcon
+                        className="checkbox-icon"
+                        onClick={e => {
+                          handleSelect(e);
+                          e.stopPropagation();
+                        }}
+                        variant={
+                          isHalfSelected ? "some" : isSelected ? "all" : "none"
+                        }
+                      />
+                      <i className="ri-building-line me-1"></i>
+                      <span
+                        className="name"
+                        onClick={() => {
+                          setSelectedOrg(element.metadata.id);
+                          // listOrgDevice(element.metadata.id);
+                        }}
+                      >
+                        {element.name}
+                      </span>
+                    </div>
+                  );
+                }}
+              />
+            </div>
+            <div className="col-6">
+              <div>
                 <label for="phone" className="form-label">
                   Số điện thoại:
                 </label>
@@ -373,12 +466,10 @@ export default function UserManagement() {
                       ...newItem,
                     }));
                   }}
-                  disabled={action === 1}
+                  disabled={isUpdate}
                 ></input>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
+              <div className="mt-2">
                 <label for="fullname" className="form-label">
                   Họ tên:
                 </label>
@@ -398,9 +489,7 @@ export default function UserManagement() {
                   }}
                 ></input>
               </div>
-            </div>
-            <div className="row border-bottom pb-3">
-              <div className="col-12">
+              <div className="mt-2">
                 <label for="status" className="form-label">
                   Trạng thái:
                 </label>
@@ -424,89 +513,38 @@ export default function UserManagement() {
                   <option value="right_hand_sampling">Lấy mẫu tay phải</option>
                 </select>
               </div>
-            </div>
-            <div className="row mt-3">
-              <div className="col-6">Chọn một công ty</div>
-              {/* <div className="col-5">Chọn một thiết bị</div> */}
-            </div>
-            <div className="row">
-              <div className="col-6 checkbox">
-                <TreeView
-                  data={orgs}
-                  propagateSelect
-                  propagateSelectUpwards
-                  togglableSelect
-                  selectedIds={selectedTreeIds}
-                  nodeRenderer={({
-                    element,
-                    isBranch,
-                    isExpanded,
-                    isSelected,
-                    isHalfSelected,
-                    getNodeProps,
-                    level,
-                    handleSelect,
-                    handleExpand,
-                  }) => {
-                    return (
-                      <div
-                        {...getNodeProps({ onClick: handleExpand })}
-                        style={{ marginLeft: 40 * (level - 1) }}
-                      >
-                        {isBranch && <ArrowIcon isOpen={isExpanded} />}
-                        <CheckBoxIcon
-                          className="checkbox-icon"
-                          onClick={e => {
-                            handleSelect(e);
-                            e.stopPropagation();
-                          }}
-                          variant={
-                            isHalfSelected
-                              ? "some"
-                              : isSelected
-                                ? "all"
-                                : "none"
-                          }
-                        />
-                        <i className="ri-building-line me-1"></i>
-                        <span
-                          className="name"
-                          onClick={() => {
-                            setSelectedOrg(element.metadata.id);
-                            // listOrgDevice(element.metadata.id);
-                          }}
-                        >
-                          {element.name}
-                        </span>
-                      </div>
-                    );
-                  }}
+              <div className="mt-2">
+                <label for="vehicles" className="form-label">
+                  Phương tiện
+                </label>
+                <Select
+                  value={selectedVehicles}
+                  options={vehicles.map(v => ({
+                    label: v.licensePlate,
+                    value: v,
+                  }))}
+                  isSearchable={false}
+                  isMulti
+                  id="vehicles"
+                  onChange={setSelectedVehicles}
                 />
               </div>
-              {/* <div className="col-5">
-                <select
-                  className="form-select mt-2"
-                  onChange={e => {
-                    setSelectedDevice(e.target.value);
-                  }}
-                >
-                  {devices.map((device, index) => {
-                    return (
-                      <option
-                        selected={
-                          action === 1
-                            ? selectedUser.deviceId === device.id
-                            : index === 0
-                        }
-                        key={device.id}
-                        value={device.deviceId}
-                      >
-                        {device.deviceId}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div> */}
+              <div className="mt-2">
+                <label for="rooms" className="form-label">
+                  Phòng
+                </label>
+                <Select
+                  value={selectedRooms}
+                  options={rooms.map(r => ({
+                    label: r.roomNumber,
+                    value: r,
+                  }))}
+                  isSearchable={false}
+                  isMulti
+                  id="rooms"
+                  onChange={setSelectedRooms}
+                />
+              </div>
             </div>
           </div>
         </ModalBody>
@@ -515,15 +553,14 @@ export default function UserManagement() {
             type="button"
             className="btn btn-success"
             onClick={() => {
-              if (action === 0) {
+              if (!isUpdate) {
                 createUser();
               } else {
                 editUser();
               }
             }}
           >
-            {action === 0 && <>Tạo</>}
-            {action !== 0 && <>Cập nhật</>}
+            {isUpdate ? <>Cập nhật</> : <>Tạo</>}
           </button>
           <button
             type="button"

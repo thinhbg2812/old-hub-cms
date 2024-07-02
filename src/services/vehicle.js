@@ -15,7 +15,7 @@ export const createVehicleRequest = async (
   return await sendPostRequest("post", "/api/private/vehicle", params);
 };
 
-export const listVehicleRequests = async (orgId, page, size) => {
+export const listVehicleRequest = async (orgId, page, size) => {
   let params = {
     orgId: orgId,
     page: page,

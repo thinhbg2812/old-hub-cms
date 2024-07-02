@@ -18,7 +18,9 @@ export const createUserRequest = async (
   fullName,
   status,
   orgId,
-  deviceId
+  deviceId,
+  roomDetails,
+  vehicleDetails
 ) => {
   let params = {
     phoneNumber: phoneNumber,
@@ -26,6 +28,8 @@ export const createUserRequest = async (
     status: status,
     orgId: orgId,
     deviceId: deviceId,
+    roomDetails,
+    vehicleDetails,
   };
   return await sendPostRequest("post", "/api/private/user", params);
 };

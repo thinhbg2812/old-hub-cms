@@ -588,46 +588,37 @@ export default function UserManagement() {
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
-            <div className="d-flex flex-row justify-content-center mt-3">
-              <button
-                ref={submitRef}
-                type="submit"
-                className="btn btn-outline d-none"
-              >
-                Gửi
-              </button>
+            <div className="d-flex flex-row justify-content-end mt-3 gap-3">
               <button
                 type="button"
-                className="btn btn-primary me-2"
+                className="btn btn-primary"
                 onClick={() => {
                   currentSampleCommandRef.current = 'left_hand_sampling';
                   submitRef.current?.click();
                 }}
               >
-                Mẫu tay trái
+                Lấy mẫu tay trái
               </button>
               <button
                 type="button"
-                className="btn btn-warning"
+                className="btn btn-secondary"
+                onClick={closeGetSampleDialog}
+              >
+                Hoàn thành
+              </button>
+              <button
+                type="button"
+                className="btn btn-success"
                 onClick={() => {
                   currentSampleCommandRef.current = 'right_hand_sampling';
                   submitRef.current?.click();
                 }}
               >
-                Mẫu tay phải
+                Lấy mẫu tay phải
               </button>
             </div>
           </Form>
         </ModalBody>
-        <ModalFooter>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={closeGetSampleDialog}
-          >
-            Hoàn thành
-          </button>
-        </ModalFooter>
       </Modal>
       <Toast
         delay={3000}

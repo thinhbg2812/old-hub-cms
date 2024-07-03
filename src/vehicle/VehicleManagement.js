@@ -212,7 +212,7 @@ const VehicleManagement = () => {
                       ...newItem,
                     }));
                   }}
-                  value={selectedVehicle.status}
+                  value={selectedVehicle.vehicleType}
                 >
                   <option value="car">Car</option>
                   <option value="motobike">motobike</option>

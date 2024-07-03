@@ -1234,7 +1234,7 @@ export default function ProductManagement() {
                       laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                       irure dolor in reprehenderit in voluptate velit esse
                       cillum{" "}
-                      <span class="d-xl-none d-xxl-inline">
+                      <span className="d-xl-none d-xxl-inline">
                         dolore eu fugiat nulla pariatur
                       </span>
                       ...

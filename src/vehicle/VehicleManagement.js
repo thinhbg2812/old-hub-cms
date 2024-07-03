@@ -23,7 +23,7 @@ const VehicleManagement = () => {
   const orgId = queryParams.get("orgId");
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState({
-    vehicleType: "car"
+    vehicleType: "car",
   });
   const [showModal, setShowModal] = useState(false);
   const submitRef = useRef(null);
@@ -136,7 +136,7 @@ const VehicleManagement = () => {
                         </td>
                         <td className="d-flex flex-row justify-content-center">
                           <i
-                            class="ri-edit-box-line p-1"
+                            className="ri-edit-box-line p-1"
                             onClick={() => {}}
                           ></i>
                         </td>
@@ -197,7 +197,7 @@ const VehicleManagement = () => {
             </Row>
             <Row className="mb-1">
               <Col>
-                <label for="type" className="form-label">
+                <label htmlFor="type" className="form-label">
                   Status:
                 </label>
                 <select
@@ -221,7 +221,7 @@ const VehicleManagement = () => {
             </Row>
             <Row className="mb-1">
               <Col>
-                <label for="status" className="form-label">
+                <label htmlFor="status" className="form-label">
                   Status:
                 </label>
                 <select

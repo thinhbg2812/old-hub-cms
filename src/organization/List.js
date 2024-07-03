@@ -213,7 +213,7 @@ export default function OrgManagement() {
                   <div className="col-6">
                     <div className="row">
                       <div className="col-12">
-                        <label for="orgName" className="form-label">
+                        <label htmlFor="orgName" className="form-label">
                           Tên công ty:
                         </label>
                         <input
@@ -235,7 +235,7 @@ export default function OrgManagement() {
                     </div>
                     <div className="row">
                       <div className="col-12">
-                        <label for="phoneNumber" className="form-label">
+                        <label htmlFor="phoneNumber" className="form-label">
                           Số điện thoại:
                         </label>
                         <input
@@ -257,7 +257,7 @@ export default function OrgManagement() {
                     </div>
                     <div className="row">
                       <div className="col-12">
-                        <label for="address" className="form-label">
+                        <label htmlFor="address" className="form-label">
                           Địa chỉ:
                         </label>
                         <input
@@ -279,7 +279,7 @@ export default function OrgManagement() {
                     </div>
                     <div className="row">
                       <div className="col-12">
-                        <label for="website" className="form-label">
+                        <label htmlFor="website" className="form-label">
                           Trang web:
                         </label>
                         <input

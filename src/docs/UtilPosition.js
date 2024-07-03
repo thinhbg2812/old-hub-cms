@@ -54,7 +54,7 @@ export default function UtilPosition() {
           <Table className="table-spacing">
             <tbody>
               <tr>
-                <td colspan="2" className="text-dark ps-0">
+                <td colSpan="2" className="text-dark ps-0">
                   Where <strong>property</strong> is one of:
                 </td>
               </tr>
@@ -83,7 +83,7 @@ export default function UtilPosition() {
                 <td>for the horizontal right position (in LTR)</td>
               </tr>
               <tr>
-                <td colspan="2" className="text-dark ps-0">
+                <td colSpan="2" className="text-dark ps-0">
                   Where <strong>position</strong> is one of:
                 </td>
               </tr>

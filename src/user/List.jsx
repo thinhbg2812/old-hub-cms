@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import TreeView, { flattenTree } from "react-accessible-treeview";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { flattenTree } from "react-accessible-treeview";
 import {
   Col,
   Form,
@@ -16,7 +16,6 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer as ToastifyContainer, toast } from "react-toastify";
 import Pagination from "../components/Pagination.js";
 import Header from "../layouts/Header.js";
@@ -28,43 +27,48 @@ import { requestGetSampleRequest } from "../services/device.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from "@fortawesome/free-solid-svg-icons";
 import UserModal from "./UserModal.jsx";
+import { useLocation, useNavigate } from "react-router-dom";
+import _ from "lodash";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [size, setSize] = useState(10);
   const [page, setPage] = useState(0);
-  const [selectedOrg, setSelectedOrg] = useState("");
-  const [devices, setDevices] = useState([]);
-  const [selectedDevice, setSelectedDevice] = useState("");
   const [selectedUser, setSelectedUser] = useState();
-
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
   const [getSampleDialog, setGetSampleDialog] = useState(false);
   const [validated, setValidated] = useState(false);
-
-  // const [currentSampleCommand, setCurrentSampleCommand] = useState("")
   const currentSampleCommandRef = useRef("");
   const [sampleDeviceId, setSampleDeviceId] = useState("");
-
   const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastVariant, setToastVariant] = useState("Success");
-
   const [deleteAlert, setDeleteAlert] = useState(false);
-
   const navigate = useNavigate();
-
   const submitRef = useRef(null);
-
   const [orgs, setOrgs] = useState(
     flattenTree({
       name: "Tổ chức của bạn",
       children: [],
     })
   );
-
   const [isShowUserModal, setShowUserModal] = useState(false);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchKey = queryParams.get("searchKey");
+  const [isLoading, setLoading] = useState(false);
+
+  const handleSearch = e => {
+    e.preventDefault();
+    const params = new URLSearchParams(location.search);
+    if (e.target.value) {
+      params.set("searchKey", e.target.value);
+    } else {
+      params.delete("searchKey");
+    }
+    navigate(`${location.pathname}?${params.toString()}`);
+  };
 
   const closeCreateUserDialog = async () => {
     await listUser();
@@ -81,13 +85,15 @@ export default function UserManagement() {
   };
 
   const listUser = async () => {
-    const resp = await listUserRequest(page, size);
+    setLoading(true);
+    const resp = await listUserRequest(page, size, searchKey);
     if (resp.isError) {
       toast.error("Không thể lấy dánh sách người dùng");
     } else {
       setUsers(resp.data.items);
       setTotal(resp.data.total);
     }
+    setLoading(false);
   };
 
   const addProperty = (obj, path, value) => {
@@ -174,10 +180,19 @@ export default function UserManagement() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedListUser = useCallback(_.debounce(listUser, 500), [
+    page,
+    size,
+    searchKey,
+  ]);
+
   useEffect(() => {
-    listUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, size]);
+    debouncedListUser();
+    return () => {
+      debouncedListUser.cancel();
+    };
+  }, [page, size, searchKey, debouncedListUser]);
 
   useEffect(() => {
     listOrg();
@@ -190,10 +205,18 @@ export default function UserManagement() {
       <div className="main main-app p-3 p-lg-4">
         <div className="container-fluid ">
           <div className="row mb-2">
-            <div className="col-12 text-end">
+            <div className="col-12 d-flex">
+              <Form.Control
+                className="d-inline-block me-3"
+                type="text"
+                placeholder="Tìm kiếm"
+                defaultValue={searchKey}
+                onChange={handleSearch}
+                autoFocus
+              />
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary text-nowrap"
                 onClick={() => {
                   setSelectedTreeIds([1]);
                   setShowUserModal(true);
@@ -204,93 +227,103 @@ export default function UserManagement() {
               </button>
             </div>
           </div>
-          <div className="row">
-            <div className="col">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Họ tên</th>
-                    <th>Số điện thoại</th>
-                    <th>Tên công ty</th>
-                    <th>Phương tiện</th>
-                    <th>Phòng</th>
-                    <th>Mẫu tay phải</th>
-                    <th>Mẫu tay trái</th>
-                    <th>Trạng thái</th>
-                    <th>Hành động</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((user, index) => {
-                    return (
-                      <tr key={user.id}>
-                        <td>{index}</td>
-                        <td>{user.fullName}</td>
-                        <td>{user.phoneNumber}</td>
-                        <td>{user.orgs[0].orgName}</td>
-                        <td>
-                          {user.vehicles?.map(v => v.licensePlate).join(", ")}
-                        </td>
-                        <td>{user.rooms?.map(r => r.roomNumber).join(", ")}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{user.status}</td>
-                        <td className="d-flex flex-row justify-content-center">
-                          <FontAwesomeIcon
-                            icon={faHand}
-                            className="align-self-center p-1"
-                            onClick={() => {
-                              setSelectedUser(user);
-                              setGetSampleDialog(true);
-                            }}
-                          />
-                          <i
-                            className="ri-edit-box-line p-1"
-                            onClick={() => {
-                              let userOrgs = user.orgs;
-                              let orgIds = [];
-                              for (let i = 0; i < userOrgs.length; i++) {
-                                orgIds.push(user.orgs[i].id);
-                              }
-                              let treeIds = [];
-                              for (let i = 0; i < orgIds.length; i++) {
-                                let index = orgs.findIndex(
-                                  o => o.metadata?.id === orgIds[i]
-                                );
-                                if (index !== -1) {
-                                  treeIds.push(orgs[index].id);
-                                }
-                              }
-                              setSelectedTreeIds(treeIds);
-                              setSelectedUser(user);
-                              setShowUserModal(true);
-                            }}
-                          ></i>
-                          <i
-                            className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
-                            onClick={() => {
-                              setSelectedUser(user);
-                              setDeleteAlert(true);
-                            }}
-                          ></i>
-                        </td>
+          {isLoading ? (
+            <div className="text-center">Loading...</div>
+          ) : (
+            <>
+              <div className="row">
+                <div className="col">
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Tên công ty</th>
+                        <th>Phương tiện</th>
+                        <th>Phòng</th>
+                        <th>Mẫu tay phải</th>
+                        <th>Mẫu tay trái</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="row align-items-center">
-            <div className="col-12 align-self-center">
-              <Pagination
-                total={total}
-                pageSize={size}
-                callback={handlePaginationCallback}
-              />
-            </div>
-          </div>
+                    </thead>
+                    <tbody>
+                      {users.map((user, index) => {
+                        return (
+                          <tr key={user.id}>
+                            <td>{index}</td>
+                            <td>{user.fullName}</td>
+                            <td>{user.phoneNumber}</td>
+                            <td>{user.orgs[0].orgName}</td>
+                            <td>
+                              {user.vehicles
+                                ?.map(v => v.licensePlate)
+                                .join(", ")}
+                            </td>
+                            <td>
+                              {user.rooms?.map(r => r.roomNumber).join(", ")}
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>{user.status}</td>
+                            <td className="d-flex flex-row justify-content-center">
+                              <FontAwesomeIcon
+                                icon={faHand}
+                                className="align-self-center p-1"
+                                onClick={() => {
+                                  setSelectedUser(user);
+                                  setGetSampleDialog(true);
+                                }}
+                              />
+                              <i
+                                className="ri-edit-box-line p-1"
+                                onClick={() => {
+                                  let userOrgs = user.orgs;
+                                  let orgIds = [];
+                                  for (let i = 0; i < userOrgs.length; i++) {
+                                    orgIds.push(user.orgs[i].id);
+                                  }
+                                  let treeIds = [];
+                                  for (let i = 0; i < orgIds.length; i++) {
+                                    let index = orgs.findIndex(
+                                      o => o.metadata?.id === orgIds[i]
+                                    );
+                                    if (index !== -1) {
+                                      treeIds.push(orgs[index].id);
+                                    }
+                                  }
+                                  setSelectedTreeIds(treeIds);
+                                  setSelectedUser(user);
+                                  setShowUserModal(true);
+                                }}
+                              ></i>
+                              <i
+                                className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
+                                onClick={() => {
+                                  setSelectedUser(user);
+                                  setDeleteAlert(true);
+                                }}
+                              ></i>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="row align-items-center">
+                <div className="col-12 align-self-center">
+                  <Pagination
+                    total={total}
+                    pageSize={size}
+                    callback={handlePaginationCallback}
+                  />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <UserModal

@@ -7,10 +7,11 @@ export const loginRequest = async (phoneNumber, password) => {
   });
 };
 
-export const listUserRequest = async (page, size) => {
+export const listUserRequest = async (page, size, searchKey) => {
   return await sendGetRequest("/api/private/user/", {
     page: page,
     size: size,
+    searchKey: searchKey,
   });
 };
 export const createUserRequest = async (

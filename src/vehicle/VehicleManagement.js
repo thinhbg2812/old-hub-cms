@@ -22,7 +22,9 @@ const VehicleManagement = () => {
   const [queryParams] = useSearchParams();
   const orgId = queryParams.get("orgId");
   const [vehicles, setVehicles] = useState([]);
-  const [selectedVehicle, setSelectedVehicle] = useState({});
+  const [selectedVehicle, setSelectedVehicle] = useState({
+    vehicleType: "car"
+  });
   const [showModal, setShowModal] = useState(false);
   const submitRef = useRef(null);
   const navigate = useNavigate();

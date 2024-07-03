@@ -237,6 +237,7 @@ export default function UserManagement() {
     await requestGetHandSample();
   };
   const requestGetHandSample = async () => {
+    console.log(1);
     // https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
     const resp = await requestGetSampleRequest(
       sampleDeviceId,
@@ -629,6 +630,13 @@ export default function UserManagement() {
               </FormGroup>
             </Row>
             <div className="d-flex flex-row justify-content-end mt-3 gap-3">
+              <button
+                ref={submitRef}
+                type="submit"
+                className="btn btn-outline d-none"
+              >
+                Gửi
+              </button>
               <button
                 type="button"
                 className="btn btn-primary"

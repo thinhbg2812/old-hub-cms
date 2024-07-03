@@ -264,8 +264,20 @@ export default function UserManagement() {
                             <td>
                               {user.rooms?.map(r => r.roomNumber).join(", ")}
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              {user.samples?.find(
+                                sample => sample.sampleType === "right_hand"
+                              )
+                                ? "True"
+                                : "False"}
+                            </td>
+                            <td>
+                              {user.samples?.find(
+                                sample => sample.sampleType === "left_hand"
+                              )
+                                ? "True"
+                                : "False"}
+                            </td>
                             <td>{user.status}</td>
                             <td className="d-flex flex-row justify-content-center">
                               <FontAwesomeIcon

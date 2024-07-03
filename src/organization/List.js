@@ -10,8 +10,8 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import cx from "classnames";
 import "./list.scss";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import {
   Col,
   Form,
@@ -20,12 +20,10 @@ import {
   FormLabel,
   Modal,
   ModalBody,
-  ModalFooter,
   ModalHeader,
   Row,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Header from "../layouts/Header";
 
 export default function OrgManagement() {
@@ -36,7 +34,6 @@ export default function OrgManagement() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [website, setWebsite] = useState("");
-  const [parentOrgId, setParentOrgId] = useState("");
   const [currentOrg, setCurrentOrg] = useState({});
 
   const [createOrgDialog, setCreateOrgDialog] = useState(false);
@@ -56,7 +53,6 @@ export default function OrgManagement() {
       children: [],
     })
   );
-  const [originalOrgs, setOriginalOrgs] = useState({});
 
   const addProperty = (obj, path, value) => {
     let parts = path.split(">");
@@ -322,7 +318,11 @@ export default function OrgManagement() {
                           type="button"
                           className="btn btn-success"
                           onClick={() => {
-                            navigate(`/room/list?orgId=${selectedOrg.id}`);
+                            if (!selectedOrg.id) {
+                              toast.error("Chưa chọn công ty");
+                            } else {
+                              navigate(`/room/list?orgId=${selectedOrg.id}`);
+                            }
                           }}
                         >
                           Quản lý phòng
@@ -335,7 +335,11 @@ export default function OrgManagement() {
                           type="button"
                           className="btn btn-secondary"
                           onClick={() => {
-                            navigate(`/vehicle/list?orgId=${selectedOrg.id}`);
+                            if (!selectedOrg.id) {
+                              toast.error("Chưa chọn công ty");
+                            } else {
+                              navigate(`/vehicle/list?orgId=${selectedOrg.id}`);
+                            }
                           }}
                         >
                           Quản lý phương tiện
@@ -348,7 +352,10 @@ export default function OrgManagement() {
                           type="button"
                           className="btn btn-warning"
                           onClick={() => {
-                            navigate(`/device/list?orgId=${selectedOrg.id}`);
+                            if (!selectedOrg.id) {
+                              toast.error("Chưa chọn công ty");
+                            } else
+                              navigate(`/device/list?orgId=${selectedOrg.id}`);
                           }}
                         >
                           Quản lý thiết bị
@@ -435,6 +442,7 @@ export default function OrgManagement() {
           </Form>
         </ModalBody>
       </Modal>
+      <ToastContainer position="bottom-right" />
     </React.Fragment>
   );
 }

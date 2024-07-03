@@ -25,3 +25,11 @@ export const createDeviceRequest = async (deviceId, deviceName, orgId) => {
 export const getDeviceRequest = async (id, orgId) => {
   return sendGetRequest(`/api/device/${id}/${orgId}`);
 };
+export const updateDeviceRequest = async (id, deviceName, orgId) => {
+  const params = {
+    id: id,
+    deviceName: deviceName,
+    orgId: orgId,
+  };
+  return sendPostRequest("put", "/api/private/device", params);
+};

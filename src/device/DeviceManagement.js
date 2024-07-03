@@ -4,8 +4,9 @@ import {
   createDeviceRequest,
   getDeviceRequest,
   listOrgDeviceRequest,
+  updateDeviceRequest,
 } from "../services/device";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   Col,
   Form,
@@ -19,6 +20,7 @@ import {
   Row,
   Toast,
   ToastBody,
+  ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
 
@@ -97,86 +99,120 @@ const DeviceManagement = () => {
     if (form.checkValidity()) {
       if (action === "create") {
         await createDevice();
+      } else {
+        await updateDevice();
       }
+    }
+  };
+  const updateDevice = async () => {
+    const resp = await updateDeviceRequest(
+      selectedDevice.id,
+      selectedDevice.deviceName,
+      orgId
+    );
+    if (resp.isError) {
+      setToastContent(`Không thể cập nhật thiết bị: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+    } else {
+      closeModal();
     }
   };
   return (
     <React.Fragment>
       <Header />
       <div className="main main-app p-3 p-lg-4">
-        <div className="container-fluid">
-          <div className="row mb-2">
-            <div className="col-12 text-end">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  setShowModal(true);
-                  setAction("create");
-                }}
-              >
-                Thêm Thiết Bị
-              </button>
-            </div>
+        <div className="d-flex flex-column justify-content-between mb-4">
+          <div>
+            <ol className="breadcrumb fs-sm mb-1">
+              <li className="breadcrumb-item">
+                <Link to="/org/list">Quản lý tổ chức</Link>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                Quản lý thiết bị
+              </li>
+            </ol>
+            <h4 className="main-title mb-0">Danh sách thiết bị</h4>
           </div>
-          <div className="row">
-            <div className="col">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Mã Thiết Bị</th>
-                    <th className="text-center">Tên Thiết Bị</th>
-                    <th>Trạng Thái</th>
-                    <th className="text-center">Hành Động</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {devices.map((device, index) => {
-                    return (
-                      <tr key={device.id}>
-                        <td>{index}</td>
-                        <td>{device.deviceId}</td>
-                        <td>{device.deviceName}</td>
-                        <td className="text-center">
-                          {device.status ? "Hoạt động" : "Không hoạt động"}
-                        </td>
-                        <td className="d-flex flex-row justify-content-center">
-                          <i
-                            class="ri-edit-box-line p-1"
-                            onClick={() => {
-                              setShowModal(true);
-                              setAction("update");
-                              setSelectedDevice(device);
-                            }}
-                          ></i>
-                        </td>
+          <div className="d-flex gap-2 mt-3 mt-md-0">
+            <div className="container-fluid">
+              <div className="row mb-2">
+                <div className="col-12 text-end">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setShowModal(true);
+                      setAction("create");
+                    }}
+                  >
+                    Thêm Thiết Bị
+                  </button>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Mã Thiết Bị</th>
+                        <th className="text-center">Tên Thiết Bị</th>
+                        <th>Trạng Thái</th>
+                        <th className="text-center">Hành Động</th>
                       </tr>
-                    );
-                  })}
-                  {devices.length <= 0 && (
-                    <tr key="no-device" className="text-center">
-                      <td colSpan={4}>Không có thiết bị nào</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                    </thead>
+                    <tbody>
+                      {devices.map((device, index) => {
+                        return (
+                          <tr key={device.id}>
+                            <td>{index}</td>
+                            <td>{device.deviceId}</td>
+                            <td>{device.deviceName}</td>
+                            <td className="text-center">
+                              {device.status ? "Hoạt động" : "Không hoạt động"}
+                            </td>
+                            <td className="d-flex flex-row justify-content-center">
+                              <i
+                                className="ri-edit-box-line p-1"
+                                onClick={() => {
+                                  setShowModal(true);
+                                  setAction("update");
+                                  setSelectedDevice(device);
+                                }}
+                              ></i>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      {devices.length <= 0 && (
+                        <tr key="no-device" className="text-center">
+                          <td colSpan={4}>Không có thiết bị nào</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Toast
-        delay={3000}
-        autohide
-        show={showToast}
-        onClose={() => setShowToast(false)}
-        className="position-fixed bottom-0 end-0 p-3"
-        bg={toastVariant}
-        style={{ zIndex: 2000 }}
-      >
-        <ToastHeader>Thông Báo</ToastHeader>
-        <ToastBody>{toastContent}</ToastBody>
-      </Toast>
+      <ToastContainer position="top-end">
+        <Toast
+          delay={3000}
+          autohide
+          show={showToast}
+          onClose={() => setShowToast(false)}
+          className="position-fixed bottom-0 end-0 p-3"
+          bg={toastVariant}
+          style={{ zIndex: 2000 }}
+        >
+          <ToastHeader>Thông Báo</ToastHeader>
+          <ToastBody>{toastContent}</ToastBody>
+        </Toast>
+      </ToastContainer>
+
       <Modal show={showModal} onHide={closeModal} backdrop="static">
         <ModalHeader closeButton>
           {action === "create" && "Thêm Thiết Bị Mới"}

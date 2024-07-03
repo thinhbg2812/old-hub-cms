@@ -34,7 +34,13 @@ export const createUserRequest = async (
   return await sendPostRequest("post", "/api/private/user", params);
 };
 
-export const editUserRequest = async (fullName, status, orgId, userId) => {
+export const editUserRequest = async (
+  fullName,
+  status,
+  orgId,
+  userId,
+  phoneNumber
+) => {
   let params = {
     userId: userId,
   };
@@ -46,6 +52,9 @@ export const editUserRequest = async (fullName, status, orgId, userId) => {
   }
   if (orgId) {
     params.orgId = orgId;
+  }
+  if (phoneNumber) {
+    params.phoneNumber = phoneNumber;
   }
   return await sendPostRequest("put", "/api/private/user", params);
 };

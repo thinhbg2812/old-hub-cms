@@ -154,7 +154,7 @@ const RoomManagement = () => {
                         </td>
                         <td className="d-flex flex-row justify-content-center">
                           <i
-                            class="ri-edit-box-line p-1"
+                            className="ri-edit-box-line p-1"
                             onClick={() => {
                               setAction("update");
                               setSelectedRoom(room);
@@ -245,7 +245,7 @@ const RoomManagement = () => {
             </Row>
             <Row className="mb-1">
               <Col>
-                <label for="status" className="form-label">
+                <label htmlFor="status" className="form-label">
                   Status:
                 </label>
                 <select

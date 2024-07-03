@@ -22,7 +22,7 @@ export const sendPostRequest = async (requestType, uri, data, isPublic) => {
     }
     return {
       isError: true,
-      msg: error.message,
+      msg: error.response?.data?.message,
     };
   }
 };
@@ -49,7 +49,7 @@ export const sendGetRequest = async (uri, request) => {
     }
     return {
       isError: true,
-      msg: error.message,
+      msg: error.response?.data?.message,
     };
   }
 };

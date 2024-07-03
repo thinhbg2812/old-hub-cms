@@ -14,6 +14,7 @@ import {
   Row,
   Toast,
   ToastBody,
+  ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
 import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
@@ -194,10 +195,11 @@ export default function UserManagement() {
       selectedUser.fullName,
       selectedUser.status,
       selectedUser.orgs?.[0].orgId ?? null,
-      selectedUser.id
+      selectedUser.id,
+      selectedUser.phoneNumber
     );
     if (resp.isError) {
-      setToastContent("Không thể cập nhật thông tin người dùng");
+      setToastContent(`Không thể cập nhật thông tin người dùng: ${resp.msg}`);
       setToastVariant("danger");
       setShowToast(true);
     } else {
@@ -237,7 +239,7 @@ export default function UserManagement() {
     await requestGetHandSample();
   };
   const requestGetHandSample = async () => {
-    console.log(1);
+    console.log(selectedUser);
     // https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
     const resp = await requestGetSampleRequest(
       sampleDeviceId,
@@ -470,7 +472,7 @@ export default function UserManagement() {
                       ...newItem,
                     }));
                   }}
-                  disabled={isUpdate}
+                  // disabled={isUpdate}
                 ></input>
               </div>
               <div className="mt-2">
@@ -668,18 +670,20 @@ export default function UserManagement() {
           </Form>
         </ModalBody>
       </Modal>
-      <Toast
-        delay={3000}
-        autohide
-        show={showToast}
-        onClose={() => setShowToast(false)}
-        className="position-fixed bottom-0 end-0 p-3"
-        bg={toastVariant}
-        style={{ zIndex: 2000 }}
-      >
-        <ToastHeader>Thông báo</ToastHeader>
-        <ToastBody>{toastContent}</ToastBody>
-      </Toast>
+      <ToastContainer position="top-end" style={{ zIndex: 1 }}>
+        <Toast
+          delay={3000}
+          autohide
+          show={showToast}
+          onClose={() => setShowToast(false)}
+          className="position-fixed bottom-0 end-0 p-3"
+          bg={toastVariant}
+          style={{ zIndex: 2000 }}
+        >
+          <ToastHeader>Thông báo</ToastHeader>
+          <ToastBody>{toastContent}</ToastBody>
+        </Toast>
+      </ToastContainer>
     </React.Fragment>
   );
 }

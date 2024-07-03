@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import cx from "classnames";
 import TreeView, { flattenTree } from "react-accessible-treeview";
 import {
   Col,
@@ -17,40 +16,29 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
-import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
-import { IoMdArrowDropright } from "react-icons/io";
-import { toast } from "react-toastify";
-import Pagination from "../components/Pagination";
-import Header from "../layouts/Header";
-import { listOrgRequest } from "../services/organization";
-import { listRoomRequest } from "../services/room";
-import { listVehicleRequest } from "../services/vehicle";
-import {
-  createUserRequest,
-  editUserRequest,
-  listUserRequest,
-} from "../services/user";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer as ToastifyContainer, toast } from "react-toastify";
+import Pagination from "../components/Pagination.js";
+import Header from "../layouts/Header.js";
+import { listOrgRequest } from "../services/organization.js";
+
+import { updateUserRequest, listUserRequest } from "../services/user.js";
 import "./list.scss";
-import {
-  listOrgDeviceRequest,
-  requestGetSampleRequest,
-} from "../services/device";
+import { requestGetSampleRequest } from "../services/device.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from "@fortawesome/free-solid-svg-icons";
-import Select from "react-select";
+import UserModal from "./UserModal.jsx";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [size, setSize] = useState(10);
   const [page, setPage] = useState(0);
-  const [, setDevices] = useState([]);
   const [selectedOrg, setSelectedOrg] = useState("");
+  const [devices, setDevices] = useState([]);
   const [selectedDevice, setSelectedDevice] = useState("");
-  const [selectedUser, setSelectedUser] = useState({});
-  const [selectedRooms, setSelectedRooms] = useState([]);
-  const [selectedVehicles, setSelectedVehicles] = useState([]);
-  const [action, setAction] = useState(0); //0 - tạo, 1 - chỉnh sửa
+  const [selectedUser, setSelectedUser] = useState();
+
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
   const [getSampleDialog, setGetSampleDialog] = useState(false);
   const [validated, setValidated] = useState(false);
@@ -64,12 +52,10 @@ export default function UserManagement() {
   const [toastVariant, setToastVariant] = useState("Success");
 
   const [deleteAlert, setDeleteAlert] = useState(false);
-  const [rooms, setRooms] = useState([]);
-  const [vehicles, setVehicles] = useState([]);
+
+  const navigate = useNavigate();
 
   const submitRef = useRef(null);
-
-  const isUpdate = action === 1;
 
   const [orgs, setOrgs] = useState(
     flattenTree({
@@ -78,17 +64,18 @@ export default function UserManagement() {
     })
   );
 
-  const [createUserDialog, setCreateUserDialog] = useState(false);
+  const [isShowUserModal, setShowUserModal] = useState(false);
 
   const closeCreateUserDialog = async () => {
     await listUser();
-    setCreateUserDialog(false);
-    setSelectedOrg("");
+    setShowUserModal(false);
   };
+
   const closeDeleteAlertDialog = async () => {
     await listUser();
     setDeleteAlert(false);
   };
+
   const closeGetSampleDialog = async () => {
     setGetSampleDialog(false);
   };
@@ -140,85 +127,15 @@ export default function UserManagement() {
     }
   };
 
-  const listRoom = async orgId => {
-    const resp = await listRoomRequest(orgId, page, size);
-    if (resp.isError) {
-      toast.error("Không thể liệt kê phòng của tổ chức");
-    } else {
-      setRooms(resp.data.items);
-    }
-  };
-
-  const listOrgDevice = async orgId => {
-    const resp = await listOrgDeviceRequest(orgId);
-    if (resp.isError) {
-      toast.error("Không thể tải thiết bị của tổ chức");
-    } else {
-      setDevices(resp.data.items);
-    }
-  };
-
-  const listVehicle = async orgId => {
-    const resp = await listVehicleRequest(orgId, 1, 999);
-    if (resp.isError) {
-      toast.error("Không thể tải danh sách phương tiện");
-    } else {
-      setVehicles(resp.data.items);
-      console.log(resp.data.items);
-    }
-  };
-
-  const createUser = async () => {
-    const resp = await createUserRequest(
-      selectedUser.phoneNumber,
-      selectedUser.fullName,
-      selectedUser.status,
-      selectedOrg,
-      selectedDevice,
-      selectedRooms.map(r => ({ roomId: r.value.id, action: "new" })),
-      selectedVehicles.map(v => ({ vehicleId: v.value.id, action: "new" }))
-    );
-    if (resp.isError) {
-      setToastContent("Không thể tạo người dùng mới");
-      setToastVariant("danger");
-      setShowToast(true);
-    } else {
-      setToastContent("Tạo người dùng thành công");
-      setToastVariant("success");
-      setShowToast(true);
-      closeCreateUserDialog();
-    }
-  };
-
-  const editUser = async () => {
-    const resp = await editUserRequest(
-      selectedUser.fullName,
-      selectedUser.status,
-      selectedUser.orgs?.[0].orgId ?? null,
-      selectedUser.id,
-      selectedUser.phoneNumber
-    );
-    if (resp.isError) {
-      setToastContent(`Không thể cập nhật thông tin người dùng: ${resp.msg}`);
-      setToastVariant("danger");
-      setShowToast(true);
-    } else {
-      setToastContent("Cập nhật thông tin người dùng thành công");
-      setToastVariant("success");
-      setShowToast(true);
-      closeCreateUserDialog();
-    }
-  };
-
   const deleteUser = async user => {
-    const resp = await editUserRequest(
+    const resp = await updateUserRequest(
       null,
       user.status === "active" ? "inactive" : "active",
       null,
-      selectedUser.id
+      selectedUser?.id
     );
     if (resp.isError) {
-      toast.error("Không thể đặt người dùng ở trạng thái không hoạt động");
+      toast.error("Không thể vô hiệu hóa người dùng");
     } else {
       closeDeleteAlertDialog();
     }
@@ -243,7 +160,7 @@ export default function UserManagement() {
     // https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
     const resp = await requestGetSampleRequest(
       sampleDeviceId,
-      selectedUser.id,
+      selectedUser?.id,
       currentSampleCommandRef.current
     );
     if (resp.isError) {
@@ -267,17 +184,6 @@ export default function UserManagement() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (selectedOrg) {
-      listOrgDevice(selectedOrg);
-      listRoom(selectedOrg);
-      listVehicle(selectedOrg);
-    } else {
-      setDevices([]);
-      setRooms([]);
-    }
-  }, [selectedOrg]);
-
   return (
     <React.Fragment>
       <Header />
@@ -290,11 +196,8 @@ export default function UserManagement() {
                 className="btn btn-primary"
                 onClick={() => {
                   setSelectedTreeIds([1]);
-                  setCreateUserDialog(true);
-                  setSelectedUser({
-                    status: "active",
-                  });
-                  setAction(0);
+                  setShowUserModal(true);
+                  setSelectedUser(null);
                 }}
               >
                 Thêm người dùng
@@ -360,15 +263,13 @@ export default function UserManagement() {
                                 }
                               }
                               setSelectedTreeIds(treeIds);
-                              setAction(1);
                               setSelectedUser(user);
-                              setCreateUserDialog(true);
+                              setShowUserModal(true);
                             }}
                           ></i>
                           <i
                             className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
                             onClick={() => {
-                              // setDeleteUserId(user.id)
                               setSelectedUser(user);
                               setDeleteAlert(true);
                             }}
@@ -392,191 +293,14 @@ export default function UserManagement() {
           </div>
         </div>
       </div>
-      <Modal
-        show={createUserDialog}
+      <UserModal
         onHide={closeCreateUserDialog}
-        backdrop="static"
-        size="lg"
-      >
-        <ModalHeader closeButton>
-          {!isUpdate && <>Tạo người dùng mới</>}
-          {action !== 0 && <>Chỉnh sửa người dùng</>}
-        </ModalHeader>
-        <ModalBody>
-          <div className="row gx-5">
-            <div className="col-5 checkbox">
-              <TreeView
-                data={orgs}
-                propagateSelect
-                propagateSelectUpwards
-                togglableSelect
-                selectedIds={selectedTreeIds}
-                nodeRenderer={({
-                  element,
-                  isBranch,
-                  isExpanded,
-                  isSelected,
-                  isHalfSelected,
-                  getNodeProps,
-                  level,
-                  handleSelect,
-                  handleExpand,
-                }) => {
-                  return (
-                    <div
-                      {...getNodeProps({ onClick: handleExpand })}
-                      style={{ marginLeft: 40 * (level - 1) }}
-                    >
-                      {isBranch && <ArrowIcon isOpen={isExpanded} />}
-                      <CheckBoxIcon
-                        className="checkbox-icon"
-                        onClick={e => {
-                          handleSelect(e);
-                          e.stopPropagation();
-                        }}
-                        variant={
-                          isHalfSelected ? "some" : isSelected ? "all" : "none"
-                        }
-                      />
-                      <i className="ri-building-line me-1"></i>
-                      <span
-                        className="name"
-                        onClick={() => {
-                          setSelectedOrg(element.metadata.id);
-                          // listOrgDevice(element.metadata.id);
-                        }}
-                      >
-                        {element.name}
-                      </span>
-                    </div>
-                  );
-                }}
-              />
-            </div>
-            <div className="col-6">
-              <div>
-                <label htmlFor="phone" className="form-label">
-                  Số điện thoại:
-                </label>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  id="phone"
-                  value={selectedUser.phoneNumber}
-                  onChange={e => {
-                    const newItem = {
-                      phoneNumber: e.target.value,
-                    };
-                    setSelectedUser(() => ({
-                      ...selectedUser,
-                      ...newItem,
-                    }));
-                  }}
-                  // disabled={isUpdate}
-                ></input>
-              </div>
-              <div className="mt-2">
-                <label htmlFor="fullname" className="form-label">
-                  Họ tên:
-                </label>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  id="fullname"
-                  value={selectedUser.fullName}
-                  onChange={e => {
-                    const newItem = {
-                      fullName: e.target.value,
-                    };
-                    setSelectedUser(() => ({
-                      ...selectedUser,
-                      ...newItem,
-                    }));
-                  }}
-                ></input>
-              </div>
-              <div className="mt-2">
-                <label htmlFor="status" className="form-label">
-                  Trạng thái:
-                </label>
-                <select
-                  id="status"
-                  className="form-select"
-                  value={selectedUser.status}
-                  onChange={e => {
-                    const newItem = {
-                      status: e.target.value,
-                    };
-                    setSelectedUser(() => ({
-                      ...selectedUser,
-                      ...newItem,
-                    }));
-                  }}
-                >
-                  <option value="active">Hoạt động</option>
-                  <option value="inactive">Không hoạt động</option>
-                  <option value="left_hand_sampling">Lấy mẫu tay trái</option>
-                  <option value="right_hand_sampling">Lấy mẫu tay phải</option>
-                </select>
-              </div>
-              <div className="mt-2">
-                <label htmlFor="vehicles" className="form-label">
-                  Phương tiện
-                </label>
-                <Select
-                  value={selectedVehicles}
-                  options={vehicles.map(v => ({
-                    label: v.licensePlate,
-                    value: v,
-                  }))}
-                  isSearchable={false}
-                  isMulti
-                  id="vehicles"
-                  onChange={setSelectedVehicles}
-                />
-              </div>
-              <div className="mt-2">
-                <label htmlFor="rooms" className="form-label">
-                  Phòng
-                </label>
-                <Select
-                  value={selectedRooms}
-                  options={rooms.map(r => ({
-                    label: r.roomNumber,
-                    value: r,
-                  }))}
-                  isSearchable={false}
-                  isMulti
-                  id="rooms"
-                  onChange={setSelectedRooms}
-                />
-              </div>
-            </div>
-          </div>
-        </ModalBody>
-        <ModalFooter>
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={() => {
-              if (!isUpdate) {
-                createUser();
-              } else {
-                editUser();
-              }
-            }}
-          >
-            {isUpdate ? <>Cập nhật</> : <>Tạo</>}
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => closeCreateUserDialog()}
-          >
-            Hủy
-          </button>
-        </ModalFooter>
-      </Modal>
+        orgs={orgs}
+        selectedTreeIds={selectedTreeIds}
+        selectedUser={selectedUser}
+        show={isShowUserModal}
+      />
+
       <Modal
         show={deleteAlert}
         onHide={closeDeleteAlertDialog}
@@ -584,8 +308,8 @@ export default function UserManagement() {
       >
         <ModalHeader closeButton>
           Bạn có chắc chắn muốn{" "}
-          {selectedUser.status === "active" ? "vô hiệu hóa" : "kích hoạt"} người
-          dùng này không?
+          {selectedUser?.status === "active" ? "vô hiệu hóa" : "kích hoạt"}{" "}
+          người dùng này không?
         </ModalHeader>
         <ModalFooter>
           <button
@@ -614,7 +338,7 @@ export default function UserManagement() {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          Yêu cầu lấy mẫu tay của {selectedUser.fullName}
+          Yêu cầu lấy mẫu tay của {selectedUser?.fullName}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
@@ -670,6 +394,7 @@ export default function UserManagement() {
           </Form>
         </ModalBody>
       </Modal>
+      <ToastifyContainer position="bottom-right" />
       <ToastContainer position="top-end" style={{ zIndex: 1 }}>
         <Toast
           delay={3000}
@@ -687,26 +412,3 @@ export default function UserManagement() {
     </React.Fragment>
   );
 }
-const ArrowIcon = ({ isOpen, className }) => {
-  const baseClass = "arrow";
-  const classes = cx(
-    baseClass,
-    { [`${baseClass}--closed`]: !isOpen },
-    { [`${baseClass}--open`]: isOpen },
-    className
-  );
-  return <IoMdArrowDropright className={classes} />;
-};
-
-const CheckBoxIcon = ({ variant, ...rest }) => {
-  switch (variant) {
-    case "all":
-      return <FaCheckSquare {...rest} />;
-    case "none":
-      return <FaSquare {...rest} />;
-    case "some":
-      return <FaMinusSquare {...rest} />;
-    default:
-      return null;
-  }
-};

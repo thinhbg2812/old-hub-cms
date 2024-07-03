@@ -17,29 +17,25 @@ export const createUserRequest = async (
   phoneNumber,
   fullName,
   status,
-  orgId,
-  deviceId,
-  roomDetails,
-  vehicleDetails
+  orgId
 ) => {
   let params = {
     phoneNumber: phoneNumber,
     fullName: fullName,
     status: status,
     orgId: orgId,
-    deviceId: deviceId,
-    roomDetails,
-    vehicleDetails,
   };
   return await sendPostRequest("post", "/api/private/user", params);
 };
 
-export const editUserRequest = async (
+export const updateUserRequest = async (
   fullName,
   status,
   orgId,
   userId,
-  phoneNumber
+  phoneNumber,
+  vehicleDetails,
+  roomDetails
 ) => {
   let params = {
     userId: userId,
@@ -55,6 +51,12 @@ export const editUserRequest = async (
   }
   if (phoneNumber) {
     params.phoneNumber = phoneNumber;
+  }
+  if (vehicleDetails) {
+    params.vehicleDetails = vehicleDetails;
+  }
+  if (roomDetails) {
+    params.roomDetails = roomDetails;
   }
   return await sendPostRequest("put", "/api/private/user", params);
 };

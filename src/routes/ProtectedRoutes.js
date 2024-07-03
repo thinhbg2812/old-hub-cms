@@ -84,7 +84,7 @@ import IconFeather from "../docs/IconFeather";
 import EmployeeManagemnt from "../employee/List";
 import OrgManagement from "../organization/List";
 import RoomManagement from "../room/RoomList";
-import UserManagemnt from "../user/List";
+import UserManagment from "../user/List";
 import VehicleManagement from "../vehicle/VehicleManagement";
 import DeviceManagement from "../device/DeviceManagement";
 
@@ -162,7 +162,7 @@ const protectedRoutes = [
   { path: "docs/util/typography", element: <UtilTypography /> },
   { path: "docs/util/shadows", element: <UtilShadows /> },
   { path: "docs/util/extras", element: <UtilExtras /> },
-  { path: "user/list", element: <UserManagemnt /> },
+  { path: "user/list", element: <UserManagment /> },
   { path: "org/list", element: <OrgManagement /> },
   { path: "room/list", element: <RoomManagement /> },
   { path: "vehicle/list", element: <VehicleManagement /> },

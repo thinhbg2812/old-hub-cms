@@ -31,7 +31,7 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
   const isUpdate = !!selectedUser;
   const [rooms, setRooms] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [selectedOrg, setSelectedOrg] = useState("");
+  const [selectedOrg, setSelectedOrg] = useState();
   const [formData, setFormData] = useState(DEFAULT_USER);
 
   const handleChange = e => {
@@ -168,6 +168,7 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
 
   useEffect(() => {
     if (selectedUser) {
+      setSelectedOrg(selectedUser.orgs?.[0]?.id);
       setFormData({
         phoneNumber: selectedUser.phoneNumber,
         fullName: selectedUser.fullName,
@@ -194,55 +195,61 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
         </ModalHeader>
         <ModalBody>
           <div className="row gx-5">
-            <div className="col-5 checkbox">
-              <TreeView
-                data={orgs}
-                propagateSelect
-                propagateSelectUpwards
-                togglableSelect
-                selectedIds={selectedTreeIds}
-                nodeRenderer={({
-                  element,
-                  isBranch,
-                  isExpanded,
-                  isSelected,
-                  isHalfSelected,
-                  getNodeProps,
-                  level,
-                  handleSelect,
-                  handleExpand,
-                }) => {
-                  return (
-                    <div
-                      {...getNodeProps({ onClick: handleExpand })}
-                      style={{ marginLeft: 40 * (level - 1) }}
-                    >
-                      {isBranch && <ArrowIcon isOpen={isExpanded} />}
-                      <CheckBoxIcon
-                        className="checkbox-icon"
-                        onClick={e => {
-                          handleSelect(e);
-                          e.stopPropagation();
-                        }}
-                        variant={
-                          isHalfSelected ? "some" : isSelected ? "all" : "none"
-                        }
-                      />
-                      <i className="ri-building-line me-1"></i>
-                      <span
-                        className="name"
-                        onClick={() => {
-                          setSelectedOrg(element?.metadata?.id);
-                        }}
+            {!isUpdate && (
+              <div className="col-5 checkbox">
+                <TreeView
+                  data={orgs}
+                  propagateSelect
+                  propagateSelectUpwards
+                  togglableSelect
+                  selectedIds={selectedTreeIds}
+                  nodeRenderer={({
+                    element,
+                    isBranch,
+                    isExpanded,
+                    isSelected,
+                    isHalfSelected,
+                    getNodeProps,
+                    level,
+                    handleSelect,
+                    handleExpand,
+                  }) => {
+                    return (
+                      <div
+                        {...getNodeProps({ onClick: handleExpand })}
+                        style={{ marginLeft: 40 * (level - 1) }}
                       >
-                        {element.name}
-                      </span>
-                    </div>
-                  );
-                }}
-              />
-            </div>
-            <div className="col-6">
+                        {isBranch && <ArrowIcon isOpen={isExpanded} />}
+                        <CheckBoxIcon
+                          className="checkbox-icon"
+                          onClick={e => {
+                            handleSelect(e);
+                            e.stopPropagation();
+                          }}
+                          variant={
+                            isHalfSelected
+                              ? "some"
+                              : isSelected
+                                ? "all"
+                                : "none"
+                          }
+                        />
+                        <i className="ri-building-line me-1"></i>
+                        <span
+                          className="name"
+                          onClick={() => {
+                            setSelectedOrg(element?.metadata?.id);
+                          }}
+                        >
+                          {element.name}
+                        </span>
+                      </div>
+                    );
+                  }}
+                />
+              </div>
+            )}
+            <div className="col">
               <Form.Group className="mb-3" controlId="phoneNumber">
                 <Form.Label>Số điện thoại</Form.Label>
                 <Form.Control

@@ -240,6 +240,17 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
                           onClick={() => {
                             setSelectedOrg(element?.metadata?.id);
                           }}
+                          style={
+                            selectedOrg === element?.metadata?.id
+                              ? {
+                                  fontWeight: "bold",
+                                  backgroundColor: "#f0f0f0",
+                                  border: "1px solid #ccc",
+                                  padding: "2px 5px",
+                                  borderRadius: "5px",
+                                }
+                              : {}
+                          }
                         >
                           {element.name}
                         </span>

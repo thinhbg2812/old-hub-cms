@@ -147,9 +147,9 @@ export default function UserManagement() {
     }
   };
 
-  const handlePaginationCallback = async (pageSize, offset) => {
+  const handlePaginationCallback = async (pageSize, offset, pageIndex) => {
     setSize(pageSize);
-    setPage(offset / pageSize);
+    setPage(pageIndex);
   };
   const handleSubmit = async event => {
     const form = event.currentTarget;
@@ -188,7 +188,8 @@ export default function UserManagement() {
   ]);
 
   useEffect(() => {
-    debouncedListUser();
+    // debouncedListUser(page, size, searchKey);
+    listUser();
     return () => {
       debouncedListUser.cancel();
     };
@@ -230,112 +231,108 @@ export default function UserManagement() {
           {isLoading ? (
             <div className="text-center">Loading...</div>
           ) : (
-            <>
-              <div className="row">
-                <div className="col">
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Họ tên</th>
-                        <th>Số điện thoại</th>
-                        <th>Tên công ty</th>
-                        <th>Phương tiện</th>
-                        <th>Phòng</th>
-                        <th>Mẫu tay phải</th>
-                        <th>Mẫu tay trái</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {users.map((user, index) => {
-                        return (
-                          <tr key={user.id}>
-                            <td>{index}</td>
-                            <td>{user.fullName}</td>
-                            <td>{user.phoneNumber}</td>
-                            <td>{user.orgs[0].orgName}</td>
-                            <td>
-                              {user.vehicles
-                                ?.map(v => v.licensePlate)
-                                .join(", ")}
-                            </td>
-                            <td>
-                              {user.rooms?.map(r => r.roomNumber).join(", ")}
-                            </td>
-                            <td>
-                              {user.samples?.find(
-                                sample => sample.sampleType === "right_hand"
-                              )
-                                ? "True"
-                                : "False"}
-                            </td>
-                            <td>
-                              {user.samples?.find(
-                                sample => sample.sampleType === "left_hand"
-                              )
-                                ? "True"
-                                : "False"}
-                            </td>
-                            <td>{user.status}</td>
-                            <td className="d-flex flex-row justify-content-center">
-                              <FontAwesomeIcon
-                                icon={faHand}
-                                className="align-self-center p-1"
-                                onClick={() => {
-                                  setSelectedUser(user);
-                                  setGetSampleDialog(true);
-                                }}
-                              />
-                              <i
-                                className="ri-edit-box-line p-1"
-                                onClick={() => {
-                                  let userOrgs = user.orgs;
-                                  let orgIds = [];
-                                  for (let i = 0; i < userOrgs.length; i++) {
-                                    orgIds.push(user.orgs[i].id);
+            <div className="row">
+              <div className="col">
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Họ tên</th>
+                      <th>Số điện thoại</th>
+                      <th>Tên công ty</th>
+                      <th>Phương tiện</th>
+                      <th>Phòng</th>
+                      <th>Mẫu tay phải</th>
+                      <th>Mẫu tay trái</th>
+                      <th>Trạng thái</th>
+                      <th>Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user, index) => {
+                      return (
+                        <tr key={user.id}>
+                          <td>{index}</td>
+                          <td>{user.fullName}</td>
+                          <td>{user.phoneNumber}</td>
+                          <td>{user.orgs[0].orgName}</td>
+                          <td>
+                            {user.vehicles?.map(v => v.licensePlate).join(", ")}
+                          </td>
+                          <td>
+                            {user.rooms?.map(r => r.roomNumber).join(", ")}
+                          </td>
+                          <td>
+                            {user.samples?.find(
+                              sample => sample.sampleType === "right_hand"
+                            )
+                              ? "True"
+                              : "False"}
+                          </td>
+                          <td>
+                            {user.samples?.find(
+                              sample => sample.sampleType === "left_hand"
+                            )
+                              ? "True"
+                              : "False"}
+                          </td>
+                          <td>{user.status}</td>
+                          <td className="d-flex flex-row justify-content-center">
+                            <FontAwesomeIcon
+                              icon={faHand}
+                              className="align-self-center p-1"
+                              onClick={() => {
+                                setSelectedUser(user);
+                                setGetSampleDialog(true);
+                              }}
+                            />
+                            <i
+                              className="ri-edit-box-line p-1"
+                              onClick={() => {
+                                let userOrgs = user.orgs;
+                                let orgIds = [];
+                                for (let i = 0; i < userOrgs.length; i++) {
+                                  orgIds.push(user.orgs[i].id);
+                                }
+                                let treeIds = [];
+                                for (let i = 0; i < orgIds.length; i++) {
+                                  let index = orgs.findIndex(
+                                    o => o.metadata?.id === orgIds[i]
+                                  );
+                                  if (index !== -1) {
+                                    treeIds.push(orgs[index].id);
                                   }
-                                  let treeIds = [];
-                                  for (let i = 0; i < orgIds.length; i++) {
-                                    let index = orgs.findIndex(
-                                      o => o.metadata?.id === orgIds[i]
-                                    );
-                                    if (index !== -1) {
-                                      treeIds.push(orgs[index].id);
-                                    }
-                                  }
-                                  setSelectedTreeIds(treeIds);
-                                  setSelectedUser(user);
-                                  setShowUserModal(true);
-                                }}
-                              ></i>
-                              <i
-                                className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
-                                onClick={() => {
-                                  setSelectedUser(user);
-                                  setDeleteAlert(true);
-                                }}
-                              ></i>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                                }
+                                setSelectedTreeIds(treeIds);
+                                setSelectedUser(user);
+                                setShowUserModal(true);
+                              }}
+                            ></i>
+                            <i
+                              className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
+                              onClick={() => {
+                                setSelectedUser(user);
+                                setDeleteAlert(true);
+                              }}
+                            ></i>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              <div className="row align-items-center">
-                <div className="col-12 align-self-center">
-                  <Pagination
-                    total={total}
-                    pageSize={size}
-                    callback={handlePaginationCallback}
-                  />
-                </div>
-              </div>
-            </>
+            </div>
           )}
+          <div className="row align-items-center">
+            <div className="col-12 align-self-center">
+              <Pagination
+                total={total}
+                pageSize={size}
+                callback={handlePaginationCallback}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <UserModal

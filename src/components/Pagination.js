@@ -34,7 +34,7 @@ const PaginationComp = ({ pageSize, total, callback }) => {
     setItemOffset(newOffset);
     //callback to parent's function
     // console.log(newOffset);
-    await callback(pageSize, newOffset);
+    await callback(pageSize, newOffset, event.selected);
   };
   return (
     <>

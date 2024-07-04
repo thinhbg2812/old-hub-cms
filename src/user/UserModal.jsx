@@ -15,7 +15,7 @@ import Form from "react-bootstrap/Form";
 const DEFAULT_USER = {
   phoneNumber: "",
   fullName: "",
-  status: null,
+  status: { label: "Hoạt động", value: "active" },
   selectedVehicles: [],
   selectedRooms: [],
 };

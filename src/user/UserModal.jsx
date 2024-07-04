@@ -77,6 +77,12 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (!selectedOrg) {
+      toast.error("Vui lòng chọn tổ chức");
+      return;
+    }
+
     if (!formData.phoneNumber || !formData.fullName || !formData.status) {
       toast.error("Vui lòng điền đầy đủ thông tin");
       return;

@@ -397,7 +397,7 @@ export default function UserManagement() {
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
-            <div className="d-flex flex-row justify-content-end mt-3 gap-3">
+            <div className="d-flex flex-row justify-content-center mt-3 gap-3">
               <button
                 ref={submitRef}
                 type="submit"

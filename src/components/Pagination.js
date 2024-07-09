@@ -47,13 +47,14 @@ const PaginationComp = ({ pageSize, total, callback }) => {
         pageCount={numPage}
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         renderOnZeroPageCount={null}
-        activeClassName="item active-page"
-        breakClassName="item break-me"
-        containerClassName="pagination m-auto"
-        disabledClassName="disabled-page"
-        nextClassName="item next"
-        pageClassName="item pagination-page"
+        pageClassName="page-item"
+        pageLinkClassName="item"
         previousClassName="item previous"
+        nextClassName="item next"
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
       />
     </>
   );

@@ -20,20 +20,29 @@ import { ToastContainer as ToastifyContainer, toast } from "react-toastify";
 import Pagination from "../components/Pagination.js";
 import Header from "../layouts/Header.js";
 import { listOrgRequest } from "../services/organization.js";
-
 import { updateUserRequest, listUserRequest } from "../services/user.js";
 import "./list.scss";
 import { requestGetSampleRequest } from "../services/device.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHand } from "@fortawesome/free-solid-svg-icons";
+import { faHand } from "@fortawesome/free-regular-svg-icons";
 import UserModal from "./UserModal.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import _ from "lodash";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+const COLUMN_WIDTH = 150;
+const COLUMN_STYLE = {
+  width: COLUMN_WIDTH,
+  maxWidth: COLUMN_WIDTH,
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+};
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(30);
   const [page, setPage] = useState(0);
   const [selectedUser, setSelectedUser] = useState();
   const [selectedTreeIds, setSelectedTreeIds] = useState([]);
@@ -188,8 +197,8 @@ export default function UserManagement() {
   ]);
 
   useEffect(() => {
-    // debouncedListUser(page, size, searchKey);
-    listUser();
+    debouncedListUser(page, size, searchKey);
+    // listUser();
     return () => {
       debouncedListUser.cancel();
     };
@@ -205,7 +214,7 @@ export default function UserManagement() {
       <Header />
       <div className="main main-app p-3 p-lg-4">
         <div className="container-fluid ">
-          <div className="row mb-2">
+          <div className="row mb-2 sticky-top" style={{ top: 80 }}>
             <div className="col-12 d-flex">
               <Form.Control
                 className="d-inline-block me-3"
@@ -214,6 +223,7 @@ export default function UserManagement() {
                 defaultValue={searchKey}
                 onChange={handleSearch}
                 autoFocus
+                style={{ top: "5rem" }}
               />
               <button
                 type="button"
@@ -234,87 +244,124 @@ export default function UserManagement() {
             <div className="row">
               <div className="col">
                 <table className="table table-bordered">
-                  <thead>
-                    <tr>
+                  <thead className="sticky-top" style={{ top: 120 }}>
+                    <tr style={{ whiteSpace: "nowrap" }}>
                       <th>#</th>
                       <th>Họ tên</th>
-                      <th>Số điện thoại</th>
-                      <th>Tên công ty</th>
+                      <th>Điện thoại</th>
+                      <th>Tổ chức</th>
                       <th>Phương tiện</th>
                       <th>Phòng</th>
-                      <th>Mẫu tay phải</th>
-                      <th>Mẫu tay trái</th>
+                      <th>Mẫu phải</th>
+                      <th>Mẫu trái</th>
                       <th>Trạng thái</th>
-                      <th>Hành động</th>
+                      <th>Mẫu phải</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody style={{ verticalAlign: "middle" }}>
                     {users.map((user, index) => {
                       return (
                         <tr key={user.id}>
-                          <td>{index}</td>
-                          <td>{user.fullName}</td>
-                          <td>{user.phoneNumber}</td>
-                          <td>{user.orgs[0].orgName}</td>
-                          <td>
+                          <td className="text-truncate">{index + 1}</td>
+                          <td
+                            className="text-truncate"
+                            style={{ ...COLUMN_STYLE, minWidth: COLUMN_WIDTH }}
+                          >
+                            {user.fullName}
+                          </td>
+                          <td
+                            className="text-truncate"
+                            style={{ ...COLUMN_STYLE, minWidth: COLUMN_WIDTH }}
+                          >
+                            {user.phoneNumber}
+                          </td>
+                          <td
+                            className="text-truncate"
+                            style={{ ...COLUMN_STYLE, minWidth: COLUMN_WIDTH }}
+                          >
+                            {user.orgs[0].orgName}
+                          </td>
+                          <td className="text-truncate" style={COLUMN_STYLE}>
                             {user.vehicles?.map(v => v.licensePlate).join(", ")}
                           </td>
-                          <td>
+                          <td className="text-truncate" style={COLUMN_STYLE}>
                             {user.rooms?.map(r => r.roomNumber).join(", ")}
                           </td>
-                          <td>
+                          <td
+                            className="text-truncate text-center"
+                            style={COLUMN_STYLE}
+                          >
                             {user.samples?.find(
                               sample => sample.sampleType === "right_hand"
-                            )
-                              ? "True"
-                              : "False"}
+                            ) && (
+                              <FontAwesomeIcon icon={faCheck} color="#00B027" />
+                            )}
                           </td>
-                          <td>
+                          <td
+                            className="text-truncate text-center"
+                            style={COLUMN_STYLE}
+                          >
                             {user.samples?.find(
                               sample => sample.sampleType === "left_hand"
-                            )
-                              ? "True"
-                              : "False"}
+                            ) && (
+                              <FontAwesomeIcon icon={faCheck} color="#00B027" />
+                            )}
                           </td>
-                          <td>{user.status}</td>
-                          <td className="d-flex flex-row justify-content-center">
-                            <FontAwesomeIcon
-                              icon={faHand}
-                              className="align-self-center p-1"
-                              onClick={() => {
-                                setSelectedUser(user);
-                                setGetSampleDialog(true);
-                              }}
-                            />
-                            <i
-                              className="ri-edit-box-line p-1"
-                              onClick={() => {
-                                let userOrgs = user.orgs;
-                                let orgIds = [];
-                                for (let i = 0; i < userOrgs.length; i++) {
-                                  orgIds.push(user.orgs[i].id);
-                                }
-                                let treeIds = [];
-                                for (let i = 0; i < orgIds.length; i++) {
-                                  let index = orgs.findIndex(
-                                    o => o.metadata?.id === orgIds[i]
-                                  );
-                                  if (index !== -1) {
-                                    treeIds.push(orgs[index].id);
+                          <td
+                            className="text-truncate text-center"
+                            style={COLUMN_STYLE}
+                          >
+                            {user.status === "active" ? (
+                              <strong>Hoạt động</strong>
+                            ) : (
+                              <strong style={{ color: "#9B9B9B" }}>
+                                Tạm dừng
+                              </strong>
+                            )}
+                          </td>
+                          <td style={COLUMN_STYLE}>
+                            <div className="d-flex flex-row justify-content-center text-truncate">
+                              <FontAwesomeIcon
+                                icon={faHand}
+                                className="align-self-center p-1 btn"
+                                onClick={() => {
+                                  setSelectedUser(user);
+                                  setGetSampleDialog(true);
+                                }}
+                                style={{ fontSize: "1.5em", color: "#00B027" }}
+                              />
+                              <i
+                                className="ri-edit-box-line p-1 btn"
+                                onClick={() => {
+                                  let userOrgs = user.orgs;
+                                  let orgIds = [];
+                                  for (let i = 0; i < userOrgs.length; i++) {
+                                    orgIds.push(user.orgs[i].id);
                                   }
-                                }
-                                setSelectedTreeIds(treeIds);
-                                setSelectedUser(user);
-                                setShowUserModal(true);
-                              }}
-                            ></i>
-                            <i
-                              className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1`}
-                              onClick={() => {
-                                setSelectedUser(user);
-                                setDeleteAlert(true);
-                              }}
-                            ></i>
+                                  let treeIds = [];
+                                  for (let i = 0; i < orgIds.length; i++) {
+                                    let index = orgs.findIndex(
+                                      o => o.metadata?.id === orgIds[i]
+                                    );
+                                    if (index !== -1) {
+                                      treeIds.push(orgs[index].id);
+                                    }
+                                  }
+                                  setSelectedTreeIds(treeIds);
+                                  setSelectedUser(user);
+                                  setShowUserModal(true);
+                                }}
+                                style={{ fontSize: "1.5em", color: "#FF7878" }}
+                              ></i>
+                              <i
+                                className={`${user.status !== "inactive" ? "ri-git-repository-private-line" : "ri-lock-unlock-line"} p-1 btn`}
+                                onClick={() => {
+                                  setSelectedUser(user);
+                                  setDeleteAlert(true);
+                                }}
+                                style={{ fontSize: "1.5em", color: "#C67DFF" }}
+                              ></i>
+                            </div>
                           </td>
                         </tr>
                       );

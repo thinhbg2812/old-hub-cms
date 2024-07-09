@@ -1,58 +1,67 @@
 // https://gist.github.com/anthonyk1225/73e5547d55c3c9c2450fac7daa667e31
 .item {
-    align-items: center;
-    color: blue;
-    cursor: pointer;
-    display: flex;
-    font-size: 14px;
-    height: 40px;
-    justify-content: center;
-    width: 40px;
+  align-items: center;
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.disabled-page {
+  color: #808e9b;
+}
+
+.active {
+  border: solid 1px #808e9b;
+  border-radius: 40px;
+  a {
+    color: currentColor;
   }
-  
-  .disabled-page {
-    color: #808e9b;
+}
+
+.break-me {
+}
+
+.next {
+  // border-left: solid 1px #808e9b;
+  font-size: 16px;
+  height: 60px;
+  // position: absolute;
+  right: 0;
+  width: 150px;
+
+  a {
+    color: currentColor;
   }
-  
-  .active-page {
-    border: solid 1px #808e9b;
-    border-radius: 40px;
-    color: blue;
+}
+
+.pagination {
+  align-items: center;
+  // background-color: #0fbcf9;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: center;
+  list-style-type: none;
+  position: relative;
+}
+
+.pagination-page {
+  font-weight: 700;
+}
+
+.previous {
+  // border-right: solid 1px #808e9b;
+  font-size: 16px;
+  height: 60px;
+  left: 0;
+  // position: absolute;
+  width: 150px;
+
+  a {
+    color: currentColor;
   }
-  
-  .break-me {
-  }
-  
-  .next {
-    // border-left: solid 1px #808e9b;
-    font-size: 16px;
-    height: 60px;
-    // position: absolute;
-    right: 0;
-    width: 150px;
-  }
-  
-  .pagination {
-    align-items: center;
-    // background-color: #0fbcf9;
-    display: flex;
-    flex-direction: row;
-    height: 60px;
-    justify-content: center;
-    list-style-type: none;
-    position: relative;
-    width: 1000px;
-  }
-  
-  .pagination-page {
-    font-weight: 700;
-  }
-  
-  .previous {
-    // border-right: solid 1px #808e9b;
-    font-size: 16px;
-    height: 60px;
-    left: 0;
-    // position: absolute;
-    width: 150px;
-  }
+}

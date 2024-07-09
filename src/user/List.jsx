@@ -252,10 +252,10 @@ export default function UserManagement() {
                       <th>Tổ chức</th>
                       <th>Phương tiện</th>
                       <th>Phòng</th>
-                      <th>Mẫu phải</th>
                       <th>Mẫu trái</th>
-                      <th>Trạng thái</th>
                       <th>Mẫu phải</th>
+                      <th>Trạng thái</th>
+                      <th>Hành động</th>
                     </tr>
                   </thead>
                   <tbody style={{ verticalAlign: "middle" }}>
@@ -292,7 +292,7 @@ export default function UserManagement() {
                             style={COLUMN_STYLE}
                           >
                             {user.samples?.find(
-                              sample => sample.sampleType === "right_hand"
+                              sample => sample.sampleType === "left_hand"
                             ) && (
                               <FontAwesomeIcon icon={faCheck} color="#00B027" />
                             )}
@@ -302,11 +302,12 @@ export default function UserManagement() {
                             style={COLUMN_STYLE}
                           >
                             {user.samples?.find(
-                              sample => sample.sampleType === "left_hand"
+                              sample => sample.sampleType === "right_hand"
                             ) && (
                               <FontAwesomeIcon icon={faCheck} color="#00B027" />
                             )}
                           </td>
+
                           <td
                             className="text-truncate text-center"
                             style={COLUMN_STYLE}

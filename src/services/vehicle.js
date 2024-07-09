@@ -9,7 +9,7 @@ export const createVehicleRequest = async (
   let params = {
     licensePlate: licensePlate,
     vehicleType: vehicleType,
-    status: status,
+    status: status === "active" ? true : false,
     orgId: orgId,
   };
   return await sendPostRequest("post", "/api/private/vehicle", params);

@@ -137,6 +137,7 @@ export default function OrgManagement() {
     if (resp.isError) {
       toast.error("Không thể cập nhật thông tin tổ chức");
     } else {
+      toast.success("Cập nhật thông tin tổ chức thành công");
       await listOrg();
     }
   };
@@ -220,7 +221,7 @@ export default function OrgManagement() {
                           type="text"
                           className="form-control form-control-sm"
                           id="phone"
-                          value={selectedOrg.orgName}
+                          value={selectedOrg.orgName || ""}
                           onChange={e => {
                             let newItem = {
                               orgName: e.target.value,
@@ -242,7 +243,7 @@ export default function OrgManagement() {
                           type="text"
                           className="form-control form-control-sm"
                           id="phoneNumber"
-                          value={selectedOrg?.phoneNumber}
+                          value={selectedOrg?.phoneNumber || ""}
                           onChange={e => {
                             let newItem = {
                               phoneNumber: e.target.value,
@@ -264,7 +265,7 @@ export default function OrgManagement() {
                           type="text"
                           className="form-control form-control-sm"
                           id="address"
-                          value={selectedOrg?.address}
+                          value={selectedOrg?.address || ""}
                           onChange={e => {
                             let newItem = {
                               address: e.target.value,
@@ -286,10 +287,10 @@ export default function OrgManagement() {
                           type="text"
                           className="form-control form-control-sm"
                           id="website"
-                          value={selectedOrg?.website}
+                          value={selectedOrg?.website || ""}
                           onChange={e => {
                             let newItem = {
-                              address: e.target.value,
+                              website: e.target.value,
                             };
                             setSelectedOrg(selectedOrg => ({
                               ...selectedOrg,

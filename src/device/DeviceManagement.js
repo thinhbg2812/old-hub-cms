@@ -23,6 +23,7 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
+import { checkNoSpecialCharacters } from "../utils/string";
 
 const DeviceManagement = () => {
   const [devices, setDevices] = useState([]);
@@ -96,7 +97,12 @@ const DeviceManagement = () => {
     }
     event.preventDefault();
     setValidated(true);
-    if (form.checkValidity()) {
+
+    if (!checkNoSpecialCharacters(selectedDevice.deviceId)) {
+      setToastContent("Mã thiết bị không được chứa ký tự đặc biệt");
+      setToastVariant("danger");
+      setShowToast(true);
+    } else if (form.checkValidity()) {
       if (action === "create") {
         await createDevice();
       } else {

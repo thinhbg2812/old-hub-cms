@@ -25,6 +25,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Header from "../layouts/Header";
+import { checkNoSpecialCharacters } from "../utils/string";
 
 export default function OrgManagement() {
   const [page, setPage] = useState(0);
@@ -93,6 +94,8 @@ export default function OrgManagement() {
   const createOrg = async () => {
     if (!orgName || !phoneNumber || !address) {
       toast.error("Thiếu các trường bắt buộc");
+    } else if (!checkNoSpecialCharacters(orgName)) {
+      toast.error("Tên công ty không được chứa ký tự đặc biệt");
     } else {
       const resp = await createOrgRequest(
         orgName,

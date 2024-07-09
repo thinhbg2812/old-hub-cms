@@ -18,13 +18,16 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../layouts/Header";
 import { createVehicleRequest, listVehicleRequest } from "../services/vehicle";
 
+const DEFAULT_VEHICLE = {
+  vehicleType: "car",
+  status: "active",
+};
+
 const VehicleManagement = () => {
   const [queryParams] = useSearchParams();
   const orgId = queryParams.get("orgId");
   const [vehicles, setVehicles] = useState([]);
-  const [selectedVehicle, setSelectedVehicle] = useState({
-    vehicleType: "car",
-  });
+  const [selectedVehicle, setSelectedVehicle] = useState(DEFAULT_VEHICLE);
   const [showModal, setShowModal] = useState(false);
   const submitRef = useRef(null);
   const navigate = useNavigate();
@@ -41,6 +44,7 @@ const VehicleManagement = () => {
   const closeModal = async () => {
     setShowModal(false);
     await listVehicles();
+    setSelectedVehicle(DEFAULT_VEHICLE);
   };
 
   const handleSubmit = async event => {

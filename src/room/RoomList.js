@@ -22,6 +22,12 @@ import {
   listRoomRequest,
 } from "../services/room";
 
+const DEFAULT_ROOM = {
+  roomNumber: "",
+  keypass: "",
+  status: "active",
+};
+
 const RoomManagement = () => {
   const [rooms, setRooms] = useState([]);
   const [queryParams] = useSearchParams();
@@ -34,7 +40,7 @@ const RoomManagement = () => {
   const [toastVariant, setToastVariant] = useState("Success");
 
   const [createRoomDialog, setCreateRoomDialog] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState({});
+  const [selectedRoom, setSelectedRoom] = useState(DEFAULT_ROOM);
   const [action, setAction] = useState("create");
   const [validated, setValidated] = useState(false);
 
@@ -42,7 +48,7 @@ const RoomManagement = () => {
 
   const closeCreateRoomDialog = async () => {
     setCreateRoomDialog(false);
-    setSelectedRoom({});
+    setSelectedRoom(DEFAULT_ROOM);
     setAction("create");
     await listRoom();
   };
@@ -58,19 +64,19 @@ const RoomManagement = () => {
   const listRoom = async () => {
     const resp = await listRoomRequest(orgId, page, size);
     if (resp.isError) {
-      setToastContent("Can not list Organization's rooms");
+      setToastContent("Không thể liệt kê phòng của tổ chức");
       setToastVariant("danger");
       setShowToast(true);
     } else {
       setRooms(resp.data.items);
     }
   };
+
   const handleSubmit = async event => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      //   return;
     }
     event.preventDefault();
     setValidated(true);
@@ -91,7 +97,7 @@ const RoomManagement = () => {
       orgId
     );
     if (resp.isError) {
-      setToastContent("Can not create new room");
+      setToastContent("Không thể tạo phòng mới");
       setToastVariant("danger");
       setShowToast(true);
     }
@@ -106,7 +112,7 @@ const RoomManagement = () => {
       selectedRoom.status
     );
     if (resp.isError) {
-      setToastContent("Can not update room");
+      setToastContent("Không thể cập nhật phòng");
       setToastVariant("danger");
       setShowToast(true);
     }
@@ -128,7 +134,7 @@ const RoomManagement = () => {
                   setCreateRoomDialog(true);
                 }}
               >
-                Add room
+                Thêm phòng
               </button>
             </div>
           </div>
@@ -138,9 +144,9 @@ const RoomManagement = () => {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Room number</th>
-                    <th className="text-center">Room status</th>
-                    <th className="text-center">Actions</th>
+                    <th>Số phòng</th>
+                    <th className="text-center">Trạng thái phòng</th>
+                    <th className="text-center">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -150,7 +156,7 @@ const RoomManagement = () => {
                         <td>{index}</td>
                         <td>{room.roomNumber}</td>
                         <td className="text-center">
-                          {room.status ? "active" : "inactive"}
+                          {room.status ? "hoạt động" : "không hoạt động"}
                         </td>
                         <td className="d-flex flex-row justify-content-center">
                           <i
@@ -167,7 +173,7 @@ const RoomManagement = () => {
                   })}
                   {rooms.length <= 0 && (
                     <tr key="no-room" className="text-center">
-                      <td colSpan={4}>No rooms available</td>
+                      <td colSpan={4}>Không có phòng nào</td>
                     </tr>
                   )}
                 </tbody>
@@ -185,7 +191,7 @@ const RoomManagement = () => {
         bg={toastVariant}
         style={{ zIndex: 2000 }}
       >
-        <ToastHeader>Notification</ToastHeader>
+        <ToastHeader>Thông báo</ToastHeader>
         <ToastBody>{toastContent}</ToastBody>
       </Toast>
       <Modal
@@ -194,14 +200,14 @@ const RoomManagement = () => {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          {action === "create" && "Create new room"}
-          {action === "update" && "Update room"}
+          {action === "create" && "Tạo phòng mới"}
+          {action === "update" && "Cập nhật phòng"}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Room Number:</FormLabel>
+                <FormLabel>Số phòng:</FormLabel>
                 <FormControl
                   required
                   type="input"
@@ -217,13 +223,13 @@ const RoomManagement = () => {
                   value={selectedRoom.roomNumber}
                 />
                 <FormControl.Feedback type="invalid">
-                  Room number is required
+                  Số phòng là bắt buộc
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>Room Keypass:</FormLabel>
+                <FormLabel>Mã khóa phòng:</FormLabel>
                 <FormControl
                   required
                   type="input"
@@ -239,14 +245,14 @@ const RoomManagement = () => {
                   value={selectedRoom.keypass}
                 />
                 <FormControl.Feedback type="invalid">
-                  Keypass is required
+                  Mã khóa là bắt buộc
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
             <Row className="mb-1">
               <Col>
                 <label htmlFor="status" className="form-label">
-                  Status:
+                  Trạng thái:
                 </label>
                 <select
                   id="status"
@@ -262,8 +268,8 @@ const RoomManagement = () => {
                   }}
                   value={selectedRoom.status}
                 >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
+                  <option value="active">Hoạt động</option>
+                  <option value="inactive">Không hoạt động</option>
                 </select>
               </Col>
             </Row>
@@ -273,7 +279,7 @@ const RoomManagement = () => {
                 type="submit"
                 className="btn btn-outline d-none"
               >
-                Submit
+                Gửi
               </button>
             </div>
           </Form>
@@ -286,14 +292,14 @@ const RoomManagement = () => {
               submitRef.current?.click();
             }}
           >
-            {action === "create" && "Create"} {action === "update" && "Update"}
+            {action === "create" && "Tạo"} {action === "update" && "Cập nhật"}
           </button>
           <button
             type="button"
             className="btn btn-secondary"
             onClick={closeCreateRoomDialog}
           >
-            Cancel
+            Hủy
           </button>
         </ModalFooter>
       </Modal>

@@ -154,6 +154,7 @@ const UserModal = ({ show, onHide, orgs, selectedTreeIds, selectedUser }) => {
         onHide();
       }
     }
+    setFormData(DEFAULT_USER);
   };
 
   useEffect(() => {

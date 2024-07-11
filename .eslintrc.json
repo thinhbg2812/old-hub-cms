@@ -23,7 +23,8 @@
     "react/jsx-uses-vars": "error",
     "no-unused-vars": "off",
     "react/no-unescaped-entities": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "react/display-name": "off"
   },
   "settings": {
     "react": {

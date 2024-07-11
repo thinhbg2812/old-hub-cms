@@ -23,6 +23,13 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
+import { checkNoSpecialCharacters } from "../utils/string";
+
+const DEFAULT_DEVICE = {
+  deviceId: "",
+  deviceName: "",
+  password: "",
+};
 
 const DeviceManagement = () => {
   const [devices, setDevices] = useState([]);
@@ -32,7 +39,7 @@ const DeviceManagement = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastVariant, setToastVariant] = useState("Success");
   const navigate = useNavigate();
-  const [selectedDevice, setSelectedDevice] = useState({});
+  const [selectedDevice, setSelectedDevice] = useState(DEFAULT_DEVICE);
   const [showModal, setShowModal] = useState(false);
   const [validated, setValidated] = useState(false);
   const [action, setAction] = useState("create");
@@ -41,6 +48,7 @@ const DeviceManagement = () => {
 
   const closeModal = async () => {
     setShowModal(false);
+    setSelectedDevice(DEFAULT_DEVICE);
     await listDevice();
   };
 
@@ -66,14 +74,14 @@ const DeviceManagement = () => {
     const resp = await createDeviceRequest(
       selectedDevice.deviceId,
       selectedDevice.deviceName,
-      orgId
+      orgId,
+      selectedDevice.password
     );
     if (resp.isError) {
       setToastContent("Không thể tạo thiết bị mới");
       setToastVariant("danger");
       setShowToast(true);
     }
-    setShowModal(false);
   };
 
   // const getDevice = async (id) => {
@@ -96,26 +104,31 @@ const DeviceManagement = () => {
     }
     event.preventDefault();
     setValidated(true);
-    if (form.checkValidity()) {
+
+    if (!checkNoSpecialCharacters(selectedDevice.deviceId)) {
+      setToastContent("Mã thiết bị không được chứa ký tự đặc biệt");
+      setToastVariant("danger");
+      setShowToast(true);
+    } else if (form.checkValidity()) {
       if (action === "create") {
         await createDevice();
       } else {
         await updateDevice();
       }
+      closeModal();
     }
   };
   const updateDevice = async () => {
     const resp = await updateDeviceRequest(
       selectedDevice.id,
       selectedDevice.deviceName,
-      orgId
+      orgId,
+      selectedDevice.password
     );
     if (resp.isError) {
       setToastContent(`Không thể cập nhật thiết bị: ${resp.msg}`);
       setToastVariant("danger");
       setShowToast(true);
-    } else {
-      closeModal();
     }
   };
   return (
@@ -236,6 +249,7 @@ const DeviceManagement = () => {
                     }));
                   }}
                   value={selectedDevice.deviceId}
+                  autoFocus
                 />
                 <FormControl.Feedback type="invalid">
                   Mã Thiết Bị là bắt buộc
@@ -264,6 +278,31 @@ const DeviceManagement = () => {
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
+            <Row className="mb-1">
+              <FormGroup as={Col}>
+                <FormLabel>Mật Khẩu:</FormLabel>
+                <FormControl
+                  required
+                  type="password"
+                  onChange={e => {
+                    const newItem = {
+                      password: e.target.value,
+                    };
+                    setSelectedDevice(device => ({
+                      ...selectedDevice,
+                      ...newItem,
+                    }));
+                  }}
+                  value={selectedDevice.password}
+                  // Validate chỉ gồm number, độ dài tối đa là 6
+                  pattern="^[0-9]{6}$"
+                />
+                <FormControl.Feedback type="invalid">
+                  Mật Khẩu là bắt buộc và phải là 6 số
+                </FormControl.Feedback>
+              </FormGroup>
+            </Row>
+
             <div className="d-flex flex-row justify-content-center mt-3">
               <button
                 ref={submitRef}

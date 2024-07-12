@@ -90,6 +90,7 @@ export default function UserManagement() {
   };
 
   const closeGetSampleDialog = async () => {
+    await listUser();
     setGetSampleDialog(false);
   };
 
@@ -214,7 +215,10 @@ export default function UserManagement() {
       <Header />
       <div className="main main-app p-3 p-lg-4">
         <div className="container-fluid ">
-          <div className="row mb-2 sticky-top" style={{ top: 80 }}>
+          <div
+            className="row py-2 sticky-top"
+            style={{ top: 70, backgroundColor: "#fbfcfe" }}
+          >
             <div className="col-12 d-flex">
               <Form.Control
                 className="d-inline-block me-3"

@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@babel/eslint-parser": "^7.24.8",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
@@ -25,6 +26,7 @@
     "classnames": "^2.5.1",
     "cryptofont": "^0.1.1",
     "dompurify": "^2.4.3",
+    "eslint-plugin-jsx": "^0.1.0",
     "feather-icons": "^4.29.0",
     "gridjs": "^6.0.6",
     "gridjs-react": "^6.0.1",

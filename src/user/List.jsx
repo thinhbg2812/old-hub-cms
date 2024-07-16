@@ -172,7 +172,6 @@ export default function UserManagement() {
     await requestGetHandSample();
   };
   const requestGetHandSample = async () => {
-    console.log(selectedUser);
     // https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
     const resp = await requestGetSampleRequest(
       sampleDeviceId,
@@ -432,7 +431,7 @@ export default function UserManagement() {
         backdrop="static"
       >
         <ModalHeader closeButton>
-          Yêu cầu lấy mẫu tay của {selectedUser?.fullName}
+          Thao tác mẫu tay của {selectedUser?.fullName}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
@@ -483,6 +482,16 @@ export default function UserManagement() {
                 }}
               >
                 Lấy mẫu tay phải
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning"
+                onClick={() => {
+                  currentSampleCommandRef.current = "active"
+                  submitRef.current?.click()
+                }}
+              >
+                Huỷ lấy mẫu
               </button>
             </div>
           </Form>

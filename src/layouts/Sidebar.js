@@ -11,7 +11,7 @@ import {
 } from "../data/Menu";
 
 export default class Sidebar extends Component {
-  toggleFooterMenu = e => {
+  toggleFooterMenu = (e) => {
     e.preventDefault();
 
     let parent = e.target.closest(".sidebar");
@@ -23,7 +23,7 @@ export default class Sidebar extends Component {
       <div className="sidebar">
         <div className="sidebar-header">
           <Link to="/" className="sidebar-logo">
-            dashbyte
+            Access Control
           </Link>
         </div>
         <PerfectScrollbar

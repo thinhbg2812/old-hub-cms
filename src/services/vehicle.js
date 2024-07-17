@@ -15,6 +15,10 @@ export const createVehicleRequest = async (
   return await sendPostRequest("post", "/api/private/vehicle", params);
 };
 
+export const updateVehicleRequest = data => {
+  return sendPostRequest("put", "/api/private/vehicle", data);
+};
+
 export const listVehicleRequest = async (orgId, page, size) => {
   let params = {
     orgId: orgId,

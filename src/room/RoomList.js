@@ -163,7 +163,10 @@ const RoomManagement = () => {
                             className="ri-edit-box-line p-1"
                             onClick={() => {
                               setAction("update");
-                              setSelectedRoom(room);
+                              setSelectedRoom({
+                                ...room,
+                                status: room.status ? "active" : "inactive",
+                              });
                               setCreateRoomDialog(true);
                             }}
                           ></i>

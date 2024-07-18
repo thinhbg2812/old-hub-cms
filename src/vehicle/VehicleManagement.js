@@ -16,7 +16,11 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../layouts/Header";
-import { createVehicleRequest, listVehicleRequest } from "../services/vehicle";
+import {
+  createVehicleRequest,
+  listVehicleRequest,
+  updateVehicleRequest,
+} from "../services/vehicle";
 
 const DEFAULT_VEHICLE = {
   vehicleType: "car",
@@ -64,10 +68,31 @@ const VehicleManagement = () => {
         });
         setValidated(false);
       } else {
-        // await editRoom()
+        await updateVehicle();
       }
     }
+    closeModal();
   };
+
+  const updateVehicle = async () => {
+    console.log(selectedVehicle);
+    const resp = await updateVehicleRequest({
+      vehicleId: selectedVehicle.id,
+      status: selectedVehicle.status === "active" ? true : false,
+      licensePlate: selectedVehicle.licensePlate,
+      vehicleType: selectedVehicle.vehicleType,
+    });
+    if (resp.isError) {
+      setToastContent(`Không thể cập nhật phương tiện: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+    } else {
+      setToastContent("Cập nhật phương tiện thành công");
+      setToastVariant("success");
+      setShowToast(true);
+    }
+  };
+
   const listVehicles = async () => {
     const resp = await listVehicleRequest(orgId, page, size);
     if (resp.isError) {
@@ -78,6 +103,7 @@ const VehicleManagement = () => {
       setVehicles(resp.data.items);
     }
   };
+
   useEffect(() => {
     if (orgId === null) {
       navigate("/org/list");
@@ -145,7 +171,14 @@ const VehicleManagement = () => {
                         <td className="d-flex flex-row justify-content-center">
                           <i
                             className="ri-edit-box-line p-1"
-                            onClick={() => {}}
+                            onClick={() => {
+                              setShowModal(true);
+                              setAction("update");
+                              setSelectedVehicle({
+                                ...vehicle,
+                                status: vehicle.status ? "active" : "inactive",
+                              });
+                            }}
                           ></i>
                         </td>
                       </tr>

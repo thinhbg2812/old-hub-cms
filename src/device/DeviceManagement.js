@@ -283,7 +283,6 @@ const DeviceManagement = () => {
                 <FormLabel>Mật Khẩu:</FormLabel>
                 <FormControl
                   required
-                  type="password"
                   onChange={e => {
                     const newItem = {
                       password: e.target.value,

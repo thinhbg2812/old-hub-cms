@@ -173,6 +173,7 @@ const DeviceManagement = () => {
                         <th className="text-center">Tên Thiết Bị</th>
                         <th>Trạng Thái</th>
                         <th className="text-center">Hành Động</th>
+                        <th className="text-center">Last Online</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -194,6 +195,14 @@ const DeviceManagement = () => {
                                   setSelectedDevice(device);
                                 }}
                               ></i>
+                            </td>
+                            <td>
+                              {device.lastOnline
+                                ? new Date().getTime() - device.lastOnline <=
+                                  5 * 60 * 1000 // 5 minutes
+                                  ? "Online"
+                                  : "Offline"
+                                : "Không có dữ liệu"}
                             </td>
                           </tr>
                         );

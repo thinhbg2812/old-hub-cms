@@ -1,7 +1,14 @@
 import { sendGetRequest, sendPostRequest } from "./service";
 
-export const listOrgDeviceRequest = async orgId => {
-  return sendGetRequest(`/api/private/device/${orgId}`);
+export const listOrgDeviceRequest = async (orgId, page, size) => {
+  const params = {
+    page: page,
+    size: size
+  }
+  if(orgId){
+    params.orgId = orgId
+  }
+  return sendGetRequest(`/api/private/device`, params);
 };
 
 export const requestGetSampleRequest = async (deviceId, userId, handType) => {

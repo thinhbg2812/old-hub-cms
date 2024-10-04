@@ -26,6 +26,13 @@ import {
   ToastHeader,
 } from "react-bootstrap";
 import { listOrgRequest } from "../services/organization";
+import { checkNoSpecialCharacters } from "../utils/string";
+
+const DEFAULT_DEVICE = {
+  deviceId: "",
+  deviceName: "",
+  password: "",
+};
 
 const DeviceManagement = () => {
   const [devices, setDevices] = useState([]);
@@ -35,19 +42,20 @@ const DeviceManagement = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastVariant, setToastVariant] = useState("Success");
   const navigate = useNavigate();
-  const [selectedDevice, setSelectedDevice] = useState({});
+  const [selectedDevice, setSelectedDevice] = useState(DEFAULT_DEVICE);
   const [showModal, setShowModal] = useState(false);
   const [validated, setValidated] = useState(false);
   const [action, setAction] = useState("create");
-  const [orgs, setOrgs] = useState([])
+  const [orgs, setOrgs] = useState([]);
 
   const [size, setSize] = useState(40);
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
 
   const submitRef = useRef(null);
 
   const closeModal = async () => {
     setShowModal(false);
+    setSelectedDevice(DEFAULT_DEVICE);
     await listDevice();
   };
 
@@ -58,19 +66,19 @@ const DeviceManagement = () => {
   }, [orgId]);
 
   useEffect(() => {
-    listUserOrgs()
-  }, [])
+    listUserOrgs();
+  }, []);
 
-  const listUserOrgs = async() => {
+  const listUserOrgs = async () => {
     const resp = await listOrgRequest(0, 20);
     if (resp.isError) {
       setToastContent("Không thể lấy thiết bị của tổ chức");
       setToastVariant("danger");
       setShowToast(true);
-    }else{
-      setOrgs(resp.data.items)
+    } else {
+      setOrgs(resp.data.items);
     }
-  }
+  };
 
   const listDevice = async () => {
     const resp = await listOrgDeviceRequest(orgId, index, size);
@@ -86,14 +94,14 @@ const DeviceManagement = () => {
     const resp = await createDeviceRequest(
       selectedDevice.deviceId,
       selectedDevice.deviceName,
-      orgId
+      orgId,
+      selectedDevice.password
     );
     if (resp.isError) {
       setToastContent("Không thể tạo thiết bị mới");
       setToastVariant("danger");
       setShowToast(true);
     }
-    setShowModal(false);
   };
 
   // const getDevice = async (id) => {
@@ -116,26 +124,31 @@ const DeviceManagement = () => {
     }
     event.preventDefault();
     setValidated(true);
-    if (form.checkValidity()) {
+
+    if (!checkNoSpecialCharacters(selectedDevice.deviceId)) {
+      setToastContent("Mã thiết bị không được chứa ký tự đặc biệt");
+      setToastVariant("danger");
+      setShowToast(true);
+    } else if (form.checkValidity()) {
       if (action === "create") {
         await createDevice();
       } else {
         await updateDevice();
       }
+      closeModal();
     }
   };
   const updateDevice = async () => {
     const resp = await updateDeviceRequest(
       selectedDevice.id,
       selectedDevice.deviceName,
-      orgId
+      orgId,
+      selectedDevice.password
     );
     if (resp.isError) {
       setToastContent(`Không thể cập nhật thiết bị: ${resp.msg}`);
       setToastVariant("danger");
       setShowToast(true);
-    } else {
-      closeModal();
     }
   };
   return (
@@ -159,10 +172,12 @@ const DeviceManagement = () => {
             <div>
               <FormSelect disabled={orgId !== null}>
                 <option>Chọn một tổ chức</option>
-                {orgs.map((org) => {
+                {orgs.map(org => {
                   return (
-                    <option value={org.id} key={org.id}>{org.orgName}</option>
-                  )
+                    <option value={org.id} key={org.id}>
+                      {org.orgName}
+                    </option>
+                  );
                 })}
               </FormSelect>
             </div>
@@ -193,6 +208,7 @@ const DeviceManagement = () => {
                         <th className="text-center">Tên Thiết Bị</th>
                         <th>Trạng Thái</th>
                         <th className="text-center">Hành Động</th>
+                        <th className="text-center">Last Online</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -214,6 +230,14 @@ const DeviceManagement = () => {
                                   setSelectedDevice(device);
                                 }}
                               ></i>
+                            </td>
+                            <td>
+                              {device.lastOnline
+                                ? new Date().getTime() - device.lastOnline <=
+                                  5 * 60 * 1000 // 5 minutes
+                                  ? "Online"
+                                  : "Offline"
+                                : "Không có dữ liệu"}
                             </td>
                           </tr>
                         );
@@ -269,6 +293,7 @@ const DeviceManagement = () => {
                     }));
                   }}
                   value={selectedDevice.deviceId}
+                  autoFocus
                 />
                 <FormControl.Feedback type="invalid">
                   Mã Thiết Bị là bắt buộc
@@ -297,6 +322,30 @@ const DeviceManagement = () => {
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
+            <Row className="mb-1">
+              <FormGroup as={Col}>
+                <FormLabel>Mật Khẩu:</FormLabel>
+                <FormControl
+                  required
+                  onChange={e => {
+                    const newItem = {
+                      password: e.target.value,
+                    };
+                    setSelectedDevice(device => ({
+                      ...selectedDevice,
+                      ...newItem,
+                    }));
+                  }}
+                  value={selectedDevice.password}
+                  // Validate chỉ gồm number, độ dài tối đa là 6
+                  pattern="^[0-9]{6}$"
+                />
+                <FormControl.Feedback type="invalid">
+                  Mật Khẩu là bắt buộc và phải là 6 số
+                </FormControl.Feedback>
+              </FormGroup>
+            </Row>
+
             <div className="d-flex flex-row justify-content-center mt-3">
               <button
                 ref={submitRef}

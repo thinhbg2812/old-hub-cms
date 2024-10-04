@@ -34,7 +34,7 @@ const PaginationComp = ({ pageSize, total, callback }) => {
     setItemOffset(newOffset);
     //callback to parent's function
     // console.log(newOffset);
-    await callback(pageSize, newOffset);
+    await callback(pageSize, newOffset, event.selected);
   };
   return (
     <>
@@ -47,13 +47,14 @@ const PaginationComp = ({ pageSize, total, callback }) => {
         pageCount={numPage}
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         renderOnZeroPageCount={null}
-        activeClassName="item active-page"
-        breakClassName="item break-me"
-        containerClassName="pagination m-auto"
-        disabledClassName="disabled-page"
-        nextClassName="item next"
-        pageClassName="item pagination-page"
+        pageClassName="page-item"
+        pageLinkClassName="item"
         previousClassName="item previous"
+        nextClassName="item next"
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
       />
     </>
   );

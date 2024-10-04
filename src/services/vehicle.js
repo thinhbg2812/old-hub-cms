@@ -9,10 +9,14 @@ export const createVehicleRequest = async (
   let params = {
     licensePlate: licensePlate,
     vehicleType: vehicleType,
-    status: status,
+    status: status === "active" ? true : false,
     orgId: orgId,
   };
   return await sendPostRequest("post", "/api/private/vehicle", params);
+};
+
+export const updateVehicleRequest = data => {
+  return sendPostRequest("put", "/api/private/vehicle", data);
 };
 
 export const listVehicleRequest = async (orgId, page, size) => {

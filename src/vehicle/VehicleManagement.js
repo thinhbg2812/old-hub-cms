@@ -16,15 +16,22 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../layouts/Header";
-import { createVehicleRequest, listVehicleRequest } from "../services/vehicle";
+import {
+  createVehicleRequest,
+  listVehicleRequest,
+  updateVehicleRequest,
+} from "../services/vehicle";
+
+const DEFAULT_VEHICLE = {
+  vehicleType: "car",
+  status: "active",
+};
 
 const VehicleManagement = () => {
   const [queryParams] = useSearchParams();
   const orgId = queryParams.get("orgId");
   const [vehicles, setVehicles] = useState([]);
-  const [selectedVehicle, setSelectedVehicle] = useState({
-    vehicleType: "car",
-  });
+  const [selectedVehicle, setSelectedVehicle] = useState(DEFAULT_VEHICLE);
   const [showModal, setShowModal] = useState(false);
   const submitRef = useRef(null);
   const navigate = useNavigate();
@@ -41,6 +48,7 @@ const VehicleManagement = () => {
   const closeModal = async () => {
     setShowModal(false);
     await listVehicles();
+    setSelectedVehicle(DEFAULT_VEHICLE);
   };
 
   const handleSubmit = async event => {
@@ -55,11 +63,36 @@ const VehicleManagement = () => {
     if (form.checkValidity()) {
       if (action === "create") {
         await createVehicle();
+        setSelectedVehicle({
+          vehicleType: "car",
+        });
+        setValidated(false);
       } else {
-        // await editRoom()
+        await updateVehicle();
       }
     }
+    closeModal();
   };
+
+  const updateVehicle = async () => {
+    console.log(selectedVehicle);
+    const resp = await updateVehicleRequest({
+      vehicleId: selectedVehicle.id,
+      status: selectedVehicle.status === "active" ? true : false,
+      licensePlate: selectedVehicle.licensePlate,
+      vehicleType: selectedVehicle.vehicleType,
+    });
+    if (resp.isError) {
+      setToastContent(`Không thể cập nhật phương tiện: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+    } else {
+      setToastContent("Cập nhật phương tiện thành công");
+      setToastVariant("success");
+      setShowToast(true);
+    }
+  };
+
   const listVehicles = async () => {
     const resp = await listVehicleRequest(orgId, page, size);
     if (resp.isError) {
@@ -70,6 +103,7 @@ const VehicleManagement = () => {
       setVehicles(resp.data.items);
     }
   };
+
   useEffect(() => {
     if (orgId === null) {
       navigate("/org/list");
@@ -108,7 +142,7 @@ const VehicleManagement = () => {
                   setShowModal(true);
                 }}
               >
-                Add user's vehicle
+                Thêm phương tiện
               </button>
             </div>
           </div>
@@ -118,10 +152,10 @@ const VehicleManagement = () => {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>License</th>
-                    <th className="text-center">Type</th>
-                    <th className="text-center">Status</th>
-                    <th className="text-center">Actions</th>
+                    <th>Biển số</th>
+                    <th className="text-center">Loại</th>
+                    <th className="text-center">Trạng thái</th>
+                    <th className="text-center">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -137,7 +171,14 @@ const VehicleManagement = () => {
                         <td className="d-flex flex-row justify-content-center">
                           <i
                             className="ri-edit-box-line p-1"
-                            onClick={() => {}}
+                            onClick={() => {
+                              setShowModal(true);
+                              setAction("update");
+                              setSelectedVehicle({
+                                ...vehicle,
+                                status: vehicle.status ? "active" : "inactive",
+                              });
+                            }}
                           ></i>
                         </td>
                       </tr>
@@ -145,7 +186,7 @@ const VehicleManagement = () => {
                   })}
                   {vehicles.length <= 0 && (
                     <tr key="no-room" className="text-center">
-                      <td colSpan={4}>No vehicles available</td>
+                      <td colSpan={4}>Không có phương tiện nào</td>
                     </tr>
                   )}
                 </tbody>
@@ -168,14 +209,14 @@ const VehicleManagement = () => {
       </Toast>
       <Modal show={showModal} onHide={closeModal} backdrop="static">
         <ModalHeader closeButton>
-          {action === "create" && "Create new vehicle"}
-          {action === "update" && "Update vehicle"}
+          {action === "create" && "Tạo phương tiện mới"}
+          {action === "update" && "Cập nhật phương tiện"}
         </ModalHeader>
         <ModalBody>
           <Form noValidate onSubmit={handleSubmit} validated={validated}>
             <Row className="mb-1">
               <FormGroup as={Col}>
-                <FormLabel>License number:</FormLabel>
+                <FormLabel>Biển số xe:</FormLabel>
                 <FormControl
                   required
                   type="input"
@@ -189,16 +230,17 @@ const VehicleManagement = () => {
                     }));
                   }}
                   value={selectedVehicle.licensePlate}
+                  autoFocus
                 />
                 <FormControl.Feedback type="invalid">
-                  License number is required
+                  Số giấy phép là bắt buộc
                 </FormControl.Feedback>
               </FormGroup>
             </Row>
             <Row className="mb-1">
               <Col>
                 <label htmlFor="type" className="form-label">
-                  Status:
+                  Loại phương tiện:
                 </label>
                 <select
                   id="type"
@@ -214,15 +256,15 @@ const VehicleManagement = () => {
                   }}
                   value={selectedVehicle.vehicleType}
                 >
-                  <option value="car">Car</option>
-                  <option value="motobike">motobike</option>
+                  <option value="car">Ô tô</option>
+                  <option value="motobike">Xe máy</option>
                 </select>
               </Col>
             </Row>
             <Row className="mb-1">
               <Col>
                 <label htmlFor="status" className="form-label">
-                  Status:
+                  Trạng thái:
                 </label>
                 <select
                   id="status"
@@ -238,8 +280,8 @@ const VehicleManagement = () => {
                   }}
                   value={selectedVehicle.status}
                 >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
+                  <option value="active">Hoạt động</option>
+                  <option value="inactive">Không hoạt động</option>
                 </select>
               </Col>
             </Row>
@@ -249,7 +291,7 @@ const VehicleManagement = () => {
                 type="submit"
                 className="btn btn-outline d-none"
               >
-                Submit
+                Gửi
               </button>
             </div>
           </Form>
@@ -262,14 +304,14 @@ const VehicleManagement = () => {
               submitRef.current?.click();
             }}
           >
-            {action === "create" && "Create"} {action === "update" && "Update"}
+            {action === "create" && "Tạo"} {action === "update" && "Cập nhật"}
           </button>
           <button
             type="button"
             className="btn btn-secondary"
             onClick={closeModal}
           >
-            Cancel
+            Hủy
           </button>
         </ModalFooter>
       </Modal>

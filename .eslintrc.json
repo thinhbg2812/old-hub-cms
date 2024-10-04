@@ -14,8 +14,10 @@
     },
     "ecmaVersion": 12,
     "sourceType": "module"
+    // "requireConfigFile": false
   },
-  "plugins": ["react", "react-hooks"],
+  // "parser": "@babel/eslint-parser",
+  "plugins": ["react", "react-hooks", "jsx"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
@@ -23,7 +25,8 @@
     "react/jsx-uses-vars": "error",
     "no-unused-vars": "off",
     "react/no-unescaped-entities": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "react/display-name": "off"
   },
   "settings": {
     "react": {

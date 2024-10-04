@@ -442,6 +442,11 @@ const userMenu = [
     link: "/org/list",
     icon: "ri-global-line",
   },
+  {
+    label: "Quản lý thiết bị",
+    link: "/device/list",
+    icon: "ri-device-line"
+  }
 ];
 
 export { dashboardMenu, applicationsMenu, pagesMenu, uiElementsMenu, userMenu };

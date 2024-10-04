@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../layouts/Header";
 import {
@@ -13,6 +14,7 @@ import {
   FormControl,
   FormGroup,
   FormLabel,
+  FormSelect,
   Modal,
   ModalBody,
   ModalFooter,
@@ -23,6 +25,7 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
+import { listOrgRequest } from "../services/organization";
 import { checkNoSpecialCharacters } from "../utils/string";
 
 const DEFAULT_DEVICE = {
@@ -43,6 +46,10 @@ const DeviceManagement = () => {
   const [showModal, setShowModal] = useState(false);
   const [validated, setValidated] = useState(false);
   const [action, setAction] = useState("create");
+  const [orgs, setOrgs] = useState([]);
+
+  const [size, setSize] = useState(40);
+  const [index, setIndex] = useState(0);
 
   const submitRef = useRef(null);
 
@@ -53,15 +60,28 @@ const DeviceManagement = () => {
   };
 
   useEffect(() => {
-    if (orgId === null) {
-      navigate("/org/list");
-    } else {
+    if (orgId !== null) {
       listDevice();
     }
   }, [orgId]);
 
+  useEffect(() => {
+    listUserOrgs();
+  }, []);
+
+  const listUserOrgs = async () => {
+    const resp = await listOrgRequest(0, 20);
+    if (resp.isError) {
+      setToastContent("Không thể lấy thiết bị của tổ chức");
+      setToastVariant("danger");
+      setShowToast(true);
+    } else {
+      setOrgs(resp.data.items);
+    }
+  };
+
   const listDevice = async () => {
-    const resp = await listOrgDeviceRequest(orgId);
+    const resp = await listOrgDeviceRequest(orgId, index, size);
     if (resp.isError) {
       setToastContent("Không thể lấy thiết bị của tổ chức");
       setToastVariant("danger");
@@ -135,7 +155,7 @@ const DeviceManagement = () => {
     <React.Fragment>
       <Header />
       <div className="main main-app p-3 p-lg-4">
-        <div className="d-flex flex-column justify-content-between mb-4">
+        <div className="d-flex flex-column justify-content-between mb-4 gap-3">
           <div>
             <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item">
@@ -146,6 +166,21 @@ const DeviceManagement = () => {
               </li>
             </ol>
             <h4 className="main-title mb-0">Danh sách thiết bị</h4>
+          </div>
+          <div className="d-flex gap-2 align-items-center">
+            <div>Chọn tổ chức:</div>
+            <div>
+              <FormSelect disabled={orgId !== null}>
+                <option>Chọn một tổ chức</option>
+                {orgs.map(org => {
+                  return (
+                    <option value={org.id} key={org.id}>
+                      {org.orgName}
+                    </option>
+                  );
+                })}
+              </FormSelect>
+            </div>
           </div>
           <div className="d-flex gap-2 mt-3 mt-md-0">
             <div className="container-fluid">

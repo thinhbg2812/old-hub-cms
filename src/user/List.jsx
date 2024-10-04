@@ -487,8 +487,8 @@ export default function UserManagement() {
                 type="button"
                 className="btn btn-warning"
                 onClick={() => {
-                  currentSampleCommandRef.current = "active"
-                  submitRef.current?.click()
+                  currentSampleCommandRef.current = "active";
+                  submitRef.current?.click();
                 }}
               >
                 Huỷ lấy mẫu

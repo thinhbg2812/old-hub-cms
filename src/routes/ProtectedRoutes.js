@@ -87,6 +87,7 @@ import RoomManagement from "../room/RoomList";
 import UserManagment from "../user/List";
 import VehicleManagement from "../vehicle/VehicleManagement";
 import DeviceManagement from "../device/DeviceManagement";
+import OrderManagement from "../components/order/OrderManagement";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -167,6 +168,7 @@ const protectedRoutes = [
   { path: "room/list", element: <RoomManagement /> },
   { path: "vehicle/list", element: <VehicleManagement /> },
   { path: "device/list", element: <DeviceManagement /> },
+  { path: "order/list", element: <OrderManagement /> },
 ];
 
 export default protectedRoutes;

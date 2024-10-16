@@ -37,7 +37,7 @@ const DEFAULT_DEVICE = {
 const DeviceManagement = () => {
   const [devices, setDevices] = useState([]);
   const [queryParams] = useSearchParams();
-  const orgId = queryParams.get("orgId");
+  const [orgId, setOrgId] = useState("");
   const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastVariant, setToastVariant] = useState("Success");
@@ -58,9 +58,12 @@ const DeviceManagement = () => {
     setSelectedDevice(DEFAULT_DEVICE);
     await listDevice();
   };
+  useEffect(() => {
+    setOrgId(queryParams.get("orgId"));
+  }, [queryParams.get("orgId")]);
 
   useEffect(() => {
-    if (orgId !== null) {
+    if (orgId !== null && orgId !== "") {
       listDevice();
     }
   }, [orgId]);
@@ -161,7 +164,10 @@ const DeviceManagement = () => {
               <li className="breadcrumb-item">
                 <Link to="/org/list">Quản lý tổ chức</Link>
               </li>
-              <li className="breadcrumb-item active" aria-current="page">
+              <li
+                className="breadcrumb-item active border-0"
+                aria-current="page"
+              >
                 Quản lý thiết bị
               </li>
             </ol>
@@ -170,8 +176,13 @@ const DeviceManagement = () => {
           <div className="d-flex gap-2 align-items-center">
             <div>Chọn tổ chức:</div>
             <div>
-              <FormSelect disabled={orgId !== null}>
-                <option>Chọn một tổ chức</option>
+              <FormSelect
+                value={orgId ?? ""}
+                onChange={e => {
+                  setOrgId(e.target.value);
+                }}
+              >
+                <option value="">Chọn một tổ chức</option>
                 {orgs.map(org => {
                   return (
                     <option value={org.id} key={org.id}>
@@ -209,6 +220,7 @@ const DeviceManagement = () => {
                         <th>Trạng Thái</th>
                         <th className="text-center">Hành Động</th>
                         <th className="text-center">Last Online</th>
+                        <th className="text-center">Logs</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -238,6 +250,9 @@ const DeviceManagement = () => {
                                   ? "Online"
                                   : "Offline"
                                 : "Không có dữ liệu"}
+                            </td>
+                            <td className="text-center">
+                              <i className="ri-eye-line"></i>
                             </td>
                           </tr>
                         );

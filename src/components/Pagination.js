@@ -20,7 +20,7 @@ function Items({ currentItems }) {
   );
 }
 
-const PaginationComp = ({ pageSize, total, callback }) => {
+const PaginationComp = ({ pageSize, total, callback, offset = 0 }) => {
   let numPage = Math.ceil(total / pageSize);
   // let items = [];
   // for(let i = 0; i < numPage; i++){
@@ -55,6 +55,7 @@ const PaginationComp = ({ pageSize, total, callback }) => {
         breakLinkClassName="page-link"
         containerClassName="pagination"
         activeClassName="active"
+        initialPage={offset}
       />
     </>
   );

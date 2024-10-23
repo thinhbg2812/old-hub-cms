@@ -442,11 +442,26 @@ const userMenu = [
     link: "/org/list",
     icon: "ri-global-line",
   },
+];
+
+const deviceMenu = [
   {
     label: "Quản lý thiết bị",
     link: "/device/list",
-    icon: "ri-device-line"
-  }
+    icon: "ri-device-line",
+  },
+  {
+    label: "Quản lý đơn hàng",
+    link: "/order/list",
+    icon: "ri-shopping-cart-line",
+  },
 ];
 
-export { dashboardMenu, applicationsMenu, pagesMenu, uiElementsMenu, userMenu };
+export {
+  dashboardMenu,
+  applicationsMenu,
+  pagesMenu,
+  uiElementsMenu,
+  userMenu,
+  deviceMenu,
+};

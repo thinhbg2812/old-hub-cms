@@ -8,15 +8,16 @@ import {
   pagesMenu,
   uiElementsMenu,
   userMenu,
+  deviceMenu,
 } from "../data/Menu";
 
 export default class Sidebar extends Component {
-  toggleFooterMenu = (e) => {
+  toggleFooterMenu(e) {
     e.preventDefault();
 
     let parent = e.target.closest(".sidebar");
     parent.classList.toggle("footer-menu-show");
-  };
+  }
 
   render() {
     return (
@@ -83,7 +84,7 @@ export default class Sidebar extends Component {
 }
 
 class SidebarMenu extends Component {
-  populateMenu = m => {
+  populateMenu(m) {
     const menu = m.map((m, key) => {
       let sm;
       if (m.submenu) {
@@ -113,20 +114,20 @@ class SidebarMenu extends Component {
     });
 
     return <ul className="nav nav-sidebar">{menu}</ul>;
-  };
+  }
 
   // Toggle menu group
-  toggleMenu = e => {
+  toggleMenu(e) {
     e.preventDefault();
 
     let parent = e.target.closest(".nav-group");
     parent.classList.toggle("show");
 
     this.props.onUpdateSize();
-  };
+  }
 
   // Toggle submenu while closing siblings' submenu
-  toggleSubMenu = e => {
+  toggleSubMenu(e) {
     e.preventDefault();
 
     let parent = e.target.closest(".nav-item");
@@ -141,7 +142,7 @@ class SidebarMenu extends Component {
     parent.classList.toggle("show");
 
     this.props.onUpdateSize();
-  };
+  }
 
   render() {
     return (
@@ -154,22 +155,28 @@ class SidebarMenu extends Component {
         </div>
         <div className="nav-group show">
           <div className="nav-label" onClick={this.toggleMenu}>
+            Device management
+          </div>
+          {this.populateMenu(deviceMenu)}
+        </div>
+        {/* <div className="nav-group show">
+          <div className="nav-label" onClick={this.toggleMenu}>
             Dashboard
           </div>
           {this.populateMenu(dashboardMenu)}
-        </div>
-        <div className="nav-group show">
+        </div> */}
+        {/* <div className="nav-group show">
           <div className="nav-label" onClick={this.toggleMenu}>
             Applications
           </div>
           {this.populateMenu(applicationsMenu)}
-        </div>
-        <div className="nav-group show">
+        </div> */}
+        {/* <div className="nav-group show">
           <div className="nav-label" onClick={this.toggleMenu}>
             Pages
           </div>
           {this.populateMenu(pagesMenu)}
-        </div>
+        </div> */}
         <div className="nav-group show">
           <div className="nav-label" onClick={this.toggleMenu}>
             UI Elements

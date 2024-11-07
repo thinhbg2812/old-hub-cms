@@ -9,7 +9,10 @@ import {
 } from "../services/device";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
+  Button,
   Col,
+  Container,
+  Dropdown,
   Form,
   FormControl,
   FormGroup,
@@ -50,6 +53,12 @@ const DeviceManagement = () => {
 
   const [size, setSize] = useState(40);
   const [index, setIndex] = useState(0);
+
+  const [showLinkModel, setShowLinkModel] = useState(false);
+
+  const closeLinkModel = () => {
+    setShowLinkModel(false);
+  };
 
   const submitRef = useRef(null);
 
@@ -217,10 +226,10 @@ const DeviceManagement = () => {
                         <th>#</th>
                         <th>Mã Thiết Bị</th>
                         <th className="text-center">Tên Thiết Bị</th>
-                        <th>Trạng Thái</th>
-                        <th className="text-center">Hành Động</th>
+                        <th className="text-center">Trạng Thái</th>
                         <th className="text-center">Last Online</th>
                         <th className="text-center">Logs</th>
+                        <th />
                       </tr>
                     </thead>
                     <tbody>
@@ -233,16 +242,6 @@ const DeviceManagement = () => {
                             <td className="text-center">
                               {device.status ? "Hoạt động" : "Không hoạt động"}
                             </td>
-                            <td className="d-flex flex-row justify-content-center">
-                              <i
-                                className="ri-edit-box-line p-1"
-                                onClick={() => {
-                                  setShowModal(true);
-                                  setAction("update");
-                                  setSelectedDevice(device);
-                                }}
-                              ></i>
-                            </td>
                             <td>
                               {device.lastOnline
                                 ? new Date().getTime() - device.lastOnline <=
@@ -251,8 +250,31 @@ const DeviceManagement = () => {
                                   : "Offline"
                                 : "Không có dữ liệu"}
                             </td>
+                            <td />
                             <td className="text-center">
-                              <i className="ri-eye-line"></i>
+                              <Dropdown>
+                                <Dropdown.Toggle variant="success">
+                                  <i className="ri-more-2-line"></i>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                  <Dropdown.Item
+                                    onClick={() => {
+                                      setShowModal(true);
+                                      setAction("update");
+                                      setSelectedDevice(device);
+                                    }}
+                                  >
+                                    Sửa
+                                  </Dropdown.Item>
+                                  <Dropdown.Item
+                                    onClick={() => {
+                                      setShowLinkModel(true);
+                                    }}
+                                  >
+                                    Thông tin tủ
+                                  </Dropdown.Item>
+                                </Dropdown.Menu>
+                              </Dropdown>
                             </td>
                           </tr>
                         );
@@ -391,6 +413,20 @@ const DeviceManagement = () => {
             Hủy
           </button>
         </ModalFooter>
+      </Modal>
+      <Modal show={showLinkModel} onHide={closeLinkModel} backdrop="static">
+        <ModalHeader closeButton className="fw-bold">
+          Thông tin tủ
+        </ModalHeader>
+        <ModalBody>
+          <Container>
+            <Row>
+              <Col>
+                <Button variant="primary">Gắn tủ mới</Button>
+              </Col>
+            </Row>
+          </Container>
+        </ModalBody>
       </Modal>
     </React.Fragment>
   );

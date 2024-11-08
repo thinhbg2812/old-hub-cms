@@ -30,6 +30,12 @@ import {
 } from "react-bootstrap";
 import { listOrgRequest } from "../services/organization";
 import { checkNoSpecialCharacters } from "../utils/string";
+import {
+  addLockerRequest,
+  addMultiStackRequest,
+  addStackRequest,
+  getDeviceLockerRequest,
+} from "../services/locker";
 
 const DEFAULT_DEVICE = {
   deviceId: "",
@@ -54,10 +60,38 @@ const DeviceManagement = () => {
   const [size, setSize] = useState(40);
   const [index, setIndex] = useState(0);
 
-  const [showLinkModel, setShowLinkModel] = useState(false);
+  const [showLockerModel, setShowLockerModel] = useState(false);
+  const [locker, setLocker] = useState(null);
+  const [stacks, setStacks] = useState([]);
 
-  const closeLinkModel = () => {
-    setShowLinkModel(false);
+  const [showAddOneStack, setShowAddOneStack] = useState(false);
+  const [isAddOneStack, setIsAddOneStack] = useState(true);
+  const [stackPosition, setStackPosition] = useState(0);
+  const [stackSize, setStackSize] = useState("m");
+  const [stackNumber, setStackNumber] = useState(1);
+
+  const [showAddLocker, setShowAddLocker] = useState(false);
+  const [lockerName, setLockerName] = useState("");
+  const [lockerAddress, setLockerAddress] = useState("");
+
+  const closeAddLockerDialog = () => {
+    setLockerName("");
+    setLockerAddress("");
+    setShowAddLocker(false);
+  };
+
+  const closeAddOneStackDialog = () => {
+    setStackPosition(0);
+    setStackSize("m");
+    setStackNumber(1);
+    getLocker(selectedDevice.deviceId);
+    setShowAddOneStack(false);
+  };
+
+  const closeLockerModel = () => {
+    setLocker(null);
+    setStacks([]);
+    setShowLockerModel(false);
   };
 
   const submitRef = useRef(null);
@@ -162,6 +196,61 @@ const DeviceManagement = () => {
       setToastVariant("danger");
       setShowToast(true);
     }
+  };
+  const getLocker = async deviceId => {
+    const resp = await getDeviceLockerRequest(deviceId);
+    if (resp.isError) {
+      setToastContent(`Không thể cập nhật thiết bị: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+    }
+    if (resp.data.locker) {
+      setLocker(resp.data.locker);
+    }
+    if (resp.data.stacks) {
+      setStacks(resp.data.stacks);
+    }
+  };
+  const addStack = async () => {
+    const resp = await addStackRequest(locker.id, stackSize, stackPosition);
+    if (resp.isError) {
+      setToastContent(`Không thể thêm ngăn chứa đồ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeAddOneStackDialog();
+  };
+  const addStacks = async () => {
+    const resp = await addMultiStackRequest(locker.id, stackSize, stackNumber);
+    if (resp.isError) {
+      setToastContent(`Không thể thêm ngăn chứa đồ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeAddOneStackDialog();
+  };
+  const addLocker = async () => {
+    if (lockerName === "" || lockerAddress === "") {
+      setToastContent(`Tên và địa chỉ không dược để trống`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    const resp = await addLockerRequest(
+      selectedDevice.deviceId,
+      lockerName,
+      lockerAddress
+    );
+    if (resp.isError) {
+      setToastContent(`Không thể thêm tủ đồ mới: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    setLocker(resp.data);
+    closeAddLockerDialog();
   };
   return (
     <React.Fragment>
@@ -268,7 +357,9 @@ const DeviceManagement = () => {
                                   </Dropdown.Item>
                                   <Dropdown.Item
                                     onClick={() => {
-                                      setShowLinkModel(true);
+                                      setSelectedDevice(device);
+                                      getLocker(device.deviceId);
+                                      setShowLockerModel(true);
                                     }}
                                   >
                                     Thông tin tủ
@@ -414,7 +505,12 @@ const DeviceManagement = () => {
           </button>
         </ModalFooter>
       </Modal>
-      <Modal show={showLinkModel} onHide={closeLinkModel} backdrop="static">
+      <Modal
+        show={showLockerModel}
+        onHide={closeLockerModel}
+        backdrop="static"
+        size="lg"
+      >
         <ModalHeader closeButton className="fw-bold">
           Thông tin tủ
         </ModalHeader>
@@ -422,11 +518,222 @@ const DeviceManagement = () => {
           <Container>
             <Row>
               <Col>
-                <Button variant="primary">Gắn tủ mới</Button>
+                {locker === null && (
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      setShowAddLocker(true);
+                    }}
+                  >
+                    Gắn tủ mới
+                  </Button>
+                )}
+                {locker !== null && (
+                  <div className="d-flex flex-column">
+                    <div className="d-flex flex-row">
+                      <div className="w-25">Tên tủ:</div>
+                      <div>{locker.name}</div>
+                    </div>
+                    <div className="d-flex flex-row">
+                      <div className="w-25">Vị trí tủ:</div>
+                      <div>{locker.address}</div>
+                    </div>
+                    <div className="d-flex flex-row">
+                      <div className="w-25">Trạng thái tủ:</div>
+                      <div>
+                        {locker.status ? "Hoạt động" : "Không hoạt động"}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </Col>
             </Row>
+            {locker !== null && (
+              <>
+                <Row className="mt-2">
+                  <Col className="fw-bold" md={6}>
+                    Danh sách ngăn đồ:
+                  </Col>
+                  <Col
+                    className="fw-bold"
+                    md={3}
+                    style={{ textAlign: "right" }}
+                  >
+                    <Button
+                      variant="warning"
+                      onClick={() => {
+                        setIsAddOneStack(false);
+                        setShowAddOneStack(true);
+                      }}
+                    >
+                      Thêm nhiều ngăn tủ
+                    </Button>
+                  </Col>
+                  <Col
+                    className="fw-bold"
+                    md={3}
+                    style={{ textAlign: "right" }}
+                  >
+                    <Button
+                      variant="success"
+                      onClick={() => {
+                        setIsAddOneStack(true);
+                        setShowAddOneStack(true);
+                      }}
+                    >
+                      Thêm một ngăn tủ
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col>
+                    <table className="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th className="text-center">Vị trí</th>
+                          <th className="text-center">Kích thước</th>
+                          <th className="text-center">Đang mở</th>
+                          <th className="text-center">Đang được sử dụng</th>
+                          <th className="text-center">Trạng thái</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {stacks.length > 0 && (
+                          <>
+                            {stacks.map(stack => (
+                              <tr key={stack.id}>
+                                <td className="text-center">
+                                  {stack.position}
+                                </td>
+                                <td className="text-center">{stack.size}</td>
+                                <td className="text-center">
+                                  {stack.isOpened ? "Đang mở" : "Đang khóa"}
+                                </td>
+                                <td className="text-center">
+                                  {stack.isUsed ? "Đang chứa đồ" : "Đang trống"}
+                                </td>
+                                <td className="text-center">
+                                  {stack.status ? "Khả dụng" : "Không khả dụng"}
+                                </td>
+                              </tr>
+                            ))}
+                          </>
+                        )}
+                      </tbody>
+                    </table>
+                  </Col>
+                </Row>
+              </>
+            )}
           </Container>
         </ModalBody>
+      </Modal>
+      <Modal
+        show={showAddOneStack}
+        onHide={closeAddOneStackDialog}
+        backdrop="static"
+      >
+        <ModalHeader className="bg-success">Thêm ngăn tủ mới</ModalHeader>
+        <ModalBody>
+          <Container>
+            <Row>
+              <Col>Kích thước ngăn:</Col>
+              <Col>
+                <FormSelect
+                  onChange={e => {
+                    setStackSize(e.target.value);
+                  }}
+                >
+                  <option value="s">S</option>
+                  <option value="l">L</option>
+                  <option value="m">M</option>
+                </FormSelect>
+              </Col>
+            </Row>
+            {isAddOneStack && (
+              <Row className="mt-2">
+                <Col>Vị trí ngăn:</Col>
+                <Col>
+                  <FormControl
+                    type="number"
+                    onChange={e => {
+                      setStackPosition(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Row>
+            )}
+
+            {!isAddOneStack && (
+              <Row className="mt-2">
+                <Col>Số lượng ngăn:</Col>
+                <Col>
+                  <FormControl
+                    type="number"
+                    onChange={e => {
+                      setStackNumber(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Row>
+            )}
+          </Container>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            onClick={() => {
+              if (isAddOneStack) {
+                addStack();
+              } else {
+                addStacks();
+              }
+            }}
+          >
+            Thêm
+          </Button>
+          <Button variant="secondary" onClick={closeAddOneStackDialog}>
+            Hủy
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        show={showAddLocker}
+        onHide={closeAddLockerDialog}
+        backdrop="static"
+      >
+        <ModalHeader className="bg-success">Thêm tủ mới</ModalHeader>
+        <ModalBody>
+          <div className="d-flex flex-column">
+            <div className="d-flex flex-row">
+              <div className="w-25">Tên tủ:</div>
+              <div>
+                <FormControl
+                  type="text"
+                  onChange={e => setLockerName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="d-flex flex-row mt-2">
+              <div className="w-25">Vị trí đặt tủ:</div>
+              <div>
+                <FormControl
+                  type="text"
+                  onChange={e => setLockerAddress(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="success" onClick={() => addLocker()}>
+            Tạo mới
+          </Button>
+          <Button variant="secondary" onClick={closeAddLockerDialog}>
+            Hủy
+          </Button>
+        </ModalFooter>
       </Modal>
     </React.Fragment>
   );

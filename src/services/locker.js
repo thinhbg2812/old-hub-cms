@@ -30,3 +30,17 @@ export const addLockerRequest = async (deviceId, name, address) => {
   };
   return sendPostRequest("post", "/api/private/device/locker", params);
 };
+
+export const deleteStackRequest = async stackId => {
+  const params = {
+    stackId,
+  };
+  return sendPostRequest("delete", "/api/private/device/locker/stack", params);
+};
+
+export const removeLockerRequest = async lockerId => {
+  const params = {
+    lockerId,
+  };
+  return sendPostRequest("put", "/api/private/device/locker/remove", params);
+};

@@ -34,8 +34,11 @@ import {
   addLockerRequest,
   addMultiStackRequest,
   addStackRequest,
+  deleteStackRequest,
   getDeviceLockerRequest,
+  removeLockerRequest,
 } from "../services/locker";
+import AlertDialog from "../components/Alert";
 
 const DEFAULT_DEVICE = {
   deviceId: "",
@@ -73,6 +76,17 @@ const DeviceManagement = () => {
   const [showAddLocker, setShowAddLocker] = useState(false);
   const [lockerName, setLockerName] = useState("");
   const [lockerAddress, setLockerAddress] = useState("");
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [selectedStack, setSelectedStack] = useState(null);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertContent, setAlertContent] = useState("");
+  const [alertOkCallback, setAlertOkCallback] = useState(null);
+
+  const closeAlertDialog = () => {
+    setSelectedStack(null);
+    setShowAlert(false);
+  };
 
   const closeAddLockerDialog = () => {
     setLockerName("");
@@ -251,6 +265,27 @@ const DeviceManagement = () => {
     }
     setLocker(resp.data);
     closeAddLockerDialog();
+  };
+  const deleteStack = async stackId => {
+    const resp = await deleteStackRequest(stackId);
+    if (resp.isError) {
+      setToastContent(`Không thể xóa ngăn đồ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    getLocker(selectedDevice.deviceId);
+    closeAlertDialog();
+  };
+  const removeLocker = async lockerId => {
+    const resp = await removeLockerRequest(lockerId);
+    if (resp.isError) {
+      setToastContent(`Không thể gỡ tủ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeAlertDialog();
   };
   return (
     <React.Fragment>
@@ -528,6 +563,31 @@ const DeviceManagement = () => {
                     Gắn tủ mới
                   </Button>
                 )}
+                {locker && (
+                  <div className="d-flex flex-row">
+                    <Button
+                      variant="warning"
+                      style={{ marginRight: "10px" }}
+                      onClick={() => {
+                        setAlertTitle("Gỡ tủ đồ");
+                        setAlertContent(
+                          "Bạn có thực sự muốn gỡ tủ này khỏi thiết bị?"
+                        );
+                        setAlertOkCallback(() => () => {
+                          removeLocker(locker.id);
+                        });
+                        setShowAlert(true);
+                      }}
+                    >
+                      Gỡ tủ
+                    </Button>
+                    <Button variant="primary">Đổi tủ</Button>
+                  </div>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 {locker !== null && (
                   <div className="d-flex flex-column">
                     <div className="d-flex flex-row">
@@ -595,6 +655,7 @@ const DeviceManagement = () => {
                           <th className="text-center">Đang mở</th>
                           <th className="text-center">Đang được sử dụng</th>
                           <th className="text-center">Trạng thái</th>
+                          <th />
                         </tr>
                       </thead>
                       <tbody>
@@ -614,6 +675,22 @@ const DeviceManagement = () => {
                                 </td>
                                 <td className="text-center">
                                   {stack.status ? "Khả dụng" : "Không khả dụng"}
+                                </td>
+                                <td>
+                                  <i
+                                    className="ri-delete-bin-line"
+                                    onClick={() => {
+                                      setSelectedStack(stack);
+                                      setAlertTitle("Xóa ngăn tủ");
+                                      setAlertContent(
+                                        "Bạn có muốn xóa ngăn tủ này không?"
+                                      );
+                                      setAlertOkCallback(() => () => {
+                                        deleteStack(stack.id);
+                                      });
+                                      setShowAlert(true);
+                                    }}
+                                  ></i>
                                 </td>
                               </tr>
                             ))}
@@ -735,6 +812,13 @@ const DeviceManagement = () => {
           </Button>
         </ModalFooter>
       </Modal>
+      <AlertDialog
+        closeCallback={closeAlertDialog}
+        isOpen={showAlert}
+        title={alertTitle}
+        content={alertContent}
+        okCallback={alertOkCallback}
+      />
     </React.Fragment>
   );
 };

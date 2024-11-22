@@ -399,6 +399,13 @@ const DeviceManagement = () => {
                                   >
                                     Thông tin tủ
                                   </Dropdown.Item>
+                                  <Dropdown.Item
+                                    onClick={() => {
+                                      window.location.href = `ads?deviceId=${device.id}`;
+                                    }}
+                                  >
+                                    Quản lý ads
+                                  </Dropdown.Item>
                                 </Dropdown.Menu>
                               </Dropdown>
                             </td>

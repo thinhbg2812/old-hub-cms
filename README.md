@@ -42,6 +42,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ## Learn More
 
 * https://remixicon.com/icon/book-line*
+* Update object in usestate: https://blog.logrocket.com/using-react-usestate-object/ and https://react.dev/learn/updating-objects-in-state
 
 
 ### Deployment

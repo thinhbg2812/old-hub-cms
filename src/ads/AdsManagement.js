@@ -1,7 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Header from "../layouts/Header";
 import { Link, useSearchParams } from "react-router-dom";
-import { createAdsRequest, listAdsRequest } from "../services/ads";
+import {
+  createAdsRequest,
+  getAdsRequest,
+  listAdsRequest,
+  updateAdsRequest,
+} from "../services/ads";
 import {
   Button,
   Form,
@@ -33,19 +38,34 @@ const AdsManagement = () => {
 
   const [showAds, setShowAds] = useState(false);
   const [action, setAction] = useState("create");
+  const [adsObject, setAdsObject] = useState({
+    status: 1,
+    adsType: "photo",
+  });
+  const [uploadFiles, setUploadFiles] = useState([]);
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [".png", ".jpg", "jpeg"],
+      "image/png": [".png"],
+      "image/jpg": [".jpg", "jpeg"],
       "video/mp4": [".mp4"],
     },
     maxFiles: 1,
   });
 
   const files = acceptedFiles.map(file => <li key={file.path}>{file.name}</li>);
+  useEffect(() => {
+    setUploadFiles(acceptedFiles);
+  }, [acceptedFiles]);
 
   const closeShowAdsDialog = () => {
+    setAdsObject({
+      status: 1,
+      adsType: "photo",
+    });
+    setUploadFiles([]);
     setShowAds(false);
+    listAds(deviceId);
   };
 
   useEffect(() => {
@@ -63,23 +83,78 @@ const AdsManagement = () => {
     }
     setAds(resp.data.items);
   };
+  const getAds = async id => {
+    const resp = await getAdsRequest(id);
+    if (resp.isError) {
+      setToastContent("Không thể lấy thông tin Ads");
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    setAdsObject(resp.data);
+  };
+  const updateAds = async () => {
+    let resp;
+    if (uploadFiles.length > 0) {
+      resp = await uploadFileRequest(uploadFiles[0]);
+      if (resp.fileName === undefined) {
+        setToastContent("Không thể tải tập tin");
+        setToastVariant("danger");
+        setShowToast(true);
+        return;
+      }
+    }
+    //update ads
+    resp = await updateAdsRequest(
+      adsObject.id,
+      adsObject.position,
+      adsObject.adsName,
+      adsObject.adsLength,
+      adsObject.adsType,
+      uploadFiles.length > 0 ? resp.path : null,
+      uploadFiles.length > 0 ? resp.mimeType : null
+    );
+    if (resp.isError) {
+      setToastContent("Không thể cập nhật quảng cáo");
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeShowAdsDialog();
+  };
   const addAds = async () => {
     //upload file
-    if (files.length <= 0) {
+    if (uploadFiles.length <= 0) {
       setToastContent("Thiếu tập tin quảng cáo");
       setToastVariant("danger");
       setShowToast(true);
       return;
     }
-    let resp = await uploadFileRequest(files[i]);
-    if (resp.isError) {
+    let resp = await uploadFileRequest(uploadFiles[0]);
+    if (resp.fileName === undefined) {
       setToastContent("Không thể tải tập tin");
       setToastVariant("danger");
       setShowToast(true);
       return;
     }
     //create ads
-    // resp = await createAdsRequest(deviceId)
+    resp = await createAdsRequest(
+      deviceId,
+      adsObject.adsName,
+      adsObject.position,
+      adsObject.adsLength,
+      adsObject.adsType,
+      resp.path,
+      resp.mimeType,
+      adsObject.status
+    );
+    if (resp.isError) {
+      setToastContent("Không thể tạo quảng cáo");
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeShowAdsDialog();
   };
   return (
     <React.Fragment>
@@ -116,27 +191,37 @@ const AdsManagement = () => {
               <table className="table table-bordered">
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>Tên Ads</th>
                     <th className="text-center">Thứ tự</th>
                     <th className="text-center">Thời lượng</th>
                     <th className="text-center">Loại quảng cáo</th>
                     <th className="text-center">Tải xuống</th>
                     <th className="text-center">Sửa</th>
+                    <th className="text-center">Xóa</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ads.map(ad => (
                     <tr key={ad.id}>
                       <td>{ad.adsName}</td>
-                      <td>{ad.position}</td>
-                      <td>{ad.adsLength}</td>
-                      <td>{ad.adsType}</td>
+                      <td className="text-center">{ad.position}</td>
+                      <td className="text-center">{ad.adsLength}</td>
+                      <td className="text-center">{ad.adsType}</td>
                       <td className="text-center">
                         <i className="ri-file-download-line"></i>
                       </td>
                       <td className="text-center">
-                        <i className="ri-edit-box-line"></i>
+                        <i
+                          className="ri-edit-box-line"
+                          onClick={() => {
+                            getAds(ad.id);
+                            setShowAds(true);
+                            setAction("update");
+                          }}
+                        ></i>
+                      </td>
+                      <td className="text-center">
+                        <i className="ri-delete-bin-line"></i>
                       </td>
                     </tr>
                   ))}
@@ -155,23 +240,70 @@ const AdsManagement = () => {
           <Form>
             <FormGroup>
               <FormLabel>Tên Ads:</FormLabel>
-              <FormControl type="text" />
+              <FormControl
+                type="text"
+                onChange={e => {
+                  setAdsObject({
+                    ...adsObject,
+                    adsName: e.target.value,
+                  });
+                }}
+                value={adsObject.adsName}
+              />
             </FormGroup>
             <FormGroup>
               <FormLabel>Vị trí:</FormLabel>
-              <FormControl type="number" />
+              <FormControl
+                type="number"
+                onChange={e => {
+                  setAdsObject({
+                    ...adsObject,
+                    position: e.target.value,
+                  });
+                }}
+                value={adsObject.position}
+              />
             </FormGroup>
             <FormGroup>
               <FormLabel>Độ dài:</FormLabel>
-              <FormControl type="number" />
+              <FormControl
+                type="number"
+                onChange={e => {
+                  setAdsObject({
+                    ...adsObject,
+                    adsLength: e.target.value,
+                  });
+                }}
+                value={adsObject.adsLength}
+              />
             </FormGroup>
             <FormGroup>
               <FormLabel>Loại:</FormLabel>
-              <FormControl type="text" />
+              <FormSelect
+                onChange={e => {
+                  setAdsObject({
+                    ...adsObject,
+                    status: e.target.value,
+                  });
+                }}
+                value={adsObject.status}
+              >
+                <option value={1}>Hoạt động</option>
+                <option value={0}>NGừng hoạt động</option>
+              </FormSelect>
             </FormGroup>
             <FormGroup>
               <FormLabel>Loại:</FormLabel>
-              <FormSelect>
+              <FormSelect
+                onChange={e => {
+                  setAdsObject({
+                    ...adsObject,
+                    adsType: e.target.value,
+                  });
+                }}
+                value={adsObject.adsType}
+                v
+              >
                 <option value="photo">Ảnh</option>
                 <option value="video">Video</option>
               </FormSelect>
@@ -191,7 +323,19 @@ const AdsManagement = () => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button variant="primary">Tạo mới</Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              if (action === "create") {
+                addAds();
+              } else {
+                updateAds();
+              }
+            }}
+          >
+            {action === "create" && <>Tạo mới</>}
+            {action !== "create" && <>Cập nhật</>}
+          </Button>
           <Button variant="secondary" onClick={() => closeShowAdsDialog()}>
             Hủy
           </Button>

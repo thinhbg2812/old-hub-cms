@@ -231,96 +231,135 @@ const AdsManagement = () => {
           </div>
         </div>
       </div>
-      <Modal show={showAds} onHide={closeShowAdsDialog} backdrop="static">
+      <Modal
+        show={showAds}
+        onHide={closeShowAdsDialog}
+        backdrop="static"
+        size="lg"
+      >
         <ModalHeader closeButton>
           {action === "create" && "Thêm Ads"}
           {action === "update" && "Chỉnh Sửa Ads"}
         </ModalHeader>
         <ModalBody>
-          <Form>
-            <FormGroup>
-              <FormLabel>Tên Ads:</FormLabel>
-              <FormControl
-                type="text"
-                onChange={e => {
-                  setAdsObject({
-                    ...adsObject,
-                    adsName: e.target.value,
-                  });
-                }}
-                value={adsObject.adsName}
-              />
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>Vị trí:</FormLabel>
-              <FormControl
-                type="number"
-                onChange={e => {
-                  setAdsObject({
-                    ...adsObject,
-                    position: e.target.value,
-                  });
-                }}
-                value={adsObject.position}
-              />
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>Độ dài:</FormLabel>
-              <FormControl
-                type="number"
-                onChange={e => {
-                  setAdsObject({
-                    ...adsObject,
-                    adsLength: e.target.value,
-                  });
-                }}
-                value={adsObject.adsLength}
-              />
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>Loại:</FormLabel>
-              <FormSelect
-                onChange={e => {
-                  setAdsObject({
-                    ...adsObject,
-                    status: e.target.value,
-                  });
-                }}
-                value={adsObject.status}
-              >
-                <option value={1}>Hoạt động</option>
-                <option value={0}>NGừng hoạt động</option>
-              </FormSelect>
-            </FormGroup>
-            <FormGroup>
-              <FormLabel>Loại:</FormLabel>
-              <FormSelect
-                onChange={e => {
-                  setAdsObject({
-                    ...adsObject,
-                    adsType: e.target.value,
-                  });
-                }}
-                value={adsObject.adsType}
-                v
-              >
-                <option value="photo">Ảnh</option>
-                <option value="video">Video</option>
-              </FormSelect>
-            </FormGroup>
-            <FormGroup>
-              <div
-                {...getRootProps({ className: "dropzone" })}
-                className="mt-2 bg-light border-2 border-primary d-flex flex-column text-center align-middle p-5"
-              >
-                <input {...getInputProps()} />
-                <p>Drag and drop here, or click to select file</p>
+          <div className="d-flex flex-row gap-2">
+            <Form>
+              <FormGroup>
+                <FormLabel>Tên Ads:</FormLabel>
+                <FormControl
+                  type="text"
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      adsName: e.target.value,
+                    });
+                  }}
+                  value={adsObject.adsName}
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Vị trí:</FormLabel>
+                <FormControl
+                  type="number"
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      position: e.target.value,
+                    });
+                  }}
+                  value={adsObject.position}
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Độ dài:</FormLabel>
+                <FormControl
+                  type="number"
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      adsLength: e.target.value,
+                    });
+                  }}
+                  value={adsObject.adsLength}
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Loại:</FormLabel>
+                <FormSelect
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      status: e.target.value,
+                    });
+                  }}
+                  value={adsObject.status}
+                >
+                  <option value={1}>Hoạt động</option>
+                  <option value={0}>NGừng hoạt động</option>
+                </FormSelect>
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Loại:</FormLabel>
+                <FormSelect
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      adsType: e.target.value,
+                    });
+                  }}
+                  value={adsObject.adsType}
+                  v
+                >
+                  <option value="photo">Ảnh</option>
+                  <option value="video">Video</option>
+                </FormSelect>
+              </FormGroup>
+              <FormGroup>
+                <div
+                  {...getRootProps({ className: "dropzone" })}
+                  className="mt-2 bg-light border-2 border-primary d-flex flex-column text-center align-middle p-5"
+                >
+                  <input {...getInputProps()} />
+                  <p>Drag and drop here, or click to select file</p>
+                </div>
+                {/* <aside>
+                  <ul>{files}</ul>
+                </aside> */}
+              </FormGroup>
+            </Form>
+            <div className="d-flex flex-column gap-2">
+              <div>Preview</div>
+              <div>
+                {uploadFiles.length > 0 && (
+                  <>
+                    {uploadFiles[0].type.includes("image") && (
+                      <img
+                        src={URL.createObjectURL(uploadFiles[0])}
+                        onLoad={() => {
+                          uploadFiles[0];
+                        }}
+                        style={{ maxWidth: 150 }}
+                      />
+                    )}
+                  </>
+                )}
+                {uploadFiles.length <= 0 && (
+                  <>
+                    {adsObject.filePath && (
+                      <>
+                        {adsObject.adsType === "photo" && (
+                          <img
+                            src={`${process.env.REACT_APP_BE_DOMAIN}/api/file/ads?adsId=${adsObject.id}`}
+                            style={{ maxWidth: 150 }}
+                          />
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
               </div>
-              <aside>
-                <ul>{files}</ul>
-              </aside>
-            </FormGroup>
-          </Form>
+            </div>
+          </div>
         </ModalBody>
         <ModalFooter>
           <Button

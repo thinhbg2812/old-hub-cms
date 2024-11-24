@@ -14,6 +14,7 @@ export const sendPostRequest = async (requestType, uri, data, isPublic) => {
     const response = await axios(config);
     return response.data;
   } catch (error) {
+    console.log(error);
     if (error.response) {
       if (error.response.data.message === "Invalid token") {
         sessionStorage.setItem("token", "");

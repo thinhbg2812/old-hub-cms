@@ -31,6 +31,7 @@
     "gridjs": "^6.0.6",
     "gridjs-react": "^6.0.1",
     "jquery": "^3.6.3",
+    "js-file-download": "^0.4.12",
     "leaflet": "^1.9.3",
     "moment": "^2.29.4",
     "perfect-scrollbar": "^1.5.5",

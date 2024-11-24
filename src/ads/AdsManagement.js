@@ -3,6 +3,7 @@ import Header from "../layouts/Header";
 import { Link, useSearchParams } from "react-router-dom";
 import {
   createAdsRequest,
+  deleteAdsRequest,
   getAdsRequest,
   listAdsRequest,
   updateAdsRequest,
@@ -25,7 +26,7 @@ import {
   ToastHeader,
 } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
-import { uploadFileRequest } from "../services/file";
+import { downloadRequest, uploadFileRequest } from "../services/file";
 
 const AdsManagement = () => {
   const [queryParams] = useSearchParams();
@@ -35,6 +36,15 @@ const AdsManagement = () => {
   const [toastContent, setToastContent] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastVariant, setToastVariant] = useState("Success");
+
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteAdsId, setDeleteAdsId] = useState("");
+
+  const closeConfirmDialog = () => {
+    setShowConfirm(false);
+    setDeleteAdsId("");
+    listAds(deviceId);
+  };
 
   const [showAds, setShowAds] = useState(false);
   const [action, setAction] = useState("create");
@@ -156,6 +166,16 @@ const AdsManagement = () => {
     }
     closeShowAdsDialog();
   };
+  const deleteAds = async () => {
+    const resp = await deleteAdsRequest(deleteAdsId);
+    if (resp.isError) {
+      setToastContent("Không thể tạo quảng cáo");
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeConfirmDialog();
+  };
   return (
     <React.Fragment>
       <Header />
@@ -193,7 +213,7 @@ const AdsManagement = () => {
                   <tr>
                     <th>Tên Ads</th>
                     <th className="text-center">Thứ tự</th>
-                    <th className="text-center">Thời lượng</th>
+                    <th className="text-center">Thời lượng (giây)</th>
                     <th className="text-center">Loại quảng cáo</th>
                     <th className="text-center">Tải xuống</th>
                     <th className="text-center">Sửa</th>
@@ -208,7 +228,12 @@ const AdsManagement = () => {
                       <td className="text-center">{ad.adsLength}</td>
                       <td className="text-center">{ad.adsType}</td>
                       <td className="text-center">
-                        <i className="ri-file-download-line"></i>
+                        <i
+                          className="ri-file-download-line"
+                          onClick={() => {
+                            downloadRequest(ad.id);
+                          }}
+                        ></i>
                       </td>
                       <td className="text-center">
                         <i
@@ -221,7 +246,13 @@ const AdsManagement = () => {
                         ></i>
                       </td>
                       <td className="text-center">
-                        <i className="ri-delete-bin-line"></i>
+                        <i
+                          className="ri-delete-bin-line"
+                          onClick={() => {
+                            setDeleteAdsId(ad.id);
+                            setShowConfirm(true);
+                          }}
+                        ></i>
                       </td>
                     </tr>
                   ))}
@@ -271,7 +302,7 @@ const AdsManagement = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <FormLabel>Độ dài:</FormLabel>
+                <FormLabel>Độ dài (giây):</FormLabel>
                 <FormControl
                   type="number"
                   onChange={e => {
@@ -376,6 +407,27 @@ const AdsManagement = () => {
             {action !== "create" && <>Cập nhật</>}
           </Button>
           <Button variant="secondary" onClick={() => closeShowAdsDialog()}>
+            Hủy
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        show={showConfirm}
+        onHide={closeConfirmDialog}
+        backdrop="static"
+        size="md"
+      >
+        <ModalBody>Bạn thực sự muốn xóa Ads này?</ModalBody>
+        <ModalFooter>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteAds();
+            }}
+          >
+            Đồng ý
+          </Button>
+          <Button variant="primary" onClick={closeConfirmDialog}>
             Hủy
           </Button>
         </ModalFooter>

@@ -57,3 +57,10 @@ export const updateAdsRequest = async (
   };
   return sendPostRequest("put", "/api/private/ads", params);
 };
+
+export const deleteAdsRequest = id => {
+  const params = {
+    id,
+  };
+  return sendPostRequest("delete", "/api/private/ads", params);
+};

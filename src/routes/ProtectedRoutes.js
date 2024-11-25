@@ -89,6 +89,7 @@ import VehicleManagement from "../vehicle/VehicleManagement";
 import DeviceManagement from "../device/DeviceManagement";
 import OrderManagement from "../components/order/OrderManagement";
 import AdsManagement from "../ads/AdsManagement";
+import GamesManagement from "../games/GamesManagement";
 
 const protectedRoutes = [
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
@@ -171,6 +172,7 @@ const protectedRoutes = [
   { path: "device/list", element: <DeviceManagement /> },
   { path: "order/list", element: <OrderManagement /> },
   { path: "device/ads", element: <AdsManagement /> },
+  { path: "device/games", element: <GamesManagement /> },
 ];
 
 export default protectedRoutes;

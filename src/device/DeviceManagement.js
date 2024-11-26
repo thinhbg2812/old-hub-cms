@@ -406,6 +406,13 @@ const DeviceManagement = () => {
                                   >
                                     Quản lý ads
                                   </Dropdown.Item>
+                                  <Dropdown.Item
+                                    onClick={() => {
+                                      window.location.href = `games?deviceId=${device.id}`;
+                                    }}
+                                  >
+                                    Quản lý games
+                                  </Dropdown.Item>
                                 </Dropdown.Menu>
                               </Dropdown>
                             </td>

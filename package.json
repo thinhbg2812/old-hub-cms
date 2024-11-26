@@ -33,6 +33,7 @@
     "jquery": "^3.6.3",
     "js-file-download": "^0.4.12",
     "leaflet": "^1.9.3",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "perfect-scrollbar": "^1.5.5",
     "prismjs": "^1.29.0",

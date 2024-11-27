@@ -19,9 +19,12 @@ import {
 import {
   createGamesRequest,
   getActiveGameRequest,
+  listWinnerRequest,
   updateGamesStatusRequest,
 } from "../services/games";
-import lodash, { update } from "lodash";
+import lodash from "lodash";
+import moment from "moment/moment";
+import PaginationComp from "../components/Pagination";
 
 const GamesManagement = () => {
   const [queryParams] = useSearchParams();
@@ -37,6 +40,10 @@ const GamesManagement = () => {
   const [newGames, setNewGames] = useState({
     deviceId: deviceId,
   });
+  const [winners, setWinners] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [size, setSize] = useState(20);
+  const [total, setTotal] = useState(0);
 
   const closeNewGamesDialog = () => {
     setNewGames({
@@ -55,6 +62,24 @@ const GamesManagement = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deviceId]);
+  useEffect(() => {
+    if (currentGames) {
+      listWinner();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentGames, index.size]);
+
+  const listWinner = async () => {
+    const resp = await listWinnerRequest(currentGames?.id ?? "", index, size);
+    if (resp.isError) {
+      setToastContent("Không thể lấy thông tin người thắng giải");
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    setWinners(resp.data.items);
+    setTotal(resp.data.total);
+  };
 
   const getCurrentGame = async () => {
     const resp = await getActiveGameRequest(deviceId);
@@ -91,6 +116,10 @@ const GamesManagement = () => {
       return;
     }
     closeConfirmDialog();
+  };
+  const handlePaginationCallback = async (pageSize, offset, pageIndex) => {
+    setSize(pageSize);
+    setIndex(pageIndex);
   };
   return (
     <React.Fragment>
@@ -170,7 +199,7 @@ const GamesManagement = () => {
               <table className="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Nhà tài trợ</th>
+                    <th className="text-center">Nhà tài trợ</th>
                     <th className="text-center">Mã khuyến mại</th>
                     <th className="text-center">Tên gói quà</th>
                     <th className="text-center">Tên người trúng</th>
@@ -178,8 +207,34 @@ const GamesManagement = () => {
                     <th className="text-center">Thời gian tạo</th>
                   </tr>
                 </thead>
-                <tbody />
+                <tbody>
+                  {winners.map(winner => (
+                    <tr key={winner.id}>
+                      <td className="text-center">
+                        {winner.game?.sponsorName}
+                      </td>
+                      <td className="text-center">{winner.game?.code}</td>
+                      <td className="text-center">{winner.game?.giftName}</td>
+                      <td className="text-center">{winner.winner?.fullName}</td>
+                      <td className="text-center">
+                        {winner.winner?.phoneNumber}
+                      </td>
+                      <td className="text-center">
+                        {moment(winner.createdAt).format("hh:mm DD-MM-YYYY")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
+            </div>
+            <div className="row align-items-center">
+              <div className="col-12 align-self-center">
+                <PaginationComp
+                  total={total}
+                  pageSize={size}
+                  callback={handlePaginationCallback}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -264,13 +319,13 @@ const GamesManagement = () => {
         size="lg"
       >
         <ModalBody>
-          Games này sẽ bị {currentGames.status ? "tắt" : "bật"} trên thiết bị?
+          Games này sẽ bị {currentGames?.status ? "tắt" : "bật"} trên thiết bị?
         </ModalBody>
         <ModalFooter>
           <Button
             variant="primary"
             onClick={() => {
-              updateGamesStatus(!currentGames.status);
+              updateGamesStatus(!currentGames?.status);
             }}
           >
             Đồng ý

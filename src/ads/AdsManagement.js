@@ -122,7 +122,8 @@ const AdsManagement = () => {
       adsObject.adsLength,
       adsObject.adsType,
       uploadFiles.length > 0 ? resp.path : null,
-      uploadFiles.length > 0 ? resp.mimeType : null
+      uploadFiles.length > 0 ? resp.mimeType : null,
+      adsObject.externalLink
     );
     if (resp.isError) {
       setToastContent("Không thể cập nhật quảng cáo");
@@ -156,7 +157,8 @@ const AdsManagement = () => {
       adsObject.adsType,
       resp.path,
       resp.mimeType,
-      adsObject.status
+      adsObject.status,
+      adsObject.externalLink
     );
     if (resp.isError) {
       setToastContent("Không thể tạo quảng cáo");
@@ -230,8 +232,15 @@ const AdsManagement = () => {
                       <td className="text-center">
                         <i
                           className="ri-file-download-line"
-                          onClick={() => {
-                            downloadRequest(ad.id);
+                          onClick={async () => {
+                            const resp = await downloadRequest(ad.id);
+                            if (resp.isError) {
+                              setToastContent(
+                                "Quảng cáo không có ảnh hoặc có ảnh từ nguồn bên ngoài"
+                              );
+                              setToastVariant("danger");
+                              setShowToast(true);
+                            }
                           }}
                         ></i>
                       </td>
@@ -344,6 +353,18 @@ const AdsManagement = () => {
                   <option value="photo">Ảnh</option>
                   <option value="video">Video</option>
                 </FormSelect>
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Link ảnh/video ngoài:</FormLabel>
+                <FormControl
+                  type="text"
+                  onChange={e => {
+                    setAdsObject({
+                      ...adsObject,
+                      externalLink: e.target.value,
+                    });
+                  }}
+                />
               </FormGroup>
               <FormGroup>
                 <div

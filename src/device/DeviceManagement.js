@@ -37,8 +37,12 @@ import {
   deleteStackRequest,
   getDeviceLockerRequest,
   removeLockerRequest,
+  updateLockerRequest,
 } from "../services/locker";
 import AlertDialog from "../components/Alert";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+import TimePicker from "react-time-picker";
 
 const DEFAULT_DEVICE = {
   deviceId: "",
@@ -64,18 +68,29 @@ const DeviceManagement = () => {
   const [index, setIndex] = useState(0);
 
   const [showLockerModel, setShowLockerModel] = useState(false);
-  const [locker, setLocker] = useState(null);
+  const [locker, setLocker] = useState({
+    roofLightOnTime: "00:00",
+    roofLightOffTime: "01:00",
+    id: "",
+  });
   const [stacks, setStacks] = useState([]);
 
   const [showAddOneStack, setShowAddOneStack] = useState(false);
   const [isAddOneStack, setIsAddOneStack] = useState(true);
-  const [stackPosition, setStackPosition] = useState(0);
   const [stackSize, setStackSize] = useState("m");
   const [stackNumber, setStackNumber] = useState(1);
+  const [stack, setStack] = useState({
+    boardIndex: 0,
+    lockIndex: 0,
+    xDirection: 0,
+    yDirection: 0,
+    size: "s",
+    position: 1,
+  });
+  const [stackAction, setStackAction] = useState("create");
 
   const [showAddLocker, setShowAddLocker] = useState(false);
-  const [lockerName, setLockerName] = useState("");
-  const [lockerAddress, setLockerAddress] = useState("");
+  const [lockerAction, setLockerAction] = useState("create");
 
   const [showAlert, setShowAlert] = useState(false);
   const [selectedStack, setSelectedStack] = useState(null);
@@ -84,26 +99,31 @@ const DeviceManagement = () => {
   const [alertOkCallback, setAlertOkCallback] = useState(null);
 
   const closeAlertDialog = () => {
-    setSelectedStack(null);
     setShowAlert(false);
   };
 
   const closeAddLockerDialog = () => {
-    setLockerName("");
-    setLockerAddress("");
     setShowAddLocker(false);
+    getLocker(selectedDevice.deviceId);
   };
 
   const closeAddOneStackDialog = () => {
-    setStackPosition(0);
     setStackSize("m");
     setStackNumber(1);
+    setStack({
+      boardIndex: 0,
+      lockIndex: 0,
+      xDirection: 0,
+      yDirection: 0,
+      size: "s",
+      position: 1,
+    });
     getLocker(selectedDevice.deviceId);
     setShowAddOneStack(false);
   };
 
   const closeLockerModel = () => {
-    setLocker(null);
+    getLocker(selectedDevice.deviceId);
     setStacks([]);
     setShowLockerModel(false);
   };
@@ -220,13 +240,35 @@ const DeviceManagement = () => {
     }
     if (resp.data.locker) {
       setLocker(resp.data.locker);
+    } else {
+      setLocker({
+        roofLightOnTime: "00:00",
+        roofLightOffTime: "01:00",
+        id: "",
+      });
     }
     if (resp.data.stacks) {
       setStacks(resp.data.stacks);
     }
   };
   const addStack = async () => {
-    const resp = await addStackRequest(locker.id, stackSize, stackPosition);
+    if (stack.xDirection > 2 || stack.yDirection > 2) {
+      setToastContent(
+        `X direction hoặc Y direction chỉ nhận một trong các giá trị [0, 1, 2]`
+      );
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    const resp = await addStackRequest(
+      locker.id,
+      stack.size,
+      stack.position,
+      stack.boardIndex,
+      stack.lockIndex,
+      stack.xDirection,
+      stack.yDirection
+    );
     if (resp.isError) {
       setToastContent(`Không thể thêm ngăn chứa đồ: ${resp.msg}`);
       setToastVariant("danger");
@@ -246,7 +288,7 @@ const DeviceManagement = () => {
     closeAddOneStackDialog();
   };
   const addLocker = async () => {
-    if (lockerName === "" || lockerAddress === "") {
+    if (locker.name === "" || locker.address === "") {
       setToastContent(`Tên và địa chỉ không dược để trống`);
       setToastVariant("danger");
       setShowToast(true);
@@ -254,8 +296,10 @@ const DeviceManagement = () => {
     }
     const resp = await addLockerRequest(
       selectedDevice.deviceId,
-      lockerName,
-      lockerAddress
+      locker.name,
+      locker.address,
+      locker.roofLightOnTime,
+      locker.roofLightOffTime
     );
     if (resp.isError) {
       setToastContent(`Không thể thêm tủ đồ mới: ${resp.msg}`);
@@ -286,6 +330,29 @@ const DeviceManagement = () => {
       return;
     }
     closeAlertDialog();
+  };
+  const updateLocker = async () => {
+    if (locker.name === "" || locker.address === "") {
+      setToastContent(`Tên và địa chỉ không dược để trống`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    const resp = await updateLockerRequest(
+      locker.id,
+      locker.name,
+      locker.address,
+      null,
+      locker.roofLightOffTime,
+      locker.roofLightOnTime
+    );
+    if (resp.isError) {
+      setToastContent(`Không thể cập nhật thông tin tủ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeAddLockerDialog();
   };
   return (
     <React.Fragment>
@@ -567,21 +634,21 @@ const DeviceManagement = () => {
           <Container>
             <Row>
               <Col>
-                {locker === null && (
+                {locker.id === "" && (
                   <Button
                     variant="primary"
                     onClick={() => {
+                      setLockerAction("create");
                       setShowAddLocker(true);
                     }}
                   >
                     Gắn tủ mới
                   </Button>
                 )}
-                {locker && (
-                  <div className="d-flex flex-row">
+                {locker.id !== "" && (
+                  <div className="d-flex flex-row gap-2">
                     <Button
                       variant="warning"
-                      style={{ marginRight: "10px" }}
                       onClick={() => {
                         setAlertTitle("Gỡ tủ đồ");
                         setAlertContent(
@@ -596,13 +663,22 @@ const DeviceManagement = () => {
                       Gỡ tủ
                     </Button>
                     <Button variant="primary">Đổi tủ</Button>
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        setLockerAction("update");
+                        setShowAddLocker(true);
+                      }}
+                    >
+                      Sửa thông tin tủ
+                    </Button>
                   </div>
                 )}
               </Col>
             </Row>
             <Row>
               <Col>
-                {locker !== null && (
+                {locker.id !== "" && (
                   <div className="d-flex flex-column">
                     <div className="d-flex flex-row">
                       <div className="w-25">Tên tủ:</div>
@@ -618,11 +694,19 @@ const DeviceManagement = () => {
                         {locker.status ? "Hoạt động" : "Không hoạt động"}
                       </div>
                     </div>
+                    <div className="d-flex flex-row">
+                      <div className="w-25">Thời gian bật đèn:</div>
+                      <div>{locker.roofLightOnTime ?? "N/A"}</div>
+                    </div>
+                    <div className="d-flex flex-row">
+                      <div className="w-25">Thời gian tắt đèn:</div>
+                      <div>{locker.roofLightOffTime ?? "N/A"}</div>
+                    </div>
                   </div>
                 )}
               </Col>
             </Row>
-            {locker !== null && (
+            {locker.id !== "" && (
               <>
                 <Row className="mt-2">
                   <Col className="fw-bold" md={6}>
@@ -653,6 +737,7 @@ const DeviceManagement = () => {
                       onClick={() => {
                         setIsAddOneStack(true);
                         setShowAddOneStack(true);
+                        setStackAction("create");
                       }}
                     >
                       Thêm một ngăn tủ
@@ -661,57 +746,89 @@ const DeviceManagement = () => {
                 </Row>
                 <Row className="mt-2">
                   <Col>
-                    <table className="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th className="text-center">Vị trí</th>
-                          <th className="text-center">Kích thước</th>
-                          <th className="text-center">Đang mở</th>
-                          <th className="text-center">Đang được sử dụng</th>
-                          <th className="text-center">Trạng thái</th>
-                          <th />
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {stacks.length > 0 && (
-                          <>
-                            {stacks.map(stack => (
-                              <tr key={stack.id}>
-                                <td className="text-center">
-                                  {stack.position}
-                                </td>
-                                <td className="text-center">{stack.size}</td>
-                                <td className="text-center">
-                                  {stack.isOpened ? "Đang mở" : "Đang khóa"}
-                                </td>
-                                <td className="text-center">
-                                  {stack.isUsed ? "Đang chứa đồ" : "Đang trống"}
-                                </td>
-                                <td className="text-center">
-                                  {stack.status ? "Khả dụng" : "Không khả dụng"}
-                                </td>
-                                <td>
-                                  <i
-                                    className="ri-delete-bin-line"
-                                    onClick={() => {
-                                      setSelectedStack(stack);
-                                      setAlertTitle("Xóa ngăn tủ");
-                                      setAlertContent(
-                                        "Bạn có muốn xóa ngăn tủ này không?"
-                                      );
-                                      setAlertOkCallback(() => () => {
-                                        deleteStack(stack.id);
-                                      });
-                                      setShowAlert(true);
-                                    }}
-                                  ></i>
-                                </td>
-                              </tr>
-                            ))}
-                          </>
-                        )}
-                      </tbody>
-                    </table>
+                    <div className="overflow-auto">
+                      <table className="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th className="text-center">Vị trí</th>
+                            <th className="text-center">Kích thước</th>
+                            <th className="text-center">Board Index</th>
+                            <th className="text-center">Lock index</th>
+                            <th className="text-center">x direction</th>
+                            <th className="text-center">y direction</th>
+                            <th className="text-center">Đang mở</th>
+                            <th className="text-center">Đang được sử dụng</th>
+                            <th className="text-center">Trạng thái</th>
+                            <th />
+                            <th />
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {stacks.length > 0 && (
+                            <>
+                              {stacks.map(stack => (
+                                <tr key={stack.id}>
+                                  <td className="text-center">
+                                    {stack.position}
+                                  </td>
+                                  <td className="text-center">{stack.size}</td>
+                                  <td className="text-center">
+                                    {stack.boardIndex}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.lockIndex}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.xDirection}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.yDirection}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.isOpened ? "Đang mở" : "Đang khóa"}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.isUsed
+                                      ? "Đang chứa đồ"
+                                      : "Đang trống"}
+                                  </td>
+                                  <td className="text-center">
+                                    {stack.status
+                                      ? "Khả dụng"
+                                      : "Không khả dụng"}
+                                  </td>
+                                  <td>
+                                    <i
+                                      className="ri-edit-box-line"
+                                      onClick={() => {
+                                        setStackAction("update");
+                                        setShowAddOneStack(true);
+                                      }}
+                                    ></i>
+                                  </td>
+                                  <td>
+                                    <i
+                                      className="ri-delete-bin-line"
+                                      onClick={() => {
+                                        setSelectedStack(stack);
+                                        setAlertTitle("Xóa ngăn tủ");
+                                        setAlertContent(
+                                          "Bạn có muốn xóa ngăn tủ này không?"
+                                        );
+                                        setAlertOkCallback(() => () => {
+                                          deleteStack(stack.id);
+                                        });
+                                        setShowAlert(true);
+                                      }}
+                                    ></i>
+                                  </td>
+                                </tr>
+                              ))}
+                            </>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   </Col>
                 </Row>
               </>
@@ -732,8 +849,12 @@ const DeviceManagement = () => {
               <Col>
                 <FormSelect
                   onChange={e => {
-                    setStackSize(e.target.value);
+                    setStack({
+                      ...stack,
+                      size: e.target.value,
+                    });
                   }}
+                  value={stack?.size ?? "s"}
                 >
                   <option value="s">S</option>
                   <option value="l">L</option>
@@ -742,17 +863,83 @@ const DeviceManagement = () => {
               </Col>
             </Row>
             {isAddOneStack && (
-              <Row className="mt-2">
-                <Col>Vị trí ngăn:</Col>
-                <Col>
-                  <FormControl
-                    type="number"
-                    onChange={e => {
-                      setStackPosition(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Row>
+              <>
+                <Row className="mt-2">
+                  <Col>Vị trí ngăn:</Col>
+                  <Col>
+                    <FormControl
+                      type="number"
+                      onChange={e => {
+                        setStack({
+                          ...stack,
+                          position: e.target.value,
+                        });
+                      }}
+                      value={stack?.position ?? 0}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col>Board Index:</Col>
+                  <Col>
+                    <FormControl
+                      type="number"
+                      onChange={e => {
+                        setStack({
+                          ...stack,
+                          boardIndex: e.target.value,
+                        });
+                      }}
+                      value={stack?.boardIndex ?? 0}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col>Lock index:</Col>
+                  <Col>
+                    <FormControl
+                      type="number"
+                      onChange={e => {
+                        setStack({
+                          ...stack,
+                          lockIndex: e.target.value,
+                        });
+                      }}
+                      value={stack?.lockIndex ?? 0}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col>X direction:</Col>
+                  <Col>
+                    <FormControl
+                      type="number"
+                      onChange={e => {
+                        setStack({
+                          ...stack,
+                          xDirection: e.target.value,
+                        });
+                      }}
+                      value={stack?.xDirection ?? 0}
+                    />
+                  </Col>
+                </Row>
+                <Row className="mt-2">
+                  <Col>Y direction:</Col>
+                  <Col>
+                    <FormControl
+                      type="number"
+                      onChange={e => {
+                        setStack({
+                          ...stack,
+                          yDirection: e.target.value,
+                        });
+                      }}
+                      value={stack?.yDirection ?? 0}
+                    />
+                  </Col>
+                </Row>
+              </>
             )}
 
             {!isAddOneStack && (
@@ -792,34 +979,81 @@ const DeviceManagement = () => {
         onHide={closeAddLockerDialog}
         backdrop="static"
       >
-        <ModalHeader className="bg-success">Thêm tủ mới</ModalHeader>
+        <ModalHeader className="bg-success">
+          {lockerAction === "create" && <>Thêm tủ mới</>}
+          {lockerAction !== "create" && <>Sửa thông tin tủ</>}
+        </ModalHeader>
         <ModalBody>
-          <div className="d-flex flex-column">
-            <div className="d-flex flex-row">
-              <div className="w-25">Tên tủ:</div>
-              <div>
-                <FormControl
-                  type="text"
-                  onChange={e => setLockerName(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-            <div className="d-flex flex-row mt-2">
-              <div className="w-25">Vị trí đặt tủ:</div>
-              <div>
-                <FormControl
-                  type="text"
-                  onChange={e => setLockerAddress(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-          </div>
+          <Form>
+            <FormGroup>
+              <FormLabel>Tên tủ:</FormLabel>
+              <FormControl
+                type="text"
+                onChange={e => {
+                  setLocker({
+                    ...locker,
+                    name: e.target.value,
+                  });
+                }}
+                value={locker?.name ?? ""}
+                required
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Vị trí đặt tủ:</FormLabel>
+              <FormControl
+                type="text"
+                onChange={e => {
+                  setLocker({
+                    ...locker,
+                    address: e.target.value,
+                  });
+                }}
+                value={locker?.address ?? ""}
+                required
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Thời gian bật đèn:</FormLabel>
+              <br />
+              <TimePicker
+                onChange={v => {
+                  setLocker({
+                    ...locker,
+                    roofLightOnTime: v,
+                  });
+                }}
+                value={locker?.roofLightOnTime ?? "00:00"}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Thời gian tắt đèn:</FormLabel>
+              <br />
+              <TimePicker
+                onChange={v => {
+                  setLocker({
+                    ...locker,
+                    roofLightOffTime: v,
+                  });
+                }}
+                value={locker?.roofLightOffTime ?? "01:00"}
+              />
+            </FormGroup>
+          </Form>
         </ModalBody>
         <ModalFooter>
-          <Button variant="success" onClick={() => addLocker()}>
-            Tạo mới
+          <Button
+            variant="success"
+            onClick={() => {
+              if (lockerAction === "create") {
+                addLocker();
+              } else {
+                updateLocker();
+              }
+            }}
+          >
+            {lockerAction === "create" && <>Tạo mới</>}
+            {lockerAction !== "create" && <>Cập nhật</>}
           </Button>
           <Button variant="secondary" onClick={closeAddLockerDialog}>
             Hủy

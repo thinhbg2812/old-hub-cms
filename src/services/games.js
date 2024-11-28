@@ -29,3 +29,11 @@ export const updateGamesStatusRequest = async (id, status) => {
   };
   return sendPostRequest("put", "/api/private/games/status", params);
 };
+export const listWinnerRequest = async (gameId, index, size) => {
+  const params = {
+    gameId,
+    index,
+    size,
+  };
+  return sendGetRequest("/api/private/games/winner", params);
+};

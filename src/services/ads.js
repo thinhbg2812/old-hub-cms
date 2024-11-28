@@ -15,7 +15,8 @@ export const createAdsRequest = async (
   adsType,
   filePath,
   fileType,
-  status
+  status,
+  externalLink
 ) => {
   const params = {
     deviceId,
@@ -26,6 +27,7 @@ export const createAdsRequest = async (
     filePath,
     fileType,
     status,
+    externalLink,
   };
   return sendPostRequest("post", "/api/private/ads", params);
 };
@@ -44,7 +46,8 @@ export const updateAdsRequest = async (
   adsLength,
   adsType,
   filePath,
-  fileType
+  fileType,
+  externalLink
 ) => {
   const params = {
     id,
@@ -54,6 +57,7 @@ export const updateAdsRequest = async (
     adsType,
     filePath,
     fileType,
+    externalLink,
   };
   return sendPostRequest("put", "/api/private/ads", params);
 };

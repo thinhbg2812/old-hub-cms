@@ -9,7 +9,7 @@ import {
 const AlertDialog = ({ title, content, isOpen, closeCallback, okCallback }) => {
   return (
     <Modal show={isOpen} onHide={closeCallback}>
-      <ModalHeader>{title}</ModalHeader>
+      <ModalHeader className="bg-danger">{title}</ModalHeader>
       <ModalBody>{content}</ModalBody>
       <ModalFooter>
         <Button variant="primary" onClick={okCallback}>

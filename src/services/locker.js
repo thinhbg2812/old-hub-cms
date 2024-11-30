@@ -89,3 +89,23 @@ export const updateLockerRequest = async (
   }
   return sendPostRequest("put", "/api/private/device/locker", params);
 };
+export const updateStackRequest = (
+  stackId,
+  size,
+  position,
+  boardIndex,
+  lockIndex,
+  xDirection,
+  yDirection
+) => {
+  const params = {
+    stackId,
+    size,
+    position,
+    boardIndex,
+    lockIndex,
+    xDirection,
+    yDirection,
+  };
+  return sendPostRequest("put", "/api/private/device/locker/stack", params);
+};

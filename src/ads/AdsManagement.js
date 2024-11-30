@@ -135,19 +135,23 @@ const AdsManagement = () => {
   };
   const addAds = async () => {
     //upload file
-    if (uploadFiles.length <= 0) {
-      setToastContent("Thiếu tập tin quảng cáo");
-      setToastVariant("danger");
-      setShowToast(true);
-      return;
+    // if (uploadFiles.length <= 0) {
+    //   setToastContent("Thiếu tập tin quảng cáo");
+    //   setToastVariant("danger");
+    //   setShowToast(true);
+    //   return;
+    // }
+    let resp;
+    if (uploadFiles.length > 0) {
+      resp = await uploadFileRequest(uploadFiles[0]);
+      if (resp.fileName === undefined) {
+        setToastContent("Không thể tải tập tin");
+        setToastVariant("danger");
+        setShowToast(true);
+        return;
+      }
     }
-    let resp = await uploadFileRequest(uploadFiles[0]);
-    if (resp.fileName === undefined) {
-      setToastContent("Không thể tải tập tin");
-      setToastVariant("danger");
-      setShowToast(true);
-      return;
-    }
+
     //create ads
     resp = await createAdsRequest(
       deviceId,
@@ -155,8 +159,8 @@ const AdsManagement = () => {
       adsObject.position,
       adsObject.adsLength,
       adsObject.adsType,
-      resp.path,
-      resp.mimeType,
+      uploadFiles.length > 0 ? resp.path : null,
+      uploadFiles.length > 0 ? resp.mimeType : null,
       adsObject.status,
       adsObject.externalLink
     );
@@ -364,6 +368,7 @@ const AdsManagement = () => {
                       externalLink: e.target.value,
                     });
                   }}
+                  value={adsObject.externalLink}
                 />
               </FormGroup>
               <FormGroup>

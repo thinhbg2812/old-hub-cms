@@ -38,6 +38,7 @@ import {
   getDeviceLockerRequest,
   removeLockerRequest,
   updateLockerRequest,
+  updateStackRequest,
 } from "../services/locker";
 import AlertDialog from "../components/Alert";
 import "react-time-picker/dist/TimePicker.css";
@@ -281,6 +282,24 @@ const DeviceManagement = () => {
     const resp = await addMultiStackRequest(locker.id, stackSize, stackNumber);
     if (resp.isError) {
       setToastContent(`Không thể thêm ngăn chứa đồ: ${resp.msg}`);
+      setToastVariant("danger");
+      setShowToast(true);
+      return;
+    }
+    closeAddOneStackDialog();
+  };
+  const updateStack = async () => {
+    const resp = await updateStackRequest(
+      stack.id,
+      stack.size,
+      stack.position,
+      stack.boardIndex,
+      stack.lockIndex,
+      stack.xDirection,
+      stack.yDirection
+    );
+    if (resp.isError) {
+      setToastContent(`Không thể sửa ngăn chứa đồ: ${resp.msg}`);
       setToastVariant("danger");
       setShowToast(true);
       return;
@@ -625,7 +644,8 @@ const DeviceManagement = () => {
         show={showLockerModel}
         onHide={closeLockerModel}
         backdrop="static"
-        size="lg"
+        size="xl"
+        scrollable
       >
         <ModalHeader closeButton className="fw-bold">
           Thông tin tủ
@@ -766,41 +786,36 @@ const DeviceManagement = () => {
                         <tbody>
                           {stacks.length > 0 && (
                             <>
-                              {stacks.map(stack => (
-                                <tr key={stack.id}>
+                              {stacks.map(st => (
+                                <tr key={st.id}>
+                                  <td className="text-center">{st.position}</td>
+                                  <td className="text-center">{st.size}</td>
                                   <td className="text-center">
-                                    {stack.position}
-                                  </td>
-                                  <td className="text-center">{stack.size}</td>
-                                  <td className="text-center">
-                                    {stack.boardIndex}
+                                    {st.boardIndex}
                                   </td>
                                   <td className="text-center">
-                                    {stack.lockIndex}
+                                    {st.lockIndex}
                                   </td>
                                   <td className="text-center">
-                                    {stack.xDirection}
+                                    {st.xDirection}
                                   </td>
                                   <td className="text-center">
-                                    {stack.yDirection}
+                                    {st.yDirection}
                                   </td>
                                   <td className="text-center">
-                                    {stack.isOpened ? "Đang mở" : "Đang khóa"}
+                                    {st.isOpened ? "Đang mở" : "Đang khóa"}
                                   </td>
                                   <td className="text-center">
-                                    {stack.isUsed
-                                      ? "Đang chứa đồ"
-                                      : "Đang trống"}
+                                    {st.isUsed ? "Đang chứa đồ" : "Đang trống"}
                                   </td>
                                   <td className="text-center">
-                                    {stack.status
-                                      ? "Khả dụng"
-                                      : "Không khả dụng"}
+                                    {st.status ? "Khả dụng" : "Không khả dụng"}
                                   </td>
                                   <td>
                                     <i
                                       className="ri-edit-box-line"
                                       onClick={() => {
+                                        setStack(st);
                                         setStackAction("update");
                                         setShowAddOneStack(true);
                                       }}
@@ -808,15 +823,16 @@ const DeviceManagement = () => {
                                   </td>
                                   <td>
                                     <i
-                                      className="ri-delete-bin-line"
+                                      className={`${st.status ? "ri-stop-circle-line" : "ri-play-circle-line"}`}
                                       onClick={() => {
-                                        setSelectedStack(stack);
-                                        setAlertTitle("Xóa ngăn tủ");
+                                        setAlertTitle(
+                                          `${st.status ? "Tắt ngăn tủ" : "Bật ngăn tủ"}`
+                                        );
                                         setAlertContent(
-                                          "Bạn có muốn xóa ngăn tủ này không?"
+                                          `Bạn có muốn ${st.status ? "tắt" : "bật"} ngăn tủ này không?`
                                         );
                                         setAlertOkCallback(() => () => {
-                                          deleteStack(stack.id);
+                                          deleteStack(st.id);
                                         });
                                         setShowAlert(true);
                                       }}
@@ -841,7 +857,10 @@ const DeviceManagement = () => {
         onHide={closeAddOneStackDialog}
         backdrop="static"
       >
-        <ModalHeader className="bg-success">Thêm ngăn tủ mới</ModalHeader>
+        <ModalHeader className="bg-success">
+          {stackAction === "create" && <>Thêm ngăn tủ mới</>}
+          {stackAction !== "create" && <>Sửa ngăn tủ</>}
+        </ModalHeader>
         <ModalBody>
           <Container>
             <Row>
@@ -960,14 +979,19 @@ const DeviceManagement = () => {
         <ModalFooter>
           <Button
             onClick={() => {
-              if (isAddOneStack) {
-                addStack();
+              if (stackAction === "create") {
+                if (isAddOneStack) {
+                  addStack();
+                } else {
+                  addStacks();
+                }
               } else {
-                addStacks();
+                updateStack();
               }
             }}
           >
-            Thêm
+            {stackAction === "create" && <>Thêm</>}
+            {stackAction !== "create" && <>Cập nhật</>}
           </Button>
           <Button variant="secondary" onClick={closeAddOneStackDialog}>
             Hủy

@@ -120,6 +120,7 @@ const DeviceManagement = () => {
       position: 1,
     });
     getLocker(selectedDevice.deviceId);
+    setIsAddOneStack(true);
     setShowAddOneStack(false);
   };
 

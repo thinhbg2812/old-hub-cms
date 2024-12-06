@@ -878,6 +878,7 @@ const DeviceManagement = () => {
                   <option value="s">S</option>
                   <option value="l">L</option>
                   <option value="m">M</option>
+                  <option value="xl">XL</option>
                 </FormSelect>
               </Col>
             </Row>

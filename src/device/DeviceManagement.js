@@ -23,6 +23,7 @@ import {
   ModalFooter,
   ModalHeader,
   Row,
+  Table,
   Toast,
   ToastBody,
   ToastContainer,
@@ -44,6 +45,7 @@ import AlertDialog from "../components/Alert";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
+import { importStackFile } from "../services/file";
 
 const DEFAULT_DEVICE = {
   deviceId: "",
@@ -64,6 +66,7 @@ const DeviceManagement = () => {
   const [validated, setValidated] = useState(false);
   const [action, setAction] = useState("create");
   const [orgs, setOrgs] = useState([]);
+  const [stackFile, setStackFile] = useState(null);
 
   const [size, setSize] = useState(40);
   const [index, setIndex] = useState(0);
@@ -98,6 +101,15 @@ const DeviceManagement = () => {
   const [alertTitle, setAlertTitle] = useState("");
   const [alertContent, setAlertContent] = useState("");
   const [alertOkCallback, setAlertOkCallback] = useState(null);
+
+  const [showImportResult, setShowImportResult] = useState(false);
+  const [importResults, setImportResults] = useState([]);
+
+  const closeImportResult = () => {
+    getLocker(selectedDevice.deviceId);
+    setImportResults([]);
+    setShowImportResult(false);
+  };
 
   const closeAlertDialog = () => {
     setShowAlert(false);
@@ -374,6 +386,7 @@ const DeviceManagement = () => {
     }
     closeAddLockerDialog();
   };
+
   return (
     <React.Fragment>
       <Header />
@@ -431,7 +444,7 @@ const DeviceManagement = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <table className="table table-bordered">
+                  <Table striped bordered hover>
                     <thead>
                       <tr>
                         <th>#</th>
@@ -512,7 +525,7 @@ const DeviceManagement = () => {
                         </tr>
                       )}
                     </tbody>
-                  </table>
+                  </Table>
                 </div>
               </div>
             </div>
@@ -721,7 +734,14 @@ const DeviceManagement = () => {
                     </div>
                     <div className="d-flex flex-row">
                       <div className="w-25">Thời gian tắt đèn:</div>
-                      <div>{locker.roofLightOffTime ?? "N/A"}</div>
+                      <div className="w-40">
+                        {locker.roofLightOffTime ?? "N/A"}
+                      </div>
+                      <div className="mr-auto p-2 grow">
+                        <a href="/stack_template.xlsx" download="stack.xlsx">
+                          Tải tập tin mẫu
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -730,12 +750,12 @@ const DeviceManagement = () => {
             {locker.id !== "" && (
               <>
                 <Row className="mt-2">
-                  <Col className="fw-bold" md={6}>
+                  <Col className="fw-bold" md={2}>
                     Danh sách ngăn đồ:
                   </Col>
                   <Col
                     className="fw-bold"
-                    md={3}
+                    md={2}
                     style={{ textAlign: "right" }}
                   >
                     <Button
@@ -750,7 +770,7 @@ const DeviceManagement = () => {
                   </Col>
                   <Col
                     className="fw-bold"
-                    md={3}
+                    md={2}
                     style={{ textAlign: "right" }}
                   >
                     <Button
@@ -764,11 +784,49 @@ const DeviceManagement = () => {
                       Thêm một ngăn tủ
                     </Button>
                   </Col>
+                  <Col md={3}>
+                    <FormControl
+                      type="file"
+                      onChange={e => {
+                        setStackFile(e.target.files[0]);
+                      }}
+                    />
+                  </Col>
+                  <Col md={3}>
+                    <Button
+                      variant="primary"
+                      onClick={async () => {
+                        if (stackFile !== null) {
+                          const resp = await importStackFile(
+                            stackFile,
+                            locker.id
+                          );
+                          const items = [];
+                          for (let i = 0; i < resp.successItems.length; i++) {
+                            items.push(resp.successItems[i]);
+                          }
+                          for (let i = 0; i < resp.errorItems.length; i++) {
+                            items.push(resp.errorItems[i]);
+                          }
+                          setImportResults(items);
+                          setShowImportResult(true);
+                        } else {
+                          setToastContent(
+                            `Không thể tạo ngăn gửi đồ: ${resp.msg}`
+                          );
+                          setToastVariant("danger");
+                          setShowToast(true);
+                        }
+                      }}
+                    >
+                      Tải danh sách ngăn tủ
+                    </Button>
+                  </Col>
                 </Row>
                 <Row className="mt-2">
                   <Col>
                     <div className="overflow-auto">
-                      <table className="table table-bordered">
+                      <Table bordered hover>
                         <thead>
                           <tr>
                             <th className="text-center">Vị trí</th>
@@ -844,7 +902,7 @@ const DeviceManagement = () => {
                             </>
                           )}
                         </tbody>
-                      </table>
+                      </Table>
                     </div>
                   </Col>
                 </Row>
@@ -873,6 +931,7 @@ const DeviceManagement = () => {
                       ...stack,
                       size: e.target.value,
                     });
+                    setStackSize(e.target.value);
                   }}
                   value={stack?.size ?? "s"}
                 >
@@ -1083,6 +1142,47 @@ const DeviceManagement = () => {
           </Button>
           <Button variant="secondary" onClick={closeAddLockerDialog}>
             Hủy
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        show={showImportResult}
+        onHide={closeImportResult}
+        backdrop="static"
+      >
+        <ModalHeader className="bg-success">Kết quả tạo ngăn tủ</ModalHeader>
+        <ModalBody>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Vị trí</th>
+                <th>Kích thước</th>
+                <th>Board Index</th>
+                <th>Lock Index</th>
+                <th>Kết quả</th>
+              </tr>
+            </thead>
+            <tbody>
+              {importResults.map((result, idx) => (
+                <tr key={result.idx}>
+                  <td>{result.position}</td>
+                  <td>{result.size}</td>
+                  <td>{result.boardIndex}</td>
+                  <td>{result.lockIndex}</td>
+                  <td>{result.error ? result.error : "Thành công"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            variant="primary"
+            onClick={() => {
+              closeImportResult();
+            }}
+          >
+            Đồng ý
           </Button>
         </ModalFooter>
       </Modal>

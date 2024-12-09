@@ -60,3 +60,29 @@ export const downloadRequest = async adsId => {
     };
   }
 };
+
+export const importStackFile = async (file, lockerId) => {
+  const formData = new FormData();
+  formData.append("myFile", file, file.name);
+  const config = {
+    method: "post",
+    url: process.env.REACT_APP_BE_DOMAIN + "/api/file/importStack",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+  try {
+    const resp = await axios.postForm(
+      process.env.REACT_APP_BE_DOMAIN +
+        `/api/file/importStack?lockerId=${lockerId}`,
+      formData,
+      config
+    );
+    return resp.data.data;
+  } catch (error) {
+    return {
+      isError: true,
+      msg: error.response.data.message,
+    };
+  }
+};

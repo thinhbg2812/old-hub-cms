@@ -51,6 +51,8 @@ const DEFAULT_DEVICE = {
   deviceId: "",
   deviceName: "",
   password: "",
+  shipVerifyMode: true,
+  userVerifyMode: true,
 };
 
 const DeviceManagement = () => {
@@ -150,12 +152,16 @@ const DeviceManagement = () => {
     await listDevice();
   };
   useEffect(() => {
-    setOrgId(queryParams.get("orgId"));
+    if (queryParams.get("orgId") !== null) {
+      setOrgId(queryParams.get("orgId"));
+    }
   }, [queryParams.get("orgId")]);
 
   useEffect(() => {
     if (orgId !== null && orgId !== "") {
       listDevice();
+    } else {
+      setDevices([]);
     }
   }, [orgId]);
 
@@ -237,7 +243,9 @@ const DeviceManagement = () => {
       selectedDevice.id,
       selectedDevice.deviceName,
       orgId,
-      selectedDevice.password
+      selectedDevice.password,
+      selectedDevice.shipVerifyMode,
+      selectedDevice.userVerifyMode
     );
     if (resp.isError) {
       setToastContent(`Không thể cập nhật thiết bị: ${resp.msg}`);
@@ -486,6 +494,7 @@ const DeviceManagement = () => {
                                       setShowModal(true);
                                       setAction("update");
                                       setSelectedDevice(device);
+                                      console.log(device);
                                     }}
                                   >
                                     Sửa
@@ -597,6 +606,40 @@ const DeviceManagement = () => {
                 <FormControl.Feedback type="invalid">
                   Tên Thiết Bị là bắt buộc
                 </FormControl.Feedback>
+              </FormGroup>
+            </Row>
+            <Row className="mb-1">
+              <FormGroup as={Col}>
+                <FormLabel>Yêu cầu xác thực người gửi:</FormLabel>
+                <FormSelect
+                  onChange={e => {
+                    setSelectedDevice(device => ({
+                      ...selectedDevice,
+                      shipVerifyMode: e.target.value,
+                    }));
+                  }}
+                  value={selectedDevice.shipVerifyMode}
+                >
+                  <option value="false">Không yêu cầu</option>
+                  <option value="true">Yêu cầu</option>
+                </FormSelect>
+              </FormGroup>
+            </Row>
+            <Row className="mb-1">
+              <FormGroup as={Col}>
+                <FormLabel>Chế độ người gửi:</FormLabel>
+                <FormSelect
+                  onChange={e => {
+                    setSelectedDevice(device => ({
+                      ...selectedDevice,
+                      userVerifyMode: e.target.value,
+                    }));
+                  }}
+                  value={selectedDevice.userVerifyMode}
+                >
+                  <option value="false">Không yêu cầu</option>
+                  <option value="true">Yêu cầu</option>
+                </FormSelect>
               </FormGroup>
             </Row>
             <Row className="mb-1">

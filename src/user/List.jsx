@@ -1,4 +1,8 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { faHand } from "@fortawesome/free-regular-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import _ from "lodash";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { flattenTree } from "react-accessible-treeview";
 import {
   Col,
@@ -16,19 +20,15 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer as ToastifyContainer, toast } from "react-toastify";
 import Pagination from "../components/Pagination.js";
 import Header from "../layouts/Header.js";
-import { listOrgRequest } from "../services/organization.js";
-import { updateUserRequest, listUserRequest } from "../services/user.js";
-import "./list.scss";
 import { requestGetSampleRequest } from "../services/device.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHand } from "@fortawesome/free-regular-svg-icons";
+import { listOrgRequest } from "../services/organization.js";
+import { listUserRequest, updateUserRequest } from "../services/user.js";
+import "./list.scss";
 import UserModal from "./UserModal.jsx";
-import { useLocation, useNavigate } from "react-router-dom";
-import _ from "lodash";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const COLUMN_WIDTH = 150;
 const COLUMN_STYLE = {
@@ -282,7 +282,7 @@ export default function UserManagement() {
                             className="text-truncate"
                             style={{ ...COLUMN_STYLE, minWidth: COLUMN_WIDTH }}
                           >
-                            {user.orgs[0].orgName}
+                            {user.orgs[0]?.orgName}
                           </td>
                           <td className="text-truncate" style={COLUMN_STYLE}>
                             {user.vehicles?.map(v => v.licensePlate).join(", ")}

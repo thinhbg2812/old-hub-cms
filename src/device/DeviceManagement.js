@@ -1,13 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
-import Header from "../layouts/Header";
-import {
-  createDeviceRequest,
-  getDeviceRequest,
-  listOrgDeviceRequest,
-  updateDeviceRequest,
-} from "../services/device";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   Button,
   Col,
@@ -29,8 +21,18 @@ import {
   ToastContainer,
   ToastHeader,
 } from "react-bootstrap";
-import { listOrgRequest } from "../services/organization";
-import { checkNoSpecialCharacters } from "../utils/string";
+import "react-clock/dist/Clock.css";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import AlertDialog from "../components/Alert";
+import Header from "../layouts/Header";
+import {
+  createDeviceRequest,
+  listOrgDeviceRequest,
+  updateDeviceRequest,
+} from "../services/device";
+import { importStackFile } from "../services/file";
 import {
   addLockerRequest,
   addMultiStackRequest,
@@ -41,11 +43,8 @@ import {
   updateLockerRequest,
   updateStackRequest,
 } from "../services/locker";
-import AlertDialog from "../components/Alert";
-import "react-time-picker/dist/TimePicker.css";
-import "react-clock/dist/Clock.css";
-import TimePicker from "react-time-picker";
-import { importStackFile } from "../services/file";
+import { listOrgRequest } from "../services/organization";
+import { checkNoSpecialCharacters } from "../utils/string";
 
 const DEFAULT_DEVICE = {
   deviceId: "",
@@ -427,7 +426,7 @@ const DeviceManagement = () => {
                 {orgs.map(org => {
                   return (
                     <option value={org.id} key={org.id}>
-                      {org.orgName}
+                      {org?.orgName}
                     </option>
                   );
                 })}

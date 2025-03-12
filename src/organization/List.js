@@ -1,17 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-  createOrgRequest,
-  getOrgRequest,
-  listOrgRequest,
-  updateOrgRequest,
-} from "../services/organization";
-import TreeView, { flattenTree } from "react-accessible-treeview";
-import { IoMdArrowDropright } from "react-icons/io";
-import { FaSquare, FaCheckSquare, FaMinusSquare } from "react-icons/fa";
 import cx from "classnames";
-import "./list.scss";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import TreeView, { flattenTree } from "react-accessible-treeview";
 import {
   Col,
   Form,
@@ -23,9 +12,20 @@ import {
   ModalHeader,
   Row,
 } from "react-bootstrap";
+import { FaCheckSquare, FaMinusSquare, FaSquare } from "react-icons/fa";
+import { IoMdArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../layouts/Header";
+import {
+  createOrgRequest,
+  getOrgRequest,
+  listOrgRequest,
+  updateOrgRequest,
+} from "../services/organization";
 import { checkNoSpecialCharacters } from "../utils/string";
+import "./list.scss";
 
 export default function OrgManagement() {
   const [page, setPage] = useState(0);
@@ -224,7 +224,7 @@ export default function OrgManagement() {
                           type="text"
                           className="form-control form-control-sm"
                           id="phone"
-                          value={selectedOrg.orgName || ""}
+                          value={selectedOrg?.orgName || ""}
                           onChange={e => {
                             let newItem = {
                               orgName: e.target.value,
@@ -371,7 +371,7 @@ export default function OrgManagement() {
 
                 {/* <div className="row mt-3">
                   <div className="col-9">
-                    
+
                   </div>
                 </div> */}
               </div>
